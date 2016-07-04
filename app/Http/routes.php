@@ -21,3 +21,5 @@ Route::resource('group', 'GroupController');
 Route::get('groups', function () {
     return view('groups.index');
 });
+
+Route::get('/smallgame', 'HomeController@index');
