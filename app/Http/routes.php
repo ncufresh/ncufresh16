@@ -7,3 +7,9 @@ Route::get('/', function () {
 });
 
 Route::get('/home', 'HomeController@index');
+
+Route::resource('group', 'GroupController');
+
+Route::get('groups', function () {
+    return view('groups.index');
+});
