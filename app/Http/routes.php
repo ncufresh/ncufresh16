@@ -1,9 +1,10 @@
 <?php
 
+// 註冊,登入頁
 Route::auth();
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home', 'HomeController@index');
+// 旭
+//************************************************************
+// 首頁
+Route::get('/', 'HomeController@index');
+//************************************************************
