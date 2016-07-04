@@ -1,0 +1,45 @@
+/* 字體用微軟正黑體
+參考:https://www.ptt.cc/bbs/Web_Design/M.1279032453.A.80B.html
+*/
+body {
+   font-family: Helvetica, Arial, 'LiHei Pro', '微軟正黑體', '新細明體', sans-serif;
+}
+body > .container {
+  padding: 60px 15px; /* 上,左 */
+}
+
+/* navbar是有點透明的黑色 */
+.navbar {
+    margin-bottom: 0;
+    border: 0;
+    font-size: 11px;
+    letter-spacing: 4px; /* 字的間距 */
+    opacity:0.9;
+}
+
+/* footer */
+html {
+    /* 為了sticky黏在最下面 */
+    min-height: 100%;
+    position: relative;
+}
+body {
+    margin-bottom: 150px;
+}
+#footer {
+    background-color: #2d2d30;
+    color: #f5f5f5;
+    padding: 16px;
+    /* 為了sticky黏在最下面 */
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 150px;
+}
+#footer a {
+    color: #f5f5f5;
+}
+#footer a:hover {
+    color: #777;
+    text-decoration: none;
+}

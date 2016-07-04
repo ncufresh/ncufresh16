@@ -1,0 +1,77 @@
+/** home頁面 Global **/
+.sec {
+    height: 100vh;
+}
+
+/** 最上面那區 **/
+.one-or-two {
+    border: 10px solid ; /* 邊粗 transparent? */
+    margin-bottom: 25px; /* 下面留空 */
+    width: 60%;
+    height: 60%;
+    opacity: 0.7; /* 透明度 */
+}
+.one-or-two:hover {
+    border-color: #f1f1f1;
+}
+
+/** 廣告 **/
+.carousel-inner img {
+    width: 80vh;
+    margin: auto;
+}
+
+.carousel-caption h3 {
+    color: #fff; /* 白色字 */
+}
+@media (max-width: 600px) { /* 最大寬度以內都會執行下面code => 手機版的文字會不見 */
+    .carousel-caption {
+        display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+    }
+}
+
+/** 公告 **/
+
+/* 不要圓角 */
+.list-group-item:first-child {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+.list-group-item:last-child {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.thumbnail {
+    padding: 0 0 15px 0; /* 下 */
+    border: none; /* 無邊框 */
+    border-radius: 0; /* 無圓角 */
+}
+.thumbnail p {
+    margin-top: 15px;
+    color: #555; /* 公告字的顏色 */
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #333; /* 按鈕背景色 */
+    color: #f1f1f1; /* 按鈕字顏色 */
+    border-radius: 0;
+    transition: 0.2s;
+}
+.btn:hover, .btn:focus {
+    border: 1px solid #333; /* 細框 顏色 */
+    background-color: #fff; /* 白底 */
+    color: #000; /* 白字 */
+}
+
+/* modal */
+.modal-header, h4, .close {
+    background-color: #333;
+    color: #fff; /* 白字 */
+    text-align: center;
+    font-size: 30px;
+}
+.modal-header, .modal-body {
+    padding: 20px 20px;
+}

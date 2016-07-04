@@ -7,27 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Styles -->
+    <!-- 引入Styles -->
     <link rel="stylesheet" href="{{ asset('include/bootstrap/css/bootstrap.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('include/font-awesome/css/font-awesome.css') }}" media="screen">
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
-    <style>
-        body {
-            font-family: '微軟正黑體','Microsoft JhengHei';
-        }
-    </style>
-
+    <!-- 個人Styles -->
+    <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
     @yield('css')
 
 </head>
-<body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
+<body id="app-layout" data-spy="scroll" data-target=".navbar" data-offset="50">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
 
-                <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                     <span class="sr-only">Toggle Navigation</span>
                     <span class="icon-bar"></span>
@@ -35,19 +28,32 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <!-- Branding Image -->
+                <!-- 左上角LOGO -->
                 <a class="navbar-brand" href="{{ url('/') }}">新生知訊網</a>
             </div>
 
+            <!-- Collapse -->
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
+                <!-- 左邊的 Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">回首頁</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            常用連結<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://lovenery.me/old/">去年的</a></li>
+                            <li><a href="http://ncufresh.ncu.edu.tw/summer/">今年的</a></li>
+                        </ul>
+                    </li>
+                    @if(Request::path() === '/')
+                        <li><a href="#mustread">新生必讀</a></li>
+                        <li><a href="#adblock">廣告</a></li>
+                        <li><a href="#board">公告</a></li>
+                    @endif
                 </ul>
 
-                <!-- Right Side Of Navbar -->
+                <!-- 右邊的 Navbar -->
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">登入</a></li>
                         <li><a href="{{ url('/register') }}">註冊</a></li>
@@ -56,7 +62,6 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>登出</a></li>
                             </ul>
@@ -69,9 +74,20 @@
 
     @yield('content')
 
+    <footer id="footer">
+          <div class="container text-center">
+            <a class="up-arrow" href="#app-layout" data-toggle="tooltip" title="To top">
+                <span class="glyphicon glyphicon-chevron-up"></span>
+            </a><br><br>
+            <p>國立中央大學2016新生知訊網團隊 版權所有 © 2016 NCU Fresh All Rights Reserved</p>
+            <p>建議使用Chrome、Firefox或者IE11等瀏覽器，以獲得最佳體驗</p>
+          </div>
+    </footer>
+
     <!-- JavaScripts -->
     <script src="{{ asset('include/jquery/jquery-1.12.4.js') }}"></script>
     <script src="{{ asset('include/bootstrap/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/layout.js') }}"></script>
     @yield('js')
 </body>
 </html>
