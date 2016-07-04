@@ -14,3 +14,10 @@ Route::get('/campus','CampusController@index');
 Route::get('/campus/guide','CampusController@guide');
 Route::get('/campus/newData','CampusController@newData');
 Route::get('/campus/create','CampusController@createData');
+
+
+Route::resource('group', 'GroupController');
+
+Route::get('groups', function () {
+    return view('groups.index');
+});
