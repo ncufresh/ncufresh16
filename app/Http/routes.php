@@ -7,3 +7,5 @@ Route::get('/', function () {
 });
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/smallgame', 'HomeController@index');
