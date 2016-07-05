@@ -27,6 +27,6 @@ class CampusGuide extends Migration
      */
     public function down()
     {
-        Schema::drop('messages');
+        Schema::drop('buildingCategories');
     }
 }
