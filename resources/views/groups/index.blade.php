@@ -1,12 +1,20 @@
 @extends('layouts.app')
 @section('content')
 	<div>
-		<img src="{{ asset('') }}">
-		<a href=""
-		<span>系所</span>
+		<a href="{{ url('/groups/departments') }}">
+			<img src="{{ asset('image/department.jpg') }}">
+			<span>系所</span>
+		</a>
+
+		
 	</div>
 	<div>
-		<img src="{{ asset('') }}">
-		<span>社團</span>
+		<a href="{{ URL::action('ClubController@index') }}">
+			<img src="{{ asset('image/club.jpg')  }}">
+			<span>社團</span>
+		</a>
+		
 	</div>
 @endsection
+
+

@@ -15,8 +15,8 @@ class CreateAllClubsTable extends Migration
         Schema::create('allClubs', function (Blueprint $table) {
             $table->increments('id');
             $table->tinyInteger('clubs_id');//關聯clubs
-            $table->string('clubs_name');
             $table->text('clubs_content');
+            $table->string('clubs_name');
             $table->timestamps();
         });
     }

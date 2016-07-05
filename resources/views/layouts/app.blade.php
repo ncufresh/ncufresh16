@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <title>@yield('title', '記得設標題喔ㄏㄏ')</title>
+    <title>@yield('title', '系所社團')</title>
     <!-- mete區 -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Department;
+
 class DepartmentController extends Controller
 {
     public function index(){
@@ -15,11 +17,20 @@ class DepartmentController extends Controller
         ]); 
 	}
 
+	public function create()
+    {
+       return view('departments.create');
+    }
+
 	
 
 	public function store(Request $request)
 	{
-    	
+    	$department = new Department;
+    	$department->departments_kind = $request->departments_kind;
+    	$department->departments_intro = $request->departments_intro;
+    	$department->save();
+    	return redirect('/groups/departments');
 	}
 
 	public function destroy(Request $request, Message $message)
@@ -30,7 +41,7 @@ class DepartmentController extends Controller
 	public function show(Message $message)
 	{
 	    
-
+	}
 	public function edit(Message $message)
 	{
 	    
