@@ -4,8 +4,11 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use Caffeinated\Shinobi\Traits\ShinobiTrait;
+
 class User extends Authenticatable
 {
+    use ShinobiTrait;
     /**
      * The attributes that are mass assignable.
      *

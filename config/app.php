@@ -156,6 +156,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // 套件件
+        Caffeinated\Shinobi\ShinobiServiceProvider::class,
+
     ],
 
     /*
@@ -202,6 +205,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        // 套件件
+        'Shinobi' => Caffeinated\Shinobi\Facades\Shinobi::class,
     ],
 
 ];
