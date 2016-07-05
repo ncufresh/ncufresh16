@@ -30,6 +30,8 @@ class QandAController extends Controller
     public function show($id)
     {
         $Q = QandA::where('id',$id)->first();
+        $Q->click_count ++;
+        $Q->save();
         return view('Q&A.show', compact('Q'));
     }
     // public function edit()

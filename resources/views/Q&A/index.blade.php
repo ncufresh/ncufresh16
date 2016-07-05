@@ -10,6 +10,7 @@
                         <td>{{ $Q->classify }}</td>
                         <td><?php echo substr($Q->created_at,5,5) ?></td>
                         <td>{{ $Q->content }}</td>
+                        <td>{{ $Q->click_count }}</td>
                         <td></td>
                       </tr>
                     @endforeach

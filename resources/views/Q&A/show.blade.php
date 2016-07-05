@@ -18,6 +18,7 @@
                         <td>{{ $Q->id }}</td>
                         <td>{{ $Q->classify }}</td>
                         <td><?php echo substr($Q->created_at,5,5) ?></td>
+                        <td>{{ $Q->click_count }}</td>
                       </tr>
                     </tbody>
                   </table>
