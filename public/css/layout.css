@@ -5,7 +5,7 @@ body {
    font-family: Helvetica, Arial, 'LiHei Pro', '微軟正黑體', '新細明體', sans-serif;
 }
 body > .container {
-  padding: 60px 15px; /* 上,左 */
+  padding: 90px 15px; /* 上,左 */
 }
 
 /* navbar是有點透明的黑色 */
