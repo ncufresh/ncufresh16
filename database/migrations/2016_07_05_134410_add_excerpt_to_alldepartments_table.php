@@ -12,11 +12,11 @@ class AddExcerptToAlldepartmentsTable extends Migration
      */
     public function up()
     {
-        Schema::table('alldepartments', function (Blueprint $table) {
+        Schema::table('allDepartments', function (Blueprint $table) {
             $table->text('departments_activity');
             $table->text('departments_team');
             $table->text('departments_association');
-            
+
         });
     }
 
@@ -27,9 +27,9 @@ class AddExcerptToAlldepartmentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('alldepartments', function (Blueprint $table) {
+        Schema::table('allDepartments', function (Blueprint $table) {
             $table->dropColumn('departments_activity');
-            $table->dropColumn('departments_team'); 
+            $table->dropColumn('departments_team');
             $table->dropColumn('departments_association');
         });
     }
