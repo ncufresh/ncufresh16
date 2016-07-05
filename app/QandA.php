@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class QandA extends Model
 {
     protected $fillable = ['content','classify'];
-    protected $table = "qanda";
+    protected $table = "QandA";
 }
