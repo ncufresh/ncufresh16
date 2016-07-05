@@ -35,7 +35,21 @@ Route::get('groups', function () {
 
 // 小遊戲
 //************************************************************
-Route::get('/smallgame', 'HomeController@index');
+Route::get('smallgame', function(){
+	return view('smallgame');
+});
+Route::get('/smallgame_try',function(){
+	$try=App\Question_collection::find(1);
+	echo $try -> question;
+
+});
+Route::get('customer',function(){  //為什麼資料表的名稱被限制為cutomers??
+	$customer = App\Customer::find(1); //find("這裡面是裝primaryKey")， _
+	//假如model檔裡沒有initialize，php預設primaryKey  的attribute會被稱為"id"
+	echo '<pre>';
+	print_r($customer);
+});
+
 //************************************************************
 
 // 新生Q&A
