@@ -15,6 +15,16 @@
 [Bootstrap:w3schools](http://www.w3schools.com/bootstrap/default.asp)  
 [Font Awesome](http://fontawesome.io)
 
+[Button製作大師(with bootstrap)](http://www.plugolabs.com/twitter-bootstrap-button-generator-3/)
+[Button製作大師(with font-awesome)](http://www.plugolabs.com/twitter-bootstrap-button-generator-with-awesome-font/)
+[挑顏色好用](http://materializecss.com/color.html)
+
+## 使用套件
+
+[caffeinated/shinobi(v2.4.1)](https://github.com/caffeinated/shinobi/wiki)  
+[laravelcollective/html(v5.2.4)](https://laravelcollective.com/docs/5.2/html)  
+[smarch/watchtower(v1.1.5.3)](https://github.com/SmarchSoftware/watchtower)  
+
 ## 部署
 
 `git clone git@gitlab.com:ncufresh/ncufresh16.git`  

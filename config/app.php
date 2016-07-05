@@ -158,6 +158,8 @@ return [
 
         // 套件件
         Caffeinated\Shinobi\ShinobiServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class, // For Watchtower Forms to function
+        Smarch\Watchtower\WatchtowerServiceProvider::class, // For Watchtower
 
     ],
 
@@ -207,6 +209,9 @@ return [
 
         // 套件件
         'Shinobi' => Caffeinated\Shinobi\Facades\Shinobi::class,
+        'Form'     => Collective\Html\FormFacade::class,  // required for Watchtower Forms
+        'HTML'     => Collective\Html\HtmlFacade::class,   // required for Watchtower Forms
+        //'Watchtower'=> Smarch\Watchtower\WatchtowerFacade::class, // not required, but available
     ],
 
 ];
