@@ -7,6 +7,9 @@ Route::auth();
 //************************************************************
 // 首頁
 Route::get('/', 'HomeController@index');
+Route::get('/ann', 'AnnouncementController@index');
+Route::post('/ann', 'AnnouncementController@store');
+Route::get('/ann/{ann}', 'AnnouncementController@show');
 //************************************************************
 
 // 校園導覽

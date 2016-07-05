@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- 引入Styles -->
     <link rel="stylesheet" href="{{ asset('include/bootstrap/css/bootstrap.css') }}" media="screen">
@@ -44,6 +45,7 @@
                             <li><a href="http://lovenery.me/old/">去年的</a></li>
                             <li><a href="http://ncufresh.ncu.edu.tw/summer/">今年的</a></li>
                             <li><a href="{{ route('watchtower.index') }}">權限後台</a></li>
+                            <li><a href="{{ url('/ann') }}">公告</a></li>
                         </ul>
                     </li>
                     @if(Request::path() === '/')
