@@ -16,8 +16,8 @@ class CreateBuildingTable extends Migration
             $table->increments('id');
             $table->string('buildingName');
             $table->integer('building_id')->index();
-            $table->string('explain');
-            $table->string('img_url');
+            $table->string('buildingExplain');
+            $table->string('imgUrl');
             $table->timestamps();
         });
     }

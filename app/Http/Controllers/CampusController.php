@@ -16,7 +16,7 @@ class CampusController extends Controller
     {
        
         return view('campus.index', [
-            'building'=>$building,
+            
         ]);
     }
     public function guide(){
@@ -27,8 +27,9 @@ class CampusController extends Controller
     }
     public function newData(){
         $category = buildingcategory::all();
+        $building = Building::all();
         return view('campus.guide.newData',[
-            'category'=>$category,
+            'category'=>$category,'building'=>$building,
         ]);
     }
     public function createData(Request $request){
