@@ -34,11 +34,10 @@ Route::get('/smallgame', 'HomeController@index');
 // 新生Q&A
 //************************************************************
 //Route::resource('/Q&A', 'QandAController');
-
-Route::get('/Q&A', 'QandAController@index');
-Route::get('/Q&A/asdfsaf', 'QandAController@create');
 Route::post('/Q&A', 'QandAController@store');
+Route::get('/Q&A/create', 'QandAController@create');
+Route::get('/Q&A/{classify}', 'QandAController@index');
+Route::get('/Q&A/content/{id}', 'QandAController@show');
 Route::delete('/Q&A/{dd}', 'QandAController@destroy');
-
 
 //************************************************************

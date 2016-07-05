@@ -1,26 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.Q&Alayouts')
+@section('title','提出疑問')
 
-@section('title','Q&A')
-
-@section('css')
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
-@stop
-
-@section('js')
-@stop
-
-@section('content')
-
-<div class="container">
-    <div class="jumbotron">
-        <h1>Q&A</h1>
-        <a href="{{action('QandAController@create')}}" class="btn btn-lg">我要發問!</a>
-    </div>
-    <div class="row">
-        
-    </div>
-
-    <div class="col-sm-6 col-md-offset-3">
+@section('Q&Acontent')
+    <div class="col-sm-7">
        <form action="{{action('QandAController@store')}}" method="post">
         {{ csrf_field() }}
             <div class="form-group">
@@ -37,14 +19,7 @@
               <textarea name="content" class="form-control" rows="5" id="comment"></textarea>
             </div>
             
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="col-sm-6 col-md-offset-3 btn btn-default">Submit</button>
           </form>
     </div>
-                      
-</div>                
-
- 
-
-
-
 @endsection
