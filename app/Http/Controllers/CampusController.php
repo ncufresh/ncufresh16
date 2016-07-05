@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Http\Response;
+
 use App\Http\Requests;
+
 
 use App\buildingcategory;
 
@@ -16,7 +19,7 @@ class CampusController extends Controller
     {
        
         return view('campus.index', [
-            'building'=>$building,
+            
         ]);
     }
     public function guide(){
@@ -27,8 +30,11 @@ class CampusController extends Controller
     }
     public function newData(){
         $category = buildingcategory::all();
+        
+        $building = Building::all();
+            
         return view('campus.guide.newData',[
-            'category'=>$category,
+            'categorys'=>$category,'building'=>$building,
         ]);
     }
     public function createData(Request $request){
@@ -40,5 +46,27 @@ class CampusController extends Controller
         $building->save();
         return redirect('/campus');
         
+    }
+    public function createBuilding(Request $request){
+        $building = Building::create($request->all());
+        return response()->json($building);
+    }
+    
+    public function getBuilding($bid){
+        $building = Building::find($bid);
+        return response()->json($building);
+    }
+    public function putbuilding(Request $request,$bid){
+        $building = Building::find($bid);
+        $building->buildingName = $request->buildingName;
+        $building->building_id = $request->building_id;
+        $building->buildingExplain = $request->buildingExplain;
+        $building->imgUrl = $request->imgUrl;
+        $building->save();
+        return response()->json($building);
+    }
+    public function dropBuilding($bid){
+        $building = Building::destroy($bid);
+        return response()->json($building);
     }
 }
