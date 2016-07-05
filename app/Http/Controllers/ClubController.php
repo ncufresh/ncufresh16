@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Club;
+
+
 class ClubController extends Controller
 {
     public function index(){
@@ -15,11 +18,19 @@ class ClubController extends Controller
         ]); 
 	}
 
-	
+	public function create()
+    {
+       return view('clubs.create');
+    }
 
+	
 	public function store(Request $request)
 	{
-    	
+    	$club = new Club;
+    	$club->clubs_kind = $request->clubs_kind;
+    	$club->clubs_intro = $request->clubs_intro;
+    	$club->save();
+    	return redirect('/groups/clubs');
 	}
 
 	public function destroy(Request $request, Message $message)
@@ -30,7 +41,7 @@ class ClubController extends Controller
 	public function show(Message $message)
 	{
 	    
-
+	}
 	public function edit(Message $message)
 	{
 	    

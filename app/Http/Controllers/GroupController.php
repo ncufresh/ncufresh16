@@ -26,7 +26,7 @@ class GroupController extends Controller
 	public function show(Message $message)
 	{
 	    
-
+	}
 	public function edit(Message $message)
 	{
 	    
