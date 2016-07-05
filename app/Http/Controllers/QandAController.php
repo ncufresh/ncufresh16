@@ -1,11 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\QandA;
 
 class QandAController extends Controller
@@ -29,20 +26,21 @@ class QandAController extends Controller
 	    $Q->save();
         return redirect(action('QandAController@index'));
     }
-    public function show()
-    {
+    // public function show()
+    // {
         
-    }
-    public function edit()
-    {
+    // }
+    // public function edit()
+    // {
         
-    }
-    public function update()
-    {
+    // }
+    // public function update()
+    // {
         
-    }
-    public function destroy()
+    // }
+    public function destroy($id)
     {
-
+        $Q=QandA::find($id)->delete();
+        return redirect(action('QandAController@index'));
     }
 }

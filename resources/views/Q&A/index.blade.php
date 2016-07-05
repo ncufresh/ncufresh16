@@ -28,7 +28,7 @@
                  <button type="button" class="btn btn-default btn-lg btn-block">學生事務</button>
                  <button type="button" class="btn btn-default btn-lg btn-block">宿舍生活</button>
                  <button type="button" class="btn btn-default btn-lg btn-block">其他</button>
-                 <button type="button" class="btn btn-default btn-lg btn-block">我的發問記錄</button>            
+                 <button type="button" class="btn btn-default btn-lg btn-block">我的發問記錄</button>
             </div>
         </div>
 
@@ -37,6 +37,7 @@
                     <thead>
                       <tr>
                         <th>排行</th>
+                        <th>分類</th>
                         <th>日期</th>
                         <th>標題</th>
                         <th>點閱率</th>
@@ -46,8 +47,17 @@
                     @foreach ($QandAs as $Q)
                       <tr>
                         <td>{{ $Q->id }}</td>
+                        <td>{{ $Q->classify }}</td>
                         <td>{{ $Q->created_at }}</td>
                         <td>{{ $Q->content }}</td>
+                        <td>
+        <form action="{{ URL::action('QandAController@destroy',$Q->id) }}" method="post"  class="form_del">
+                           {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+
+        <button type="submit" class="btn btn-danger"><i class="fa fa-trash fa-lg"></i> 刪除</i></button>
+                        </form>
+                        </td>
                       </tr>
                     @endforeach
                     </tbody>
