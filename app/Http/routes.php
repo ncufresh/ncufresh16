@@ -15,6 +15,10 @@ Route::get('/campus','CampusController@index');
 Route::get('/campus/guide','CampusController@guide');
 Route::get('/campus/newData','CampusController@newData');
 Route::get('/campus/create','CampusController@createData');
+Route::post('/campus/newData/Building','CampusController@createBuilding');
+Route::get('/campus/newData/Building/{bid?}','CampusController@getBuilding');
+Route::put('/campus/newData/Building/{bid?}','CampusController@putBuilding');
+Route::delete('/campus/newData/Building/{bid?}', 'CampusController@dropBuilding');
 //************************************************************
 
 // 系所社團
