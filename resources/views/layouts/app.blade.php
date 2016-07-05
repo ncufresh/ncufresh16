@@ -47,7 +47,7 @@
                     </li>
                     @if(Request::path() === '/')
                         <li><a href="#mustread">新生必讀</a></li>
-                        <li><a href="#adblock">廣告</a></li>
+                        <li><a href="#myCarousel">廣告</a></li>
                         <li><a href="#board">公告</a></li>
                     @endif
                 </ul>

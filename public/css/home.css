@@ -16,6 +16,11 @@
 }
 
 /** 廣告 **/
+body > .carousel {
+    padding: 160px 15px; /* 上,左 */
+    background-color: #b2dfdb;
+    height: 100vh;
+}
 .carousel-inner img {
     width: 80vh;
     margin: auto;

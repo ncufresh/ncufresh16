@@ -40,8 +40,6 @@
 
 
 <!-- 廣告輪播區 -->
-<div id="adblock" class="container sec">
-<h2>廣告</h2>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- 三個輪播 -->
     <ol class="carousel-indicators">
@@ -86,7 +84,6 @@
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-</div>
 </div>
 
 <!-- 公告區 -->
