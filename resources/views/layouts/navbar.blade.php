@@ -40,7 +40,7 @@
                 <li><a href="{{ url('/campus') }}">校園導覽</a></li>
                 <li><a href="{{ url('/groups') }}">系所社團</a></li>
                 <li><a href="{{ url('/smallgame') }}">小遊戲</a></li>
-                 <li><a href="{{ url('/Q&A') }}">新生Q&A</a></li>
+                 <li><a href="{{ url('/Q&A/all') }}">新生Q&A</a></li>
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">登入</a></li>
                     <li><a href="{{ url('/register') }}">註冊</a></li>
