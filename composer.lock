@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8d1f7945bbed11bf839ad7569f505343",
-    "content-hash": "f372be09e201e2be0ddf267db66a5e85",
+    "hash": "9aa7da251e24fd69b1c3bede2c9dd927",
+    "content-hash": "d0a187555198b2a5412eb0fd4ed61b2d",
     "packages": [
         {
             "name": "caffeinated/shinobi",
