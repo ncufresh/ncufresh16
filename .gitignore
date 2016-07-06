@@ -4,3 +4,9 @@
 .env
 /nbproject/private/
 /nbproject
+
+
+.DS_Store
+thumbs.db
+Thumbs.db
+desktop.ini
