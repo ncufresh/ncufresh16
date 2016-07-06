@@ -39,21 +39,22 @@
     <!--Model-->
     <meta name="_token" content="{!! csrf_token() !!}" />
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Task Editor</h4>
+                            <h4 class="modal-title" id="myModalLabel">編輯建築物</h4>
                         </div>
                         <div class="modal-body">
-                            <form id="frmBuildings" name="frmBuildings" class="form-horizontal" novalidate="">
-                                
+                            
+                            <form id="frmBuildings" name="frmBuildings" class="form-horizontal" novalidate="" action="#" enctype="multipart/form-data" files="true">
                                 <div class="form-group error">
                                     <label for="inputCate" class="col-sm-3 control-label">建築物類別</label>
                                     <div class="col-sm-9">
                                         <select name="building_id" id="building_id" form="frmBuildings" class="form-control has-error">
+                                            <option value="" selected="selected"></option>
                                             @foreach($categorys as $category)
-                                            <option value="{{$category->building_id}}" selected="">{{$category->name}}</option>
+                                            <option value="{{$category->building_id}}">{{$category->name}}</option>
                                             @endforeach
                                         </select>
                                         
@@ -63,27 +64,27 @@
                                 <div class="form-group">
                                     <label for="inputName" class="col-sm-3 control-label">建築物名稱</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="buildingName" name="buildingName" value="">
+                                        <input type="text" class="form-control" id="buildingName" name="buildingName" value="" required placeholder="名稱">
                                     </div>
                                 </div>
                                 
                                  <div class="form-group">
                                     <label for="inputExplain" class="col-sm-3 control-label">建築物簡介</label>
                                     <div class="col-sm-9">
-                                        <textarea type="text" class="form-control" id="buildingExplain" name="buildingExplain" value=""></textarea>
+                                        <textarea type="text" class="form-control" id="buildingExplain" name="buildingExplain" value="" required placeholder="簡介"></textarea>
                                     </div>
                                 </div>
                                 
-                                 <div class="form-group">
+                                 <div class="form-group fileUpload ">
                                     <label for="inputImgUrl" class="col-sm-3 control-label">圖片</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="imgUrl" name="imgUrl" value="">
+                                        <input type="file" class="form-group" id="imgUrl" name="imgUrl">
                                     </div>
                                 </div>
-                            </form>
+                           </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
+                            <button type="submit" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
                             <input type="hidden" id="bid" name="bid" value="0">
                         </div>
                     </div>
@@ -141,7 +142,7 @@
                 $('#building_id').val(data.building_id);
                 $('#buildingName').val(data.buildingName);
                 $('#buildingExplain').val(data.buildingExplain);
-                $('#imgUrl').val(data.imgUrl);
+                //$('#imgUrl').val(data.imgUrl);
                 $('#btn-save').val("update");
                 
                 
@@ -183,6 +184,8 @@
         });
     
     $("#btn-save").click(function (e) {
+       
+        
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -242,7 +245,10 @@
                 x++;
             },
             error: function (data) {
+                
                 console.log('Error:', data);
+                alert("你輸入的資料未完整");
+                
                
             }
         });
