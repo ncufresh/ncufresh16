@@ -12,7 +12,7 @@ class CampusGuide extends Migration
      */
     public function up()
     {
-        Schema::create('buildingCategories', function (Blueprint $table) {
+        Schema::create('buildingcategories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->integer('building_id')->index();
