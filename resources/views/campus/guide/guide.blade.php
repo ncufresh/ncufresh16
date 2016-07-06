@@ -5,7 +5,7 @@
     .back{
         background-color: #b3d9ff;
         border-style: solid ;
-        border-color: #80bfff;   
+        border-color: #80bfff;
     }
     .btn{
         width: 80px;
@@ -15,11 +15,11 @@
 	left: 18%;
 	top: 8%;
 	width: 15%;
-	
+
     }
 </style>
 <div class="container">
-    <!-網頁路徑-->
+    <!--網頁路徑-->
     <div>
         <a href="{{url('/')}}">首頁</a>
         >
@@ -27,7 +27,7 @@
         >
         <a href="{{url('/campus/guide')}}">校園介紹</a>
     </div>
-    
+
     <div class="jumbotron back row">
         <div class='col-md-4 col-md-offset-1'>
             <h1>校園介紹</h1>
@@ -43,13 +43,13 @@
         <div class="col-md-8 col-md-offset-5 container" >
             <img src='/img/background.png' width='85%'>
             <a href="#" data-toggle="modal" data-target="#eng5" ><img src="/img/eng5.png" class="eng5" alt="no found"></a>
-            
+
         </div>
     </div>
     <!-- Modal -->
    <div class="modal fade" id="eng5" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -63,7 +63,7 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-      
+
     </div>
   </div>
 </div>
