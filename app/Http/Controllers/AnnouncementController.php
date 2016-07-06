@@ -21,7 +21,8 @@ class AnnouncementController extends Controller
 
         Announcement::create([
             'title' => $request->title,
-            'content' => $request->content
+            'content' => $request->content,
+            'post_at' => $request->post_at
         ]);
 
         return redirect('/ann');

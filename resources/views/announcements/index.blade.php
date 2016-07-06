@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('title', 'NCU Fresh | 新生知訊網')
 
@@ -27,9 +27,20 @@
     color: #000; /* 白字 */
 }
 </style>
+<link rel="stylesheet" href="{{ asset('include/pickdate/themes/classic.css') }}" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="{{ asset('include/pickdate/themes/classic.date.css') }}" media="screen" title="no title" charset="utf-8">
 @stop
 
 @section('js')
+<script src="{{ asset('include/pickdate/picker.js') }}" charset="utf-8"></script>
+<script src="{{ asset('include/pickdate/picker.date.js') }}" charset="utf-8"></script>
+<script type="text/javascript">
+$.material.init();
+$('.datepicker').pickadate({
+    selectMonths: true,
+    format: 'yyyy-mm-dd'
+});
+</script>
 @stop
 
 @section('content')
@@ -44,15 +55,19 @@
         <form action="{{ url('/ann') }}" method="post" role="form">
             {{ csrf_field() }}
             <div class="form-group">
-              <label><i class="fa fa-pencil" aria-hidden="true"></i>標題</label>
-              <input type="text" name="title" maxlength="30" class="form-control" placeholder="公告的標題">
+                <label><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;標題</label>
+                <input type="text" name="title" maxlength="30" class="form-control" placeholder="公告的標題" required>
             </div>
             <div class="form-group">
-              <label><i class="fa fa-pencil" aria-hidden="true"></i>內文</label>
-              <textarea name="content" class="form-control" placeholder="公告的內容"></textarea>
+                <label><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;內文</label>
+                <textarea name="content" class="form-control" placeholder="公告的內容" required></textarea>
+            </div>
+            <div class="form-group">
+                <label><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;時間</label>
+                <input type="date" name="post_at" class="form-control datepicker" name="name" placeholder="請填發布時間" required>
             </div>
             <button type="submit" class="btn btn-block">
-              送出<span class="glyphicon glyphicon-ok"></span>
+                送出<span class="glyphicon glyphicon-ok"></span>
             </button>
         </form>
     </div>
@@ -63,7 +78,9 @@
     <div class="list-group">
       <li class="list-group-item active">一般公告</li>
       @foreach ($anns as $ann)
-          <a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal{{ $ann->id }}">{{ $ann->title }}</a>
+          <a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal{{ $ann->id }}">
+              <span class="label label-info">{{ $ann->post_at }}</span> &nbsp;{{ $ann->title }}
+          </a>
 
           <!-- Modal -->
           <div id="myModal{{ $ann->id }}" class="modal fade" role="dialog">
@@ -87,7 +104,6 @@
           </div>
       @endforeach
     </div>
-
 
 </div>
 
