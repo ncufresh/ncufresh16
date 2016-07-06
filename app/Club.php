@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Club extends Model
 {
     protected $fillable = [
@@ -11,9 +12,7 @@ class Club extends Model
 		'clubs_intro',
 	];
 
-	public function allclub(){
-		return $this->hasMany('App\Allclub','clubs_id');
-	}
+	
 
 
 }

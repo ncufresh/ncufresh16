@@ -2,6 +2,8 @@
 @section('title', '系所社團')
 @section('content')
 	<div>
+		<br><br><br><br><br>
+		<a href="">首頁</a>><a href="{{ url('/groups') }}">系所社團</a>
 		<a href="{{ url('/groups/departments') }}">
 			<img src="{{ asset('image/department.jpg') }}">
 			<span>系所</span>

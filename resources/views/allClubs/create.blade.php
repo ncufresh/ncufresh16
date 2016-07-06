@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('content')
-	<form action="{{ URL::action('AllclubController@store') }}" method="post">
+	<form action="{{ URL::action('AllclubController@store',$id) }}" method="post">
 	{{ csrf_field() }}
-		<!-- <div>
+		
+			<!-- <div>
 			<input type=>
 			<label>選擇類別</label>
 				<div>
@@ -39,7 +40,6 @@
 				<label>選擇圖片</label>
 		</div>
 		
-	
 	<button type="submit">確認</button>
 	</form>
 

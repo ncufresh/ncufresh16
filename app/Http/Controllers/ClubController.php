@@ -38,9 +38,11 @@ class ClubController extends Controller
     	
 	}
 
-	public function show(Message $message)
+	public function show(Club $id)
 	{
-	    
+	    return view('clubs.show', [
+	        'clubs' => $id
+	    ]);
 	}
 	public function edit(Message $message)
 	{
@@ -51,4 +53,6 @@ class ClubController extends Controller
 	{
 	    
 	}
+
+	
 }
