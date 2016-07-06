@@ -2,6 +2,7 @@
 @section('content')
 	<br><br><br><br><br><br><br>	
 	<div>
+		<a href="">首頁</a>><a href="{{ url('/groups') }}">系所社團</a>><a href="{{ url('/groups/departments') }}">系所</a>
 		<a href="{{ url('/groups/departments/create') }}">新增</a>
 	</div>
 

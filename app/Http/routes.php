@@ -29,14 +29,16 @@ Route::get('groups', function () {
 Route::get('/groups/clubs', 'ClubController@index');
 Route::post('/groups/clubs', 'ClubController@store');
 Route::get('/groups/clubs/create', 'ClubController@create');
+Route::get('/groups/clubs/{clubs_kind}', 'ClubController@show');
 #系所
 Route::get('/groups/departments', 'DepartmentController@index');
 Route::post('/groups/departments', 'DepartmentController@store');
 Route::get('/groups/departments/create', 'DepartmentController@create');
-#各社團
-Route::get('/groups/clubs/allclubs', 'AllclubController@index');
-Route::post('/groups/clubs/allclubs', 'AllclubController@store');
-Route::get('/groups/clubs/allclubs/create', 'AllclubController@create');
+// #各社團
+// Route::get('/groups/clubs/{clubs_id}/create', 'AllclubController@create');
+// Route::get('/groups/clubs/{clubs_id}', 'AllclubController@index');
+// Route::post('/groups/clubs/{clubs_id}', 'AllclubController@store');
+
 #各系所
 // Route::get('/groups/clubs', 'AlldepartmentController@index');
 // Route::post('/groups/clubs', 'AlldepartmentController@store');

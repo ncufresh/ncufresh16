@@ -11,7 +11,4 @@ class Department extends Model
 		'departments_intro',
 	];
 
-	public function alldepartment(){
-		return $this->hasMany('App\Alldepartment','departments_id');
-	}
 }
