@@ -35,7 +35,7 @@
 <script src="{{ asset('include/pickdate/picker.js') }}" charset="utf-8"></script>
 <script src="{{ asset('include/pickdate/picker.date.js') }}" charset="utf-8"></script>
 <script type="text/javascript">
-$.material.init();
+//$.material.init();
 $('.datepicker').pickadate({
     selectMonths: true,
     format: 'yyyy-mm-dd'
