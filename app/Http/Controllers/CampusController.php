@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests;
 
 
-use App\buildingcategory;
+use App\Buildingcategory;
 
 use App\Building;
 
@@ -20,9 +20,9 @@ class CampusController extends Controller
 {
     public function index()
     {
-       
+
         return view('campus.index', [
-            
+
         ]);
     }
     public function guide(){
@@ -32,10 +32,10 @@ class CampusController extends Controller
         ]);
     }
     public function newData(){
-        $category = buildingcategory::all();
-        
+        $category = Buildingcategory::all();
+
         $building = Building::all();
-            
+
         return view('campus.guide.newData',[
             'categorys'=>$category,'building'=>$building,
         ]);
@@ -48,7 +48,7 @@ class CampusController extends Controller
         $building->imgUrl = $request->imgUrl;
         $building->save();
         return redirect('/campus');
-        
+
     }
     public function createBuilding(Request $request){
         $validator = Validator::make($request->all(),array(
@@ -57,53 +57,53 @@ class CampusController extends Controller
             'buildingExplain' => 'required',
             'imgUrl' => 'required',
         ));
-        
+
         if($validator->fails()){
             return response()->json(array(
             'fail' => true,
             'errors' => $validator->getMessageBag()->toArray()
             ),400);
         }
-        
-            
+
+
         $img =Input:: file('imgUrl');
         $upload = 'upload/img';
         $filename = uniqid();
         $success = $img->move($upload,$filename);
-        
-        
+
+
         if($success){
-            
+
             $building = Building::create($request->all());
             $building->imgUrl = $filename;
             $building->save();
-            
+
             return response()->json($building);
         }
-        
-        
+
+
     }
-    
+
     public function getBuilding($bid){
         $building = Building::find($bid);
         return response()->json($building);
     }
     public function putbuilding(Request $request,$bid){
-        
+
         $validator = Validator::make($request->all(),array(
             'building_id' => 'required',
             'buildingName' => 'required',
             'buildingExplain' => 'required',
             'imgUrl' => 'required|max:100',
         ));
-        
+
         if($validator->fails()){
             return response()->json(array(
             'fail' => true,
             'errors' => $validator->getMessageBag()->toArray()
             ),400);
         }
-        
+
         $building = Building::find($bid);
         $building->buildingName = $request->buildingName;
         $building->building_id = $request->building_id;
