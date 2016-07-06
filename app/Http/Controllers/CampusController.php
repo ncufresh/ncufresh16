@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 
 use Illuminate\Http\Response;
 
+use Illuminate\Support\Facades\Validator;
+
 use App\Http\Requests;
 
 
 use App\buildingcategory;
 
 use App\Building;
+
 
 class CampusController extends Controller
 {
@@ -48,8 +51,37 @@ class CampusController extends Controller
         
     }
     public function createBuilding(Request $request){
-        $building = Building::create($request->all());
-        return response()->json($building);
+        $validator = Validator::make($request->all(),array(
+            'building_id' => 'required',
+            'buildingName' => 'required',
+            'buildingExplain' => 'required',
+            'imgUrl' => 'required',
+        ));
+        
+        if($validator->fails()){
+            return response()->json(array(
+            'fail' => true,
+            'errors' => $validator->getMessageBag()->toArray()
+            ),400);
+        }
+        
+            
+        $img =Input:: file('imgUrl');
+        $upload = 'upload/img';
+        $filename = uniqid();
+        $success = $img->move($upload,$filename);
+        
+        
+        if($success){
+            
+            $building = Building::create($request->all());
+            $building->imgUrl = $filename;
+            $building->save();
+            
+            return response()->json($building);
+        }
+        
+        
     }
     
     public function getBuilding($bid){
@@ -57,6 +89,21 @@ class CampusController extends Controller
         return response()->json($building);
     }
     public function putbuilding(Request $request,$bid){
+        
+        $validator = Validator::make($request->all(),array(
+            'building_id' => 'required',
+            'buildingName' => 'required',
+            'buildingExplain' => 'required',
+            'imgUrl' => 'required|max:100',
+        ));
+        
+        if($validator->fails()){
+            return response()->json(array(
+            'fail' => true,
+            'errors' => $validator->getMessageBag()->toArray()
+            ),400);
+        }
+        
         $building = Building::find($bid);
         $building->buildingName = $request->buildingName;
         $building->building_id = $request->building_id;
