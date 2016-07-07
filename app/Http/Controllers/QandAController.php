@@ -27,9 +27,14 @@ class QandAController extends Controller
 	    $Q->save();
         return redirect(url('/Q&A/all'));
     }
-    public function show($id)
+    public function responseStore(Request $request,QandA $QQ)
     {
-        $Q = QandA::where('id',$id)->first();
+        $QQ->response = $request->response;
+        $QQ->save();
+        return redirect(url('/Q&A/content/'.$QQ->id));
+    }
+    public function show(QandA $Q)
+    {
         $Q->click_count ++;
         $Q->save();
         return view('Q&A.show', compact('Q'));
@@ -42,6 +47,7 @@ class QandAController extends Controller
     // {
         
     // }
+    
     public function destroy($id)
     {
         $Q=QandA::find($id)->delete();

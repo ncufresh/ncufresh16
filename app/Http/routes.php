@@ -78,6 +78,7 @@ Route::get('customer',function(){  //為什麼資料表的名稱被限制為cuto
 Route::post('/Q&A', 'QandAController@store');
 Route::get('/Q&A/create', 'QandAController@create');
 Route::get('/Q&A/{classify}', 'QandAController@index');
-Route::get('/Q&A/content/{id}', 'QandAController@show');
+Route::get('/Q&A/content/{Q}', 'QandAController@show');
+Route::patch('/Q&A/content/{QQ}', 'QandAController@responseStore');
 Route::delete('/Q&A/{dd}', 'QandAController@destroy');
 //************************************************************
