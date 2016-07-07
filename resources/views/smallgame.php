@@ -11,6 +11,9 @@
         background: #eee; display: block; margin: 0 auto; 
         margin-top:5%;
       }
+      div{
+        background-color: rgba(242, 242, 242,0.9);
+      }
     </style>
 </head>
 <body>
@@ -18,10 +21,17 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><!-- jquery -->
 <canvas id="myCanvas" width="1000" height="500"></canvas>
 
+
 <script>
 
-var question_get;
-//////////////////jquery test
+
+//////////////////get the question
+var question;
+var id_question=0;
+var questions=[];
+var choose_bool=false;
+var YourAnswer=0;
+var rightanwer=false;
 $(document).ready(function(){
   $.ajaxSetup({//set the header and 
     headers: {
@@ -33,11 +43,13 @@ $(document).ready(function(){
   $.get(url + '/' + 1, function (data) {//retrieve data from database
     //success data
     console.log(data);
-    question_get=data.question;
+    questions=data;//若要從資料庫提取複數列的資料，則以陣列表示，真是佛心來的
   }) 
 });
-//////////////////jquery test_end
-
+//////////////////get the question end
+//readme:從剛進入遊戲的時候，就把所有的題目都輸入進陣列
+//這樣遊戲進行中，就不需要重複進行資料庫操作
+//在前端隨機抽取題目
 
 var canvas, context,msg;
 var gameState=0;
@@ -105,7 +117,7 @@ for(var i=0 ; i<5 ; i++){
 for(var i=0 ; i<5 ; i++){
   worms.push(new component(worms_width,worms_height,"img/game/bugs.png",wormXs[i],500-brickX_height-worms_height,"image"));
 }
-var runSpeed=2.5;//跑速
+var runSpeed=0;//跑速
 
 var heart_width=20;
 var heart_height=20;
@@ -162,24 +174,29 @@ document.addEventListener("keyup", keyUpHandler, false);
 function keyDownHandler(e) {//the action of the key listener
         if(e.keyCode == 39) {
             rightPressed = true;
+            YourAnswer=2;
         }
         else if(e.keyCode == 37) {
             leftPressed = true;
+            YourAnswer=1;
+
         }
 }
 function keyUpHandler(e) {
         if(e.keyCode == 39) {
             rightPressed = false;
+            YourAnswer=0;
         }
         else if(e.keyCode == 37) {
             leftPressed = false;
+            YourAnswer=0;
         }
 }
 function mouseMoveHandler(event) {//不用實作，只要按鍵按下，就會自動執行
    msg = "Mouse position: " + (event.clientX) + "," + (event.clientY) + ";canvas position:" + (event.clientX-canvas.offsetLeft) +","+(event.clientY-canvas.offsetTop)+";heart"+character_heart+";"+score;
 }
 function mouseDownHandler(event){
-   msg = canvas.offsetLeft  + " " + canvas.offsetTop + " " + gameState + " " + character_heart+" "+question_get;
+   msg = canvas.offsetLeft  + " " + canvas.offsetTop + " " + gameState + " " + character_heart;
 /////////the action of every listener
   //偵測按鈕的位置，該怎麼隨著gamestate改變而更動?
    if(event.clientX>(canvas.offsetLeft+btn_1_X) && event.clientX<(canvas.offsetLeft+btn_1_X+btn_1_width) &&   
@@ -312,8 +329,19 @@ function player(width, height, color, x, y, type) {//主角constructor
                     this.width, this.height);
         }
         this.move = function(){
-            if(rightPressed){
+            if(YourAnswer===questions[id_question].answer ){//這裡也設另外一個無敵時間，以免答對了還被下一題的答錯影響
               jumping=true;
+              rightanswer=true;
+              reboot_rightanswer();//bug答對時會因為下一題而受傷
+            }
+            else if((YourAnswer!=questions[id_question].answer && YourAnswer!=0 && character_heart_bool===false )&& rightanswer===false){
+              //受傷
+              if(character_heart>0){
+                delete heart[character_heart-1];
+              }
+              character_heart--;
+              character_heart_bool=true;
+              reboot_heart_bool();//讓角色有無敵時間
             }
         }
         this.movement =function(){//動作控制
@@ -427,6 +455,44 @@ function draw_theCharacter_onTheCanvas(){//in the state game_4
     character.draw();
     character.getHurt();//傷害偵測要在蟲蟲的位置更新後再開始
 }
+function draw_question_onTheCanvas(){//in the state game_4
+    context.font = '20px Tahoma';
+    context.fillStyle = "#1569C7";
+    context.textAlign = "center";
+    context.textBaseline = "bottom";
+    choose();//抽題
+    context.fillText(questions[id_question].question, 500, 70);
+
+    context.font = '20px Tahoma';
+    context.fillStyle = "#1569C7";
+    context.textAlign = "center";
+    context.textBaseline = "bottom";
+    context.fillText(questions[id_question].selection_1, 300, 200);
+
+    context.font = '20px Tahoma';
+    context.fillStyle = "#1569C7";
+    context.textAlign = "center";
+    context.textBaseline = "bottom";
+    context.fillText(questions[id_question].selection_2, 700, 200);
+
+}
+function choose(){
+  if((rightPressed || leftPressed )&& choose_bool===false &&jumping===true){//製作類似無敵時間的東西，以防玩家不停輸入
+    id_question++;
+    choose_bool=true;
+    reboot_choose_bool();
+    if(id_question===questions.length){
+      id_question=0;
+    }
+  }
+}
+function reboot_choose_bool(){//讓角色有無敵時間
+  var t=setTimeout("choose_bool=false",500);
+}
+function reboot_rightanswer(){//讓角色有無敵時間
+  var t=setTimeout("reboot_rightanswer=false",200);
+}
+
 
 function draw_MENU(){
   context.clearRect(0, 0, canvas.width, canvas.height);
@@ -473,6 +539,8 @@ function draw_GAME_4(){
     draw_theHeart_onTheCanvas()
     //draw the character
     draw_theCharacter_onTheCanvas();
+    //draw the question
+    draw_question_onTheCanvas();
     
 
     if(!character_heart) {//陣亡，若要免除死亡功能，則將此區塊註解

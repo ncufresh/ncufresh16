@@ -14,7 +14,7 @@ class GameController extends Controller
     	return view('smallgame');
     }
     public function get_question($id){
-    	$question=Question_collection::find($id);
+    	$question=Question_collection::all();
     	return response()->json($question); //為何跟Rounter的寫法需要不一樣?
     }
 }
