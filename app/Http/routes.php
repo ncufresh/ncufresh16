@@ -81,3 +81,9 @@ Route::get('/Q&A/{classify}', 'QandAController@index');
 Route::get('/Q&A/content/{id}', 'QandAController@show');
 Route::delete('/Q&A/{dd}', 'QandAController@destroy');
 //************************************************************
+
+// 影音專區
+//************************************************************
+Route::get('/videos','videocontroller@index');
+//Route::get('/video/')
+//************************************************************
