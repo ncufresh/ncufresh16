@@ -101,6 +101,7 @@ for(var i=0;i<character_heart;i++){
 
 var hurt_deviation=14;//讓角色比較不容易受傷，讓傷害偵測變窄
 var score=0;//分數，以企畫的角度，等於秒數
+var score_bool=false;
 ////////遊戲主體的變數 END
 
 
@@ -355,8 +356,15 @@ function player(width, height, color, x, y, type) {//主角constructor
 function reboot_heart_bool(){//讓角色有無敵時間
   var t=setTimeout("character_heart_bool=false",1000);
 }
-function getScore(){//獲得分數
-  var t=setTimeout("score++",1000);
+function getScore_bool(){//獲得分數
+  var t=setTimeout("score_bool=false",1000);
+}
+function getScore(){
+  if(score_bool===false){
+    score++;
+    score_bool=true;
+    getScore_bool();
+  }
 }
 function draw(){
   ////////////////////////gameState manager////////////////////////
@@ -400,6 +408,17 @@ function draw(){
 
 
     context.clearRect(0, 0, canvas.width, canvas.height);//清空版面
+    
+
+    //繪製分數
+    context.font = '20px Tahoma';
+    context.fillStyle = "#1569C7";
+    context.textAlign = "left";
+    context.textBaseline = "bottom";
+    context.fillText(score, 80, 20);
+
+
+    
     /*//draw the background
     context.beginPath();
     context.rect(0, 0, 1000, 500);
