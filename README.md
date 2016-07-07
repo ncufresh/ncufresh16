@@ -19,6 +19,8 @@
 [Button製作大師(with font-awesome)](http://www.plugolabs.com/twitter-bootstrap-button-generator-with-awesome-font/)  
 [挑顏色好用](http://materializecss.com/color.html)  
 
+[Bootstrap Material詳細文件](http://rosskevin.github.io/bootstrap-material-design/components/buttons/)  
+[Bootstrap Material範例集](http://fezvrasta.github.io/bootstrap-material-design/)  
 
 ## 使用套件
 
