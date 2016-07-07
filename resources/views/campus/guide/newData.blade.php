@@ -100,6 +100,30 @@
                </tr>
                 @endforeach
             </tbody>
+            @foreach($building as $building)
+            
+             <!-- Modal -->
+            <div class="modal fade" id="eng5" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content--> 
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">圖片編輯</h4>
+                      </div>
+                      <div class="modal-body">
+                          <div class="row">
+                              
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                </div>
+           </div>
+            
+            @endforeach
            
         </table>
     </div>
@@ -111,7 +135,22 @@
         
         var x = <?php echo $amount?>;
         var upbid;
+        var manyImg;
+        //編輯圖片
+        $('body').on('cilck','.watchImg',function(){
+            var imgid = $(this).val();
+            $.get(url+'/img/'+imgid, function(data){
+                manyImg="";
+                for(var key in data){
+                    manyImg+="div.";
+                }
+            });
+        });
+        
+        
+        //編輯
         $('body').on('click','.open-modal',function(){
+            
             var bid = $(this).val();
             upbid = bid;
             $.get(url + '/' + bid, function (data) {

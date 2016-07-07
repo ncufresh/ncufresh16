@@ -12,6 +12,8 @@ use App\Http\Requests;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+use DB;
+
 
 use App\Buildingcategory;
 
@@ -78,12 +80,6 @@ class CampusController extends Controller
             $filename = uniqid().".".$request->file('imgUrl')->getClientOriginalExtension();
             $success = $img->move($upload,$filename);//將檔案傳至指定路由 並用亂碼命名
             
-            //將圖片路徑存至圖片資料庫
-            $buildImg = new Buildingimg;
-            $buildImg->imgUrl = $filename;
-            $buildImg->BuildingName = $request->buildingName;
-            $buildImg ->save();
-            
             }
 
             
@@ -94,6 +90,18 @@ class CampusController extends Controller
                 $building->buildingExplain = $request->buildingExplain;               
                 $building->save();
 
+                 //將圖片路徑存至圖片資料庫
+                if($request->hasFile('imgUrl')){
+                $newBuilding = DB::table('buildings')->where('buildingName', $request->buildingName)->first();
+                
+                $buildImg = new Buildingimg;
+                $buildImg->imgUrl = $filename;
+                $buildImg->BuildingId = $newBuilding->id;
+                $buildImg->BuildingName = $request->buildingName;
+                $buildImg ->save();
+                }
+                
+                
                 return response()->json($building);
             
         
@@ -133,5 +141,9 @@ class CampusController extends Controller
     public function dropBuilding($bid){
         $building = Building::destroy($bid);
         return response()->json($building);
+    }
+    public function getBuildingImg($imgid){
+        $img = DB::table('buildingimgs')->where('BuildingId','=',$imgid)->get();
+        return response()->json($img);
     }
 }

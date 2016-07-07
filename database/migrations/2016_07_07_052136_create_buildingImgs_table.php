@@ -14,6 +14,7 @@ class CreateBuildingImgsTable extends Migration
     {
         Schema::create('BuildingImgs', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('BuildingId');
             $table->string('imgUrl');
             $table->string('BuildingName');
             $table->timestamps();
