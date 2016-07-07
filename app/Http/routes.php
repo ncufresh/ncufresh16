@@ -17,7 +17,7 @@ Route::get('/ann/{ann}', 'AnnouncementController@show');
 Route::get('/campus','CampusController@index');
 Route::get('/campus/guide','CampusController@guide');
 Route::get('/campus/newData','CampusController@newData');
-Route::get('/campus/create','CampusController@createData');
+Route::get('/campus/create','CampusController@createData');//oldfunction
 Route::post('/campus/newData/Building','CampusController@createBuilding');
 Route::get('/campus/newData/Building/{bid?}','CampusController@getBuilding');
 Route::put('/campus/newData/Building/{bid?}','CampusController@putBuilding');

@@ -11,31 +11,8 @@
 <script src="{{ asset('include/jquery/jquery-1.12.4.js') }}"></script>
 
 <div class="container">
-    <div class="jumbotron">
-        <form action="{{url('/campus/create')}}" method="GET" id="newBuilding">
-            {{ csrf_field() }}
-            <div class="row">
-                <div class="col-md-4">
-                    <h3>新增建築物</h3>
-                </div>
-                <div class="col-md-4">
-                    <span>建築物類型</span>
-                    <select name="building_id" form="newBuilding">
-                        @foreach($categorys as $category)
-                        <option value="{{$category->building_id}}">{{$category->name}}</option>
-                        @endforeach
-                    </select>
-                    <br>
-                    <br>
-                    <span>建築物名稱</span><input type="text" name='buildingName'><br><br>
-                    <span>建築物簡介</span><input type="text" name='buildingExplain'><br><br>
-                    <span>圖片</span><input type="text" name='imgUrl'><br><br>
-                    <button type='submit' class='btn' >送出</button>
-                </div>                      
-            </div>           
-        </form>
-    </div>
-    <button id="btn-add" name="btn-add" class="btn btn-primary">新增Ajax</button>
+    
+    <button id="btn-add" name="btn-add" class="btn btn-primary">新增建築物</button>
     <!--Model-->
     <meta name="_token" content="{!! csrf_token() !!}" />
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -47,7 +24,7 @@
                         </div>
                         <div class="modal-body">
                             
-                            <form id="frmBuildings" name="frmBuildings" class="form-horizontal" novalidate="" action="#" enctype="multipart/form-data" files="true">
+                            <form id="frmBuildings" name="frmBuildings" class="form-horizontal" novalidate="" action="POST" enctype="multipart/form-data" files="true">
                                 <div class="form-group error">
                                     <label for="inputCate" class="col-sm-3 control-label">建築物類別</label>
                                     <div class="col-sm-9">
@@ -81,12 +58,14 @@
                                         <input type="file" class="form-group" id="imgUrl" name="imgUrl">
                                     </div>
                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
+                                    <input type="hidden" id="bid" name="bid" value="0">
+                                </div>
+                                
                            </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
-                            <input type="hidden" id="bid" name="bid" value="0">
-                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -111,10 +90,9 @@
                     <th>{{$building->buildingName}}</th>
                     <th><?php 
                         echo $cate[$building->building_id];
-                        $amount++;
                     ?></th>
                     <th>{{$building->buildingExplain}}</th>
-                    <th>{{$building->imgUrl}}</th>
+                    <th><button class="btn btn-warning btn-xs btn-detail watchImg" value="{{$building->id}}">watch</button></th>
                     <th>
                         <button class="btn btn-warning btn-xs btn-detail open-modal" value="{{$building->id}}">Edit</button>
                         <button class="btn btn-danger btn-xs btn-delete delete-building" value="{{$building->id}}">Delete</button>
@@ -193,13 +171,10 @@
         });
 
         e.preventDefault(); 
-
-        var formData = {          
-            buildingName: $('#buildingName').val(),          
-            building_id: $('#building_id').val(),
-            buildingExplain: $('#buildingExplain').val(),
-            imgUrl: $('#imgUrl').val()
-        };
+        var formData = new FormData($('#frmBuildings')[0]);
+        
+        console.log(formData);
+        
         
         
 
@@ -218,7 +193,7 @@
             my_url += '/' + bid;
         }
 
-        console.log(formData);
+        
 
         $.ajax({
 
@@ -226,9 +201,12 @@
             url: my_url,
             data: formData,
             dataType: 'json',
+            processData: false,
+            contentType: false,
+            enctype: 'multipart/form-data',
             success: function (data) {
                 console.log(data);               
-                var building ='<tr id="'+data.id+'"><th></th><th>'+data.buildingName+'</th><th>'+cate[data.building_id]+'</th><th>'+data.buildingExplain+'</th><th>'+data.imgUrl+'</th><th><button class="btn btn-warning btn-xs btn-detail open-modal" value="'+data.id+'">Edit</button>'+
+                var building ='<tr id="'+data.id+'"><th></th><th>'+data.buildingName+'</th><th>'+cate[data.building_id]+'</th><th>'+data.buildingExplain+'</th><th><button class="btn btn-warning btn-xs btn-detail watchImg" value="'+data.id+'">watch</button></th><th><button class="btn btn-warning btn-xs btn-detail open-modal" value="'+data.id+'">Edit</button>'+
                         '<button class="btn btn-danger btn-xs btn-delete delete-building" value="'+data.id+'">Delete</button></th></tr>';
                 
 
