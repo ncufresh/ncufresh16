@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8" />
     <title>小遊戲</title>
-    <link rel="stylesheet" href="css/style.css" charset="utf-8"><!-- 連上css -->
     <style>
       *{ 
         padding: 0; margin: 0; 
@@ -15,10 +14,30 @@
     </style>
 </head>
 <body>
-
+  <meta name="_token" content="{!! csrf_token() !!}" /><!-- csrf_token -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><!-- jquery -->
 <canvas id="myCanvas" width="1000" height="500"></canvas>
 
 <script>
+
+var question_get;
+//////////////////jquery test
+$(document).ready(function(){
+  $.ajaxSetup({//set the header and 
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    }
+  })
+  var url = "/smallgame_get";
+  
+  $.get(url + '/' + 1, function (data) {//retrieve data from database
+    //success data
+    console.log(data);
+    question_get=data.question;
+  }) 
+});
+//////////////////jquery test_end
+
 
 var canvas, context,msg;
 var gameState=0;
@@ -160,7 +179,7 @@ function mouseMoveHandler(event) {//不用實作，只要按鍵按下，就會�
    msg = "Mouse position: " + (event.clientX) + "," + (event.clientY) + ";canvas position:" + (event.clientX-canvas.offsetLeft) +","+(event.clientY-canvas.offsetTop)+";heart"+character_heart+";"+score;
 }
 function mouseDownHandler(event){
-   msg = canvas.offsetLeft  + " " + canvas.offsetTop + " " + gameState + " " + character_heart;
+   msg = canvas.offsetLeft  + " " + canvas.offsetTop + " " + gameState + " " + character_heart+" "+question_get;
 /////////the action of every listener
   //偵測按鈕的位置，該怎麼隨著gamestate改變而更動?
    if(event.clientX>(canvas.offsetLeft+btn_1_X) && event.clientX<(canvas.offsetLeft+btn_1_X+btn_1_width) &&   
@@ -455,7 +474,7 @@ function draw_GAME_4(){
     //draw the character
     draw_theCharacter_onTheCanvas();
     
-    
+
     if(!character_heart) {//陣亡，若要免除死亡功能，則將此區塊註解
       alert("GAME OVER");
       document.location.reload();// restarting the game by reloading the page.
@@ -465,6 +484,7 @@ function draw_GAME_4(){
     }
     show(msg);
 }
+
 
 function draw(){
   ////////////////////////gameState manager////////////////////////
@@ -486,10 +506,15 @@ function draw(){
   else if(gameState===GAME_4){//開始遊戲!
     //game play!!
     draw_GAME_4();
-  } 
+  }
+  ////////////////////////gameState manager////////////////////////
   requestAnimationFrame(draw);
 }
 draw();
+
+
+
+
 
 
 //模組化
