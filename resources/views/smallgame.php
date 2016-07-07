@@ -366,10 +366,51 @@ function getScore(){
     getScore_bool();
   }
 }
-function draw(){
-  ////////////////////////gameState manager////////////////////////
-  if(gameState===MENU){
-    context.clearRect(0, 0, canvas.width, canvas.height);
+
+
+function draw_score_onTheCanvas(){//in the state game_4
+  //繪製分數
+    context.font = '20px Tahoma';
+    context.fillStyle = "#1569C7";
+    context.textAlign = "left";
+    context.textBaseline = "bottom";
+    context.fillText(score, 80, 20);
+}
+function draw_theBricks_onTheCanvas(){//in the state game_4
+  for(var i=0;i<brickXs.length;i++){
+      bricks[i].draw();
+      bricks[i].x-=runSpeed;//磚塊移動的速度
+      if(bricks[i].x<=-100){
+          bricks[i].x=1000;
+      }
+    }
+}
+function draw_theWorms_onTheCanvas(){//in the state game_4
+  for(var i=0;i<wormXs.length;i++){
+
+      worms[i].draw();
+      worms[i].x-=runSpeed;//蟲蟲移動的速度
+      if(worms[i].x<=-100){
+          worms[i].x=1000;
+      }
+    }
+}
+function draw_theHeart_onTheCanvas(){//in the state game_4
+  for(var i=0;i<character_heart;i++){
+
+      heart[i].draw();
+  }
+}
+function draw_theCharacter_onTheCanvas(){//in the state game_4
+    character.move();
+    character.movement();
+    character.newPos();
+    character.draw();
+    character.getHurt();//傷害偵測要在蟲蟲的位置更新後再開始
+}
+
+function draw_MENU(){
+  context.clearRect(0, 0, canvas.width, canvas.height);
     gameState_menu.draw();
 
 
@@ -378,84 +419,43 @@ function draw(){
 
 
     show(msg);
-    
-  }
-  else if(gameState===README){
+}
+function draw_README(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[README].draw();
     btn_2(btn_2_X, btn_2_y, btn_2_width, btn_2_height);
     show(msg);
-    
-  }
-  else if(gameState===GAME_1){
+}
+function draw_GAME_1(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_1].draw();
     show(msg);
-    
-  }
-  else if(gameState===GAME_2){
+}
+function draw_GAME_2(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_2].draw();
     show(msg);
-  } 
-  else if(gameState===GAME_3){
+}
+function draw_GAME_3(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_3].draw();
     show(msg);
-  } 
-  else if(gameState===GAME_4){//開始遊戲!
-    //game play!!
-
-
+}
+function draw_GAME_4(){
     context.clearRect(0, 0, canvas.width, canvas.height);//清空版面
-    
 
-    //繪製分數
-    context.font = '20px Tahoma';
-    context.fillStyle = "#1569C7";
-    context.textAlign = "left";
-    context.textBaseline = "bottom";
-    context.fillText(score, 80, 20);
-
-
-    
-    /*//draw the background
-    context.beginPath();
-    context.rect(0, 0, 1000, 500);
-    context.fillStyle = "#FFFFFF";
-    context.fill();
-    context.closePath();*/
-    //draw the character
-    character.move();
-    character.movement();
-    character.newPos();
-    character.draw();
-    
-
-    //之後將這部分模組化
+    //score
+    draw_score_onTheCanvas();
     //bricks
-    for(var i=0;i<brickXs.length;i++){
-      bricks[i].draw();
-      bricks[i].x-=runSpeed;//磚塊移動的速度
-      if(bricks[i].x<=-100){
-          bricks[i].x=1000;
-      }
-    }
+    draw_theBricks_onTheCanvas();
     //worms
-    for(var i=0;i<wormXs.length;i++){
-
-      worms[i].draw();
-      worms[i].x-=runSpeed;//蟲蟲移動的速度
-      if(worms[i].x<=-100){
-          worms[i].x=1000;
-      }
-    }
+    draw_theWorms_onTheCanvas();
     //heart
-    for(var i=0;i<character_heart;i++){
-
-      heart[i].draw();
-    }
-    character.getHurt();//傷害偵測要在蟲蟲的位置更新後再開始 
+    draw_theHeart_onTheCanvas()
+    //draw the character
+    draw_theCharacter_onTheCanvas();
+    
+    
     if(!character_heart) {//陣亡，若要免除死亡功能，則將此區塊註解
       alert("GAME OVER");
       document.location.reload();// restarting the game by reloading the page.
@@ -463,18 +463,31 @@ function draw(){
     else{
       getScore();//若沒死亡，則持續得分  
     }
-
-
-
     show(msg);
+}
+
+function draw(){
+  ////////////////////////gameState manager////////////////////////
+  if(gameState===MENU){
+    draw_MENU();
+  }
+  else if(gameState===README){
+    draw_README();
+  }
+  else if(gameState===GAME_1){
+    draw_GAME_1();
+  }
+  else if(gameState===GAME_2){
+    draw_GAME_2();
   } 
-
-  
-
-  
-
+  else if(gameState===GAME_3){
+    draw_GAME_3();
+  } 
+  else if(gameState===GAME_4){//開始遊戲!
+    //game play!!
+    draw_GAME_4();
+  } 
   requestAnimationFrame(draw);
-  
 }
 draw();
 
