@@ -31,7 +31,7 @@ var id_question=0;
 var questions=[];
 var choose_bool=false;
 var YourAnswer=0;
-var rightanwer=false;
+var rightanswer=false; 
 $(document).ready(function(){
   $.ajaxSetup({//set the header and 
     headers: {
@@ -117,7 +117,7 @@ for(var i=0 ; i<5 ; i++){
 for(var i=0 ; i<5 ; i++){
   worms.push(new component(worms_width,worms_height,"img/game/bugs.png",wormXs[i],500-brickX_height-worms_height,"image"));
 }
-var runSpeed=0;//跑速
+var runSpeed=2.5;//跑速
 
 var heart_width=20;
 var heart_height=20;
@@ -332,16 +332,7 @@ function player(width, height, color, x, y, type) {//主角constructor
             if(YourAnswer===questions[id_question].answer ){//這裡也設另外一個無敵時間，以免答對了還被下一題的答錯影響
               jumping=true;
               rightanswer=true;
-              reboot_rightanswer();//bug答對時會因為下一題而受傷
-            }
-            else if((YourAnswer!=questions[id_question].answer && YourAnswer!=0 && character_heart_bool===false )&& rightanswer===false){
-              //受傷
-              if(character_heart>0){
-                delete heart[character_heart-1];
-              }
-              character_heart--;
-              character_heart_bool=true;
-              reboot_heart_bool();//讓角色有無敵時間
+              //reboot_rightanswer();//bug答對時會因為下一題而受傷
             }
         }
         this.movement =function(){//動作控制
@@ -479,10 +470,22 @@ function draw_question_onTheCanvas(){//in the state game_4
 function choose(){
   if((rightPressed || leftPressed )&& choose_bool===false &&jumping===true){//製作類似無敵時間的東西，以防玩家不停輸入
     id_question++;
+    rightanswer=true;
+    reboot_rightanswer();
     choose_bool=true;
     reboot_choose_bool();
     if(id_question===questions.length){
       id_question=0;
+    }
+  }else if(YourAnswer!=questions[id_question].answer && YourAnswer!=0 && rightanswer===false) 
+  {
+    if(character_heart_bool===false){
+      if(character_heart>0){
+        delete heart[character_heart-1];
+      }
+      character_heart--;
+      character_heart_bool=true;
+      reboot_heart_bool();
     }
   }
 }
@@ -490,7 +493,7 @@ function reboot_choose_bool(){//讓角色有無敵時間
   var t=setTimeout("choose_bool=false",500);
 }
 function reboot_rightanswer(){//讓角色有無敵時間
-  var t=setTimeout("reboot_rightanswer=false",200);
+  var a=setTimeout("rightanswer=false",200);
 }
 
 
