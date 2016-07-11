@@ -10,6 +10,9 @@ Route::get('/', 'HomeController@index');
 Route::get('/ann', 'AnnouncementController@index');
 Route::post('/ann', 'AnnouncementController@store');
 Route::get('/ann/{ann}', 'AnnouncementController@show');
+Route::group( ['middleware' => 'admin'], function () {
+    Route::get('/test', function () { return '嗨!我是管理員'; });
+});
 //************************************************************
 
 // 校園導覽
