@@ -12,11 +12,14 @@ class QandAController extends Controller
     */
     public function index($input)
     {   
-        $Top5 = QandA::orderBy('click_count', 'desc')->get();
-        if($input=='all')
+        
+        if($input=='all'){
             $QandAs = QandA::orderBy('created_at', 'desc')->paginate(10);
-        else
+            $Top5 = QandA::orderBy('click_count', 'desc')->get();
+        }else{
             $QandAs = QandA::where('classify',$input)->orderBy('created_at', 'desc')->paginate(10);
+            $Top5 = QandA::where('classify',$input)->orderBy('click_count', 'desc')->get();
+        }
         switch ($input) {
             case "all":
                 $titles = "所有問題";
