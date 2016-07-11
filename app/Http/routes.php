@@ -71,10 +71,12 @@ Route::get('/smallgame_get/{id}','GameController@get_question');
 //Route::resource('/Q&A', 'QandAController');
 Route::post('/Q&A', 'QandAController@store');
 Route::get('/Q&A/create', 'QandAController@create');
+Route::get('/Q&A/admin/', 'QandAController@indexAdmin');
 Route::get('/Q&A/{classify}', 'QandAController@index');
 Route::get('/Q&A/content/{Q}', 'QandAController@show');
-Route::patch('/Q&A/content/{QQ}', 'QandAController@responseStore');
-Route::delete('/Q&A/{dd}', 'QandAController@destroy');
+Route::get('/Q&A/admin/{Q}', 'QandAController@edit');
+Route::patch('/Q&A/content/{Q}', 'QandAController@update');
+Route::delete('/Q&A/{Q}', 'QandAController@destroy');
 //************************************************************
 
 // 影音專區

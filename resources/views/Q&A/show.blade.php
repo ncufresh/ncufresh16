@@ -38,7 +38,7 @@
                 <div class="panel panel-default">
                   <div class="panel-heading"><h3>回答:</h3></div>
                   <div class="panel-body">
-                    <form role="form" action="{{action('QandAController@responseStore',$Q->id)}}" method="post">
+                    <form role="form" action="{{action('QandAController@update',$Q->id)}}" method="post">
                           {{ csrf_field() }}
                           {{ method_field('PATCH') }} 
                       <div class="form-group">

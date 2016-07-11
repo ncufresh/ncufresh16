@@ -24,6 +24,7 @@
                    <a href="{{action('QandAController@index','dormitory')}}" class="btn btn-primary btn-lg">宿舍生活</a>
                    <a href="{{action('QandAController@index','other')}}" class="btn btn-primary btn-lg">其他</a>
                    <button type="button" class="btn btn-default btn-lg btn-block">我的發問記錄</button>
+                   <a href="{{action('QandAController@indexAdmin')}}" class="btn btn-success btn-lg">GM</a>
               </div>
           </div>
 
