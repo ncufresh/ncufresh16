@@ -76,3 +76,9 @@ Route::get('/Q&A/content/{Q}', 'QandAController@show');
 Route::patch('/Q&A/content/{QQ}', 'QandAController@responseStore');
 Route::delete('/Q&A/{dd}', 'QandAController@destroy');
 //************************************************************
+
+// 影音專區
+//************************************************************
+Route::get('/videos','videocontroller@index');
+//Route::get('/video/')
+//************************************************************
