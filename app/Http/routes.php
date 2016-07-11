@@ -1,5 +1,13 @@
 <?php
 
+
+use Illuminate\Http\Response;
+use App\Http\Requests;
+use App\Question_collection;//model
+use App\Record_score;//model
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+
 // 註冊,登入頁
 Route::auth();
 
@@ -64,6 +72,12 @@ Route::get('/groups/departments/create', 'DepartmentController@create');
 //************************************************************
 Route::get('smallgame','GameController@index');
 Route::get('/smallgame_get/{id}','GameController@get_question');
+//Route::post('/smallgame_post','GameController@post_score');
+Route::post('/smallgame_post',function(Request $request){
+    $scores = Record_score::create($request->all());
+    return response()->json($scores);
+});
+
 //************************************************************
 
 // 新生Q&A

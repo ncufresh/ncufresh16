@@ -45,6 +45,33 @@ $(document).ready(function(){
     console.log(data);
     questions=data;//若要從資料庫提取複數列的資料，則以陣列表示，真是佛心來的
   }) 
+  //create new task / update existing task
+  //傳送資料開始
+  var formData = {
+      name: "aaa",
+  }
+
+  //used to determine the http verb to use [add=POST], [update=PUT]
+  var type = "POST"; //for creating new resource
+  //var task_id = $('#task_id').val();;
+  var my_url = "/smallgame_post";
+  console.log(formData);
+
+  $.ajax({
+
+        type: "POST",
+        url: my_url,
+        data: formData,//傳送的資料
+        dataType: 'json',//以json格式傳送
+        success: function (data) {
+            console.log(data);
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+    //傳送資料結束
+
 });
 //////////////////get the question end
 //readme:從剛進入遊戲的時候，就把所有的題目都輸入進陣列
@@ -547,6 +574,14 @@ function draw_GAME_4(){
     
 
     if(!character_heart) {//陣亡，若要免除死亡功能，則將此區塊註解
+
+      //upload the scores 
+      //傳送資料開始
+     
+      //傳送資料結束
+      //upload the scores end
+
+
       alert("GAME OVER");
       document.location.reload();// restarting the game by reloading the page.
     }
