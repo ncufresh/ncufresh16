@@ -17,11 +17,18 @@ Route::get('/ann/{ann}', 'AnnouncementController@show');
 Route::get('/campus','CampusController@index');
 Route::get('/campus/guide','CampusController@guide');
 Route::get('/campus/newData','CampusController@newData');
+//oldfunction
 Route::get('/campus/create','CampusController@createData');
+//新增建築物
 Route::post('/campus/newData/Building','CampusController@createBuilding');
+//編輯建築物 查詢建築資料
 Route::get('/campus/newData/Building/{bid?}','CampusController@getBuilding');
+//編輯建築物 更新建築物資料
 Route::put('/campus/newData/Building/{bid?}','CampusController@putBuilding');
+//刪除資料
 Route::delete('/campus/newData/Building/{bid?}', 'CampusController@dropBuilding');
+//編輯圖片 查詢圖片資料
+Route::get('/campus/newData/Building/img/{imgid?}', 'CampusComtroller@getBuildingImg');
 //************************************************************
 
 // 系所社團
