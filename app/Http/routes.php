@@ -74,7 +74,13 @@ Route::get('smallgame','GameController@index');
 Route::get('/smallgame_get/{id}','GameController@get_question');
 //Route::post('/smallgame_post','GameController@post_score');
 Route::post('/smallgame_post',function(Request $request){
-    $scores = Record_score::create($request->all());
+	$encrypter = app('Illuminate\Encryption\Encrypter');
+	$encrypted_token = $encrypter->encrypt(csrf_token());
+	
+    $scores = Record_score::create([
+    	'name'=>$request->name,
+    	'score'=>$request->score
+    	]);
     return response()->json($scores);
 });
 

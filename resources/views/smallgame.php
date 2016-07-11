@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="csrf-token" content="<?php echo csrf_token() ?>"/>
     <meta charset="utf-8" />
     <title>小遊戲</title>
     <style>
@@ -15,31 +16,26 @@
         background-color: rgba(242, 242, 242,0.9);
       }
     </style>
+    <meta name="_token" content="{!! csrf_token() !!}" /><!-- csrf_token -->
 </head>
 <body>
-  <meta name="_token" content="{!! csrf_token() !!}" /><!-- csrf_token -->
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><!-- jquery -->
-<canvas id="myCanvas" width="1000" height="500"></canvas>
-
-
+  <canvas id="myCanvas" width="1000" height="500"></canvas>
 <script>
 
 
 //////////////////get the question
-var question;
-var id_question=0;
-var questions=[];
-var choose_bool=false;
-var YourAnswer=0;
-var rightanswer=false; 
 $(document).ready(function(){
-  $.ajaxSetup({//set the header and 
+  $.ajaxSetup({
     headers: {
-      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
     }
-  })
+  });
   var url = "/smallgame_get";
-  
+  var a=2;
+
+
   $.get(url + '/' + 1, function (data) {//retrieve data from database
     //success data
     console.log(data);
@@ -47,36 +43,19 @@ $(document).ready(function(){
   }) 
   //create new task / update existing task
   //傳送資料開始
-  var formData = {
-      name: "aaa",
-  }
-
-  //used to determine the http verb to use [add=POST], [update=PUT]
-  var type = "POST"; //for creating new resource
-  //var task_id = $('#task_id').val();;
-  var my_url = "/smallgame_post";
-  console.log(formData);
-
-  $.ajax({
-
-        type: "POST",
-        url: my_url,
-        data: formData,//傳送的資料
-        dataType: 'json',//以json格式傳送
-        success: function (data) {
-            console.log(data);
-        },
-        error: function (data) {
-            console.log('Error:', data);
-        }
-    });
-    //傳送資料結束
-
 });
+var question;
+var id_question=0;
+var questions=[];
+var choose_bool=false;
+var YourAnswer=0;
+var rightanswer=false; 
 //////////////////get the question end
 //readme:從剛進入遊戲的時候，就把所有的題目都輸入進陣列
 //這樣遊戲進行中，就不需要重複進行資料庫操作
 //在前端隨機抽取題目
+
+
 
 var canvas, context,msg;
 var gameState=0;
@@ -173,6 +152,7 @@ const GAME_1=2;//第一個遊戲畫面
 const GAME_2=3;//第二個遊戲畫面
 const GAME_3=4;//第三個遊戲畫面
 const GAME_4=5;//開始遊戲的畫面
+const GAMEOVER=6//測試用結束畫面
 
 
 gameState_menu=new component(1000,500,"img/game/gameState_menu.png",0,0,"image");//第一頁的背景
@@ -180,12 +160,15 @@ gameReadme=new component(1000,500,"img/game/gameReadme.png",0,0,"image");//說�
 gamePlay_1=new component(1000,500,"img/game/gamePlay_1.png",0,0,"image");
 gamePlay_2=new component(1000,500,"img/game/gamePlay_2.png",0,0,"image");
 gamePlay_3=new component(1000,500,"img/game/gamePlay_3.png",0,0,"image");
+gamePlay_over=new component(1000,500,"img/game/gameOver.png",0,0,"image");
 
 gameStateManager.push(gameState_menu);
 gameStateManager.push(gameReadme);
 gameStateManager.push(gamePlay_1);
 gameStateManager.push(gamePlay_2);
 gameStateManager.push(gamePlay_3);
+gameStateManager.push(gamePlay_over);
+
 
 ////////canvas and keyAndMouseListener
 canvas = document.getElementById('myCanvas');
@@ -256,7 +239,11 @@ function mouseDownHandler(event){
     ){
       gameState=GAME_4;
    }
-   
+   else if(event.clientX>(canvas.offsetLeft+492) && event.clientX<(canvas.offsetLeft+775+34) &&   
+    event.clientY>(canvas.offsetTop+121) &&  event.clientY<(canvas.offsetTop+121+22) && gameState===GAMEOVER
+    ){
+      document.location.reload();
+   }
 }
 
 ////按鈕物件的constructor  
@@ -496,7 +483,15 @@ function draw_question_onTheCanvas(){//in the state game_4
 }
 function choose(){
   if((rightPressed || leftPressed )&& choose_bool===false &&jumping===true){//製作類似無敵時間的東西，以防玩家不停輸入
-    id_question++;
+
+
+    //抽出問題
+    var maxNum = questions.length;//陣列的長度  
+    var minNum = 0;  
+    id_question = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;  
+    //抽出問題end
+
+
     rightanswer=true;
     reboot_rightanswer();
     choose_bool=true;
@@ -577,18 +572,58 @@ function draw_GAME_4(){
 
       //upload the scores 
       //傳送資料開始
-     
-      //傳送資料結束
-      //upload the scores end
+      var upload=true;
+      if(upload){//因為資料會重複傳送(不知道原因)，為了解決此問題，而多設一到匣門
+       $(document).ready(function(){
+          var formData = {
+                name: "aaa",
+                score: score,
+            };
+
+            //used to determine the http verb to use [add=POST], [update=PUT]
+            var type = "POST"; //for creating new resource
+            //var task_id = $('#task_id').val();;
+            var my_url = "/smallgame_post";
+            console.log(formData);
+
+            $.ajax({
+
+                  type: "POST",    
+                  url: my_url,
+                  data: formData,//傳送的資料
+                  dataType: "json",//以json格式傳送
+                  headers: {
+                    'X-CSRF-Token': $('meta[name="token"]').attr('content')
+                  },
+                  success: function (data) {
+                      console.log(data);
+                  },
+                  error: function (data) {
+                      console.log('Error:', data);
+                  }
+              });
+
+              //傳送資料結束
+        });
+        upload=false;
+      }
+        //傳送資料結束
+        //upload the scores end
 
 
-      alert("GAME OVER");
-      document.location.reload();// restarting the game by reloading the page.
+      gameState=GAMEOVER;//GAMEOVER===6
+      /*alert("GAME OVER");
+      document.location.reload();// restarting the game by reloading the page.*/
     }
     else{
       getScore();//若沒死亡，則持續得分  
     }
     show(msg);
+}
+function drawGameOver(){
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  gameStateManager[5].draw();
+  show(msg);
 }
 
 
@@ -612,6 +647,9 @@ function draw(){
   else if(gameState===GAME_4){//開始遊戲!
     //game play!!
     draw_GAME_4();
+  }
+  else if(gameState===GAMEOVER){
+    drawGameOver();
   }
   ////////////////////////gameState manager////////////////////////
   requestAnimationFrame(draw);
