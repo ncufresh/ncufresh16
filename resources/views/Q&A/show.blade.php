@@ -2,35 +2,57 @@
 
 @section('title','Q&A')
 
-@section('css')
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
-@stop
 
 @section('js')
 @stop
 
 @section('Q&Acontent')
         <div class="col-xs-7">
-                 <table class="table table-hover">
-                    <thead><tr><th>排行</th><th>分類</th><th>日期</th><th>點閱率</th></tr></thead>
-                    <tbody>
-                      <tr>
-                        <td>{{ $Q->id }}</td>
-                        <td>{{ $Q->classify }}</td>
-                        <td><?php echo substr($Q->created_at,5,5) ?></td>
-                        <td>{{ $Q->click_count }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-         
+          <table class="table table-hover">
+            <thead><tr><th>排行</th><th>分類</th><th>日期</th><th>點閱率</th></tr></thead>
+                <tbody>
+                    <tr>
+                      <td>{{ $Q->id }}</td>
+                      <td>{{ $Q->classify }}</td>
+                      <td><?php echo substr($Q->created_at,5,5) ?></td>
+                      <td>{{ $Q->click_count }}<button type="button" class="btn col-xs-offset-3" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash fa-lg"></i> 刪除</button></td>
+                    </tr>
+            </tbody>
+          </table>
 
           <div class="panel panel-default">
             <div class="panel-heading"><h1><strong>問題:</strong>{{ $Q->content }}</h2></div>
-            <div class="panel-body"><h3>我是回答</h3>dddddddddd</div>
-          </div>
-                        
-          <button type="button" class="btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash fa-lg"></i> 刪除</button>
-                        
+            <div class="panel-body">
+                <h3><strong>回答:</strong></h3><h4><p>
+                @if (!empty($Q->response))
+                {{$Q->response}}
+                @else
+                很抱歉目前尚無回答，請在稍等一會
+                @endif
+                </p></h4>
+            </div>
+            </div>
+               <a href="#demo" class="btn btn-info" data-toggle="collapse"><i class="glyphicon glyphicon-ok" aria-hidden="true"></i> 我要回答</a><p></p>
+              <!-- collapse -->
+              <div id="demo" class="collapse">
+                <div class="panel panel-default">
+                  <div class="panel-heading"><h3>回答:</h3></div>
+                  <div class="panel-body">
+                    <form role="form" action="{{action('QandAController@responseStore',$Q->id)}}" method="post">
+                          {{ csrf_field() }}
+                          {{ method_field('PATCH') }} 
+                      <div class="form-group">
+                        <textarea name="response" class="form-control" rows="5"></textarea>
+                        <p></p>
+                        <button type="submit" class="col-sm-2 col-md-offset-5 btn btn-info">Submit</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- collapse -->
+              
+       
 
         </div>
 @endsection
