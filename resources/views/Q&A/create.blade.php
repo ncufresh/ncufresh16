@@ -19,7 +19,7 @@
               <textarea name="content" class="form-control" rows="5" id="comment"></textarea>
             </div>
             
-            <button type="submit" class="col-sm-6 col-md-offset-3 btn btn-default">Submit</button>
+            <button type="submit" class="col-sm-4 col-md-offset-4 btn btn-info">Submit</button>
           </form>
     </div>
 @endsection

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddClickCountToQandA extends Migration
+class CreateVideoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,11 @@ class AddClickCountToQandA extends Migration
      */
     public function up()
     {
-        Schema::table('QandA', function($table) {
-        $table->integer('click_count');
-    });
+        Schema::create('videos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('body');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -24,8 +26,6 @@ class AddClickCountToQandA extends Migration
      */
     public function down()
     {
-        Schema::table('QandA', function($table) {
-        $table->dropColumn('click_count');
-    });
+        Schema::drop('videos');
     }
 }

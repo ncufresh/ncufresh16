@@ -17,11 +17,18 @@ Route::get('/ann/{ann}', 'AnnouncementController@show');
 Route::get('/campus','CampusController@index');
 Route::get('/campus/guide','CampusController@guide');
 Route::get('/campus/newData','CampusController@newData');
+//oldfunction
 Route::get('/campus/create','CampusController@createData');
+//新增建築物
 Route::post('/campus/newData/Building','CampusController@createBuilding');
+//編輯建築物 查詢建築資料
 Route::get('/campus/newData/Building/{bid?}','CampusController@getBuilding');
+//編輯建築物 更新建築物資料
 Route::put('/campus/newData/Building/{bid?}','CampusController@putBuilding');
+//刪除資料
 Route::delete('/campus/newData/Building/{bid?}', 'CampusController@dropBuilding');
+//編輯圖片 查詢圖片資料
+Route::get('/campus/newData/Building/img/{imgid?}', 'CampusComtroller@getBuildingImg');
 //************************************************************
 
 // 系所社團
@@ -65,6 +72,13 @@ Route::get('/smallgame_get/{id}','GameController@get_question');
 Route::post('/Q&A', 'QandAController@store');
 Route::get('/Q&A/create', 'QandAController@create');
 Route::get('/Q&A/{classify}', 'QandAController@index');
-Route::get('/Q&A/content/{id}', 'QandAController@show');
+Route::get('/Q&A/content/{Q}', 'QandAController@show');
+Route::patch('/Q&A/content/{QQ}', 'QandAController@responseStore');
 Route::delete('/Q&A/{dd}', 'QandAController@destroy');
+//************************************************************
+
+// 影音專區
+//************************************************************
+Route::get('/videos','videocontroller@index');
+//Route::get('/video/')
 //************************************************************
