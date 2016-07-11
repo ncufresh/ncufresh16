@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 use App\Club;
 
-use Symfony\Component\HttpFoundation\File\UploadFile;
+
 
 class ClubController extends Controller
 {
@@ -27,22 +27,26 @@ class ClubController extends Controller
 	
 	public function store(Request $request)
 	{
-		$club = new Club;
-    	$club->clubs_kind = $request->clubs_kind;
-    	$club->clubs_intro = $request->clubs_intro;
+		
     	
     	//上傳照片
     	$clubfile = $request->file('clubs_file');
-    	$upload = '/groups/clubs';
+    	$upload = public_path().'/clubs_file/';
     	$filename = $clubfile->getClientOriginalName();
     	$success = $clubfile->move($upload,$filename);
     	if($success){
-    		
+
+    		$club = new Club;
+    		$club->clubs_kind = $request->clubs_kind;
+    		$club->clubs_intro = $request->clubs_intro;
     		$club->clubs_file = $filename;
+    		echo '<img src="clubs_file/'.$filename.'"/>';
     		$club->save();
     		return redirect('/groups/clubs');
+
     	}
 
+    	
     	
 	}
 

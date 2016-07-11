@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-	<form action="{{ URL::action('ClubController@store') }}" method="post">
+	<form action="{{ URL::action('ClubController@store') }}" method="post" enctype="multipart/form-data">
 	{{csrf_field()}}
 		<br><br><br><br><br><br><br><br>
 		<<div>
@@ -14,7 +14,7 @@
 						<option value="4">服務性</option>	
 					</select>
 				</div>
-			</input>	
+				
 		</div>
 		<div>
 			<input type="text" name="clubs_intro">
@@ -26,7 +26,7 @@
                		<input type="hidden" name="_token" value="{{csrf_token()}}"/>
                		<input type="submit" value="submit">
            		</th>
-       
+       		</input>
 		</div>
 		
 	</form>
