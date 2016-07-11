@@ -82,3 +82,9 @@ Route::delete('/Q&A/{dd}', 'QandAController@destroy');
 Route::get('/videos','videocontroller@index');
 //Route::get('/video/')
 //************************************************************
+
+// 中大生活
+//************************************************************
+Route::get('/life','LifeController@food');
+
+//************************************************************
