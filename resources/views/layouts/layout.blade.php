@@ -35,6 +35,8 @@
     <script src="{{ asset('include/jquery/jquery-1.12.4.js') }}"></script>
     <script src="{{ asset('include/jquery/jquery.ujs.js') }}"></script>
     <script src="{{ asset('include/bootstrap/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('include/bootstrap-material/js/material.js') }}"></script>
+    <script src="{{ asset('include/bootstrap-material/js/ripples.js') }}"></script>
     <script src="{{ asset('js/layout.js') }}"></script>
     @yield('js')
 </body>

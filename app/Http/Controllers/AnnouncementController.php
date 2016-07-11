@@ -10,7 +10,7 @@ class AnnouncementController extends Controller
 {
     public function index()
     {
-        $announcements = Announcement::all();
+        $announcements = Announcement::orderBy('is_top','desc')->orderBy('post_at','desc')->get();
         return view('announcements.index', [
             'anns' => $announcements,
         ]);
@@ -18,11 +18,15 @@ class AnnouncementController extends Controller
 
     public function store(Request $request)
     {
-
+        $top = false;
+        if ($request->top == 'on') {
+            $top = true;
+        }
         Announcement::create([
             'title' => $request->title,
             'content' => $request->content,
-            'post_at' => $request->post_at
+            'post_at' => $request->post_at,
+            'is_top' => $top
         ]);
 
         return redirect('/ann');

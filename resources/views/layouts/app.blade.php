@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('include/font-awesome/css/font-awesome.css') }}" media="screen">
 
     <!-- 個人Styles -->
-    <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @yield('css')
 
 </head>
@@ -29,7 +29,7 @@
     <script src="{{ asset('include/jquery/jquery-1.12.4.js') }}"></script>
     <script src="{{ asset('include/jquery/jquery.ujs.js') }}"></script>
     <script src="{{ asset('include/bootstrap/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('js/layout.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     @yield('js')
 </body>
 </html>

@@ -1,109 +1,132 @@
 @extends('layouts.layout')
 
-@section('title', 'NCU Fresh | 新生知訊網')
+@section('title', '公告')
 
 @section('css')
-<style media="screen">
-/* modal */
-.modal-header, h4, .close {
-    background-color: #317de0;
-    color: #fff; /* 白字 */
-    text-align: center;
-    font-size: 30px;
-}
-.modal-header, .modal-body {
-    padding: 20px 20px;
-}
-.modal-footer > .btn {
-    padding: 10px 20px;
-    background-color: #333; /* 按鈕背景色 */
-    color: #f1f1f1; /* 按鈕字顏色 */
-    border-radius: 0;
-    transition: 0.2s;
-}
-.modal-footer > .btn:hover, .modal-footer > .btn:focus {
-    border: 1px solid #333; /* 細框 顏色 */
-    background-color: #fff; /* 白底 */
-    color: #000; /* 白字 */
-}
-</style>
 <link rel="stylesheet" href="{{ asset('include/pickdate/themes/classic.css') }}" media="screen" title="no title" charset="utf-8">
 <link rel="stylesheet" href="{{ asset('include/pickdate/themes/classic.date.css') }}" media="screen" title="no title" charset="utf-8">
+<style>
+/* table連結會有手指 */
+.href-table-row{
+    cursor:pointer;
+}
+</style>
 @stop
 
 @section('js')
 <script src="{{ asset('include/pickdate/picker.js') }}" charset="utf-8"></script>
 <script src="{{ asset('include/pickdate/picker.date.js') }}" charset="utf-8"></script>
 <script type="text/javascript">
-//$.material.init();
-$('.datepicker').pickadate({
-    selectMonths: true,
-    format: 'yyyy-mm-dd'
+$(document).ready(function(){
+    // 初始化選日期工具
+    $('.datepicker').pickadate({
+        selectMonths: true,
+        format: 'yyyy-mm-dd'
+    });
+    // 點日期工具input會focus
+    $('.datepicker').click(function(){
+        $(this).focus();
+    });
+
+    // table row的超連結 //用modal的話不需要,show頁面才要
+    $(".href-table-row").click(function() {
+        window.document.location = $(this).data("href");
+    });
 });
 </script>
 @stop
 
 @section('content')
 
-
-
 <div class="container">
 
-    <a href="#create" class="btn btn-danger" data-toggle="collapse" ><i class="fa fa-plus" aria-hidden="true"></i> 新增公告</a>
+<!-- 新增公告 -->
+<div class="row">
+    <a href="#create" class="btn btn-raised btn-danger" data-toggle="collapse" ><i class="fa fa-plus" aria-hidden="true"></i> 新增公告</a>
     <div id="create" class="collapse container">
         <h3>新增公告</h3>
         <form action="{{ url('/ann') }}" method="post" role="form">
             {{ csrf_field() }}
             <div class="form-group">
-                <label><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;標題</label>
-                <input type="text" name="title" maxlength="30" class="form-control" placeholder="公告的標題" required>
+                <label for="post_at"><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;時間</label>
+                <input type="date" name="post_at" class="form-control datepicker" id="post_at" placeholder="請填發布時間" required>
             </div>
             <div class="form-group">
-                <label><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;內文</label>
-                <textarea name="content" class="form-control" placeholder="公告的內容" required></textarea>
+                <label for="title"><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;標題</label>
+                <input class="form-control" id="title" name="title" type="text" maxlength="30"  placeholder="公告的標題" required>
             </div>
             <div class="form-group">
-                <label><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;時間</label>
-                <input type="date" name="post_at" class="form-control datepicker" name="name" placeholder="請填發布時間" required>
+                <label for="content"><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;內文</label>
+                <textarea class="form-control" id="content" name="content" placeholder="公告的內容" required></textarea>
             </div>
-            <button type="submit" class="btn btn-block">
-                送出<span class="glyphicon glyphicon-ok"></span>
-            </button>
+            <div class="form-group">
+                <div class="togglebutton">
+                    <label><input name="top" type="checkbox"> 置頂</label>
+                    <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label><input name="important" type="checkbox"> 重要</label>-->
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-raised btn-block btn-primary">
+                    送出<span class="glyphicon glyphicon-ok"></span>
+                </button>
+            </div>
         </form>
     </div>
+</div>
 
-
+<!-- 顯示所有公告 -->
+<div class="row">
     <h3>公告</h3>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover ">
+            <thead>
+                <tr>
+                    <th>種類</th>
+                    <th>日期</th>
+                    <th>標題</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($anns as $ann)
+                <tr class="href-table-row @if($ann->is_top) danger @endif" data-href="#" data-toggle="modal" data-target="#myModal{{ $ann->id }}">
+                    <td>
+                        @if($ann->is_top)
+                            置頂公告
+                        @else
+                            一般公告
+                        @endif
+                    </td>
+                    <td>{{ $ann->post_at }}</td>
+                    <td>{{ $ann->title }}</td>
+                </tr>
 
-    <div class="list-group">
-      <li class="list-group-item active">一般公告</li>
-      @foreach ($anns as $ann)
-          <a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal{{ $ann->id }}">
-              <span class="label label-info">{{ $ann->post_at }}</span> &nbsp;{{ $ann->title }}
-          </a>
-
-          <!-- Modal -->
-          <div id="myModal{{ $ann->id }}" class="modal fade" role="dialog">
-              <div class="modal-dialog">
-                <!-- Modal content-->
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">{{ $ann->title }}</h4>
-                      </div>
-                      <div class="modal-body">
-                          <p>{{ $ann->content }}</p>
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn btn-default pull-left" data-dismiss="modal">
-                            <span class="glyphicon glyphicon-remove"></span> 關閉
-                          </button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      @endforeach
+                <!-- Modal -->
+                <div id="myModal{{ $ann->id }}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">發佈日期: {{ $ann->post_at }}</h4>
+                                <h2 class="modal-title">標題: {{ $ann->title }}</h2>
+                            </div>
+                            <div class="modal-body">
+                                <p>內文: <br><br>{{ $ann->content }}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-remove"></span> Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </tbody>
+        </table>
     </div>
+</div>
 
 </div>
 

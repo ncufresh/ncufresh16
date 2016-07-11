@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8" />
     <title>小遊戲</title>
-    <link rel="stylesheet" href="css/style.css" charset="utf-8"><!-- 連上css -->
     <style>
       *{ 
         padding: 0; margin: 0; 
@@ -12,13 +11,45 @@
         background: #eee; display: block; margin: 0 auto; 
         margin-top:5%;
       }
+      div{
+        background-color: rgba(242, 242, 242,0.9);
+      }
     </style>
 </head>
 <body>
-
+  <meta name="_token" content="{!! csrf_token() !!}" /><!-- csrf_token -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><!-- jquery -->
 <canvas id="myCanvas" width="1000" height="500"></canvas>
 
+
 <script>
+
+
+//////////////////get the question
+var question;
+var id_question=0;
+var questions=[];
+var choose_bool=false;
+var YourAnswer=0;
+var rightanwer=false;
+$(document).ready(function(){
+  $.ajaxSetup({//set the header and 
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    }
+  })
+  var url = "/smallgame_get";
+  
+  $.get(url + '/' + 1, function (data) {//retrieve data from database
+    //success data
+    console.log(data);
+    questions=data;//若要從資料庫提取複數列的資料，則以陣列表示，真是佛心來的
+  }) 
+});
+//////////////////get the question end
+//readme:從剛進入遊戲的時候，就把所有的題目都輸入進陣列
+//這樣遊戲進行中，就不需要重複進行資料庫操作
+//在前端隨機抽取題目
 
 var canvas, context,msg;
 var gameState=0;
@@ -86,7 +117,7 @@ for(var i=0 ; i<5 ; i++){
 for(var i=0 ; i<5 ; i++){
   worms.push(new component(worms_width,worms_height,"img/game/bugs.png",wormXs[i],500-brickX_height-worms_height,"image"));
 }
-var runSpeed=2.5;//跑速
+var runSpeed=0;//跑速
 
 var heart_width=20;
 var heart_height=20;
@@ -101,6 +132,7 @@ for(var i=0;i<character_heart;i++){
 
 var hurt_deviation=14;//讓角色比較不容易受傷，讓傷害偵測變窄
 var score=0;//分數，以企畫的角度，等於秒數
+var score_bool=false;
 ////////遊戲主體的變數 END
 
 
@@ -142,17 +174,22 @@ document.addEventListener("keyup", keyUpHandler, false);
 function keyDownHandler(e) {//the action of the key listener
         if(e.keyCode == 39) {
             rightPressed = true;
+            YourAnswer=2;
         }
         else if(e.keyCode == 37) {
             leftPressed = true;
+            YourAnswer=1;
+
         }
 }
 function keyUpHandler(e) {
         if(e.keyCode == 39) {
             rightPressed = false;
+            YourAnswer=0;
         }
         else if(e.keyCode == 37) {
             leftPressed = false;
+            YourAnswer=0;
         }
 }
 function mouseMoveHandler(event) {//不用實作，只要按鍵按下，就會自動執行
@@ -292,8 +329,19 @@ function player(width, height, color, x, y, type) {//主角constructor
                     this.width, this.height);
         }
         this.move = function(){
-            if(rightPressed){
+            if(YourAnswer===questions[id_question].answer ){//這裡也設另外一個無敵時間，以免答對了還被下一題的答錯影響
               jumping=true;
+              rightanswer=true;
+              reboot_rightanswer();//bug答對時會因為下一題而受傷
+            }
+            else if((YourAnswer!=questions[id_question].answer && YourAnswer!=0 && character_heart_bool===false )&& rightanswer===false){
+              //受傷
+              if(character_heart>0){
+                delete heart[character_heart-1];
+              }
+              character_heart--;
+              character_heart_bool=true;
+              reboot_heart_bool();//讓角色有無敵時間
             }
         }
         this.movement =function(){//動作控制
@@ -355,13 +403,99 @@ function player(width, height, color, x, y, type) {//主角constructor
 function reboot_heart_bool(){//讓角色有無敵時間
   var t=setTimeout("character_heart_bool=false",1000);
 }
-function getScore(){//獲得分數
-  var t=setTimeout("score++",1000);
+function getScore_bool(){//獲得分數
+  var t=setTimeout("score_bool=false",1000);
 }
-function draw(){
-  ////////////////////////gameState manager////////////////////////
-  if(gameState===MENU){
-    context.clearRect(0, 0, canvas.width, canvas.height);
+function getScore(){
+  if(score_bool===false){
+    score++;
+    score_bool=true;
+    getScore_bool();
+  }
+}
+
+
+function draw_score_onTheCanvas(){//in the state game_4
+  //繪製分數
+    context.font = '20px Tahoma';
+    context.fillStyle = "#1569C7";
+    context.textAlign = "left";
+    context.textBaseline = "bottom";
+    context.fillText(score, 80, 20);
+}
+function draw_theBricks_onTheCanvas(){//in the state game_4
+  for(var i=0;i<brickXs.length;i++){
+      bricks[i].draw();
+      bricks[i].x-=runSpeed;//磚塊移動的速度
+      if(bricks[i].x<=-100){
+          bricks[i].x=1000;
+      }
+    }
+}
+function draw_theWorms_onTheCanvas(){//in the state game_4
+  for(var i=0;i<wormXs.length;i++){
+
+      worms[i].draw();
+      worms[i].x-=runSpeed;//蟲蟲移動的速度
+      if(worms[i].x<=-100){
+          worms[i].x=1000;
+      }
+    }
+}
+function draw_theHeart_onTheCanvas(){//in the state game_4
+  for(var i=0;i<character_heart;i++){
+
+      heart[i].draw();
+  }
+}
+function draw_theCharacter_onTheCanvas(){//in the state game_4
+    character.move();
+    character.movement();
+    character.newPos();
+    character.draw();
+    character.getHurt();//傷害偵測要在蟲蟲的位置更新後再開始
+}
+function draw_question_onTheCanvas(){//in the state game_4
+    context.font = '20px Tahoma';
+    context.fillStyle = "#1569C7";
+    context.textAlign = "center";
+    context.textBaseline = "bottom";
+    choose();//抽題
+    context.fillText(questions[id_question].question, 500, 70);
+
+    context.font = '20px Tahoma';
+    context.fillStyle = "#1569C7";
+    context.textAlign = "center";
+    context.textBaseline = "bottom";
+    context.fillText(questions[id_question].selection_1, 300, 200);
+
+    context.font = '20px Tahoma';
+    context.fillStyle = "#1569C7";
+    context.textAlign = "center";
+    context.textBaseline = "bottom";
+    context.fillText(questions[id_question].selection_2, 700, 200);
+
+}
+function choose(){
+  if((rightPressed || leftPressed )&& choose_bool===false &&jumping===true){//製作類似無敵時間的東西，以防玩家不停輸入
+    id_question++;
+    choose_bool=true;
+    reboot_choose_bool();
+    if(id_question===questions.length){
+      id_question=0;
+    }
+  }
+}
+function reboot_choose_bool(){//讓角色有無敵時間
+  var t=setTimeout("choose_bool=false",500);
+}
+function reboot_rightanswer(){//讓角色有無敵時間
+  var t=setTimeout("reboot_rightanswer=false",200);
+}
+
+
+function draw_MENU(){
+  context.clearRect(0, 0, canvas.width, canvas.height);
     gameState_menu.draw();
 
 
@@ -370,73 +504,45 @@ function draw(){
 
 
     show(msg);
-    
-  }
-  else if(gameState===README){
+}
+function draw_README(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[README].draw();
     btn_2(btn_2_X, btn_2_y, btn_2_width, btn_2_height);
     show(msg);
-    
-  }
-  else if(gameState===GAME_1){
+}
+function draw_GAME_1(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_1].draw();
     show(msg);
-    
-  }
-  else if(gameState===GAME_2){
+}
+function draw_GAME_2(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_2].draw();
     show(msg);
-  } 
-  else if(gameState===GAME_3){
+}
+function draw_GAME_3(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_3].draw();
     show(msg);
-  } 
-  else if(gameState===GAME_4){//開始遊戲!
-    //game play!!
-
-
+}
+function draw_GAME_4(){
     context.clearRect(0, 0, canvas.width, canvas.height);//清空版面
-    /*//draw the background
-    context.beginPath();
-    context.rect(0, 0, 1000, 500);
-    context.fillStyle = "#FFFFFF";
-    context.fill();
-    context.closePath();*/
+
+    //score
+    draw_score_onTheCanvas();
+    //bricks
+    draw_theBricks_onTheCanvas();
+    //worms
+    draw_theWorms_onTheCanvas();
+    //heart
+    draw_theHeart_onTheCanvas()
     //draw the character
-    character.move();
-    character.movement();
-    character.newPos();
-    character.draw();
+    draw_theCharacter_onTheCanvas();
+    //draw the question
+    draw_question_onTheCanvas();
     
 
-    //之後將這部分模組化
-    //bricks
-    for(var i=0;i<brickXs.length;i++){
-      bricks[i].draw();
-      bricks[i].x-=runSpeed;//磚塊移動的速度
-      if(bricks[i].x<=-100){
-          bricks[i].x=1000;
-      }
-    }
-    //worms
-    for(var i=0;i<wormXs.length;i++){
-
-      worms[i].draw();
-      worms[i].x-=runSpeed;//蟲蟲移動的速度
-      if(worms[i].x<=-100){
-          worms[i].x=1000;
-      }
-    }
-    //heart
-    for(var i=0;i<character_heart;i++){
-
-      heart[i].draw();
-    }
-    character.getHurt();//傷害偵測要在蟲蟲的位置更新後再開始 
     if(!character_heart) {//陣亡，若要免除死亡功能，則將此區塊註解
       alert("GAME OVER");
       document.location.reload();// restarting the game by reloading the page.
@@ -444,20 +550,39 @@ function draw(){
     else{
       getScore();//若沒死亡，則持續得分  
     }
-
-
-
     show(msg);
+}
+
+
+function draw(){
+  ////////////////////////gameState manager////////////////////////
+  if(gameState===MENU){
+    draw_MENU();
+  }
+  else if(gameState===README){
+    draw_README();
+  }
+  else if(gameState===GAME_1){
+    draw_GAME_1();
+  }
+  else if(gameState===GAME_2){
+    draw_GAME_2();
   } 
-
-  
-
-  
-
+  else if(gameState===GAME_3){
+    draw_GAME_3();
+  } 
+  else if(gameState===GAME_4){//開始遊戲!
+    //game play!!
+    draw_GAME_4();
+  }
+  ////////////////////////gameState manager////////////////////////
   requestAnimationFrame(draw);
-  
 }
 draw();
+
+
+
+
 
 
 //模組化
