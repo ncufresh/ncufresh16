@@ -602,7 +602,6 @@ function draw_GAME_4(){
                       console.log('Error:', data);
                   }
               });
-
               //傳送資料結束
         });
         upload=false;
