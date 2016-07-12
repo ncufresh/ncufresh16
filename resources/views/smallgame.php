@@ -29,7 +29,7 @@
 $(document).ready(function(){
   $.ajaxSetup({
     headers: {
-        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')//csrf token
     }
   });
   var url = "/smallgame_get";
@@ -59,7 +59,7 @@ var rightanswer=false;
 
 var canvas, context,msg;
 var gameState=0;
-var gameState_menu;//選單頁面
+var gameState_menu=new Array();//選單頁面.陣列
 var gameReadme;//說明頁面
 var gamePlay_1;
 var gamePlay_2;
@@ -84,14 +84,53 @@ var btn_3_height=50;
 ////////遊戲主體的變數
 
 var character;
-var character_heart=3;
+var character_heart=3;//生命值
 var character_heart_bool=false;
 var c_x=24;
 var c_y=350;
-var c_height=82;
-var c_width=71;
-character= new player(c_width,c_height,"img/game/mainCharacter.png",c_x,c_y,"image");
+var c_height=160;
+var c_width=145;
+//角色
+var character_images=[];
+var character_image;
+var character_state=0;
+var character_animation;
+character= new player(c_width,c_height,"img/game/bird_01.png",c_x,c_y,"image");
 
+character_image=new Image();
+character_image.src ="img/game/bird_01.png";//圖片的檔案路徑
+character_images.push(character_image);
+character_image=new Image();
+character_image.src ="img/game/bird_02.png";//圖片的檔案路徑
+character_images.push(character_image);
+character_image=new Image();
+character_image.src ="img/game/bird_03.png";//圖片的檔案路徑
+character_images.push(character_image);
+character_image=new Image();
+character_image.src ="img/game/bird_04.png";//圖片的檔案路徑
+character_images.push(character_image);
+character_image=new Image();
+character_image.src ="img/game/bird_05.png";//圖片的檔案路徑
+character_images.push(character_image);
+character_image=new Image();
+character_image.src ="img/game/bird_06.png";//圖片的檔案路徑
+character_images.push(character_image);
+character_image=new Image();
+character_image.src ="img/game/bird_07.png";//圖片的檔案路徑
+character_images.push(character_image);
+character_image=new Image();
+character_image.src ="img/game/bird_08.png";//圖片的檔案路徑
+character_images.push(character_image);
+character_image=new Image();
+character_image.src ="img/game/bird_09.png";//圖片的檔案路徑
+character_images.push(character_image);
+character_image=new Image();
+character_image.src ="img/game/bird_10.png";//圖片的檔案路徑
+character_images.push(character_image);
+
+character=new player_animation(c_width,c_height,character_images,c_x,c_y,"image");
+
+//角色end
 
 var rightPressed=false;
 var leftPressed=false;
@@ -123,7 +162,7 @@ for(var i=0 ; i<5 ; i++){
 for(var i=0 ; i<5 ; i++){
   worms.push(new component(worms_width,worms_height,"img/game/bugs.png",wormXs[i],500-brickX_height-worms_height,"image"));
 }
-var runSpeed=2.5;//跑速
+var runSpeed=0;//跑速
 
 var heart_width=20;
 var heart_height=20;
@@ -137,6 +176,9 @@ for(var i=0;i<character_heart;i++){
 }
 
 var hurt_deviation=14;//讓角色比較不容易受傷，讓傷害偵測變窄
+var hurt_deviation_height;//讓角色比較不容易受傷，讓傷害偵測變矮
+
+
 var score=0;//分數，以企畫的角度，等於秒數
 var score_bool=false;
 ////////遊戲主體的變數 END
@@ -144,6 +186,7 @@ var score_bool=false;
 
 
 var gameStateManager= new Array();//gamestate的總管，所有葉面的陣列
+gameStateManager[0]=new Array();
 
 
 const MENU=0;//選單頁面
@@ -155,14 +198,16 @@ const GAME_4=5;//開始遊戲的畫面
 const GAMEOVER=6//測試用結束畫面
 
 
-gameState_menu=new component(1000,500,"img/game/gameState_menu.png",0,0,"image");//第一頁的背景
+
+gameState_menu.push(new component(1000,500,"img/game/gameState_menu.png",0,0,"image");//第一頁的背景);
+
 gameReadme=new component(1000,500,"img/game/gameReadme.png",0,0,"image");//說明頁面物件
 gamePlay_1=new component(1000,500,"img/game/gamePlay_1.png",0,0,"image");
 gamePlay_2=new component(1000,500,"img/game/gamePlay_2.png",0,0,"image");
 gamePlay_3=new component(1000,500,"img/game/gamePlay_3.png",0,0,"image");
 gamePlay_over=new component(1000,500,"img/game/gameOver.png",0,0,"image");
 
-gameStateManager.push(gameState_menu);
+gameStateManager[0]=gameState_menu;
 gameStateManager.push(gameReadme);
 gameStateManager.push(gamePlay_1);
 gameStateManager.push(gamePlay_2);
@@ -405,6 +450,112 @@ function player(width, height, color, x, y, type) {//主角constructor
             } 
         }
 }
+function player_animation(width, height,images, x, y, type) {//主角constructor
+        this.type = type;
+        this.images=images;//所有動作圖片
+        this.width = width;
+        this.height = height;
+        this.dx = 0;
+        this.dy = 0;    
+        this.x = x;
+        this.y = y;    
+        this.update = function() {
+         
+            if (type == "image") {
+                context.drawImage(this.image, 
+                    this.x, 
+                    this.y,
+                    this.width, this.height);
+            } else {
+                context.fillStyle = color;
+                context.fillRect(this.x, this.y, this.width, this.height);
+            }
+        }
+        this.newPos = function() {
+            this.x += this.dx;
+            this.y += this.dy;
+        }
+        this.draw = function(){//動畫
+          
+
+
+
+
+          context.drawImage(this.images[character_state], 
+                    this.x, 
+                    this.y,
+                    this.width, this.height);
+        }
+        this.move = function(){
+            if(YourAnswer===questions[id_question].answer ){//這裡也設另外一個無敵時間，以免答對了還被下一題的答錯影響
+              jumping=true;
+              rightanswer=true;
+              //reboot_rightanswer();//bug答對時會因為下一題而受傷
+            }
+        }
+        this.movement =function(){//動作控制
+            if(jumping && !falling){//跳躍
+                this.dy=jumpStart;
+                falling=true;
+                jumping=false;
+            }
+            if((this.y+this.height)<500-20){
+              this.dy+=fallSpeed;
+                if(this.dy>0){
+                  jumping=false;
+                }
+                if(this.dy>maxFallSpeed){
+                  this.dy=maxFallSpeed;
+                }
+            }
+            if(falling){//掉落
+                this.dy+=fallSpeed;
+                if(this.dy>0){
+                  jumping=false;
+                }
+                if(this.dy>maxFallSpeed){
+                  this.dy=maxFallSpeed;
+                }
+            }
+            if(this.y+this.height>500-20){
+                this.dy=0;
+                this.y=500-this.height-20;
+                falling=false;
+            }
+            if(this.y<0){
+                this.dy=0;
+                this.y=0;
+            }
+        }
+        this.getHurt = function(){//受傷偵測
+            for(var i=0;i<worms.length;i++){//演算法解說:只要四個角有一個點在腳色面積內，則認為該腳色碰到蟲。若要改成角色"沒有"無敵時間，而是碰到一隻一定要損一次血的話，則更改此處演算法，把每隻蟲上面多加一個flag。同一隻蟲碰過後就不會再次損血，該flag會在幾秒後重新刷新。
+                if( ((( (worms[i].x<=(character.x+c_width-hurt_deviation)) && (worms[i].x)>=(character.x+hurt_deviation) ) &&
+                    ( (worms[i].y<=(character.y+c_height))&&  worms[i].y>=character.y  ))/*完成左上角的偵測*/||
+                    (( ((worms[i].x+worms[i].width)<=(character.x+c_width-hurt_deviation)) && (worms[i].x+worms[i].width)>=(character.x+hurt_deviation )) &&
+                    ( (worms[i].y<=(character.y+c_height))&&  worms[i].y>=character.y  ))/*完成右上角的偵測*/||
+                    (( (worms[i].x<=(character.x+c_width-hurt_deviation)) && (worms[i].x)>=(character.x+hurt_deviation ) ) &&
+                    ( ((worms[i].y+worms[i].height)<=(character.y+c_height))&&  (worms[i].y+worms[i].height)>=character.y  ))/*完成左下角的偵測*/||
+                    (( ((worms[i].x+worms[i].width)<=(character.x+c_width-hurt_deviation)) && ((worms[i].x+worms[i].width))>=(character.x+hurt_deviation ) ) &&
+                    ( ((worms[i].y+worms[i].height)<=(character.y+c_height))&&  (worms[i].y+worms[i].height)>=character.y )) ) /*完成右下角的偵測*/
+                    && character_heart_bool===false /*讓角色有無敵時間*/
+                ){
+                    if(character_heart>0){
+                      delete heart[character_heart-1];
+                    }
+                    character_heart--;
+                    character_heart_bool=true;
+                    reboot_heart_bool();//讓角色有無敵時間
+                }
+            } 
+        }
+}
+function character_state_control(){
+  character_state++;
+  if(character_state>=character_images.length){
+    character_state=0;
+  }
+
+}
 function reboot_heart_bool(){//讓角色有無敵時間
   var t=setTimeout("character_heart_bool=false",1000);
 }
@@ -457,7 +608,11 @@ function draw_theCharacter_onTheCanvas(){//in the state game_4
     character.move();
     character.movement();
     character.newPos();
+
+    //
     character.draw();
+    //
+
     character.getHurt();//傷害偵測要在蟲蟲的位置更新後再開始
 }
 function draw_question_onTheCanvas(){//in the state game_4
@@ -521,7 +676,7 @@ function reboot_rightanswer(){//讓角色有無敵時間
 
 function draw_MENU(){
   context.clearRect(0, 0, canvas.width, canvas.height);
-    gameState_menu.draw();
+    gameStateManager[0][0].draw();
 
 
     btn_1(btn_1_X, btn_1_y, btn_1_width, btn_1_height);//跳轉到說明的按鈕
@@ -566,6 +721,8 @@ function draw_GAME_4(){
     draw_theCharacter_onTheCanvas();
     //draw the question
     draw_question_onTheCanvas();
+    //
+
     
 
     if(!character_heart) {//陣亡，若要免除死亡功能，則將此區塊註解
@@ -646,6 +803,7 @@ function draw(){
   else if(gameState===GAME_4){//開始遊戲!
     //game play!!
     draw_GAME_4();
+
   }
   else if(gameState===GAMEOVER){
     drawGameOver();
@@ -653,6 +811,8 @@ function draw(){
   ////////////////////////gameState manager////////////////////////
   requestAnimationFrame(draw);
 }
+setInterval(character_state_control,50);//動畫楨數
+
 draw();
 
 
