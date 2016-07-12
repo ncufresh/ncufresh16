@@ -12,7 +12,7 @@
   <div class="container">
       <div class="jumbotron">
           <h1>Q&A</h1>
-          <a href="{{action('QandAController@create')}}" class="btn btn-info btn-lg"><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i>我要發問</a>
+          <a href="{{action('QandAController@create')}}" class="btn btn-info btn-lg btn-raised"><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i>我要發問</a>
       </div>
       <div class="row">
           <div class="col-xs-3" >

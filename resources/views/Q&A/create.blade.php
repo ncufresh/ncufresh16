@@ -6,9 +6,8 @@
   <script type="text/javascript">alert("請先登入喔");window.location.replace("/Q&A/all");</script>      
   @else
 @endif
-
-
 @endsection
+
 @section('Q&Acontent')
     <div class="col-sm-7">
        <form action="{{action('QandAController@store')}}" method="post">
@@ -34,7 +33,7 @@
               <span class="help-block">TESTTTT</span>
             </div>
             
-            <button type="submit" class="col-sm-4 col-md-offset-4 btn btn-info raised">Submit</button>
+            <button type="submit" class="col-sm-3 col-sm-offset-2 btn btn-info btn-raised">Submit</button>
           </form>
     </div>
 @endsection

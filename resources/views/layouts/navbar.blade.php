@@ -45,7 +45,7 @@
                     <li><a href="{{ url('/login') }}">登入</a></li>
                     <li><a href="{{ url('/register') }}">註冊</a></li>
                 @else
-                <li><a href="{{ url('/Q&A/all') }}">個人專區</a></li>
+                <li><a href="{{ url('/personal') }}">個人專區</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             {{ Auth::user()->name }} <span class="caret"></span>

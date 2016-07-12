@@ -1,4 +1,12 @@
 @extends('layouts.Q&Alayouts')
+
+@section('js')
+@if (Auth::guest())
+
+  <script type="text/javascript">alert("請先登入喔");window.location.replace("/Q&A/all");</script>      
+  @else
+@endif
+
 @section('Q&Acontent')
 <div class="col-xs-7">
   <table class="table table-hover">

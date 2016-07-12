@@ -79,6 +79,15 @@ Route::patch('/Q&A/content/{Q}', 'QandAController@update');
 Route::delete('/Q&A/{Q}', 'QandAController@destroy');
 //************************************************************
 
+
+// 個人專區
+//************************************************************
+Route::resource('/personal', 'PersonalController');
+//************************************************************
+
+
+
+
 // 影音專區
 //************************************************************
 Route::get('/videos','videocontroller@index');
