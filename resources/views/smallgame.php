@@ -60,6 +60,7 @@ var rightanswer=false;
 var canvas, context,msg;
 var gameState=0;
 var gameState_menu=new Array();//選單頁面
+var gameState_menu_state=0;
 var gameReadme;//說明頁面
 var gamePlay_1;
 var gamePlay_2;
@@ -210,7 +211,12 @@ gamePlay_2=new component(1000,500,"img/game/gamePlay_2.png",0,0,"image");
 gamePlay_3=new component(1000,500,"img/game/gamePlay_3.png",0,0,"image");
 gamePlay_over=new component(1000,500,"img/game/gameOver.png",0,0,"image");
 
+//menu
 gameStateManager[0][0]=gameState_menu[0];
+gameStateManager[0][1]=gameState_menu[1];
+gameStateManager[0][2]=gameState_menu[2];
+////
+
 gameStateManager.push(gameReadme);
 gameStateManager.push(gamePlay_1);
 gameStateManager.push(gamePlay_2);
@@ -252,18 +258,31 @@ function keyUpHandler(e) {
 }
 function mouseMoveHandler(event) {//不用實作，只要按鍵按下，就會自動執行
    msg = "Mouse position: " + (event.clientX) + "," + (event.clientY) + ";canvas position:" + (event.clientX-canvas.offsetLeft) +","+(event.clientY-canvas.offsetTop)+";heart"+character_heart+";"+score;
+
+   if(event.clientX>(canvas.offsetLeft+349) && event.clientX<(canvas.offsetLeft+349+133) &&     //new start button
+      event.clientY>(canvas.offsetTop+242) &&  event.clientY<(canvas.offsetTop+242+75)){
+      gameState_menu_state=1;
+    }
+    else if(event.clientX>(canvas.offsetLeft+530) && event.clientX<(canvas.offsetLeft+530+133) &&   
+    event.clientY>(canvas.offsetTop+242) &&  event.clientY<(canvas.offsetTop+242+75)){
+      gameState_menu_state=2;
+    }
+    else{
+      gameState_menu_state=0;
+    }
+
 }
 function mouseDownHandler(event){
    msg = canvas.offsetLeft  + " " + canvas.offsetTop + " " + gameState + " " + character_heart;
 /////////the action of every listener
   //偵測按鈕的位置，該怎麼隨著gamestate改變而更動?
   if(gameState===MENU){
-    if(event.clientX>(canvas.offsetLeft+btn_1_X) && event.clientX<(canvas.offsetLeft+btn_1_X+btn_1_width) &&   
-      event.clientY>(canvas.offsetTop+btn_1_y) &&  event.clientY<(canvas.offsetTop+btn_1_y+btn_1_height)){
+    if(event.clientX>(canvas.offsetLeft+349) && event.clientX<(canvas.offsetLeft+349+133) &&     //new start button
+      event.clientY>(canvas.offsetTop+242) &&  event.clientY<(canvas.offsetTop+242+75)){
       gameState++;
     }
-    else if(event.clientX>(canvas.offsetLeft+btn_3_X) && event.clientX<(canvas.offsetLeft+btn_3_X+btn_3_width) &&   
-    event.clientY>(canvas.offsetTop+btn_3_y) &&  event.clientY<(canvas.offsetTop+btn_3_y+btn_3_height)){
+    else if(event.clientX>(canvas.offsetLeft+530) && event.clientX<(canvas.offsetLeft+530+133) &&   
+    event.clientY>(canvas.offsetTop+242) &&  event.clientY<(canvas.offsetTop+242+75)){
       gameState=GAME_1;
     }
   }
@@ -684,13 +703,7 @@ function reboot_rightanswer(){//讓角色有無敵時間
 
 function draw_MENU(){
   context.clearRect(0, 0, canvas.width, canvas.height);
-  gameStateManager[0][0].draw();
-
-
-  btn_1(btn_1_X, btn_1_y, btn_1_width, btn_1_height);//跳轉到說明的按鈕
-  btn_3(btn_3_X, btn_3_y, btn_3_width, btn_3_height);//跳轉到第一遊戲頁面的按鈕
-
-
+  gameStateManager[0][gameState_menu_state].draw();
   show(msg);
 }
 function draw_README(){
