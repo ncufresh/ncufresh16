@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use DB;
 
+use Illuminate\Support\Facades\Storage;
+
 
 use App\Buildingcategory;
 
@@ -72,7 +74,7 @@ class CampusController extends Controller
             'errors' => $validator->getMessageBag()->toArray()
             ),400);
         }else{
-            //驗證通過
+        //驗證通過
             if($request->hasFile('imgUrl')){
                            
             $img =$request->file('imgUrl');
@@ -90,7 +92,7 @@ class CampusController extends Controller
                 $building->buildingExplain = $request->buildingExplain;               
                 $building->save();
 
-                 //將圖片路徑存至圖片資料庫
+            //將圖片路徑存至圖片資料庫
                 if($request->hasFile('imgUrl')){
                 $newBuilding = DB::table('buildings')->where('buildingName', $request->buildingName)->first();
                 
@@ -114,13 +116,13 @@ class CampusController extends Controller
         $building = Building::find($bid);
         return response()->json($building);
     }
-    public function putbuilding(Request $request,$bid){
+    public function putbuilding(Request $request ,$bid){
 
         $validator = Validator::make($request->all(),array(
             'building_id' => 'required',
             'buildingName' => 'required',
             'buildingExplain' => 'required',
-            'imgUrl' => 'required|mimed: jpg,jpeg,png|max:100',
+            'imgUrl' => 'mimes: jpg,jpeg,png,pmb,gif,svg|max:100',
         ));
 
         if($validator->fails()){
@@ -128,22 +130,95 @@ class CampusController extends Controller
             'fail' => true,
             'errors' => $validator->getMessageBag()->toArray()
             ),400);
-        }
-
+        }else{
+        
+        if($request->hasFile('imgUrl')){
+                           
+            $img =$request->file('imgUrl');
+            $upload = 'upload/img';
+            $filename = uniqid().".".$request->file('imgUrl')->getClientOriginalExtension();
+            $success = $img->move($upload,$filename);//將檔案傳至指定路由 並用亂碼命名
+            
+            }
+        
         $building = Building::find($bid);
         $building->buildingName = $request->buildingName;
         $building->building_id = $request->building_id;
         $building->buildingExplain = $request->buildingExplain;
-        $building->imgUrl = $request->imgUrl;
+        //$building->imgUrl = $request->imgUrl;
         $building->save();
+        
+         //將圖片路徑存至圖片資料庫
+            if($request->hasFile('imgUrl')){
+            $newBuilding = DB::table('buildings')->where('buildingName', $request->buildingName)->first();
+
+            $buildImg = new Buildingimg;
+            $buildImg->imgUrl = $filename;
+            $buildImg->BuildingId = $newBuilding->id;
+            $buildImg->BuildingName = $request->buildingName;
+            $buildImg ->save();
+            }
+        
         return response()->json($building);
+        }
     }
     public function dropBuilding($bid){
+        
+        $imgsNeedDel = DB::table('buildingimgs')->where('BuildingId',$bid)->get();
+        
+        foreach($imgsNeedDel as $imgNeedDel){
+            $path = 'upload/img/';
+            $filename = $imgNeedDel->imgUrl;
+            unlink($path.$filename);
+        }
+        
+        
+        DB::table('buildingimgs')->where('BuildingId',$bid)->delete();
+        
+        
         $building = Building::destroy($bid);
         return response()->json($building);
     }
     public function getBuildingImg($imgid){
         $img = DB::table('buildingimgs')->where('BuildingId','=',$imgid)->get();
         return response()->json($img);
+    }
+    public function newBuildingImg(Request $request,$bid){
+        $validator = Validator::make($request->all(),array(           
+            'inputImg' => 'mimes: jpg,jpeg,png,pmb,gif,svg|max:100',
+        ));
+         if($validator->fails()){
+            return response()->json(array(
+            'fail' => true,
+            'errors' => $validator->getMessageBag()->toArray()
+            ),400);
+        }else{
+            $img =$request->file('inputImg');
+            $upload = 'upload/img';
+            $filename = uniqid().".".$request->file('inputImg')->getClientOriginalExtension();
+            $success = $img->move($upload,$filename);//將檔案傳至指定路由 並用亂碼命名
+            
+            
+           
+            $buildImg = new Buildingimg;
+            $buildImg->imgUrl = $filename;
+            $buildImg->BuildingId = $bid;
+            $buildImg ->save();
+            
+            return response()->json($buildImg);
+            
+        }
+    }
+    public function dropBuildingImg($bid){
+        $img = DB::table('buildingimgs')->where('id','=',$bid)->first();
+        $path = 'upload/img/';
+        $filename = $img->imgUrl;
+        
+        
+        
+        unlink($path.$filename);
+        
+        $imgNeedDel = Buildingimg::destroy($bid);
+        return response()->json($imgNeedDel);
     }
 }

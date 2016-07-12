@@ -24,11 +24,15 @@ Route::post('/campus/newData/Building','CampusController@createBuilding');
 //編輯建築物 查詢建築資料
 Route::get('/campus/newData/Building/{bid?}','CampusController@getBuilding');
 //編輯建築物 更新建築物資料
-Route::put('/campus/newData/Building/{bid?}','CampusController@putBuilding');
+Route::put('/campus/newData/Building/edit/{bid?}','CampusController@putBuilding');
 //刪除資料
 Route::delete('/campus/newData/Building/{bid?}', 'CampusController@dropBuilding');
 //編輯圖片 查詢圖片資料
-Route::get('/campus/newData/Building/img/{imgid?}', 'CampusComtroller@getBuildingImg');
+Route::get('/campus/newData/Building/img/{imgid?}', 'CampusController@getBuildingImg');
+//新增圖片(資料型態FromData只能用post)
+Route::post('/campus/newData/Building/newImg/{bid?}', 'CampusController@newBuildingImg');
+//刪除圖片
+Route::delete('/campus/newData/Building/delImg/{bid?}', 'CampusController@dropBuildingImg');
 //************************************************************
 
 // 系所社團
