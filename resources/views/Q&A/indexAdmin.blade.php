@@ -13,7 +13,7 @@
           <td>{{ $Q->click_count }}</td>
           <td><a href="{{action('QandAController@show',$Q->id)}}"><i class="fa fa-eye" aria-hidden="true">檢視</i></a></td>
           <td><a href="{{action('QandAController@edit',$Q->id)}}"><i class="fa fa-eye" aria-hidden="true">編輯</i></a></td>
-          <td><button type="button" class="btn col-xs-offset-3" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash fa-lg"></i> 刪除</button></td>
+          <td><button type="button" class="btn btn-fab" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash fa-lg"></i></button></td>
         </tr>
       @endforeach
       </tbody>

@@ -14,16 +14,25 @@
                 <option value="other" {{$Q->classify=='other' ? 'SELECTED' : '' }}>其他</option>
               </select>
             </div>
-            <div class="form-group">
-              <label for="content">想要問的問題</label>
-              <textarea name="content" class="form-control" rows="5">{{$Q->content}}</textarea>
+            <div class="form-group label-floating">
+              <label class="control-label" for="focusedInput1">標題</label>
+              <input class="form-control" name="topic" type="text" value="{{$Q->topic}}">
             </div>
-            <div class="form-group">
-              <label for="content">回復</label>
-              <textarea name="response" class="form-control" rows="5">{{$Q->response}}</textarea>
+
+             <div class="form-group label-floating">
+              <label class="control-label">想要問的問題</label>
+              <textarea name="content" class="form-control" rows="5">{{$Q->content}}</textarea>
+              <span class="help-block">TESTTTT</span>
+            </div>
+
+
+            <div class="form-group label-floating">
+              <label class="control-label">回復</label>
+              <textarea name="response" class="form-control" rows="5">{{$Q->content}}</textarea>
+              <span class="help-block">TESTTTT</span>
             </div>
             
-            <button type="submit" class="col-sm-4 col-md-offset-4 btn btn-info">Submit</button>
+            <button type="submit" class="col-sm-4 col-md-offset-4 btn btn-info btn-raised">Submit</button>
           </form>
     </div>
 @endsection

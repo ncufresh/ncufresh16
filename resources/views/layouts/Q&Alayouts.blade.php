@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('title','Q&A')
 
@@ -18,13 +18,13 @@
           <div class="col-xs-3" >
               <div class="btn-group-vertical col-sm-12" role="group">
                    
-                   <a href="{{action('QandAController@index','all')}}" class="btn btn-primary btn-lg">所有問題</a>
-                   <a href="{{action('QandAController@index','school')}}" class="btn btn-primary btn-lg">校園生活</a>
-                   <a href="{{action('QandAController@index','student')}}" class="btn btn-primary btn-lg">學生事務</a>
-                   <a href="{{action('QandAController@index','dormitory')}}" class="btn btn-primary btn-lg">宿舍生活</a>
-                   <a href="{{action('QandAController@index','other')}}" class="btn btn-primary btn-lg">其他</a>
-                   <button type="button" class="btn btn-default btn-lg btn-block">我的發問記錄</button>
-                   <a href="{{action('QandAController@indexAdmin')}}" class="btn btn-success btn-lg">GM</a>
+                   <a href="{{action('QandAController@index','all')}}" class="btn btn-primary btn-raised btn-lg">所有問題</a>
+                   <a href="{{action('QandAController@index','school')}}" class="btn btn-primary btn-raised btn-lg">校園生活</a>
+                   <a href="{{action('QandAController@index','student')}}" class="btn btn-primary btn-raised btn-lg">學生事務</a>
+                   <a href="{{action('QandAController@index','dormitory')}}" class="btn btn-primary btn-raised btn-lg">宿舍生活</a>
+                   <a href="{{action('QandAController@index','other')}}" class="btn btn-primary btn-raised btn-lg">其他</a>
+                   <button type="button" class="btn btn-default btn-lg btn-raised btn-block">我的發問記錄</button>
+                   <a href="{{action('QandAController@indexAdmin')}}" class="btn btn-success btn-raised btn-lg">GM</a>
               </div>
           </div>
 

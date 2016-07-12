@@ -1,6 +1,14 @@
 @extends('layouts.Q&Alayouts')
 @section('title','提出疑問')
+@section('js')
+@if (Auth::guest())
 
+  <script type="text/javascript">alert("請先登入喔");window.location.replace("/Q&A/all");</script>      
+  @else
+@endif
+
+
+@endsection
 @section('Q&Acontent')
     <div class="col-sm-7">
        <form action="{{action('QandAController@store')}}" method="post">
@@ -14,12 +22,19 @@
                 <option value="other">其他</option>
               </select>
             </div>
-            <div class="form-group">
-              <label for="content">想要問的問題</label>
-              <textarea name="content" class="form-control" rows="5" id="comment"></textarea>
+            
+            <div class="form-group label-floating">
+              <label class="control-label" for="focusedInput1">標題</label>
+              <input class="form-control" name="topic" type="text">
+            </div>
+
+             <div class="form-group label-floating">
+              <label class="control-label">詳細描述</label>
+              <textarea name="content" class="form-control" rows="5"></textarea>
+              <span class="help-block">TESTTTT</span>
             </div>
             
-            <button type="submit" class="col-sm-4 col-md-offset-4 btn btn-info">Submit</button>
+            <button type="submit" class="col-sm-4 col-md-offset-4 btn btn-info raised">Submit</button>
           </form>
     </div>
 @endsection

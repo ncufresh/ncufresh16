@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\QandA;
+use Auth;
 
 class QandAController extends Controller
 {
@@ -61,6 +62,9 @@ class QandAController extends Controller
     public function store(Request $request)
     {
     	$Q = new QandA;
+
+        $Q->asked_id = Auth::user()->id;
+        $Q->topic = $request->topic;
 	    $Q->content = $request->content;
 	    $Q->classify = $request->classify;
 	    $Q->save();
