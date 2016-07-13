@@ -79,7 +79,7 @@ Route::get('/smallgame_get/{id}','GameController@get_question');
 Route::post('/smallgame_post',function(Request $request){
 	$encrypter = app('Illuminate\Encryption\Encrypter');
 	$encrypted_token = $encrypter->encrypt(csrf_token());
-	
+
     $scores = Record_score::create([
     	'name'=>$request->name,
     	'score'=>$request->score
@@ -116,4 +116,11 @@ Route::resource('/personal', 'PersonalController');
 //************************************************************
 Route::get('/videos','videocontroller@index');
 //Route::get('/video/')
+//************************************************************
+
+// 中大生活
+//************************************************************
+Route::get('/life','LifeController@getTitle');
+
+
 //************************************************************
