@@ -38,6 +38,7 @@
             <!-- 右邊的 Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ url('/campus') }}">校園導覽</a></li>
+                <li><a href="{{ url('/life') }}">中大生活</a></li>
                 <li><a href="{{ url('/groups') }}">系所社團</a></li>
                 <li><a href="{{ url('/smallgame') }}">小遊戲</a></li>
                  <li><a href="{{ url('/Q&A/all') }}">新生Q&A</a></li>

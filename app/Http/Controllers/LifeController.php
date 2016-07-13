@@ -11,10 +11,13 @@ use App\Life;
 
 class LifeController extends Controller
 {
-	public function food(){
-	    $titles = Life::where('topic','食')->get();
-	   	return view('lives.overview', ['titles' => $titles]);
+	public function getTitle(){
+	    $food = Life::where('topic','食')->get();
+	    $housing = Life::where('topic','住')->get();
+	   	return view('lives.overview', ['food' => $food, 'housing' => $housing]);
 	}
 
+	
 
+	//Food, Clothing, Housing, Transportation, Education, Entertainment
 }

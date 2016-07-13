@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', '公告')
+@section('title', '中大生活')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('include/pickdate/themes/classic.css') }}" media="screen" title="no title" charset="utf-8">
