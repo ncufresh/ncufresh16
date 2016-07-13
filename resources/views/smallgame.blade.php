@@ -122,6 +122,7 @@ character_images.push(character_image);
 
 character=new player_animation(c_width,c_height,character_images,c_x,c_y,"image");
 
+var dontDraw=false;//受傷時要讓該變數在true and false 中跳動
 //角色end
 
 var rightPressed=false;
@@ -129,9 +130,9 @@ var leftPressed=false;
 
 var falling=false;
 var jumping=false;
-var fallSpeed=0.5;
-var maxFallSpeed = 15;
-var jumpStart=-25;
+var fallSpeed=0.7;
+var maxFallSpeed = 25;
+var jumpStart=-28;
 
 var background=new component(1000,500,"img/game/BG_sky.jpg",0,0,"image");
 
@@ -141,12 +142,16 @@ var Q_frame=new component(690,176,"img/game/Q.png",150,20,"image");//問題的�
 var brickXs = [];//the bricks' X 
 var brickX_height=60;
 var brickX_width=100;
-for (var i = 0; i < 11; i++) {
-    brickXs.push(i*brickX_width);
+for (var i = 0; i < 12; i++) {
+    brickXs.push(i*brickX_width-100);
 }
 var bricks=[];
 for(var i=0;i<brickXs.length;i++){
     bricks.push(new component(brickX_width,brickX_height,"img/game/floor.png",brickXs[i],500-brickX_height,"image"));
+}
+var background_bricks=[];//背景磚塊
+for(var i=0;i<brickXs.length;i++){
+    background_bricks.push(new component(brickX_width,brickX_height,"img/game/floor.png",brickXs[i],500-brickX_height,"image"));
 }
 
 var wormXs=[];//the worms' X
@@ -159,7 +164,11 @@ for(var i=0 ; i<5 ; i++){
 for(var i=0 ; i<5 ; i++){
   worms.push(new component(worms_width,worms_height,"img/game/worm.png",wormXs[i],500-20-worms_height,"image"));//20為地板高度，可視情況調整
 }
+
+
 var runSpeed=4;//跑速
+var runSpeedUp=false;//是否開始加速(gameState===4才開始加速)
+
 
 var heart_width=20;
 var heart_height=20;
@@ -172,12 +181,15 @@ for(var i=0;i<character_heart;i++){
   heart.push(new component(heart_width,heart_height,"img/game/heart.png",heartX[i],0,"image"));
 }
 
-var hurt_deviation=40;//讓角色比較不容易受傷，讓傷害偵測變窄
+var hurt_deviation=50;//讓角色比較不容易受傷，讓傷害偵測變窄
 var hurt_deviation_height;//讓角色比較不容易受傷，讓傷害偵測變矮
 
 
 var score=0;//分數，以企畫的角度，等於秒數
 var score_bool=false;
+
+
+
 ////////遊戲主體的變數 END
 
 
@@ -501,9 +513,23 @@ function player_animation(width, height,images, x, y, type) {//主角constructor
         }
 }
 function character_state_control(){
-  character_state++;
-  if(character_state>=character_images.length){
-    character_state=0;
+  if(gameState===GAME_4){
+    character_state++;
+    if(character_state>=character_images.length){
+      character_state=0;
+    }
+  }
+
+  if(character_heart_bool){
+    if(dontDraw===false){
+      dontDraw=true;
+    }
+    else if(dontDraw===true){
+      dontDraw=false;
+    }
+  }
+  else if(!character_heart_bool){
+    dontDraw=false;
   }
 
 }
@@ -536,12 +562,16 @@ function draw_score_onTheCanvas(){//in the state game_4
 }
 function draw_theBricks_onTheCanvas(){//in the state game_4
   for(var i=0;i<brickXs.length;i++){
+      background_bricks[i].draw();
+  }
+  for(var i=0;i<brickXs.length;i++){
       bricks[i].draw();
       bricks[i].x-=runSpeed;//磚塊移動的速度
       if(bricks[i].x<=-100){
           bricks[i].x=1000;
       }
-    }
+  }
+
 }
 function draw_theWorms_onTheCanvas(){//in the state game_4
   for(var i=0;i<wormXs.length;i++){
@@ -563,7 +593,13 @@ function draw_theCharacter_onTheCanvas(){//in the state game_4
     character.move();
     character.movement();
     character.newPos();
-    character.draw();
+    
+
+    if(!dontDraw){
+      character.draw();
+    }
+    
+
     character.getHurt();//傷害偵測要在蟲蟲的位置更新後再開始
 }
 function draw_question_onTheCanvas(){//in the state game_4
@@ -653,6 +689,8 @@ function draw_GAME_3(){
 
 function draw_GAME_4(){
     context.clearRect(0, 0, canvas.width, canvas.height);//清空版面
+
+    runSpeedUp=true;
 
     //draw back ground
     draw_background_onTheCanvas();
@@ -753,6 +791,7 @@ function draw(){
     //game play!!
     draw_GAME_4();
 
+
   }
   else if(gameState===GAMEOVER){
     drawGameOver();
@@ -760,7 +799,22 @@ function draw(){
   ////////////////////////gameState manager////////////////////////
   requestAnimationFrame(draw);
 }
+
+//背景執行
+function addRunSpeed(){
+  if(gameState===GAME_4){
+    runSpeed+=0.5;
+    fallSpeed+=0.2;
+    jumpStart-=2.5;
+  }
+}
+
+
+//背景執行
 setInterval(character_state_control,50);//動畫楨數控制
+setInterval(addRunSpeed,10000);//每過五秒跑速加快
+//fallSpeed
+//maxFallSpeed
 draw();
 /*//
   進度
