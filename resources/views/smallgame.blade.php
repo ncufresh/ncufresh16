@@ -76,7 +76,7 @@ var btn_3_height=50;
 ////////遊戲主體的變數
 
 var character;
-var character_heart=10;//生命值
+var character_heart=3;//生命值
 var character_heart_bool=false;
 var c_x=24;
 var c_y=350;
@@ -122,6 +122,7 @@ character_images.push(character_image);
 
 character=new player_animation(c_width,c_height,character_images,c_x,c_y,"image");
 
+var dontDraw=false;//受傷時要讓該變數在true and false 中跳動
 //角色end
 
 var rightPressed=false;
@@ -502,9 +503,9 @@ function player_animation(width, height,images, x, y, type) {//主角constructor
                     && character_heart_bool===false /*讓角色有無敵時間*/
                 ){
                     if(character_heart>0){
-                      //delete heart[character_heart-1];
+                      delete heart[character_heart-1];
                     }
-                    //character_heart--;
+                    character_heart--;
                     character_heart_bool=true;
                     reboot_heart_bool();//讓角色有無敵時間
                 }
@@ -518,6 +519,19 @@ function character_state_control(){
       character_state=0;
     }
   }
+
+  if(character_heart_bool){
+    if(dontDraw===false){
+      dontDraw=true;
+    }
+    else if(dontDraw===true){
+      dontDraw=false;
+    }
+  }
+  else if(!character_heart_bool){
+    dontDraw=false;
+  }
+
 }
 function reboot_heart_bool(){//讓角色有無敵時間
   var t=setTimeout("character_heart_bool=false",1000);
@@ -579,7 +593,13 @@ function draw_theCharacter_onTheCanvas(){//in the state game_4
     character.move();
     character.movement();
     character.newPos();
-    character.draw();
+    
+
+    if(!dontDraw){
+      character.draw();
+    }
+    
+
     character.getHurt();//傷害偵測要在蟲蟲的位置更新後再開始
 }
 function draw_question_onTheCanvas(){//in the state game_4
@@ -625,9 +645,9 @@ function choose(){
   {
     if(character_heart_bool===false){
       if(character_heart>0){
-        //delete heart[character_heart-1];
+        delete heart[character_heart-1];
       }
-      //character_heart--;
+      character_heart--;
       character_heart_bool=true;
       reboot_heart_bool();
     }
@@ -780,6 +800,7 @@ function draw(){
   requestAnimationFrame(draw);
 }
 
+//背景執行
 function addRunSpeed(){
   if(gameState===GAME_4){
     runSpeed+=0.5;
@@ -788,6 +809,8 @@ function addRunSpeed(){
   }
 }
 
+
+//背景執行
 setInterval(character_state_control,50);//動畫楨數控制
 setInterval(addRunSpeed,10000);//每過五秒跑速加快
 
