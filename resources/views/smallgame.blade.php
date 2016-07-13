@@ -813,7 +813,6 @@ function addRunSpeed(){
 //背景執行
 setInterval(character_state_control,50);//動畫楨數控制
 setInterval(addRunSpeed,10000);//每過五秒跑速加快
-
 //fallSpeed
 //maxFallSpeed
 draw();
