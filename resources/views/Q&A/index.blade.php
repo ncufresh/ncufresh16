@@ -13,7 +13,7 @@
               <td>{{ $i+1 }}</td>
               <td>{{ $Top5[$i]->classify }}</td>
               <td><?php echo substr($Top5[$i]->created_at,5,5) ?></td>
-              <td>{{ $Top5[$i]->content }}</td>
+              <td>{{ $Top5[$i]->topic }}</td>
               <td>{{ $Top5[$i]->click_count }}</td>
               <td></td>
             </tr>
@@ -29,10 +29,10 @@
           <thead><tr><th>分類</th><th>日期</th><th>標題</th><th>點閱率</th></tr></thead>
           <tbody>
           @foreach ($QandAs as $Q)
-            <tr class="" onclick="document.location = '{{action('QandAController@show',$Q->id)}}' ;">
+            <tr onclick="document.location = '{{action('QandAController@show',$Q->id)}}' ;">
               <td>{{ $Q->classify }}</td>
               <td><?php echo substr($Q->created_at,5,5) ?></td>
-              <td>{{ $Q->content }}</td>
+              <td>{{ $Q->topic }}</td>
               <td>{{ $Q->click_count }}</td>
               <td></td>
             </tr>

@@ -1,5 +1,5 @@
 @extends('layouts.Q&Alayouts')
-@section('title','管理Q&A|Q&A')
+@section('title','發問紀錄|Q&A')
 @section('js')
 @if (Auth::guest())
 
@@ -13,13 +13,19 @@
       <thead><tr><th>分類</th><th>日期</th><th>標題</th><th>點閱率</th></tr></thead>
       <tbody>
       @foreach ($QandAs as $Q)
-        <tr>
+        <tr onclick="document.location = '{{action('QandAController@show',$Q->id)}}' ;" >
           <td>{{ $Q->classify }}</td>
           <td><?php echo substr($Q->created_at,5,5) ?></td>
-          <td>{{ $Q->topic }}</td>
+          <td>{{ $Q->content }}</td>
           <td>{{ $Q->click_count }}</td>
-          <td><a href="{{action('QandAController@show',$Q->id)}}"><i class="fa fa-eye" aria-hidden="true">檢視</i></a></td>
-          <td><a href="{{action('QandAController@edit',$Q->id)}}"><i class="fa fa-eye" aria-hidden="true">編輯</i></a></td>
+          <td>
+            @if(empty($Q->response))
+              尚未回覆
+            @else
+              已回復
+            @endif
+          </td>
+          
           <td><button type="button" class="btn btn-fab" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash fa-lg"></i></button></td>
         </tr>
       @endforeach

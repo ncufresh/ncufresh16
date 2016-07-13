@@ -49,6 +49,15 @@ class QandAController extends Controller
         $QandAs = QandA::orderBy('created_at', 'desc')->paginate(10);
         return view('Q&A.indexAdmin', compact('QandAs'));
     }
+     /*
+        顯示內容  個人發問紀錄
+    */
+    public function indexPersonal()
+    {   
+        
+        $QandAs = QandA::where('asked_id' , Auth::user()->id )->orderBy('created_at', 'desc')->paginate(10);
+        return view('Q&A.indexPersonal', compact('QandAs'));
+    }
     /*
         跳轉到新增問題的頁面  
     */
@@ -75,6 +84,8 @@ class QandAController extends Controller
     */
     public function update(Request $request,QandA $Q)
     {
+        if(!empty($request->topic))
+            $Q->topic = $request->topic;
         if(!empty($request->content))
             $Q->content = $request->content;
         if(!empty($request->classify))

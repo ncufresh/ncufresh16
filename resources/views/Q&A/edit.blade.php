@@ -1,5 +1,5 @@
 @extends('layouts.Q&Alayouts')
-@section('title','提出疑問')
+@section('title','編輯疑問|Q&A')
 
 @section('Q&Acontent')
     <div class="col-sm-7">
@@ -28,7 +28,7 @@
 
             <div class="form-group label-floating">
               <label class="control-label">回復</label>
-              <textarea name="response" class="form-control" rows="5">{{$Q->content}}</textarea>
+              <textarea name="response" class="form-control" rows="5">{{$Q->response}}</textarea>
               <span class="help-block">TESTTTT</span>
             </div>
             

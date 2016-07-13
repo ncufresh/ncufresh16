@@ -1,5 +1,5 @@
 @extends('layouts.Q&Alayouts')
-@section('title','提出疑問')
+@section('title','提出疑問|Q&A')
 @section('js')
 @if (Auth::guest())
 

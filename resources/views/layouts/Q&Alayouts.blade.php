@@ -23,7 +23,7 @@
                    <a href="{{action('QandAController@index','student')}}" class="btn btn-primary btn-raised btn-lg">學生事務</a>
                    <a href="{{action('QandAController@index','dormitory')}}" class="btn btn-primary btn-raised btn-lg">宿舍生活</a>
                    <a href="{{action('QandAController@index','other')}}" class="btn btn-primary btn-raised btn-lg">其他</a>
-                   <button type="button" class="btn btn-default btn-lg btn-raised btn-block">我的發問記錄</button>
+                   <a href="{{action('QandAController@indexPersonal')}}" class="btn btn-primary btn-raised btn-lg">我的發問記錄</a>
                    <a href="{{action('QandAController@indexAdmin')}}" class="btn btn-success btn-raised btn-lg">GM</a>
               </div>
           </div>
