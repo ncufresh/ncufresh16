@@ -16,6 +16,7 @@
 @section('js')
 <script src="{{ asset('include/pickdate/picker.js') }}" charset="utf-8"></script>
 <script src="{{ asset('include/pickdate/picker.date.js') }}" charset="utf-8"></script>
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript">
 $(document).ready(function(){
     // 初始化選日期工具
@@ -27,6 +28,10 @@ $(document).ready(function(){
         min: new Date(2016,7,8),
         max: new Date(2017,8,8)
     });
+
+    // 初始化ckeditor
+    CKEDITOR.replace( 'content' );
+
     // 點日期工具input會focus
     $('.datepicker').click(function(){
         $(this).focus();
@@ -116,7 +121,7 @@ $(document).ready(function(){
                                 <h4 class="modal-title">發佈日期: {{ $ann->post_at }}</h4>
                             </div>
                             <div class="modal-body">
-                                <p>內文: <br><br>{{ $ann->content }}</p>
+                                {!! $ann->content !!}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">
