@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "caffeinated/shinobi": "^2.4",
         "smarch/watchtower": "v1.1.5.3",
-        "laravelcollective/html": "5.2.*"
+        "laravelcollective/html": "5.2.*",
+        "unisharp/laravel-ckeditor": "^4.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

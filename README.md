@@ -13,7 +13,6 @@
 [Bootstrap英文](http://getbootstrap.com)  
 [Bootstrap中文(3.3.1)](https://kkbruce.tw/bs3/)  
 [Bootstrap:w3schools](http://www.w3schools.com/bootstrap/default.asp)  
-[Font Awesome](http://fontawesome.io)
 
 [Button製作大師(with bootstrap)](http://www.plugolabs.com/twitter-bootstrap-button-generator-3/)  
 [Button製作大師(with font-awesome)](http://www.plugolabs.com/twitter-bootstrap-button-generator-with-awesome-font/)  
@@ -22,16 +21,23 @@
 [Bootstrap Material詳細文件](http://rosskevin.github.io/bootstrap-material-design/components/buttons/)  
 [Bootstrap Material範例集](http://fezvrasta.github.io/bootstrap-material-design/)  
 
-## 使用套件
+[jQuery:w3schools](http://www.w3schools.com/jquery/)  
+
+## 使用套件&版本
 
 PHP:  
+[laravel/framework(v5.2.39)](https://laravel.com/docs/5.2)  
 [caffeinated/shinobi(v2.4.1)](https://github.com/caffeinated/shinobi/wiki)  
 [laravelcollective/html(v5.2.4)](https://laravelcollective.com/docs/5.2/html)  
 [smarch/watchtower(v1.1.5.3)](https://github.com/SmarchSoftware/watchtower)  
+[unisharp/laravel-ckeditor(v4.5.7)](https://github.com/UniSharp/laravel-ckeditor)  
 
 其他:  
+[Bootstrap-3.3.6](http://getbootstrap.com)  
+[bootstrap-material-design-0.5.10](https://github.com/FezVrasta/bootstrap-material-design)  
+[Font Awesome-4.6.3](http://fontawesome.io)  
+[jQuery-1.12.4](http://api.jquery.com)  
 [pickadate.js-3.5.6](http://amsul.ca/pickadate.js/date/)  
-[bootstrap-material-design-0.5.10](https://github.com/FezVrasta/bootstrap-material-design)
 
 
 ## 部署
@@ -41,18 +47,34 @@ PHP:
 `composer install`  
 `cp .env.example .env`  
 `php artisan key:generate`  
-再更改 .env  
+再更改 .env , 建資料庫  
 `php artisan migrate`    
 `php artisan db:seed`  
 `php artisan serve`
 
 
-## 版本
+## 權限懶人包
 
-laravel/framework:`5.2.39`  
-Bootstrap:`3.3.6`  
-Font Awesome:`4.6.3`  
-jQuery:`1.12.4`  
+目前的測試帳號
+email: q  
+password: q  
+
+在blade模板你可以:  
+```
+@can('management')
+    有權限修改的code
+@else
+    一般人看到的code
+@endcan
+```
+
+在routes你可以:  
+```
+Route::group( ['middleware' => 'admin'], function () {
+    Route::get('/test', function () { return '嗨!我是管理員'; });
+});
+```
+
 
 ## 程式碼準則
 HTML:  
