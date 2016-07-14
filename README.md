@@ -31,6 +31,8 @@ PHP:
 [laravelcollective/html(v5.2.4)](https://laravelcollective.com/docs/5.2/html)  
 [smarch/watchtower(v1.1.5.3)](https://github.com/SmarchSoftware/watchtower)  
 [unisharp/laravel-ckeditor(v4.5.7)](https://github.com/UniSharp/laravel-ckeditor)  
+[intervention/image(v2.3.7)](https://github.com/Intervention/image)  
+[unisharp/laravel-filemanager(v1.5.2)](https://github.com/UniSharp/laravel-filemanager)
 
 其他:  
 [Bootstrap-3.3.6](http://getbootstrap.com)  
