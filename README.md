@@ -21,6 +21,11 @@
 [Bootstrap Material詳細文件](http://rosskevin.github.io/bootstrap-material-design/components/buttons/)  
 [Bootstrap Material範例集](http://fezvrasta.github.io/bootstrap-material-design/)  
 
+可用小圖案:  
+[Google Material Icon(只能原生不能改)](https://design.google.com/icons/)  
+[Font Awesome](http://fontawesome.io/icons/)  
+[Bootstrap](http://getbootstrap.com/components/#glyphicons)
+
 [jQuery:w3schools](http://www.w3schools.com/jquery/)  
 
 ## 使用套件&版本
@@ -58,7 +63,7 @@ PHP:
 ## 權限懶人包
 
 目前的測試帳號
-email: q  
+email: q@q  
 password: q  
 
 在blade模板你可以:  
@@ -78,6 +83,20 @@ Route::group( ['middleware' => 'admin'], function () {
 ```
 
 
+## 編輯器及上傳檔案懶人包
+
+```
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript">
+CKEDITOR.replace( '你的textarea的id或name', {
+    filebrowserImageBrowseUrl: '{{ url('/laravel-filemanager?type=Images') }}',
+    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+    filebrowserBrowseUrl: '{{ url('/laravel-filemanager?type=Files') }}',
+    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+});
+</script>
+```
+
 ## 程式碼準則
 HTML:  
 屬性永遠使用雙引號，永遠別用單引號。  
@@ -87,7 +106,7 @@ HTML:
 - data-*
 - src, for, type, href
 - title, alt
-- aria-*, role
+- aria-其他, role
 - Class 是為了重用的元素而生，應該排第一位。ID 具體得多，應盡量少用（可用場景像是頁內書籤），所以排第二位。  
 
 PHP:  
@@ -96,3 +115,13 @@ Modal字首大寫、單數
 資料表字首小寫、複數  
 Controller字首大寫  
 View的檔案名稱及資料夾名稱應全小寫  
+
+## 正式上線
+`composer dump-autoload`  
+`composer install --no-dev`  
+`php artisan env`
+```
+APP_ENV=production
+APP_DEBUG=false
+```
+把`vendor/unisharp/laravel-filemanager/src/controllers/UploadController.php`第111行註解  

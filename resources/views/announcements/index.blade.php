@@ -31,10 +31,10 @@ $(document).ready(function(){
 
     // 初始化ckeditor
     CKEDITOR.replace( 'content', {
-      filebrowserImageBrowseUrl: '{{ url('/laravel-filemanager?type=Images') }}',
-      filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
-      filebrowserBrowseUrl: '{{ url('/laravel-filemanager?type=Files') }}',
-      filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+        filebrowserImageBrowseUrl: '{{ url('/laravel-filemanager?type=Images') }}',
+        filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+        filebrowserBrowseUrl: '{{ url('/laravel-filemanager?type=Files') }}',
+        filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
     });
 
     // 點日期工具input會focus
