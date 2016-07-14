@@ -21,7 +21,8 @@ $(document).ready(function(){
     // 初始化選日期工具
     $('.datepicker').pickadate({
         selectMonths: true,
-        format: 'yyyy-mm-dd'
+        format: 'yyyy / mm / dd',
+        formatSubmit: 'yyyy-mm-dd'
     });
     // 點日期工具input會focus
     $('.datepicker').click(function(){
@@ -97,7 +98,7 @@ $(document).ready(function(){
                             一般公告
                         @endif
                     </td>
-                    <td>{{ $ann->post_at }}</td>
+                    <td><?php $d=strtotime($ann->post_at) ?>{{date("Y / m / d", $d) }}</td>
                     <td>{{ $ann->title }}</td>
                 </tr>
 
@@ -108,8 +109,8 @@ $(document).ready(function(){
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">發佈日期: {{ $ann->post_at }}</h4>
                                 <h2 class="modal-title">標題: {{ $ann->title }}</h2>
+                                <h4 class="modal-title">發佈日期: {{ $ann->post_at }}</h4>
                             </div>
                             <div class="modal-body">
                                 <p>內文: <br><br>{{ $ann->content }}</p>
