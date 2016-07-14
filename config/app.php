@@ -160,6 +160,7 @@ return [
         Caffeinated\Shinobi\ShinobiServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class, // For Watchtower Forms to function
         Smarch\Watchtower\WatchtowerServiceProvider::class, // For Watchtower
+        Unisharp\Ckeditor\ServiceProvider::class,
 
     ],
 
