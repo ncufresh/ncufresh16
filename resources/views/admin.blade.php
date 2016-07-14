@@ -51,9 +51,9 @@
                 </h3>
             </div>
             <div class="panel-body">
-                記得按照分類上傳<br>
-                檔名盡量用英文, 所有非英文的檔名都會被替換成底線<br>
-                格式僅限 : pdf, txt, doc, docx
+                檔名盡量用英文, 不要有任何空白<br>
+                格式僅限 : <b>pdf, txt, doc, docx, xls, xlsx, ppt, pptx</b><br>
+                大小上限最高2MB, 如需要更多請聯絡管理員
             </div>
         </div>
         <div class="panel panel-success">
@@ -65,9 +65,9 @@
                 </h3>
             </div>
             <div class="panel-body">
-                記得按照分類上傳<br>
-                檔名盡量用英文, 所有非英文的檔名都會被替換成底線<br>
-                格式僅限 : jpeg, pjpeg, png, gif
+                檔名盡量用英文, 不要有任何空白<br>
+                格式僅限 : <b>jpeg, pjpeg, png, gif</b><br>
+                大小上限最高2MB, 如需要更多請聯絡管理員
             </div>
         </div>
     </div>
