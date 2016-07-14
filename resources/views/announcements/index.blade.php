@@ -21,8 +21,11 @@ $(document).ready(function(){
     // 初始化選日期工具
     $('.datepicker').pickadate({
         selectMonths: true,
-        format: 'yyyy / mm / dd',
-        formatSubmit: 'yyyy-mm-dd'
+        format: 'yyyy / mm / dd (dddd)',
+        formatSubmit: 'yyyy-mm-dd',
+        hiddenName: true,
+        min: new Date(2016,7,8),
+        max: new Date(2017,8,8)
     });
     // 點日期工具input會focus
     $('.datepicker').click(function(){
