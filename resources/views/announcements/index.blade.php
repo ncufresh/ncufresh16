@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', '中大生活')
+@section('title', '公告')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('include/pickdate/themes/classic.css') }}" media="screen" title="no title" charset="utf-8">
@@ -16,13 +16,22 @@
 @section('js')
 <script src="{{ asset('include/pickdate/picker.js') }}" charset="utf-8"></script>
 <script src="{{ asset('include/pickdate/picker.date.js') }}" charset="utf-8"></script>
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript">
 $(document).ready(function(){
     // 初始化選日期工具
     $('.datepicker').pickadate({
         selectMonths: true,
-        format: 'yyyy-mm-dd'
+        format: 'yyyy / mm / dd (dddd)',
+        formatSubmit: 'yyyy-mm-dd',
+        hiddenName: true,
+        min: new Date(2016,7,8),
+        max: new Date(2017,8,8)
     });
+
+    // 初始化ckeditor
+    CKEDITOR.replace( 'content' );
+
     // 點日期工具input會focus
     $('.datepicker').click(function(){
         $(this).focus();
@@ -97,7 +106,7 @@ $(document).ready(function(){
                             一般公告
                         @endif
                     </td>
-                    <td>{{ $ann->post_at }}</td>
+                    <td><?php $d=strtotime($ann->post_at) ?>{{date("Y / m / d", $d) }}</td>
                     <td>{{ $ann->title }}</td>
                 </tr>
 
@@ -108,11 +117,11 @@ $(document).ready(function(){
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">發佈日期: {{ $ann->post_at }}</h4>
                                 <h2 class="modal-title">標題: {{ $ann->title }}</h2>
+                                <h4 class="modal-title">發佈日期: {{ $ann->post_at }}</h4>
                             </div>
                             <div class="modal-body">
-                                <p>內文: <br><br>{{ $ann->content }}</p>
+                                {!! $ann->content !!}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">

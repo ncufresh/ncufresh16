@@ -30,6 +30,7 @@ PHP:
 [caffeinated/shinobi(v2.4.1)](https://github.com/caffeinated/shinobi/wiki)  
 [laravelcollective/html(v5.2.4)](https://laravelcollective.com/docs/5.2/html)  
 [smarch/watchtower(v1.1.5.3)](https://github.com/SmarchSoftware/watchtower)  
+[unisharp/laravel-ckeditor(v4.5.7)](https://github.com/UniSharp/laravel-ckeditor)  
 
 其他:  
 [Bootstrap-3.3.6](http://getbootstrap.com)  
