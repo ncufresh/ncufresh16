@@ -24,7 +24,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="http://lovenery.me/old/">去年的</a></li>
                         <li><a href="http://ncufresh.ncu.edu.tw/summer/">今年的</a></li>
-                        <li><a href="{{ route('watchtower.index') }}">權限後台</a></li>
+                        <li><a href="{{ url('/admin') }}">後台管理</a></li>
                         <li><a href="{{ url('/ann') }}">公告</a></li>
                     </ul>
                 </li>

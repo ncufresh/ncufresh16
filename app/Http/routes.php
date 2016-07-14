@@ -11,10 +11,16 @@ use Illuminate\Routing\Controller;
 // 註冊,登入頁
 Route::auth();
 
-// 旭
-//************************************************************
 // 首頁
+//************************************************************
 Route::get('/', 'HomeController@index');
+Route::get('/admin', function(){
+    return view('admin');
+});
+//************************************************************
+
+// 公告
+//************************************************************
 Route::get('/ann', 'AnnouncementController@index');
 Route::post('/ann', 'AnnouncementController@store');
 Route::get('/ann/{ann}', 'AnnouncementController@show');

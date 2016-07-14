@@ -14,7 +14,7 @@
     <div class="row fill">
       <div class="panel panel-primary fill">
         <div class="panel-heading">
-          <h3 class="panel-title">{{ Lang::get('laravel-filemanager::lfm.title-panel') }}</h3>
+          <h3 class="panel-title">{{ Lang::get('laravel-filemanager::lfm.title-panel') }} &nbsp;<a href="{{ url('/admin') }}">點我回後台管理</a></h3>
         </div>
         <div class="panel-body fill">
           <div class="row fill">
