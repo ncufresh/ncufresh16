@@ -208,9 +208,9 @@ return [
     |
     */
     'pagination' => [
-        'users'         => '15',
+        'users'         => '25',
         'roles'         => '15',
-        'permissions'   => '15',
+        'permissions'   => '25',
     ],
 
 

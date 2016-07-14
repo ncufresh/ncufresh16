@@ -15,30 +15,30 @@ class WatchtowerTableSeeder extends Seeder
         // roles
         $roles = [
             [
-                'name'          => 'Administrators',
-                'slug'          => 'admin',
-                'description'   => 'Have all access to all areas',
+                'name'          => 'Godness',
+                'slug'          => 'god',
+                'description'   => '最高管理員',
                 'special'       => 'all-access',
             ],
 
             [
-                'name'          => 'Moderators',
-                'slug'          => 'moderator',
-                'description'   => 'Some admin area access',
+                'name'          => 'Administrators',
+                'slug'          => 'admin',
+                'description'   => '一般管理員',
                 'special'       => null,
             ],
 
             [
                 'name'          => 'General Users',
                 'slug'          => 'user',
-                'description'   => 'No admin access',
+                'description'   => '一般使用者',
                 'special'       => null,
             ],
 
             [
                 'name'          => 'Banned',
                 'slug'          => 'banned',
-                'description'   => 'Have no access to any areas',
+                'description'   => '被Ban的使用者',
                 'special'       => 'no-access',
             ]
         ];
@@ -52,7 +52,7 @@ class WatchtowerTableSeeder extends Seeder
             DB::table('users')
                 ->insert( [
                     'name' => 'admin',
-                    'email' => 'q@q.q',
+                    'email' => 'q',
                     'password' => bcrypt('q')
                 ]
             );
@@ -63,6 +63,14 @@ class WatchtowerTableSeeder extends Seeder
 
          // permissions
         $permissions = [
+            // 我用的權限
+            [
+                'name'          => '一般管理員權限唷',
+                'slug'          => 'management',
+                'description'   => '管理網站的內容, 新增修改刪除公告之類的'
+            ],
+            //
+
             [
                 'name'          => 'Show Watchtower Dashboard',
                 'slug'          => 'show.watchtower.index',

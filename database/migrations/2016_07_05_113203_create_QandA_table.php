@@ -15,7 +15,12 @@ class CreateQandATable extends Migration
         Schema::create('QandA', function (Blueprint $table) {
             $table->increments('id');
             $table->string('classify');
+            $table->string('topic');
             $table->string('content');
+            $table->string('response');
+            $table->integer('asked_id');
+            $table->integer('click_count');
+
             $table->timestamps();
         });
     }

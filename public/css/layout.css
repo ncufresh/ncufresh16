@@ -8,11 +8,10 @@ body > .container {
   padding: 90px 15px; /* 上,左 */
 }
 
-/* navbar是有點透明的黑色 */
+/* navbar */
 .navbar {
-    margin-bottom: 0;
-    border: 0;
-    font-size: 11px;
+    /*margin-bottom: 0;
+    border: 0;*/
     letter-spacing: 4px; /* 字的間距 */
     opacity:0.9;
 }

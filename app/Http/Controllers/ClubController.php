@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Club;
 
 
+
 class ClubController extends Controller
 {
     public function index(){
@@ -26,11 +27,27 @@ class ClubController extends Controller
 	
 	public function store(Request $request)
 	{
-    	$club = new Club;
-    	$club->clubs_kind = $request->clubs_kind;
-    	$club->clubs_intro = $request->clubs_intro;
-    	$club->save();
-    	return redirect('/groups/clubs');
+		
+    	
+    	//上傳照片
+    	$clubfile = $request->file('clubs_file');
+    	$upload = public_path().'/clubs_file/';
+    	$filename = $clubfile->getClientOriginalName();
+    	$success = $clubfile->move($upload,$filename);
+    	if($success){
+
+    		$club = new Club;
+    		$club->clubs_kind = $request->clubs_kind;
+    		$club->clubs_intro = $request->clubs_intro;
+    		$club->clubs_file = $filename;
+    		echo '<img src="clubs_file/'.$filename.'"/>';
+    		$club->save();
+    		return redirect('/groups/clubs');
+
+    	}
+
+    	
+    	
 	}
 
 	public function destroy(Request $request, Message $message)
@@ -38,10 +55,11 @@ class ClubController extends Controller
     	
 	}
 
-	public function show(Club $id)
+	public function show($id)
 	{
-	    return view('clubs.show', [
-	        'clubs' => $id
+		$clubs = Club::where('clubs_kind',$id)->get();
+		return view('clubs.show', [
+	        'clubs' => $clubs
 	    ]);
 	}
 	public function edit(Message $message)
@@ -53,6 +71,62 @@ class ClubController extends Controller
 	{
 	    
 	}
+
+	// public function upload()
+	// {
+	// 	//取得上傳檔案的資料
+	// 	$file = Input::file('clubs_file');
+	// 	//取得檔案副檔名
+ //    	$extension = $file->getClientOriginalExtension();
+ //    	//避免檔名相同，產生新檔名
+ //    	$file_name = strval(time()).str_random(5).'.'.$extension;
+
+ //    	$destination_path = public_path().'/clubs_file/';
+
+ //    	if (Input::hasFile('clubs_file')) 
+ //    	{
+ //        	$upload_success = $file->move($destination_path, $file_name);
+ //        	echo "img upload success!";
+ //    	}
+ //    	else
+ //    	{
+ //        	echo "img upload failed!";
+ //    	}
+
+    	
+	// }
+
+	// public function uploadFile()
+	// {
+	// 	return view('clubs.file');
+	// }
+
+	// public function uploadToFrom()
+	// {
+	// 	if (Request::hasFile('file')) {
+	//         //取得原來檔案名稱與副檔名
+	//         $rename = $this->file_rename(Request::file('file')->getClientOriginalName(),true);
+	//         //把檔案移動要的路徑,並且把原來名稱取回去
+	//         Request::file('file')->move(public_path('temp'), $rename);
+ //       	}else {
+ //        	return 'not file';
+ //       	}
+	// }
+
+	// public function file_rename($file_name,$get_title = false)//取出副檔名或者取出完整檔名
+ //   	{
+ //       //計算一下有幾個.
+ //       $count = substr_count($file_name, '.');
+ //       //以.來切割字串成為array
+ //       $name = explode('.', $file_name);
+ //       //判斷是否傳回檔名否則回傳副檔名
+ //       if($get_title){
+ //           return $name[0] . '.' . $name[$count];
+ //       }else{
+ //           return '.'.$name[$count];
+ //       }
+ //   	}
+	
 
 	
 }

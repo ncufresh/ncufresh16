@@ -6,7 +6,7 @@
 		<a href="{{ url('/') }}">首頁</a>><a href="{{ url('/groups') }}">系所社團</a>><a href="{{ url('/groups/clubs') }}">社團</a>
 		
 	</div>
-
+	<a href="{{ url('/groups/clubs/create') }}">新增</a>
 	
 
 	<div>
@@ -33,15 +33,7 @@
 			<span>服務性</span>
 		</a>
 	</div>
-	@foreach ($clubs as $club)
-	<div>
-		<a href="{{ url('/groups/clubs/'.$club->id) }}">
-			<div><img src="">{{$club->clubs_kind}}</div>
-		</a>
-		<div>{{$club->clubs_intro}}</div>
-	</div>
 	
-	@endforeach
 
 	
 @endsection

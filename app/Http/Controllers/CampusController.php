@@ -55,7 +55,7 @@ class CampusController extends Controller
         $building->buildingExplain = $request->buildingExplain;
         $building->imgUrl = $request->imgUrl;
         $building->save();
-        return redirect('/campus');
+        return redirect('smallgame');
 
     }
     public function createBuilding(Request $request){

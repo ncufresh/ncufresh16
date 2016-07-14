@@ -28,6 +28,6 @@ class CreateBuildingImgsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('BuindingImgs');
+        Schema::drop('BuildingImgs');
     }
 }
