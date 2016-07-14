@@ -1,11 +1,5 @@
 @extends('layouts.Q&Alayouts')
 @section('title','發問紀錄|Q&A')
-@section('js')
-@if (Auth::guest())
-
-  <script type="text/javascript">alert("請先登入喔");window.location.replace("/Q&A/all");</script>      
-  @else
-@endif
 
 @section('Q&Acontent')
 <div class="col-xs-7">
@@ -28,14 +22,6 @@
           
           <td><button type="button" class="btn btn-fab" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash fa-lg"></i></button></td>
         </tr>
-      @endforeach
-      </tbody>
-    </table>
-  {{ $QandAs->links() }}  <!--分頁用-->
-</div>
-@endsection
-
-
 
 <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -61,4 +47,12 @@
       
     </div>
   </div>
-  <!-- Modal -->
+<!-- Modal -->
+
+      @endforeach
+      </tbody>
+    </table>
+  {{ $QandAs->links() }}  <!--分頁用-->
+</div>
+@endsection
+

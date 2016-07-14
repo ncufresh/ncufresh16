@@ -38,7 +38,7 @@ class QandAController extends Controller
                 $titles = "其他";
                 break;
         }
-        $count = ($Top5->count()>=4) ? 4 :  $Top5->count() ;
+        $count = ($Top5->count()>=5) ? 5 :  $Top5->count() ;
         return view('Q&A.index', compact('QandAs','Top5','titles','count'));
     }
     /*
@@ -54,7 +54,8 @@ class QandAController extends Controller
     */
     public function indexPersonal()
     {   
-        
+        if(empty(Auth::user()))
+            echo "<script>window.alert('請先登入!');location.href='/login';</script>";
         $QandAs = QandA::where('asked_id' , Auth::user()->id )->orderBy('created_at', 'desc')->paginate(10);
         return view('Q&A.indexPersonal', compact('QandAs'));
     }
@@ -63,6 +64,8 @@ class QandAController extends Controller
     */
     public function create()
     {
+        if(empty(Auth::user()))
+            echo "<script>window.alert('請先登入!');location.href='/login';</script>";
         return view('Q&A.create');
     }
     /*
@@ -71,7 +74,6 @@ class QandAController extends Controller
     public function store(Request $request)
     {
     	$Q = new QandA;
-
         $Q->asked_id = Auth::user()->id;
         $Q->topic = $request->topic;
 	    $Q->content = $request->content;
