@@ -71,9 +71,11 @@ Route::get('/groups/departments/create', 'DepartmentController@create');
 // 小遊戲
 //************************************************************
 Route::get('smallgame','GameController@index');
+Route::get('leaderboard','GameController@leaderboard');
 Route::get('/smallgame_get/{id}','GameController@get_question');
+Route::get('/getScores','GameController@getScores');
 //Route::post('/smallgame_post','GameController@post_score');
-Route::post('/smallgame_post',function(Request $request){
+/*Route::post('/smallgame_post',function(Request $request){
 	$encrypter = app('Illuminate\Encryption\Encrypter');
 	$encrypted_token = $encrypter->encrypt(csrf_token());
 	
@@ -82,7 +84,8 @@ Route::post('/smallgame_post',function(Request $request){
     	'score'=>$request->score
     	]);
     return response()->json($scores);
-});
+});*/
+Route::post('/smallgame_post','GameController@post_score');
 
 //************************************************************
 
