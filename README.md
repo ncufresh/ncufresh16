@@ -85,6 +85,7 @@ Route::group( ['middleware' => 'admin'], function () {
 
 ## 編輯器及上傳檔案懶人包
 
+在編輯器裡面使用:  
 ```
 <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript">
@@ -96,6 +97,20 @@ CKEDITOR.replace( '你的textarea的id或name', {
 });
 </script>
 ```
+只想單純上傳檔案:  
+```
+<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
+<div class="input-group">
+  <span class="input-group-btn">
+    <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+      <i class="fa fa-picture-o"></i> Choose
+    </a>
+  </span>
+  <input id="thumbnail" class="form-control" type="text" name="filepath">
+</div>
+<img id="holder" style="margin-top:15px;max-height:100px;">
+```
+`$('#lfm').filemanager('image');` or `$('#lfm').filemanager('file');`
 
 ## 程式碼準則
 HTML:  
