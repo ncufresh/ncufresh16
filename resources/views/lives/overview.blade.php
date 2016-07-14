@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('title', '中大生活')
 
@@ -45,15 +45,22 @@ $(".btn btn-default").click(function(){
 		
 			<div class="container">
 
-
+				
        		<img onmouseover="click() " onmouseout="click()"  class="btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#food" src="{{ asset('image/food.png')  }}">
 
 			<ul class="collapse" id="food">
 				@foreach ($food as $food)
-				<li><a href="#">{{ $food->title }}</a></li>
+				<li><a href="{{action('LifeController@getContent',$food->id)}}">{{ $food->title }}</a></li>
 				@endforeach
 			</ul>
 
+			<img onmouseover="click() " onmouseout="click()"  class="btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#housing" src="{{ asset('image/housing.png')  }}">
+
+			<ul class="collapse" id="housing">
+				@foreach ($housing as $housing)
+				<li><a href="{{action('LifeController@getContent',$housing->id)}}">{{ $housing->title }}</a></li>
+				@endforeach
+			</ul>
 			
 
 
