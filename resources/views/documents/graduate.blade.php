@@ -4,14 +4,15 @@
 
 @section('css')
 <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosanstc.css">
-@stop
-
-@section('js')
 <style>
     h1, .notosanstc {
         font-family: 'Noto Sans TC', sans-serif;
     }
 </style>
+@stop
+
+@section('js')
+
 @stop
 
 @section('content')
