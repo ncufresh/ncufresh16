@@ -24,6 +24,7 @@ Route::group( ['middleware' => 'admin'], function () {
     /*****************Q&A******************/
     Route::get('/Q&A/admin/', 'QandAController@indexAdmin');
 	Route::get('/Q&A/admin/{Q}', 'QandAController@edit');
+    Route::patch('/Q&A/content/{Q}', 'QandAController@update');
 });
 //************************************************************
 
@@ -101,7 +102,6 @@ Route::get('/Q&A/create', 'QandAController@create');
 Route::get('/Q&A/personal', 'QandAController@indexPersonal');
 Route::get('/Q&A/{classify}', 'QandAController@index');
 Route::get('/Q&A/content/{Q}', 'QandAController@show');
-Route::patch('/Q&A/content/{Q}', 'QandAController@update');
 Route::delete('/Q&A/{Q}', 'QandAController@destroy');
 //************************************************************
 
