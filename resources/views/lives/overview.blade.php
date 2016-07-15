@@ -50,7 +50,7 @@ $(".btn btn-default").click(function(){
 
 			<ul class="collapse" id="food">
 				@foreach ($food as $food)
-				<li><a href="{{action('LifeController@getContent',$food->id)}}">{{ $food->title }}</a></li>
+				<li><a href="{{action('LifeController@getContent',['food', $food->id])}}">{{ $food->title }}</a></li>
 				@endforeach
 			</ul>
 
@@ -58,7 +58,7 @@ $(".btn btn-default").click(function(){
 
 			<ul class="collapse" id="housing">
 				@foreach ($housing as $housing)
-				<li><a href="{{action('LifeController@getContent',$housing->id)}}">{{ $housing->title }}</a></li>
+				<li><a href="{{action('LifeController@getContent',['housing', $housing->id])}}">{{ $housing->title }}</a></li>
 				@endforeach
 			</ul>
 			

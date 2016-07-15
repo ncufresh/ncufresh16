@@ -86,6 +86,6 @@ Route::get('/videos','videocontroller@index');
 // 中大生活
 //************************************************************
 Route::get('/life','LifeController@getTitle');
-Route::get('/life/test/{content}','LifeController@getContent');
+Route::get('/life/{topic}/{content}','LifeController@getContent');
 
 //************************************************************

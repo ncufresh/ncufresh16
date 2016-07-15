@@ -24,10 +24,9 @@
 </style>
 	
 @stop
-	 
+	
 @section('js')
 
-	
 
 @stop
 
@@ -46,9 +45,8 @@
 	<div class="collapse" id="linkMenu" role="group" >
 	 	<!-- Trigger the modal with a button -->
 		<button class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal">相片導覽</button>
-	 	 <a class="btn btn-default btn-block"  href="http://in.ncu.edu.tw/ncu7221/OSDS/">宿舍服務中心</a>
-	 	 <a class="btn btn-default btn-block"  href="#">大一新生住宿意願調查</a>
-	 	 <a class="btn btn-default btn-block"  href="#">住宿Q&A</a>
+	 	<?php echo $more ?>
+	 
 	</div>
 	</section>	
  
@@ -59,30 +57,41 @@
 			      <div class="modal-content">
 			        
 			        <div class="modal-body">
-			        	<div id=" myCarousel" class="carousel slide" data-ride="carousel">
+			        	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			        	
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-      <li data-target="#myCarousel" data-slide-to="3"></li>
+    @for ($i = 0; $i < $num_of_pics; $i++)
+      <li data-target="#myCarousel" data-slide-to="{{$i}}" ></li>
+   @endfor
+     
     </ol>
 
     <!-- Wrapper for slides -->
+     
     <div class="carousel-inner" role="listbox">
+    
 
-      <div class="item active">
+ <div class="item active">
         <img src="{{ asset($image[0]->filename) }}" alt="Chania" width="460" height="345">
         <div class="carousel-caption">
           <h3>{{ $image[0]->imagesTitle}}</h3>
-			<p>{{ $image[0]-> imagesContent}}</p>
-          
+			<p>{{ $image[0]->imagesContent}}</p>
         </div>
       </div>
+	
+   @for ($i = 1; $i < $num_of_pics; $i++)
+    <div class="item">
+       <img src="{{ asset($image[$i]->filename) }}" alt="Chania" width="460" height="345">
+        <div class="carousel-caption">
+ 
+          <h3>{{ $image[$i]->imagesTitle}}</h3>
+			<p>{{ $image[$i]->imagesContent}}</p>
+           
+        </div>
+      </div>
+@endfor
 
-    
-      
-  
     </div>
 
     <!-- Left and right controls -->
@@ -101,15 +110,13 @@
 					  </div>
 
 			        </div>
-			        <div class="modal-footer">
-			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        </div>
+			       
 			      </div>
 			    </div>
 			  </div>
 
 			
-			  
+
 			</div>
 		
 
