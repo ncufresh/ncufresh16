@@ -27,8 +27,16 @@ Route::group( ['middleware' => 'admin'], function () {
 //************************************************************
 # 大學部
 Route::get('/doc/under', 'DocumentController@underIndex');
+Route::post('/doc/under', 'DocumentController@underStore');
+Route::delete('/doc/under/{under}', 'DocumentController@underDestroy');
+Route::get('/doc/under/{under}/edit','DocumentController@underEdit');
+Route::patch('/doc/under/{under}', 'DocumentController@underUpdate');
 # 研究所
 Route::get('/doc/graduate', 'DocumentController@graduateIndex');
+Route::post('/doc/graduate', 'DocumentController@graduateStore');
+Route::delete('/doc/graduate/{graduate}', 'DocumentController@graduateDestroy');
+Route::get('/doc/graduate/{graduate}/edit','DocumentController@graduateEdit');
+Route::patch('/doc/graduate/{graduate}', 'DocumentController@graduateUpdate');
 //************************************************************
 
 // 校園導覽
