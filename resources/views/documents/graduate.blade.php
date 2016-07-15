@@ -3,19 +3,23 @@
 @section('title', '新生必讀 - 研究所')
 
 @section('css')
-
+<link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosanstc.css">
 @stop
 
 @section('js')
-
+<style>
+    h1, .notosanstc {
+        font-family: 'Noto Sans TC', sans-serif;
+    }
+</style>
 @stop
 
 @section('content')
 
-<div class="container">
+<div class="container notosanstc">
     <div class="row">
         {{-- 顯示研究所的新生必讀資料 --}}
-        <h1>研究所　<small><a href="{{ url('/doc/under') }}">大學部</a></small></h1>
+        <h1><small><a href="{{ url('/doc/under') }}">大學部</a></small>　研究所</h1>
         <ul>
             <?php $count = 0; ?>
             @foreach ($mainGraduates as $graduates)

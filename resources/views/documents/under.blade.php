@@ -3,16 +3,20 @@
 @section('title', '新生必讀 - 大學部')
 
 @section('css')
-
+<link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosanstc.css">
 @stop
 
 @section('js')
-
+<style>
+    h1, .notosanstc {
+        font-family: 'Noto Sans TC', sans-serif;
+    }
+</style>
 @stop
 
 @section('content')
 
-<div class="container">
+<div class="container notosanstc">
     <div class="row">
         {{-- 顯示大學部的新生必讀資料 --}}
         <h1>大學部　<small><a href="{{ url('/doc/graduate') }}">研究所</a></small></h1>
