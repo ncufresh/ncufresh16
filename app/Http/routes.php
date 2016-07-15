@@ -1,5 +1,13 @@
 <?php
 
+
+use Illuminate\Http\Response;
+use App\Http\Requests;
+use App\Question_collection;//model
+use App\Record_score;//model
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+
 // 註冊,登入頁
 Route::auth();
 
@@ -10,6 +18,9 @@ Route::get('/', 'HomeController@index');
 Route::get('/ann', 'AnnouncementController@index');
 Route::post('/ann', 'AnnouncementController@store');
 Route::get('/ann/{ann}', 'AnnouncementController@show');
+Route::group( ['middleware' => 'admin'], function () {
+    Route::get('/test', function () { return '嗨!我是管理員'; });
+});
 //************************************************************
 
 // 校園導覽
@@ -64,6 +75,18 @@ Route::get('/groups/departments/create', 'DepartmentController@create');
 //************************************************************
 Route::get('smallgame','GameController@index');
 Route::get('/smallgame_get/{id}','GameController@get_question');
+//Route::post('/smallgame_post','GameController@post_score');
+Route::post('/smallgame_post',function(Request $request){
+	$encrypter = app('Illuminate\Encryption\Encrypter');
+	$encrypted_token = $encrypter->encrypt(csrf_token());
+
+    $scores = Record_score::create([
+    	'name'=>$request->name,
+    	'score'=>$request->score
+    	]);
+    return response()->json($scores);
+});
+
 //************************************************************
 
 // 新生Q&A
@@ -71,11 +94,23 @@ Route::get('/smallgame_get/{id}','GameController@get_question');
 //Route::resource('/Q&A', 'QandAController');
 Route::post('/Q&A', 'QandAController@store');
 Route::get('/Q&A/create', 'QandAController@create');
+Route::get('/Q&A/admin/', 'QandAController@indexAdmin');
+Route::get('/Q&A/personal', 'QandAController@indexPersonal');
 Route::get('/Q&A/{classify}', 'QandAController@index');
 Route::get('/Q&A/content/{Q}', 'QandAController@show');
-Route::patch('/Q&A/content/{QQ}', 'QandAController@responseStore');
-Route::delete('/Q&A/{dd}', 'QandAController@destroy');
+Route::get('/Q&A/admin/{Q}', 'QandAController@edit');
+Route::patch('/Q&A/content/{Q}', 'QandAController@update');
+Route::delete('/Q&A/{Q}', 'QandAController@destroy');
 //************************************************************
+
+
+// 個人專區
+//************************************************************
+Route::resource('/personal', 'PersonalController');
+//************************************************************
+
+
+
 
 // 影音專區
 //************************************************************
