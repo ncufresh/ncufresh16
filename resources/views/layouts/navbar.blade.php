@@ -28,7 +28,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        借放<span class="caret"></span>
+                        借放 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="http://lovenery.me/old/">去年的</a></li>
@@ -48,7 +48,7 @@
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <i class="fa fa-caret-down"></i>
+                            {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ url('/personal') }}"><i class="fa fa-user"></i> 個人專區</a></li>
