@@ -41,6 +41,7 @@ body {
 .navbar {
     /*margin-bottom: 0;
     border: 0;*/
+    font-size: 15px; /* 預設14 */
     letter-spacing: 4px; /* 字的間距 */
     opacity:0.9;
 }

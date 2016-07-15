@@ -6,6 +6,16 @@ $(document).ready(function(){
     // footer到top的tooltip
     $('[data-toggle="tooltip"]').tooltip();
 
+    // 下拉式選單 滑過即出&動畫 ref:http://stackoverflow.com/questions/16214326/bootstrap-dropdown-with-hover
+    $(document).ready(function(){
+        $('ul.nav li.dropdown').hover(function() {
+          $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(200);
+          $(this).addClass('active');
+        }, function() {
+          $(this).find('.dropdown-menu').stop(true, true).delay(300).fadeOut(300);
+          $(this).removeClass('active');
+        });
+    });
 
     // 平滑 在navbar的連結跟footer的連結
     $(".navbar a, footer a[href='#app-layout']").on('click', function(event) {
