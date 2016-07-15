@@ -2,19 +2,12 @@
 參考:https://www.ptt.cc/bbs/Web_Design/M.1279032453.A.80B.html
 */
 body {
-   font-family: Helvetica, Arial, 'LiHei Pro', '微軟正黑體', '新細明體', sans-serif;
+   font-family: Helvetica, Arial, '微軟正黑體', '新細明體', sans-serif;
 }
 body > .container {
   padding: 90px 15px; /* 上,左 */
 }
 
-/* navbar */
-.navbar {
-    /*margin-bottom: 0;
-    border: 0;*/
-    letter-spacing: 4px; /* 字的間距 */
-    opacity:0.9;
-}
 
 /* footer */
 html {
@@ -41,4 +34,59 @@ body {
 #footer a:hover {
     color: #777;
     text-decoration: none;
+}
+
+
+/* navbar */
+.navbar {
+    /*margin-bottom: 0;
+    border: 0;*/
+    letter-spacing: 4px; /* 字的間距 */
+    opacity:0.9;
+}
+/* 主要設定區 背景色 白字 */
+.navbar.navbar-ncufresh {
+  background-color: #22ab82;
+  color: #ffffff;
+}
+.navbar.navbar-ncufresh .navbar-form .form-group input.form-control::-moz-placeholder,
+.navbar.navbar-ncufresh .navbar-form input.form-control::-moz-placeholder {
+  color: #ffffff;
+}
+.navbar.navbar-ncufresh .navbar-form .form-group input.form-control:-ms-input-placeholder,
+.navbar.navbar-ncufresh .navbar-form input.form-control:-ms-input-placeholder {
+  color: #ffffff;
+}
+.navbar.navbar-ncufresh .navbar-form .form-group input.form-control::-webkit-input-placeholder,
+.navbar.navbar-ncufresh .navbar-form input.form-control::-webkit-input-placeholder {
+  color: #ffffff;
+}
+/* 下拉式選單的圓角 */
+.navbar.navbar-ncufresh .dropdown-menu {
+  border-radius: 2px;
+}
+/* 下拉式header的顏色 */
+@media (max-width: 767px) {
+  .navbar.navbar-ncufresh .dropdown-menu .dropdown-header {
+    background-color: #4d5ec1;
+  }
+}
+/* 下拉式 li的顏色與大小 */
+.navbar.navbar-ncufresh .dropdown-menu li > a {
+  font-size: 16px;
+  padding: 13px 16px;
+}
+.navbar.navbar-ncufresh .dropdown-menu li > a:hover,
+.navbar.navbar-ncufresh .dropdown-menu li > a:focus {
+  color: #22ab82;
+  background-color: #eeeeee;
+}
+/* 下拉式 li 設成 active時的顏色 */
+.navbar.navbar-ncufresh .dropdown-menu .active > a {
+  background-color: #22ab82;
+  color: #ffffff;
+}
+.navbar.navbar-ncufresh .dropdown-menu .active > a:hover,
+.navbar.navbar-ncufresh .dropdown-menu .active > a:focus {
+  color: #ffffff;
 }
