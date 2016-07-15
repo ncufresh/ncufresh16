@@ -9,7 +9,7 @@ use App\Document;
 class DocumentController extends Controller
 {
 	/* 大學部 */
-    public function undergraduate(){
+    public function underIndex(){
     	// 先比對是否為大學部的資料
     	$unders = Document::where('is_graduate',false);
     	// 分別對應到三個主要類別後儲存
@@ -17,7 +17,7 @@ class DocumentController extends Controller
     	$unders2 = $unders->where('position_of_main','2')->get();
     	$unders3 = $unders->where('position_of_main','3')->get();
     	// 回傳大學部的網頁位置與三個主類別中的子類別
-		return view('documents.undergraduate',
+		return view('documents.under',
 		[
 			'unders1' => $unders1,
 			'unders2' => $unders2,
@@ -26,7 +26,7 @@ class DocumentController extends Controller
     }
 
     /* 研究所 */
-    public function graduate(){
+    public function graduateIndex(){
     	// 先比對是否為研究所的資料
     	$graduates = Document::where('is_graduate',true);
     	// 分別對應到三個主要類別後儲存
