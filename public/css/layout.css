@@ -36,6 +36,29 @@ body {
     text-decoration: none;
 }
 
+/* dropdown hover */
+/* http://stackoverflow.com/questions/16214326/bootstrap-dropdown-with-hover */
+/* 淡入使用法:http://stackoverflow.com/questions/11679567/using-css-for-fade-in-effect-on-page-load */
+@media (min-width:990px){
+    li.dropdown:hover > ul.dropdown-menu {
+        display: block;
+        margin-top: 0; /* remove the gap so it doesn't close */
+
+        -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 1s; /* Firefox < 16 */
+        -ms-animation: fadein 1s; /* Internet Explorer */
+        -o-animation: fadein 1s; /* Opera < 12.1 */
+        animation: fadein 1s;
+     }
+     @keyframes fadein {
+         from { opacity: 0; }
+         to   { opacity: 1; }
+     }
+}
+/* dropdown hover時 有層透明的在上面 */
+ul.nav > li.dropdown:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
 
 /* navbar */
 .navbar {
