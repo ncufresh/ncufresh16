@@ -34,6 +34,12 @@ Route::group( ['middleware' => 'admin'], function () {
 });
 //************************************************************
 
+// 新生必讀
+//************************************************************
+Route::get('/doc/undergraduate', 'DocumentController@undergraduate');
+Route::get('/doc/graduate', 'DocumentController@graduate');
+//************************************************************
+
 // 校園導覽
 //************************************************************
 Route::get('/campus','CampusController@index');
