@@ -84,19 +84,18 @@ Route::get('/groups/departments/create', 'DepartmentController@create');
 
 // 小遊戲
 //************************************************************
-Route::get('smallgame','GameController@index');
-Route::get('/smallgame_get/{id}','GameController@get_question');
-//Route::post('/smallgame_post','GameController@post_score');
-Route::post('/smallgame_post',function(Request $request){
-	$encrypter = app('Illuminate\Encryption\Encrypter');
-	$encrypted_token = $encrypter->encrypt(csrf_token());
+Route::get('smallgame','GameController@index');//引導到遊戲頁面
+Route::get('leaderboard','GameController@leaderboard');//引導到排行榜頁面
+Route::get('/smallgame_get/{id}','GameController@get_question');//取得問題
+Route::get('/getScores','GameController@getScores');//取得分數
+Route::post('/smallgame_post','GameController@post_score');//post 分數
+Route::get('/add_question','GameController@addQuestion');//引導到新增、編輯、刪除問題的後台
+Route::post('/add_question/add','GameController@add');//新增問題
+Route::put('/add_question/add/{question_id?}','GameController@putOneQuestion');//編輯問題
+Route::delete('/add_question/delete/{question_id?}','GameController@deleteOneQuestion');//刪除問題
+Route::get('/getOneQuestion/{question_id?}','GameController@getOneQuestion');//取得問題
 
-    $scores = Record_score::create([
-    	'name'=>$request->name,
-    	'score'=>$request->score
-    	]);
-    return response()->json($scores);
-});
+
 
 //************************************************************
 
