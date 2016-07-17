@@ -8,8 +8,25 @@ use App\Record_score;//model
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
+// 後台
+//************************************************************
+Route::group( ['middleware' => 'admin'], function () {
+    Route::get('/test', function () { return '管理員才可以進的路由都放這 包含新增之類的 不用急著丟'; });
+    /*****************Q&A******************/
+    Route::get('/Q&A/admin/', 'QandAController@indexAdmin');
+    Route::get('/Q&A/admin/{Q}', 'QandAController@edit');
+    Route::patch('/Q&A/content/{Q}', 'QandAController@update');
+});
+//************************************************************
+
 // 註冊,登入頁
-Route::auth();
+//************************************************************
+Route::get('login', 'Auth\AuthController@showLoginForm');
+Route::post('login', 'Auth\AuthController@login');
+Route::get('logout', 'Auth\AuthController@logout');
+Route::get('register', 'Auth\AuthController@showRegistrationForm');
+Route::post('register', 'Auth\AuthController@register');
+//************************************************************
 
 // 首頁
 //************************************************************
@@ -24,14 +41,6 @@ Route::get('/admin', function(){
 Route::get('/ann', 'AnnouncementController@index');
 Route::post('/ann', 'AnnouncementController@store');
 Route::get('/ann/{ann}', 'AnnouncementController@show');
-Route::group( ['middleware' => 'admin'], function () {
-    Route::get('/test', function () { return '嗨!我是管理員'; });
-
-    /*****************Q&A******************/
-    Route::get('/Q&A/admin/', 'QandAController@indexAdmin');
-	Route::get('/Q&A/admin/{Q}', 'QandAController@edit');
-    Route::patch('/Q&A/content/{Q}', 'QandAController@update');
-});
 //************************************************************
 
 // 新生必讀
