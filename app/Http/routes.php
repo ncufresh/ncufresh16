@@ -26,6 +26,11 @@ Route::post('/ann', 'AnnouncementController@store');
 Route::get('/ann/{ann}', 'AnnouncementController@show');
 Route::group( ['middleware' => 'admin'], function () {
     Route::get('/test', function () { return '嗨!我是管理員'; });
+
+    /*****************Q&A******************/
+    Route::get('/Q&A/admin/', 'QandAController@indexAdmin');
+	Route::get('/Q&A/admin/{Q}', 'QandAController@edit');
+    Route::patch('/Q&A/content/{Q}', 'QandAController@update');
 });
 //************************************************************
 
@@ -100,12 +105,9 @@ Route::post('/smallgame_post',function(Request $request){
 //Route::resource('/Q&A', 'QandAController');
 Route::post('/Q&A', 'QandAController@store');
 Route::get('/Q&A/create', 'QandAController@create');
-Route::get('/Q&A/admin/', 'QandAController@indexAdmin');
 Route::get('/Q&A/personal', 'QandAController@indexPersonal');
 Route::get('/Q&A/{classify}', 'QandAController@index');
 Route::get('/Q&A/content/{Q}', 'QandAController@show');
-Route::get('/Q&A/admin/{Q}', 'QandAController@edit');
-Route::patch('/Q&A/content/{Q}', 'QandAController@update');
 Route::delete('/Q&A/{Q}', 'QandAController@destroy');
 //************************************************************
 

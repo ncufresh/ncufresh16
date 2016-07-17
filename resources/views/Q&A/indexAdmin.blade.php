@@ -22,16 +22,10 @@
           <td><a href="{{action('QandAController@edit',$Q->id)}}"><i class="fa fa-eye" aria-hidden="true">編輯</i></a></td>
           <td><button type="button" class="btn btn-fab" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash fa-lg"></i></button></td>
         </tr>
-      @endforeach
-      </tbody>
-    </table>
-  {{ $QandAs->links() }}  <!--分頁用-->
-</div>
-@endsection
 
 
 
-<!-- Modal -->
+        <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
@@ -56,3 +50,13 @@
     </div>
   </div>
   <!-- Modal -->
+  
+      @endforeach
+      </tbody>
+    </table>
+  {{ $QandAs->links() }}  <!--分頁用-->
+</div>
+@endsection
+
+
+
