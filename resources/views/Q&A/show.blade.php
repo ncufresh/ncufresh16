@@ -21,14 +21,14 @@
           </table>
 
           <div class="panel panel-primary">
-              <div class="panel-heading"><h1><strong>問題:</strong>{{ $Q->topic }}</h2></div>
+              <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/Q.png') }}" width="10%" height="10%">:{{ $Q->topic }}</h1></div>
               <div class="panel-body">
               <h3><strong>{{$Q->content}}</strong></h3><h4><p>
                
               </div>
           </div>
           <div class="panel panel-success">
-              <div class="panel-heading"><h1><strong>回答:</strong></h2></div>
+              <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/A.png') }}" width="10%" height="10%"></h1></div>
               <div class="panel-body">
                   @if (!empty($Q->response))
                   <h4>{{$Q->response}}</h4>
