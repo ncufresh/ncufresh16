@@ -803,7 +803,7 @@ function draw(){
 //背景執行
 function addRunSpeed(){
   if(gameState===GAME_4){
-    runSpeed+=0.5;
+    runSpeed+=0.8;
     fallSpeed+=0.2;
     jumpStart-=2.5;
   }
@@ -812,7 +812,7 @@ function addRunSpeed(){
 
 //背景執行
 setInterval(character_state_control,50);//動畫楨數控制
-setInterval(addRunSpeed,10000);//每過五秒跑速加快
+setInterval(addRunSpeed,5000);//每過五秒跑速加快
 //fallSpeed
 //maxFallSpeed
 draw();
