@@ -28,7 +28,7 @@
               </div>
           </div>
           <div class="panel panel-success">
-              <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/A.png') }}" width="10%" height="10%"></h1></div>
+              <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/A.png') }}" width="10%" height="10%"><strong> : 回答</strong></h1></div>
               <div class="panel-body">
                   @if (!empty($Q->response))
                   <h4>{{$Q->response}}</h4>
@@ -65,7 +65,7 @@
        
 
         </div>
-@endsection
+
 
 <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -93,3 +93,5 @@
     </div>
   </div>
   <!-- Modal -->
+@endsection
+
