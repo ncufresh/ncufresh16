@@ -52,7 +52,7 @@ class WatchtowerTableSeeder extends Seeder
             DB::table('users')
                 ->insert( [
                     'name' => 'admin',
-                    'email' => 'q',
+                    'email' => 'q@q',
                     'password' => bcrypt('q')
                 ]
             );

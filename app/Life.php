@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Life extends Model
 {
-    protected $fillable = ['title'];
+    protected $fillable = ['title','content'];
 }

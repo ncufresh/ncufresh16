@@ -90,34 +90,34 @@ var character_animation;
 
 
 character_image=new Image();
-character_image.src ="img/game/bird_01.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_01.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_02.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_02.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_03.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_03.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_04.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_04.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_05.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_05.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_06.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_06.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_07.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_07.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_08.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_08.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_09.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_09.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_10.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_10.png";//圖片的檔案路徑
 character_images.push(character_image);
 
 character=new player_animation(c_width,c_height,character_images,c_x,c_y,"image");
@@ -134,9 +134,9 @@ var fallSpeed=0.7;
 var maxFallSpeed = 25;
 var jumpStart=-28;
 
-var background=new component(1000,500,"img/game/BG_sky.jpg",0,0,"image");
+var background=new component(1000,500,"/img/game/BG_sky.jpg",0,0,"image");
 
-var Q_frame=new component(690,176,"img/game/Q.png",150,20,"image");//問題的邊框
+var Q_frame=new component(690,176,"/img/game/Q.png",150,20,"image");//問題的邊框
 
 
 var brickXs = [];//the bricks' X 
@@ -147,11 +147,11 @@ for (var i = 0; i < 12; i++) {
 }
 var bricks=[];
 for(var i=0;i<brickXs.length;i++){
-    bricks.push(new component(brickX_width,brickX_height,"img/game/floor.png",brickXs[i],500-brickX_height,"image"));
+    bricks.push(new component(brickX_width,brickX_height,"/img/game/floor.png",brickXs[i],500-brickX_height,"image"));
 }
 var background_bricks=[];//背景磚塊
 for(var i=0;i<brickXs.length;i++){
-    background_bricks.push(new component(brickX_width,brickX_height,"img/game/floor.png",brickXs[i],500-brickX_height,"image"));
+    background_bricks.push(new component(brickX_width,brickX_height,"/img/game/floor.png",brickXs[i],500-brickX_height,"image"));
 }
 
 var wormXs=[];//the worms' X
@@ -162,7 +162,7 @@ for(var i=0 ; i<5 ; i++){
   wormXs.push(i*700);
 }
 for(var i=0 ; i<5 ; i++){
-  worms.push(new component(worms_width,worms_height,"img/game/worm.png",wormXs[i],500-20-worms_height,"image"));//20為地板高度，可視情況調整
+  worms.push(new component(worms_width,worms_height,"/img/game/worm.png",wormXs[i],500-20-worms_height,"image"));//20為地板高度，可視情況調整
 }
 
 
@@ -178,7 +178,7 @@ for(var i=0;i<character_heart;i++){
   heartX.push(i*heart_width);
 }
 for(var i=0;i<character_heart;i++){
-  heart.push(new component(heart_width,heart_height,"img/game/heart.png",heartX[i],0,"image"));
+  heart.push(new component(heart_width,heart_height,"/img/game/heart.png",heartX[i],0,"image"));
 }
 
 var hurt_deviation=50;//讓角色比較不容易受傷，讓傷害偵測變窄
@@ -208,9 +208,9 @@ const GAME_4=5;//開始遊戲的畫面
 const GAMEOVER=6//測試用結束畫面
 
 //menu
-gameState_menu[0]=new component(1000,500,"img/game/Main.jpg",0,0,"image");//選單列
-gameState_menu[1]=new component(1000,500,"img/game/Main_1.jpg",0,0,"image");//選單列
-gameState_menu[2]=new component(1000,500,"img/game/Main_2.jpg",0,0,"image");//選單列
+gameState_menu[0]=new component(1000,500,"/img/game/Main.jpg",0,0,"image");//選單列
+gameState_menu[1]=new component(1000,500,"/img/game/Main_1.jpg",0,0,"image");//選單列
+gameState_menu[2]=new component(1000,500,"/img/game/Main_2.jpg",0,0,"image");//選單列
 ////
 //menu
 gameStateManager[0][0]=gameState_menu[0];
@@ -218,12 +218,12 @@ gameStateManager[0][1]=gameState_menu[1];
 gameStateManager[0][2]=gameState_menu[2];
 ////
 
-gameReadme=new component(1000,500,"img/game/Rules.jpg",0,0,"image");//說明頁面物件
-gamePlay_1=new component(1000,500,"img/game/story_1.jpg",0,0,"image");
-gamePlay_2=new component(1000,500,"img/game/story_2.jpg",0,0,"image");
-gamePlay_3=new component(1000,500,"img/game/story_3.jpg",0,0,"image");
-gamePlay_over[0]=new component(1000,500,"img/game/gameover_1.jpg",0,0,"image");
-gamePlay_over[1]=new component(1000,500,"img/game/gameover_2.jpg",0,0,"image");
+gameReadme=new component(1000,500,"/img/game/Rules.jpg",0,0,"image");//說明頁面物件
+gamePlay_1=new component(1000,500,"/img/game/story_1.jpg",0,0,"image");
+gamePlay_2=new component(1000,500,"/img/game/story_2.jpg",0,0,"image");
+gamePlay_3=new component(1000,500,"/img/game/story_3.jpg",0,0,"image");
+gamePlay_over[0]=new component(1000,500,"/img/game/gameover_1.jpg",0,0,"image");
+gamePlay_over[1]=new component(1000,500,"/img/game/gameover_2.jpg",0,0,"image");
 
 
 gameStateManager[1]=gameReadme;
