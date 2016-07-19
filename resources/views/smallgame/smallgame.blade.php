@@ -16,6 +16,8 @@
 @endsection
 @section('js')
 <script>
+var questions=[];//題目
+var questions_temp=[];//題目亂序化
 //////////////////get the question
 $(document).ready(function(){
   $.ajaxSetup({
@@ -30,13 +32,17 @@ $(document).ready(function(){
     //success data
     console.log(data);
     questions=data;//若要從資料庫提取複數列的資料，則以陣列表示，真是佛心來的
+    questions_temp=questions;
+    questions_temp.sort(function(){return Math.random()>0.5?-1:1;});
   }) 
   //create new task / update existing task
   //傳送資料開始
 });
 var question;
 var id_question=0;
-var questions=[];
+
+
+
 var choose_bool=false;
 var YourAnswer=0;
 var rightanswer=false; 
@@ -124,6 +130,7 @@ character=new player_animation(c_width,c_height,character_images,c_x,c_y,"image"
 
 var dontDraw=false;//受傷時要讓該變數在true and false 中跳動
 //角色end
+
 
 var rightPressed=false;
 var leftPressed=false;
@@ -460,7 +467,7 @@ function player_animation(width, height,images, x, y, type) {//主角constructor
                     this.width, this.height);
         }
         this.move = function(){
-            if(YourAnswer===questions[id_question].answer ){//這裡也設另外一個無敵時間，以免答對了還被下一題的答錯影響
+            if(YourAnswer===questions_temp[id_question].answer ){//這裡也設另外一個無敵時間，以免答對了還被下一題的答錯影響
               jumping=true;
               rightanswer=true;
               //reboot_rightanswer();//bug答對時會因為下一題而受傷
@@ -618,30 +625,32 @@ function draw_question_onTheCanvas(){//in the state game_4
     context.textAlign = "center";
     context.textBaseline = "bottom";
     choose();//抽題
-    context.fillText(questions[id_question].question, 500, 75);
+    context.fillText(questions_temp[id_question].question, 500, 75);
 
     context.font = '20px Tahoma';
     context.fillStyle = "#000000";
     context.textAlign = "center";
     context.textBaseline = "bottom";
-    context.fillText(questions[id_question].selection_1, 330, 175);
+    context.fillText(questions_temp[id_question].selection_1, 330, 175);
 
     context.font = '20px Tahoma';
     context.fillStyle = "#000000";
     context.textAlign = "center";
     context.textBaseline = "bottom";
-    context.fillText(questions[id_question].selection_2, 670, 175);
+    context.fillText(questions_temp[id_question].selection_2, 670, 175);
 
 }
 function choose(){
   if((rightPressed || leftPressed )&& choose_bool===false &&jumping===true){//製作類似無敵時間的東西，以防玩家不停輸入
 
 
-    //抽出問題
+    /*//抽出問題
     var maxNum = questions.length;//陣列的長度  
     var minNum = 0;  
     id_question = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;  
-    //抽出問題end
+    //抽出問題end*/
+
+    id_question++;
 
 
     rightanswer=true;
@@ -649,6 +658,8 @@ function choose(){
     choose_bool=true;
     reboot_choose_bool();
     if(id_question===questions.length){
+      questions_temp.sort(function(){return Math.random()>0.5?-1:1;});
+
       id_question=0;
     }
   }else if(YourAnswer!=questions[id_question].answer && YourAnswer!=0 && rightanswer===false) 
