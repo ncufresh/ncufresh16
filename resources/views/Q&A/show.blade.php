@@ -38,26 +38,29 @@
                   </p></h4>
               </div>
           </div>
+          @can('management')
                <a href="#demo" class="btn btn-info btn-raised" data-toggle="collapse"><i class="glyphicon glyphicon-ok" aria-hidden="true"></i> 我要回答</a>
                <button type="button" class="btn btn-raised" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash fa-lg"></i> 刪除</button>
+               <a href="{{action('QandAController@edit',$Q->id)}}" class="btn btn-raised"><i class="fa fa-eye" aria-hidden="true">編輯</i></a>
               <!-- collapse -->
               <div id="demo" class="collapse">
                 <div class="panel panel-default">
                   <div class="panel-heading"><h3>回答:</h3></div>
                   <div class="panel-body">
                     <form role="form" action="{{action('QandAController@update',$Q->id)}}" method="post">
-                          {{ csrf_field() }}
-                          {{ method_field('PATCH') }} 
+                      {{ csrf_field() }}{{ method_field('PATCH') }} 
                       <div class="form-group">
                         <textarea name="response" class="form-control" rows="5"></textarea>
                         <p></p>
-                        <button type="submit" class="col-sm-2 col-md-offset-5 btn btn-info">Submit</button>
+                        <button type="submit" class="col-sm-2 col-md-offset-5 btn btn-info btn-raised">Submit</button>
                       </div>
                     </form>
                   </div>
                 </div>
               </div>
               <!-- collapse -->
+          @endcan
+              
               
        
 

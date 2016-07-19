@@ -1,11 +1,5 @@
 @extends('layouts.Q&Alayouts')
 @section('title','發問紀錄|Q&A')
-@section('js')
-@if (Auth::guest())
-
-  <script type="text/javascript">alert("請先登入喔");window.location.replace("/Q&A/all");</script>      
-  @else
-@endif
 
 @section('Q&Acontent')
 <div class="col-xs-7">
@@ -25,8 +19,6 @@
               已回復
             @endif
           </td>
-          
-          <td><button type="button" class="btn btn-fab" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash fa-lg"></i></button></td>
         </tr>
       @endforeach
       </tbody>
@@ -35,30 +27,3 @@
 </div>
 @endsection
 
-
-
-<!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"><i class="fa fa-trash fa-lg"></i> 刪除</h4>
-        </div>
-        <div class="modal-body">
-          <p align="center">你真的確定要刪除嗎?</p>
-        </div>
-        <div class="modal-footer">
-        <form action="{{ URL::action('QandAController@destroy',$Q->id) }}" method="post"  class="form_del">
-        {{ csrf_field() }}{{ method_field('DELETE') }}
-        <button type="submit" class="btn btn-danger"><i class="fa fa-trash fa-lg"></i> 刪除</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">否</button>
-        </form>
-          
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  <!-- Modal -->

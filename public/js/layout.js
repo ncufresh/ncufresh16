@@ -6,7 +6,6 @@ $(document).ready(function(){
     // footer到top的tooltip
     $('[data-toggle="tooltip"]').tooltip();
 
-
     // 平滑 在navbar的連結跟footer的連結
     $(".navbar a, footer a[href='#app-layout']").on('click', function(event) {
         // Make sure this.hash has a value before overriding default behavior
