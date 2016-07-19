@@ -10,15 +10,19 @@ class DocumentController extends Controller
 {
 	/* 大學部 */
     public function underIndex(){
-    	// 先比對是否為大學部的資料
-    	// 再分別對應到三個主要類別
+    	// 先比對是否為大學部的資料、再分別對應到三個主要類別
     	for($i=0;$i<3;$i++){
     		$mainUnders[$i] = Document::where('is_graduate',false)
     								  ->where('position_of_main',''.($i+1))
     								  ->get();
     	}
+        $count[0] = $count[1] = 0;
     	// 回傳大學部的網頁位置與三個主類別中的子類別
-		return view('documents.under',['mainUnders'=>$mainUnders]);
+		return view('documents.under',
+            [
+                'mainUnders' => $mainUnders,
+                'count' => $count
+            ]);
     }
 
     public function underStore(Request $request){
@@ -53,15 +57,19 @@ class DocumentController extends Controller
 
     /* 研究所 */
     public function graduateIndex(){
-    	// 先比對是否為研究所的資料
-    	// 再分別對應到三個主要類別
+    	// 先比對是否為研究所的資料、再分別對應到三個主要類別
     	for($i=0;$i<3;$i++){
     		$mainGraduates[$i] = Document::where('is_graduate',true)
     									 ->where('position_of_main',''.($i+1))
     									 ->get();
     	}
+        $count[0] = $count[1] = 0;
     	// 回傳研究所的網頁位置與三個主類別中的子類別
-		return view('documents.graduate',['mainGraduates'=>$mainGraduates]);
+		return view('documents.graduate',
+            [
+                'mainGraduates' => $mainGraduates,
+                'count' => $count
+            ]);
     }
 
     public function graduateStore(Request $request){
