@@ -9,24 +9,20 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <!-- 左上角LOGO -->
+            {{-- 左上角LOGO --}}
             <a class="navbar-brand" href="{{ url('/') }}">新生知訊網</a>
         </div>
 
-        <!-- Collapse -->
+        {{-- Collapse --}}
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <!-- 左邊的 Navbar -->
-            <ul class="nav navbar-nav">
-                @if(Request::path() === '/')
-                    <li><a href="#mustread">新生必讀</a></li>
-                    <li><a href="#myCarousel">廣告</a></li>
-                    <li><a href="#board">公告</a></li>
-                @endif
-            </ul>
+            {{-- 左邊的 Navbar --}}
+            {{--<ul class="nav navbar-nav">
+                空空中
+            </ul>--}}
 
-            <!-- 右邊的 Navbar -->
+            {{-- 右邊的 Navbar --}}
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
+                <li class="dropdown mydropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         借放 <span class="caret"></span>
                     </a>
@@ -46,7 +42,7 @@
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}"><i class="fa fa-sign-in"></i> 登入</a></li>
                 @else
-                    <li class="dropdown">
+                    <li class="dropdown mydropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
