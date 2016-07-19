@@ -16,7 +16,7 @@ class CreateLivesTable extends Migration
             $table->increments('id');
             $table->string('topic');
             $table->string('title');
-            $table->string('content');
+            $table->text('content');
             $table->timestamps();
         });
     }

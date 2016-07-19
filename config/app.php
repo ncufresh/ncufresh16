@@ -161,6 +161,8 @@ return [
         Collective\Html\HtmlServiceProvider::class, // For Watchtower Forms to function
         Smarch\Watchtower\WatchtowerServiceProvider::class, // For Watchtower
         Unisharp\Ckeditor\ServiceProvider::class,
+        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -213,6 +215,7 @@ return [
         'Form'     => Collective\Html\FormFacade::class,  // required for Watchtower Forms
         'HTML'     => Collective\Html\HtmlFacade::class,   // required for Watchtower Forms
         //'Watchtower'=> Smarch\Watchtower\WatchtowerFacade::class, // not required, but available
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];
