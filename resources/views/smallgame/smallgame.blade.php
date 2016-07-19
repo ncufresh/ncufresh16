@@ -211,11 +211,13 @@ const GAMEOVER=6//測試用結束畫面
 gameState_menu[0]=new component(1000,500,"/img/game/Main.jpg",0,0,"image");//選單列
 gameState_menu[1]=new component(1000,500,"/img/game/Main_1.jpg",0,0,"image");//選單列
 gameState_menu[2]=new component(1000,500,"/img/game/Main_2.jpg",0,0,"image");//選單列
+gameState_menu[3]=new component(1000,500,"/img/game/Main_3.jpg",0,0,"image");//選單列
 ////
 //menu
 gameStateManager[0][0]=gameState_menu[0];
 gameStateManager[0][1]=gameState_menu[1];
 gameStateManager[0][2]=gameState_menu[2];
+gameStateManager[0][3]=gameState_menu[3];
 ////
 
 gameReadme=new component(1000,500,"/img/game/Rules.jpg",0,0,"image");//說明頁面物件
@@ -272,13 +274,17 @@ function mouseMoveHandler(event) {//不用實作，只要按鍵按下，就會�
 
    msg = "Mouse position: " + (event.clientX) + "," + (event.clientY) + ";canvas position:" + (event.clientX-rect.left) +","+(event.clientY-rect.top)+";heart"+character_heart+";"+score;
    if(gameState===MENU){
-     if(event.clientX>(rect.left+349) && event.clientX<(rect.left+349+133) &&     //new start button
-        event.clientY>(rect.top+242) &&  event.clientY<(rect.top+242+75)){
+     if(event.clientX>(rect.left+254) && event.clientX<(rect.left+254+133) &&     //new start button
+        event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
         gameState_menu_state=1;
       }
-      else if(event.clientX>(rect.left+530) && event.clientX<(rect.left+530+133) &&   
-      event.clientY>(rect.top+242) &&  event.clientY<(rect.top+242+75)){
+      else if(event.clientX>(rect.left+436) && event.clientX<(rect.left+436+133) &&   
+      event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
         gameState_menu_state=2;
+      }
+      else if(event.clientX>(rect.left+637) && event.clientX<(rect.left+637+133) &&   
+      event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
+        gameState_menu_state=3;
       }
       else{
         gameState_menu_state=0;
@@ -303,13 +309,17 @@ function mouseDownHandler(event){
 /////////the action of every listener
   //偵測按鈕的位置，該怎麼隨著gamestate改變而更動?
   if(gameState===MENU){
-    if(event.clientX>(rect.left+349) && event.clientX<(rect.left+349+133) &&     //new start button
-      event.clientY>(rect.top+242) &&  event.clientY<(rect.top+242+75)){
+    if(event.clientX>(rect.left+254) && event.clientX<(rect.left+254+133) &&     //new start button
+        event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
       gameState++;
     }
-    else if(event.clientX>(rect.left+530) && event.clientX<(rect.left+530+133) &&   
-    event.clientY>(rect.top+242) &&  event.clientY<(rect.top+242+75)){
+    else if(event.clientX>(rect.left+436) && event.clientX<(rect.left+436+133) &&   
+      event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
       gameState=GAME_1;
+    }
+    else if(event.clientX>(rect.left+637) && event.clientX<(rect.left+637+133) &&   
+      event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
+      location.assign("/leaderboard");
     }
   }
   else if(gameState===README){
