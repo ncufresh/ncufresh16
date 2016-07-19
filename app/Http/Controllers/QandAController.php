@@ -116,6 +116,6 @@ class QandAController extends Controller
     public function destroy(QandA $Q)
     {
         $Q->delete();
-        return redirect(action('QandAController@index','all'));
+        return redirect(action('QandAController@indexAdmin','all'));
     }
 }
