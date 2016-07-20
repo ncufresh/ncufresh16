@@ -10,15 +10,17 @@
 
 @section('content')
   <div class="container">
-      <div class="jumbotron">
-          <img src="{{ asset('img/Q&A/QA.png') }}" width="10%" height="10%">
-          <img src="{{ asset('img/Q&A/maple4.png') }}" width="10%" height="10%"  align="right" ><br>
-          <a href="{{action('QandAController@create')}}" class="btn btn-info btn-lg btn-raised"><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i>我要發問</a>
-      </div>
+      <!-- <div class="jumbotron"> -->
+      <div class="row">
+          <!-- <img src="{{ asset('img/Q&A/QA.png') }}" width="10%" height="10%"> -->
+          <img class="col-sm-offset-1" src="{{ asset('img/Q&A/QQAA.png') }}" width="800" height="250">
+      <!--     <img src="{{ asset('img/Q&A/maple4.png') }}" width="10%" height="10%"  align="right" ><br> -->
+          </div>
+     <!--  </div> -->
       <div class="row">
           <div class="col-xs-3" >
               <div class="btn-group-vertical col-sm-12" role="group">
-                   
+              <a href="{{action('QandAController@create')}}" class="btn btn-info btn-lg btn-raised"><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i>我要發問</a>
                <a href="{{action('QandAController@index','all')}}" class="btn btn-primary btn-raised btn-lg">所有問題</a>
                <a href="{{action('QandAController@index','school')}}" class="btn btn-primary btn-raised btn-lg">校園生活</a>
                <a href="{{action('QandAController@index','student')}}" class="btn btn-primary btn-raised btn-lg">學生事務</a>
