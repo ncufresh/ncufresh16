@@ -25,7 +25,7 @@
     @yield('css')
 
 </head>
-<body id="app-layout" data-spy="scroll" data-target=".scrollspy" data-offset="50">
+<body id="app-layout" data-spy="scroll" data-target=".navbar" data-offset="50">
 
     @include('layouts.navbar')
 

@@ -124,6 +124,11 @@
 
 @section('js')
 <script>
+  // 在 body 添加 data-target=".scrollspy"，讓 Bootstrap scrollspy 正常運作
+  $(document).ready(function(){
+    $("body").attr("data-target", ".scrollspy");
+  });
+  // Bootstrap affix effect
   $('#nav').affix({
     offset: {
       top: $('#nav').offset().top - 100,

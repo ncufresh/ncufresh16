@@ -125,6 +125,9 @@
 
 @section('js')
 <script>
+  $(document).ready(function(){
+    $("body").attr("data-target", ".scrollspy");
+  });
   $('#nav').affix({
     offset: {
       top: 0,
