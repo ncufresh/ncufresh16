@@ -9,10 +9,9 @@
 @section('Q&Acontent')
         <div class="col-xs-7">
           <table class="table table-hover">
-            <thead><tr><th>排行</th><th>分類</th><th>日期</th><th>點閱率</th></tr></thead>
+            <thead><tr><th>分類</th><th>日期</th><th>點閱率</th></tr></thead>
                 <tbody>
                     <tr>
-                      <td>{{ $Q->id }}</td>
                       <td>{{ $Q->classify }}</td>
                       <td><?php echo substr($Q->created_at,5,5) ?></td>
                       <td>{{ $Q->click_count }}</td>
