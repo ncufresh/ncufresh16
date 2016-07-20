@@ -2,20 +2,235 @@
 @section('title','小遊戲')
   @section('css')
     <style>
+
+
+    .background{
+        top:3%;
+        left:0%;
+        width: 100%;
+        height:90%;
+        z-index: -1;
+        opacity:0.4;
+        position:fixed; 
+      }
+
+      .title{
+        font-size:40px;
+
+      }
+      .scores{
+        font-size: 30px;
+      }
+
+      #totleBoard{
+
+        background-color: rgba(242, 242, 242,0.7);
+        border-radius: 20px;
+        margin: 0px auto;
+        margin-top: 5%;
+        margin-left:8%;
+        
+        padding: 10px;
+
+        height:400px;
+        width: 40%;
+
+        display:table; 
+              float: left;
+
+              text-align:center;
+          
+      }
+      #personalBoard{
+
+        background-color: rgba(242, 242, 242,0.7);
+        border-radius: 20px;
+        margin: 0px auto;
+        margin-top: 5%;
+        margin-left:5%; 
+        
+        padding: 10px;
+
+        height:400px;
+        width: 40%;
+
+        display:table; 
+              float: left;
+
+              text-align:center;
+      }
+      #goback{
+        margin: 0px auto;
+        margin-top: 5%;
+        margin-left:30px; 
+
+        height:50px;
+        width:50px;
+
+      }
+      #leaderboard{
+        display:none;
+      }
+      #backToGame{
+        margin-left:46%;
+      }
+
+
+
+
+
+
       *{ 
         padding: 0; margin: 0; 
       }
-      canvas{ 
+      #myCanvas{ 
         background: #eee; display: block; margin: 0 auto; 
         margin-top:5%;
+        
       }
+      button{
+
+        margin-top:5%;
+      }
+
+
+
     </style>
     @endsection
 @section('content')
+    <div id="leaderboard">
+
+      <img class="background" src="/img/game/BG_sky.jpg">
+      <div class="container" id="totleBoard">
+        <!--  這裡可以參考laravel ajax教學的結構 改為table，名次用排序演算法算出後再附上，不要用列表  -->
+
+        <p class="title">總得分排行</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>名次</th>
+                          <th>username</th>
+                          <th>score</th>
+            </tr>
+          </thead>
+          <tbody id="tasks-list" name="tasks-list">
+            <tr>
+              <th>1.</th>
+                          <th>tommy522588</th>
+                          <th>100</th>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+      </div>
+
+      <div class="container" id="personalBoard" >
+        <p class="title">個人得分排行</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>名次</th>
+                  <th>username</th>
+                  <th>score</th>
+            </tr>
+          </thead>
+          <tbody id="tasks-list" name="tasks-list">
+            <tr>
+              <th>1.</th>
+                  <th>tommy522588</th>
+                  <th>100</th>
+            </tr>
+            <tr>
+              <th>1.</th>
+                  <th>tommy522588</th>
+                  <th>100</th>
+            </tr>
+            <tr>
+              <th>1.</th>
+                  <th>tommy522588</th>
+                  <th>100</th>
+            </tr>
+            <tr>
+              <th>1.</th>
+                  <th>tommy522588</th>
+                  <th>100</th>
+            </tr>
+            <tr>
+              <th>1.</th>
+                  <th>tommy522588</th>
+                  <th>100</th>
+            </tr>
+            <tr>
+              <th>1.</th>
+                  <th>tommy522588</th>
+                  <th>100</th>
+            </tr>
+            <tr>
+              <th>1.</th>
+                  <th>tommy522588</th>
+                  <th>100</th>
+            </tr>
+            <tr>
+              <th>1.</th>
+                  <th>tommy522588</th>
+                  <th>100</th>
+            </tr> 
+            <tr>
+              <th>1.</th>
+                  <th>tommy522588</th>
+                  <th>100</th>
+            </tr>
+            <tr>
+              <th>1.</th>
+                  <th>tommy522588</th>
+                  <th>100</th>
+            </tr>
+            <tr>
+          </tbody>
+        </table>
+      </div>
+      <a  onclick="display()" id="backToGame"  href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-circle-arrow-left"></span> 回到遊戲</a>
+    </div>
+
+
+<!-- /////////////////////////////////////////////////////  以上是排行榜  /////////////////////////////////////////////////////  -->
       <canvas id="myCanvas" width="1000" height="500"></canvas>
+
+      <audio id="bgm" loop="loop"><source src="/img/game/bgm.mp3" type="audio/mpeg"></audio>
+      <audio id="jump"><source src="/img/game/jump.mp3" type="audio/mpeg"></audio>
+      <audio id="gameover"><source src="/img/game/gameover.mp3" type="audio/mpeg"></audio>
+      
+
+
 @endsection
 @section('js')
 <script>
+/////////the leaderboard page and the game page exchange
+function hide(){
+  document.getElementById("myCanvas").style.display="none";
+  document.getElementById("leaderboard").style.display="block";
+  
+}
+function display(){
+
+  document.getElementById("myCanvas").style.display="block"; 
+  document.getElementById("leaderboard").style.display="none";
+
+  
+}
+/////////////
+
+
+
+
+var bgm_music = document.getElementById("bgm");
+var jump_music = document.getElementById("jump");
+var gameover_music = document.getElementById("gameover");
+bgm_music.play();
+
+
 var questions=[];//題目
 var questions_temp=[];//題目亂序化
 //////////////////get the question
@@ -326,7 +541,8 @@ function mouseDownHandler(event){
     }
     else if(event.clientX>(rect.left+637) && event.clientX<(rect.left+637+133) &&   
       event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
-      location.assign("/leaderboard");
+      //location.assign("/leaderboard");
+      hide();
     }
   }
   else if(gameState===README){
@@ -650,6 +866,8 @@ function choose(){
     id_question = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;  
     //抽出問題end*/
 
+    jump_music.play();
+
     id_question++;
 
 
@@ -785,11 +1003,15 @@ function draw_GAME_4(){
     show(msg);
 }
 function drawGameOver(){
+
   context.clearRect(0, 0, canvas.width, canvas.height);
   gameStateManager[5][gameState_over_state].draw();
   show(msg);
 }
 
+
+//讓gameover_music只播放一次
+var gameover_music_bool=true;
 
 function draw(){
   ////////////////////////gameState manager////////////////////////
@@ -815,6 +1037,14 @@ function draw(){
 
   }
   else if(gameState===GAMEOVER){
+    bgm_music.pause();
+
+    //讓gameover_music只播放一次
+    if(gameover_music_bool){
+      gameover_music.play();  
+      gameover_music_bool=false;
+    }
+    
     drawGameOver();
   }
   ////////////////////////gameState manager////////////////////////
