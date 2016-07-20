@@ -40,7 +40,7 @@ body {
 /* http://stackoverflow.com/questions/16214326/bootstrap-dropdown-with-hover */
 /* 淡入使用法:http://stackoverflow.com/questions/11679567/using-css-for-fade-in-effect-on-page-load */
 @media (min-width:990px){
-    li.dropdown:hover > ul.dropdown-menu {
+    li.mydropdown:hover > ul.dropdown-menu {
         display: block;
         margin-top: 0; /* remove the gap so it doesn't close */
 
@@ -56,7 +56,7 @@ body {
      }
 }
 /* dropdown hover時 有層透明的在上面 */
-ul.nav > li.dropdown:hover {
+ul.nav > li.mydropdown:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 

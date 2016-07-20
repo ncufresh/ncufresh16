@@ -37,7 +37,7 @@ class GameController extends Controller
     }
     public function getScores(){//取得分數
         $scores=Question_collection::all();
-        return response()->json($question); //為何跟Rounter的寫法需要不一樣?
+        return response()->json($scores); //為何跟Rounter的寫法需要不一樣?
     }
 
 

@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', '登入')
+
 @section('js')
 <script type="text/javascript">
     $(document).ready(function(){
@@ -63,15 +65,31 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-10 col-md-offset-1">
                               <div class="btn-group btn-group-justified btn-group-raised">
                                   <a href="{{ url('/register') }}" class="btn btn-danger">註冊</a>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                              <div class="btn-group btn-group-justified btn-group-raised">
                                   <a href="{{ url('/register') }}" class="btn btn-success">校內Portal登入</a>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                              <div class="btn-group btn-group-justified btn-group-raised">
                                   <a href="{{ url('/register') }}" class="btn btn-info">Facebook登入</a>
                               </div>
                             </div>
-
                         </div>
                     </form>
                 </div>

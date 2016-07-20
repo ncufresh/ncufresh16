@@ -1,82 +1,153 @@
-/** home頁面 Global **/
-.sec {
-    height: 100vh;
+/****************************************************/
+/* 背景漸層粉紅色 */
+body {
+    background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%);
 }
-
-/** 最上面那區 **/
-.one-or-two {
-    border: 10px solid ; /* 邊粗 transparent? */
-    margin-bottom: 25px; /* 下面留空 */
-    width: 60%;
-    height: 60%;
-    opacity: 0.7; /* 透明度 */
+/* 櫻花圖片 */
+#all {
+    background-image:url('../img/home/PQ.png');
+    background-repeat:no-repeat;
+    background-attachment:fixed;
 }
-.one-or-two:hover {
-    border-color: #f1f1f1;
-}
-
-/** 廣告 **/
-body > .carousel {
-    padding: 160px 15px; /* 上,左 */
-    background-color: #b2dfdb;
-    height: 100vh;
-}
-.carousel-inner img {
-    width: 80vh;
-    margin: auto;
-}
-
-.carousel-caption h3 {
-    color: #fff; /* 白色字 */
-}
-@media (max-width: 600px) { /* 最大寬度以內都會執行下面code => 手機版的文字會不見 */
-    .carousel-caption {
-        display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+@media (min-width:992px){
+    /* 一般 */
+    section {
+      padding: 100px 0 0 0; /* 上左下右 */
     }
 }
+@media (max-width:991px){
+    /* 手機 */
+    section {
+      padding: 50px 0;
+    }
+}
+/****************************************************/
 
-/** 公告 **/
-
-/* 不要圓角 */
-.list-group-item:first-child {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-}
-.list-group-item:last-child {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.thumbnail {
-    padding: 0 0 15px 0; /* 下 */
-    border: none; /* 無邊框 */
-    border-radius: 0; /* 無圓角 */
-}
-.thumbnail p {
-    margin-top: 15px;
-    color: #555; /* 公告字的顏色 */
-}
-
-.btn {
-    padding: 10px 20px;
-    background-color: #333; /* 按鈕背景色 */
-    color: #f1f1f1; /* 按鈕字顏色 */
-    border-radius: 0;
-    transition: 0.2s;
-}
-.btn:hover, .btn:focus {
-    border: 1px solid #333; /* 細框 顏色 */
-    background-color: #fff; /* 白底 */
-    color: #000; /* 白字 */
-}
-
-/* modal */
-.modal-header, h4, .close {
-    background-color: #333;
-    color: #fff; /* 白字 */
+/* 最上面第一塊 */
+/****************************************************/
+#logo {
+    background-image: url("../img/home/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
     text-align: center;
-    font-size: 30px;
+    color: white; /* 字的顏色 */
 }
-.modal-header, .modal-body {
-    padding: 20px 20px;
+.blur {
+  height: 100%;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-color: rgba(0,0,0,0);
+  background-image: -webkit-linear-gradient(rgba(0,0,0,0.4) 0%,rgba(0,0,0,.6) 75%,rgba(0,0,0,.8) 100%);
+  background-image: linear-gradient(rgba(0,0,0,0.4) 0%,rgba(0,0,0,.6) 75%,rgba(0,0,0,.8) 100%);
 }
+@media (min-width:992px){
+    /* 一般 */
+    #logo .intro-text {
+      padding-top: 100px;
+      padding-bottom: 200px;
+    }
+}
+@media (max-width:991px){
+    /* 手機 */
+    #logo .intro-text {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
+#logo .btn-circle {
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 16px 16px;
+    background-color: transparent;
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+}
+/* 往下拉的動畫 */
+#logo .btn-circle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    animation: mymove 0.50s linear infinite alternate;
+}
+@keyframes mymove {
+    from {font-size: 14px;}
+    to {font-size:18px;}
+}
+/****************************************************/
+
+/* 第二塊 放公告那 */
+/****************************************************/
+/* 各個item之間的間隔 */
+/* 手機版間隔 */
+#ann .ann-item {
+    margin: 0 0 35px;
+    right: 0;
+}
+/* 一般間隔 直接複寫 */
+@media (min-width: 992px) {
+    #ann .ann-item {
+        margin: 0 0 30px;
+    }
+}
+#ann .ann-item .ann-link {
+    display: block;
+    position: relative;
+    max-width: 400px; /* 看要不要設定最大寬度 */
+    margin: 0 auto;
+    text-decoration: none;
+}
+/* 遮罩顏色 */
+#ann .ann-item .ann-link .ann-hover {
+    background: rgba(55, 176, 254, 0.9);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all ease 0.5s;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    border-radius: 2px; /* 遮罩圓角 */
+}
+#ann .ann-item .ann-link .ann-hover:hover {
+    opacity: 1;
+}
+/* 對齊中間的放大鏡 */
+#ann .ann-item .ann-link .ann-hover .ann-hover-content {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    font-size: 20px;
+    text-align: center;
+    top: 50%;
+    margin-top: -12px;
+    color: white;
+
+}
+#ann .ann-item .ann-link .ann-hover .ann-hover-content i {
+    margin-top: -12px;
+}
+/* 內容的設定 */
+#ann .ann-item .ann-link .ann-caption {
+    background-color: rgb(149, 226, 228);
+    text-align: center;
+    padding: 25px;
+    min-height: 150px; /* 為了段行時會超出高度而設的 */
+    border-radius: 2px; /* 內容的圓角 */
+    box-shadow: 0 0 10px #999;
+}
+@media (min-width: 992px) {
+    #ann .ann-item .ann-caption h4 {
+      text-transform: none;
+      /*white-space: nowrap; /* 不因為字數過多而亂換行 */
+      /*margin: 0; /* 上下這兩個margin: 0 是一起加或一起刪 */
+    }
+}
+#ann .ann-item .ann-caption p {
+  font-size: 16px;
+  /*margin: 0; /* 上下這兩個margin: 0 是一起加或一起刪 */
+}
+/****************************************************/

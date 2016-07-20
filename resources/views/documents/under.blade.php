@@ -1,6 +1,6 @@
-  @extends('layouts.layout')
+@extends('layouts.layout')
 
-@section('title', '新生必讀 - 研究所')
+@section('title', '新生必讀 - 大學部')
 
 @section('css')
 <style>
@@ -111,12 +111,11 @@
     margin-top: 60px;
   }
 
-@media screen and (max-width: 991px) {
   .center-col {
     margin-left: 5%;
     margin-right: 5%;
   }
-}
+
   .center {
     text-align: center;
   }
@@ -127,7 +126,7 @@
 <script>
   $('#nav').affix({
     offset: {
-      top: 0,
+      top: $('#nav').offset().top - 100,
       bottom: $('footer').outerHeight(true) + $('.mixed').outerHeight(true) + $('#add').outerHeight(true) - 100
     }
   });
@@ -138,40 +137,41 @@
 <div class="wrapper">
   <div class="container-fulid">
     <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-      
-        @foreach ($mainGraduates as $graduates)
-        <section id="main-{{ ++$count[1] }}">
-          <h2><span class="fa fa-edit"></span> Main {{ $count[1] }}</h2>
-          <p>Main {{ $count[1] }}</p>
-
-          @foreach ($graduates as $g)
-          <section id="section-{{ $count[1] }}-{{ $g->id }}">
-            <h3>{{ $g->title }}</h3>
-            <p>{{ $g->content }}</p>
-            <button type="button" class="btn btn-primary">Learn More</button>
-          </section>
-          @endforeach
-        @endforeach
-
-      </div><!-- /col-md-6 -->
       <div class="col-md-3 scrollspy">
         <ul id="nav" class="nav side-nav hidden-xs hidden-sm" data-spy="affix">
-          <li><h1 class="center"><small><a href="{{ url('/doc/under') }}">大學部</a></small>　研究所</h1></li>
+          <li><h1 class="center">大學部　<small><a href="{{ url('/doc/graduate') }}">研究所</a></small></h1></li>
           {{-- 顯示大學部的新生必讀資料 --}}
-          @foreach ($mainGraduates as $graduates)
+          @foreach ($mainUnders as $unders)
             <li><a href="#main-{{ ++$count[0] }}">大學部主條目 {{ $count[0] }}</a>
             <ul class="nav side-nav">
-            @foreach ($graduates as $g)
-              <li><a href="#section-{{ $count[0] }}-{{ $g->id }}"><span class="fa fa-angle-double-right"></span>{{ $g->title }}</a>
+            @foreach ($unders as $u)
+              <li><a href="#section-{{ $count[0] }}-{{ $u->id }}"><span class="fa fa-angle-double-right"></span>{{ $u->title }}</a>
               </li>
             @endforeach 
             </ul>
             </li>
           @endforeach
+
         </ul>
-      </div><!-- /col-md-3 /scrollspy -->
+      </div>
+      <div class="col-md-6">
+
+        @foreach ($mainUnders as $unders)
+        <section id="main-{{ ++$count[1] }}">
+          <h2><span class="fa fa-edit"></span> Main {{ $count[1] }}</h2>
+          <p>Main {{ $count[1] }}</p>
+
+          @foreach ($unders as $u)
+          <section id="section-{{ $count[1] }}-{{ $u->id }}">
+            <h3>{{ $u->title }}</h3>
+            <p>{{ $u->content }}</p>
+            <button type="button" class="btn btn-primary">Learn More</button>
+          </section>
+          @endforeach
+        @endforeach
+
+      </div>
+      <div class="col-md-3"></div>
     </div><!-- /row -->
   </div><!-- /container -->
   <section class="mixed">
@@ -181,9 +181,7 @@
         <div class="col-sm-6">
           <p>Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante.
           </p>
-          <p>
-            <img class="img-responsive  " src="http://placehold.it/500x250/5fb3ce/000000">
-          </p>
+          <img class="img-responsive  " src="http://placehold.it/500x250/5fb3ce/000000">
         </div><!-- /col-sm-6 -->
         <div class="col-sm-6">
           <p>Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.
@@ -200,63 +198,59 @@
           <p>Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.
           </p>
           <p>End of container. XD</p>
-          <!-- 留白給 footer
-          <br><br><br><br><br><br> -->
         </div><!-- /col-sm-12 -->
       </div><!-- /row -->
     </div><!-- /container -->
   </section><!-- /mixed -->
 
-<!-- <div class="container notosanstc">
-    <div class="row">
-        {{-- 顯示研究所的新生必讀資料 --}}
-        <h1><small><a href="{{ url('/doc/under') }}">大學部</a></small>　研究所</h1>
-        <ul>
-            <?php $count = 0; ?>
-            @foreach ($mainGraduates as $graduates)
-                <li>研究所主條目 {{ ++$count }}</li>
-                <ul>
-                    @foreach ($graduates as $g)
-                        <li>{{ $g->title }}</li>
-                        <ul>
-                            <li>{{ $g->content }}</li>
-                            <form action="{{ url('/doc/graduate/'.$g->id.'/edit') }}" method="GET">
-                                <button type="submit" id="edit-document-{{ $g->id }}">編輯</button>
-                            </form>
-                            <form action="{{ url('/doc/graduate/'.$g->id) }}" method="POST">
-                                {!! csrf_field() !!}
-                                {!! method_field('DELETE') !!}
-                                <button type="submit" id="delete-document-{{ $g->id }}">刪除</button>
-                            </form>
-                        </ul>
-                    @endforeach 
-                </ul>
-            @endforeach
-        </ul>
-    </div>  -->
-  {{-- 新增研究所的新生必讀資料 --}}
+  <!-- <div class="row">
+      {{-- 顯示大學部的新生必讀資料 --}}
+      <h1>大學部　<small><a href="{{ url('/doc/graduate') }}">研究所</a></small></h1>
+      <ul>
+          <?php $count = 0; ?>
+          @foreach ($mainUnders as $unders)
+              <li>大學部主條目 {{ ++$count }}</li>
+              <ul>
+                  @foreach ($unders as $u)
+                      <li>{{ $u->title }}</li>
+                      <ul>
+                          <li>{{ $u->content }}</li>
+                          <form action="{{ url('/doc/under/'.$u->id.'/edit') }}" method="GET">
+                              <button type="submit" id="edit-under-{{ $u->id }}">編輯</button>
+                          </form>
+                          <form action="{{ url('/doc/under/'.$u->id) }}" method="POST">
+                              {!! csrf_field() !!}
+                              {!! method_field('DELETE') !!}
+                          <button type="submit" id="delete-document-{{ $u->id }}">刪除</button>
+                      </form>
+                      </ul>
+                  @endforeach 
+              </ul>
+          @endforeach
+      </ul>
+  </div> -->
+  {{-- 新增大學部的新生必讀資料 --}}
   <div class="container-fulid" id="add">
     <div class="row">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-6 center">
+      <div class="col-md-3"></div>
+      <div class="col-md-6 center">
         <h1>新增內容</h1>
-        <form action="{{ url('/doc/graduate') }}" method="POST">
+        <form action="{{ url('/doc/under') }}" method="POST">
           {{ csrf_field() }}
           <p>標題</p>
-          <p><input type="textbox" name="title"></p>
+          <p><input type="text" name="title" id="title" required></p>
           <p>內文</p>
-          <p><input type="textbox" name="content"></p>
+          <p><input type="text" name="content" id="content" required></p>
           <p>隸屬於哪個主項目</p>
           <p><input type="number" name="position_of_main" min="1" max="3" step="1" value="1" required></p>
           <p><button type="submit">新增</button></p>
         </form>
         <!-- 留白給 footer -->
         <br><br><br><br><br><br><br><br>
-      </div><!-- /col-sm-6 -->
-      <div class="col-sm-3"></div>
-    </div><!-- /row -->
-  </div><!-- /container-fulid -->
-</div><!-- /wrapper -->
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+</div>
+
 @endsection
-
-
