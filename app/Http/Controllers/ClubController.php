@@ -21,7 +21,18 @@ class ClubController extends Controller
 
 	public function create()
     {
-       return view('clubs.create');
+    	$test = array();
+
+    	for($i=1 ; $i<10 ;$i++){
+    		$test[]=$i;
+    	}
+    	//字串
+    	$testt = json_encode($test);
+    	//陣列
+    	$testtt = json_decode($testt);
+		return $testtt[0];
+
+       return view('clubs.create',compact('test'));
     }
 
 	
@@ -30,21 +41,30 @@ class ClubController extends Controller
 		
     	
     	//上傳照片
-    	$clubfile = $request->file('clubs_file');
-    	$upload = public_path().'/clubs_file/';
-    	$filename = $clubfile->getClientOriginalName();
-    	$success = $clubfile->move($upload,$filename);
-    	if($success){
+    	// $clubfile = $request->file('clubs_file');
+    	// $upload = public_path().'/clubs_file/';
+    	// $filename = $clubfile->getClientOriginalName();
+    	// $success = $clubfile->move($upload,$filename);
+    	// if($success){
 
-    		$club = new Club;
-    		$club->clubs_kind = $request->clubs_kind;
-    		$club->clubs_intro = $request->clubs_intro;
-    		$club->clubs_file = $filename;
-    		echo '<img src="clubs_file/'.$filename.'"/>';
-    		$club->save();
-    		return redirect('/groups/clubs');
+    	// 	$club = new Club;
+    	// 	$club->clubs_kind = $request->clubs_kind;
+    	// 	$club->clubs_intro = $request->clubs_intro;
+    	// 	$club->clubs_file = $filename;
+    	// 	$club->save();
+    	// 	return redirect('/groups/clubs');
 
-    	}
+    	// }
+
+    	$club = new Club;
+    	$club->clubs_kind = $request->clubs_kind;
+    	$club->clubs_intro = $request->clubs_intro;
+    	$club->clubs_file = $request->clubs_file;
+    	$club->clubs_summary = $request->clubs_summary;
+    	$club->clubs_activity = $request->clubs_activity;
+    	$club->clubs_join = $request->clubs_join;
+    	$club->save();
+    	return redirect('/groups/clubs');
 
     	
     	

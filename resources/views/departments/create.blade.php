@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 @section('content')
 	<form action="{{ URL::action('DepartmentController@store') }}" method="post">
 	{{csrf_field()}}
