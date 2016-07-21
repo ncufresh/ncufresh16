@@ -1,3 +1,4 @@
+/* 雜 */
 /****************************************************/
 /* 背景漸層粉紅色 */
 body {
@@ -5,9 +6,16 @@ body {
 }
 /* 櫻花圖片 */
 #all {
-    background-image:url('../img/home/PQ.png');
-    background-repeat:no-repeat;
+    /* 幹XD http://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers */
+    overflow-x:hidden;
+    /*background-image:url('../img/home/spring.png');*/
     background-attachment:fixed;
+    background-repeat:no-repeat;
+    background-position: center center;
+    background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
 }
 @media (min-width:992px){
     /* 一般 */
@@ -21,12 +29,34 @@ body {
       padding: 50px 0;
     }
 }
+/* 到最上面的連結 */
+#totop {
+    display:none;
+}
+@media (min-width:992px){
+    /* 一般 */
+    #totop:hover {
+        background-color: rgb(57, 149, 235);
+    }
+    #totop {
+        background-color: transparent;
+        color: black;
+        display: inline;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 999;
+        transition: all ease 0.7s;
+        -webkit-transition: all ease 0.7s;
+        -moz-transition: all ease 0.7s;
+      }
+}
 /****************************************************/
 
 /* 最上面第一塊 */
 /****************************************************/
 #logo {
-    background-image: url("../img/home/background.jpg");
+    /*background-image: url("../img/home/background3.jpg");*/
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;
@@ -79,75 +109,356 @@ body {
 }
 /****************************************************/
 
-/* 第二塊 放公告那 */
+/* 真正第二塊 放公告廣告那 */
 /****************************************************/
-/* 各個item之間的間隔 */
-/* 手機版間隔 */
-#ann .ann-item {
-    margin: 0 0 35px;
-    right: 0;
+#news .btn-down {
+    color: black;
+    border-radius:50%;
+    padding-left:20.5px;
+    padding-right:20.5px;
 }
-/* 一般間隔 直接複寫 */
-@media (min-width: 992px) {
-    #ann .ann-item {
-        margin: 0 0 30px;
-    }
+#news .btn-down:hover {
+    background-color: transparent;
+    transition: all ease 0.7s;
+    -webkit-transition: all ease 0.7s;
+    -moz-transition: all ease 0.7s;
 }
-#ann .ann-item .ann-link {
-    display: block;
-    position: relative;
-    max-width: 400px; /* 看要不要設定最大寬度 */
-    margin: 0 auto;
-    text-decoration: none;
-}
-/* 遮罩顏色 */
-#ann .ann-item .ann-link .ann-hover {
-    background: rgba(55, 176, 254, 0.9);
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: all ease 0.5s;
-    -webkit-transition: all ease 0.5s;
-    -moz-transition: all ease 0.5s;
-    border-radius: 2px; /* 遮罩圓角 */
-}
-#ann .ann-item .ann-link .ann-hover:hover {
-    opacity: 1;
-}
-/* 對齊中間的放大鏡 */
-#ann .ann-item .ann-link .ann-hover .ann-hover-content {
-    position: absolute;
-    width: 100%;
-    height: 20px;
-    font-size: 20px;
-    text-align: center;
-    top: 50%;
-    margin-top: -12px;
-    color: white;
-
-}
-#ann .ann-item .ann-link .ann-hover .ann-hover-content i {
-    margin-top: -12px;
-}
-/* 內容的設定 */
-#ann .ann-item .ann-link .ann-caption {
-    background-color: rgb(149, 226, 228);
-    text-align: center;
-    padding: 25px;
-    min-height: 150px; /* 為了段行時會超出高度而設的 */
-    border-radius: 2px; /* 內容的圓角 */
+#ann {
+    margin-bottom: 15px;
+    height: 400px;
+    overflow-y:scroll;
     box-shadow: 0 0 10px #999;
 }
-@media (min-width: 992px) {
-    #ann .ann-item .ann-caption h4 {
-      text-transform: none;
-      /*white-space: nowrap; /* 不因為字數過多而亂換行 */
-      /*margin: 0; /* 上下這兩個margin: 0 是一起加或一起刪 */
-    }
+#ann a {
+    text-decoration: none;
 }
-#ann .ann-item .ann-caption p {
-  font-size: 16px;
-  /*margin: 0; /* 上下這兩個margin: 0 是一起加或一起刪 */
+#ann .list-group {
+    padding-top: 21px;
+}
+#ann .list-group-item {
+    padding: 16px;
+}
+#ann .list-group-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+/****************************************************/
+
+/* 複製來的carousel */
+/* http://codepen.io/yoanmarchal/pen/avGzBm */
+/****************************************************/
+.carousel {
+  height: 400px;
+  width: auto;
+  margin: 0 auto;
+}
+.carousel figure {
+  height: 400px;
+  background-size: cover;
+  position: relative;
+}
+.carousel figure::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.5));
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
+  opacity: 0;
+  will-change: opacity;
+  -webkit-transition: opacity 250ms ease-in-out;
+  transition: opacity 250ms ease-in-out;
+}
+.carousel-inner {
+  border-radius: 3px;
+}
+.carousel .carousel-control {
+  fill: #fff;
+  background-image: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: translate(0);
+          transform: translate(0);
+  will-change: transform;
+  -webkit-transition: -webkit-transform 250ms ease-in;
+  transition: -webkit-transform 250ms ease-in;
+  transition: transform 250ms ease-in;
+  transition: transform 250ms ease-in, -webkit-transform 250ms ease-in;
+  opacity: 1;
+}
+.carousel .carousel-control.left {
+  -webkit-transform: translate(-100%);
+          transform: translate(-100%);
+}
+.carousel .carousel-control.right {
+  -webkit-transform: translate(100%);
+          transform: translate(100%);
+}
+.carousel .carousel-control svg {
+  height: 64px;
+}
+.carousel-indicators {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  z-index: 15;
+  margin: 0;
+  padding: 30px;
+  text-align: right;
+}
+.carousel-indicators li {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid white;
+}
+.carousel-indicators li.active {
+  background-color: white;
+  border: 1px solid white;
+}
+.carousel-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  padding: 25px;
+  color: #fff;
+  text-align: left;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+  will-change: transform;
+  -webkit-transition: -webkit-transform 250ms ease-in;
+  transition: -webkit-transform 250ms ease-in;
+  transition: transform 250ms ease-in;
+  transition: transform 250ms ease-in, -webkit-transform 250ms ease-in;
+  font-size: 3em;
+  margin: 0;
+}
+.carousel-caption::first-letter {
+  text-transform: uppercase;
+}
+@media (min-width:992px){ /* 為了不撞元素 */
+  .carousel .carousel-control.left, .carousel .carousel-control.right {
+    display: none;
+  }
+}
+.carousel:hover .carousel-control.left, .carousel:hover .carousel-control.right {
+  display: flex; /* 為了不撞元素 */
+  -webkit-transform: translate(0);
+          transform: translate(0);
+}
+.carousel:hover figure::before {
+  opacity: 1;
+}
+.carousel:hover figure .carousel-caption {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+/****************************************************/
+
+/* 直接複製 */
+/* https://codepen.io/lovenery/pen/kXEopy */
+/****************************************************/
+#timeline .timeline-item:after, #timeline .timeline-item:before {
+  content: '';
+  display: block;
+  width: 100%;
+  clear: both;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+#timeline {
+  margin: 0;
+  padding: 0;
+  font-family: helvetica, arial, tahoma, verdana;
+  line-height: 20px;
+  font-size: 14px;
+  color: #726f77;
+}
+
+#about .container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+#timeline {
+  width: 100%;
+  margin: 30px auto;
+  position: relative;
+  padding: 0 10px;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+#timeline:before {
+  content: "";
+  width: 3px;
+  height: 100%;
+  background: #ee4d4d;
+  left: 50%;
+  top: 0;
+  position: absolute;
+}
+#timeline:after {
+  content: "";
+  clear: both;
+  display: table;
+  width: 100%;
+}
+#timeline .timeline-item {
+  margin-bottom: 50px;
+  position: relative;
+}
+#timeline .timeline-item .timeline-icon {
+  background: #ee4d4d;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  overflow: hidden;
+  margin-left: -23px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+#timeline .timeline-item .timeline-icon svg {
+  position: relative;
+  top: 14px;
+  left: 14px;
+}
+#timeline .timeline-item .timeline-icon i {
+  color: white;
+  position: relative;
+  top: 13px;
+  left: 13px;
+}
+#timeline .timeline-item .timeline-content {
+  width: 45%;
+  background: #fff;
+  padding: 20px;
+  -webkit-box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+  -ms-box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+#timeline .timeline-item .timeline-content h2 {
+  padding: 15px;
+  background: #ee4d4d;
+  color: #fff;
+  margin: -20px -20px 0 -20px;
+  font-weight: 300;
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  -ms-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+}
+#timeline .timeline-item .timeline-content p {
+  padding-top: 20px;
+}
+#timeline .timeline-item .timeline-content:before {
+  content: '';
+  position: absolute;
+  left: 45%;
+  top: 20px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid #ee4d4d;
+}
+#timeline .timeline-item .timeline-content.right {
+  float: right;
+}
+#timeline .timeline-item .timeline-content.right:before {
+  content: '';
+  right: 45%;
+  left: inherit;
+  border-left: 0;
+  border-right: 7px solid #ee4d4d;
+}
+
+#timeline .btn {
+  padding: 5px 15px;
+  text-decoration: none;
+  background: transparent;
+  border: 2px solid #f27c7c;
+  color: #f27c7c;
+  display: inline-block;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 12px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition: background 0.3s ease;
+  -moz-transition: background 0.3s ease;
+  -ms-transition: background 0.3s ease;
+  transition: background 0.3s ease;
+  -webkit-box-shadow: 2px 2px 0 #f27c7c;
+  -moz-box-shadow: 2px 2px 0 #f27c7c;
+  -ms-box-shadow: 2px 2px 0 #f27c7c;
+  box-shadow: 2px 2px 0 #f27c7c;
+}
+#timeline .btn:hover {
+  box-shadow: none;
+  top: 2px;
+  left: 2px;
+  -webkit-box-shadow: 2px 2px 0 transparent;
+  -moz-box-shadow: 2px 2px 0 transparent;
+  -ms-box-shadow: 2px 2px 0 transparent;
+  box-shadow: 2px 2px 0 transparent;
+}
+
+@media screen and (max-width: 768px) {
+  #timeline {
+    margin: 30px;
+    padding: 0px;
+    width: 90%;
+  }
+  #timeline:before {
+    left: 0;
+  }
+  #timeline .timeline-item .timeline-content {
+    width: 90%;
+    float: right;
+  }
+  #timeline .timeline-item .timeline-content:before, #timeline .timeline-item .timeline-content.right:before {
+    left: 10%;
+    margin-left: -6px;
+    border-left: 0;
+    border-right: 7px solid #ee4d4d;
+  }
+  #timeline .timeline-item .timeline-icon {
+    left: 0;
+  }
 }
 /****************************************************/
