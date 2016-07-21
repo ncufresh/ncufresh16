@@ -1,126 +1,151 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('title', 'NCU Fresh | 新生知訊網')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+<style media="screen">
+
+#about .row {
+  padding: 30px;
+}
+</style>
 @stop
 
 @section('js')
 @stop
 
 @section('content')
+<div id="all">
 
-
-<!-- 最上面那區 -->
-<div id="mustread" class="container text-center sec">
-
-    <div class="row">
-        <h3>新生必讀</h3>
-        <p><em>QQ</em></p>
+<header id="logo">
+    <div class="blur">
+        <div class="container">
+            <div class="intro-text">
+                <img class="img-responsive center-block" src="{{ asset('img/home/logo.png') }}">
+                <h1 class="text-center">新生都該擁有的校園生活攻略</h1>
+                <br>
+                <a href="#ann" class="btn btn-circle">
+                    <i class="fa fa-angle-double-down fa-3x"></i>
+                </a>
+            </div>
+        </div>
     </div>
+</header>
 
+<section id="ann">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-sm-6 col-xs-12">
-            <p><strong>咖波</strong></p><br>
-            <a href="#hi" data-toggle="collapse">
-              <img src="img/test/capoo.png" class="img-circle one-or-two" alt="死圖">
+        <div class="col-md-12 text-center">
+            <h2 class="section-heading">最新消息</h2>
+            <h4 class="section-subheading text-muted">我們將會定期更新最新消息</h4>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 ann-item">
+            <a href="#" class="ann-link" data-toggle="modal">
+                <div class="ann-hover">
+                    <div class="ann-hover-content">
+                        <i class="fa fa-search-plus fa-3x"></i>
+                    </div>
+                </div>
+                <div class="ann-caption">
+                    <h4 class="text-muted">2016-08-08</h4>
+                    <h4>受理課程停修申請(線上列印停修單)</h4>
+                </div>
             </a>
-            <div id="hi" class="collapse">
-              <p>好吃</p>
-            </div>
         </div>
-        <div class="col-sm-6 col-xs-12">
-            <p><strong>兔子</strong></p><br>
-            <img src="img/test/capoo.png" class="img-circle one-or-two" alt="死圖">
+        <div class="col-md-4 col-sm-6 ann-item">
+            <a href="#" class="ann-link" data-toggle="modal">
+                <div class="ann-hover">
+                    <div class="ann-hover-content">
+                        <i class="fa fa-search-plus fa-3x"></i>
+                    </div>
+                </div>
+                <div class="ann-caption">
+                    <h4 class="text-muted">2016-08-08</h4>
+                    <h4>顏色可以改</h4>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6 ann-item">
+            <a href="#" class="ann-link" data-toggle="modal">
+                <div class="ann-hover">
+                    <div class="ann-hover-content">
+                        <i class="fa fa-search-plus fa-3x"></i>
+                    </div>
+                </div>
+                <div class="ann-caption">
+                    <h4 class="text-muted">2016-08-08</h4>
+                    <h4>大一周會-戰勝網路成癮—給網路族／手機族的完全攻略手冊</h4>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6 ann-item">
+            <a href="#" class="ann-link" data-toggle="modal">
+                <div class="ann-hover">
+                    <div class="ann-hover-content">
+                        <i class="fa fa-search-plus fa-3x"></i>
+                    </div>
+                </div>
+                <div class="ann-caption">
+                    <h4 class="text-muted">2016-08-08</h4>
+                    <h4>大一周會-我的翻轉教室--地球證詞(暫訂)</h4>
+                </div>
+            </a>
         </div>
     </div>
-
 </div>
+</section>
 
-
-<!-- 廣告輪播區 -->
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- 三個輪播 -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- 三個輪播的詳細內容 -->
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="img/test/test.png" alt="死圖嗚嗚">
-            <div class="carousel-caption">
-                <h3>hi</h3>
-                <p>你好</p>
-            </div>
-        </div>
-
-        <div class="item">
-            <img src="img/test/test.png" alt="死圖嗚嗚">
-            <div class="carousel-caption">
-                <h3>hi</h3>
-                <p>你好</p>
-            </div>
-        </div>
-
-        <div class="item">
-            <img src="img/test/test.png" alt="死圖嗚嗚">
-            <div class="carousel-caption">
-                <h3>hi</h3>
-                <p>你好</p>
-            </div>
-          </div>
-    </div>
-
-    <!-- 左右控制鈕 -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
-
-<!-- 公告區 -->
-<div id="board" class="container sec">
+<section id="about">
+<div class="container">
     <div class="row">
-        <h3 class="text-center">公告</h3>
-        <p class="text-center">以下是<br>公告!</p>
+        <div class="col-md-12 text-center">
+            <h2 class="section-heading">我們的產品</h2>
+            <h4 class="section-subheading text-muted">介紹導覽列的功能</h4>
+        </div>
     </div>
     <div class="row">
-        <ul class="list-group">
-            <li class="list-group-item">嗨!&nbsp;&nbsp;<span class="label label-danger">重要</span></li>
-            <li class="list-group-item">嗨!</li>
-            <li class="list-group-item">嗨</li>
-        </ul>
+        <div class="col-md-12">
+            <h3>新生必讀</h3>
+            <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+        </div>
     </div>
-    <div class="row text-center">
-      <button class="btn" data-toggle="modal" data-target="#myModal">更多</button>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>新生Q&amp;A</h3>
+            <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+        </div>
     </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4><span class="glyphicon glyphicon-lock"></span> 公告</h4>
-            </div>
-            <div class="modal-body">
-                123456
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
-                    <span class="glyphicon glyphicon-remove"></span> 關閉
-                </button>
-            </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>校園導覽</h3>
+            <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>系所社團</h3>
+            <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>中大生活</h3>
+            <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>影音專區</h3>
+            <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
         </div>
     </div>
 </div>
+</section>
+
+
+</div> {{-- div#all --}}
 @endsection

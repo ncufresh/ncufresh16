@@ -16,6 +16,8 @@
 @endsection
 @section('js')
 <script>
+var questions=[];//題目
+var questions_temp=[];//題目亂序化
 //////////////////get the question
 $(document).ready(function(){
   $.ajaxSetup({
@@ -30,13 +32,17 @@ $(document).ready(function(){
     //success data
     console.log(data);
     questions=data;//若要從資料庫提取複數列的資料，則以陣列表示，真是佛心來的
+    questions_temp=questions;
+    questions_temp.sort(function(){return Math.random()>0.5?-1:1;});
   }) 
   //create new task / update existing task
   //傳送資料開始
 });
 var question;
 var id_question=0;
-var questions=[];
+
+
+
 var choose_bool=false;
 var YourAnswer=0;
 var rightanswer=false; 
@@ -90,40 +96,41 @@ var character_animation;
 
 
 character_image=new Image();
-character_image.src ="img/game/bird_01.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_01.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_02.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_02.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_03.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_03.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_04.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_04.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_05.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_05.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_06.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_06.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_07.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_07.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_08.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_08.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_09.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_09.png";//圖片的檔案路徑
 character_images.push(character_image);
 character_image=new Image();
-character_image.src ="img/game/bird_10.png";//圖片的檔案路徑
+character_image.src ="/img/game/bird_10.png";//圖片的檔案路徑
 character_images.push(character_image);
 
 character=new player_animation(c_width,c_height,character_images,c_x,c_y,"image");
 
 var dontDraw=false;//受傷時要讓該變數在true and false 中跳動
 //角色end
+
 
 var rightPressed=false;
 var leftPressed=false;
@@ -134,9 +141,9 @@ var fallSpeed=0.7;
 var maxFallSpeed = 25;
 var jumpStart=-28;
 
-var background=new component(1000,500,"img/game/BG_sky.jpg",0,0,"image");
+var background=new component(1000,500,"/img/game/BG_sky.jpg",0,0,"image");
 
-var Q_frame=new component(690,176,"img/game/Q.png",150,20,"image");//問題的邊框
+var Q_frame=new component(690,176,"/img/game/Q.png",150,20,"image");//問題的邊框
 
 
 var brickXs = [];//the bricks' X 
@@ -147,11 +154,11 @@ for (var i = 0; i < 12; i++) {
 }
 var bricks=[];
 for(var i=0;i<brickXs.length;i++){
-    bricks.push(new component(brickX_width,brickX_height,"img/game/floor.png",brickXs[i],500-brickX_height,"image"));
+    bricks.push(new component(brickX_width,brickX_height,"/img/game/floor.png",brickXs[i],500-brickX_height,"image"));
 }
 var background_bricks=[];//背景磚塊
 for(var i=0;i<brickXs.length;i++){
-    background_bricks.push(new component(brickX_width,brickX_height,"img/game/floor.png",brickXs[i],500-brickX_height,"image"));
+    background_bricks.push(new component(brickX_width,brickX_height,"/img/game/floor.png",brickXs[i],500-brickX_height,"image"));
 }
 
 var wormXs=[];//the worms' X
@@ -162,7 +169,7 @@ for(var i=0 ; i<5 ; i++){
   wormXs.push(i*700);
 }
 for(var i=0 ; i<5 ; i++){
-  worms.push(new component(worms_width,worms_height,"img/game/worm.png",wormXs[i],500-20-worms_height,"image"));//20為地板高度，可視情況調整
+  worms.push(new component(worms_width,worms_height,"/img/game/worm.png",wormXs[i],500-20-worms_height,"image"));//20為地板高度，可視情況調整
 }
 
 
@@ -178,7 +185,7 @@ for(var i=0;i<character_heart;i++){
   heartX.push(i*heart_width);
 }
 for(var i=0;i<character_heart;i++){
-  heart.push(new component(heart_width,heart_height,"img/game/heart.png",heartX[i],0,"image"));
+  heart.push(new component(heart_width,heart_height,"/img/game/heart.png",heartX[i],0,"image"));
 }
 
 var hurt_deviation=50;//讓角色比較不容易受傷，讓傷害偵測變窄
@@ -208,22 +215,24 @@ const GAME_4=5;//開始遊戲的畫面
 const GAMEOVER=6//測試用結束畫面
 
 //menu
-gameState_menu[0]=new component(1000,500,"img/game/Main.jpg",0,0,"image");//選單列
-gameState_menu[1]=new component(1000,500,"img/game/Main_1.jpg",0,0,"image");//選單列
-gameState_menu[2]=new component(1000,500,"img/game/Main_2.jpg",0,0,"image");//選單列
+gameState_menu[0]=new component(1000,500,"/img/game/Main.jpg",0,0,"image");//選單列
+gameState_menu[1]=new component(1000,500,"/img/game/Main_1.jpg",0,0,"image");//選單列
+gameState_menu[2]=new component(1000,500,"/img/game/Main_2.jpg",0,0,"image");//選單列
+gameState_menu[3]=new component(1000,500,"/img/game/Main_3.jpg",0,0,"image");//選單列
 ////
 //menu
 gameStateManager[0][0]=gameState_menu[0];
 gameStateManager[0][1]=gameState_menu[1];
 gameStateManager[0][2]=gameState_menu[2];
+gameStateManager[0][3]=gameState_menu[3];
 ////
 
-gameReadme=new component(1000,500,"img/game/Rules.jpg",0,0,"image");//說明頁面物件
-gamePlay_1=new component(1000,500,"img/game/story_1.jpg",0,0,"image");
-gamePlay_2=new component(1000,500,"img/game/story_2.jpg",0,0,"image");
-gamePlay_3=new component(1000,500,"img/game/story_3.jpg",0,0,"image");
-gamePlay_over[0]=new component(1000,500,"img/game/gameover_1.jpg",0,0,"image");
-gamePlay_over[1]=new component(1000,500,"img/game/gameover_2.jpg",0,0,"image");
+gameReadme=new component(1000,500,"/img/game/Rules.jpg",0,0,"image");//說明頁面物件
+gamePlay_1=new component(1000,500,"/img/game/story_1.jpg",0,0,"image");
+gamePlay_2=new component(1000,500,"/img/game/story_2.jpg",0,0,"image");
+gamePlay_3=new component(1000,500,"/img/game/story_3.jpg",0,0,"image");
+gamePlay_over[0]=new component(1000,500,"/img/game/gameover_1.jpg",0,0,"image");
+gamePlay_over[1]=new component(1000,500,"/img/game/gameover_2.jpg",0,0,"image");
 
 
 gameStateManager[1]=gameReadme;
@@ -272,13 +281,17 @@ function mouseMoveHandler(event) {//不用實作，只要按鍵按下，就會�
 
    msg = "Mouse position: " + (event.clientX) + "," + (event.clientY) + ";canvas position:" + (event.clientX-rect.left) +","+(event.clientY-rect.top)+";heart"+character_heart+";"+score;
    if(gameState===MENU){
-     if(event.clientX>(rect.left+349) && event.clientX<(rect.left+349+133) &&     //new start button
-        event.clientY>(rect.top+242) &&  event.clientY<(rect.top+242+75)){
+     if(event.clientX>(rect.left+254) && event.clientX<(rect.left+254+133) &&     //new start button
+        event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
         gameState_menu_state=1;
       }
-      else if(event.clientX>(rect.left+530) && event.clientX<(rect.left+530+133) &&   
-      event.clientY>(rect.top+242) &&  event.clientY<(rect.top+242+75)){
+      else if(event.clientX>(rect.left+436) && event.clientX<(rect.left+436+133) &&   
+      event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
         gameState_menu_state=2;
+      }
+      else if(event.clientX>(rect.left+637) && event.clientX<(rect.left+637+133) &&   
+      event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
+        gameState_menu_state=3;
       }
       else{
         gameState_menu_state=0;
@@ -303,13 +316,17 @@ function mouseDownHandler(event){
 /////////the action of every listener
   //偵測按鈕的位置，該怎麼隨著gamestate改變而更動?
   if(gameState===MENU){
-    if(event.clientX>(rect.left+349) && event.clientX<(rect.left+349+133) &&     //new start button
-      event.clientY>(rect.top+242) &&  event.clientY<(rect.top+242+75)){
+    if(event.clientX>(rect.left+254) && event.clientX<(rect.left+254+133) &&     //new start button
+        event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
       gameState++;
     }
-    else if(event.clientX>(rect.left+530) && event.clientX<(rect.left+530+133) &&   
-    event.clientY>(rect.top+242) &&  event.clientY<(rect.top+242+75)){
+    else if(event.clientX>(rect.left+436) && event.clientX<(rect.left+436+133) &&   
+      event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
       gameState=GAME_1;
+    }
+    else if(event.clientX>(rect.left+637) && event.clientX<(rect.left+637+133) &&   
+      event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
+      location.assign("/leaderboard");
     }
   }
   else if(gameState===README){
@@ -450,7 +467,7 @@ function player_animation(width, height,images, x, y, type) {//主角constructor
                     this.width, this.height);
         }
         this.move = function(){
-            if(YourAnswer===questions[id_question].answer ){//這裡也設另外一個無敵時間，以免答對了還被下一題的答錯影響
+            if(YourAnswer===questions_temp[id_question].answer ){//這裡也設另外一個無敵時間，以免答對了還被下一題的答錯影響
               jumping=true;
               rightanswer=true;
               //reboot_rightanswer();//bug答對時會因為下一題而受傷
@@ -608,30 +625,32 @@ function draw_question_onTheCanvas(){//in the state game_4
     context.textAlign = "center";
     context.textBaseline = "bottom";
     choose();//抽題
-    context.fillText(questions[id_question].question, 500, 75);
+    context.fillText(questions_temp[id_question].question, 500, 75);
 
     context.font = '20px Tahoma';
     context.fillStyle = "#000000";
     context.textAlign = "center";
     context.textBaseline = "bottom";
-    context.fillText(questions[id_question].selection_1, 330, 175);
+    context.fillText(questions_temp[id_question].selection_1, 330, 175);
 
     context.font = '20px Tahoma';
     context.fillStyle = "#000000";
     context.textAlign = "center";
     context.textBaseline = "bottom";
-    context.fillText(questions[id_question].selection_2, 670, 175);
+    context.fillText(questions_temp[id_question].selection_2, 670, 175);
 
 }
 function choose(){
   if((rightPressed || leftPressed )&& choose_bool===false &&jumping===true){//製作類似無敵時間的東西，以防玩家不停輸入
 
 
-    //抽出問題
+    /*//抽出問題
     var maxNum = questions.length;//陣列的長度  
     var minNum = 0;  
     id_question = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;  
-    //抽出問題end
+    //抽出問題end*/
+
+    id_question++;
 
 
     rightanswer=true;
@@ -639,6 +658,8 @@ function choose(){
     choose_bool=true;
     reboot_choose_bool();
     if(id_question===questions.length){
+      questions_temp.sort(function(){return Math.random()>0.5?-1:1;});
+
       id_question=0;
     }
   }else if(YourAnswer!=questions[id_question].answer && YourAnswer!=0 && rightanswer===false) 
@@ -803,7 +824,7 @@ function draw(){
 //背景執行
 function addRunSpeed(){
   if(gameState===GAME_4){
-    runSpeed+=0.5;
+    runSpeed+=0.8;
     fallSpeed+=0.2;
     jumpStart-=2.5;
   }
@@ -812,7 +833,7 @@ function addRunSpeed(){
 
 //背景執行
 setInterval(character_state_control,50);//動畫楨數控制
-setInterval(addRunSpeed,10000);//每過五秒跑速加快
+setInterval(addRunSpeed,5000);//每過五秒跑速加快
 //fallSpeed
 //maxFallSpeed
 draw();

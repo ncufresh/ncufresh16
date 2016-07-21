@@ -1,11 +1,6 @@
 @extends('layouts.Q&Alayouts')
 @section('title','提出疑問|Q&A')
 @section('js')
-@if (Auth::guest())
-
-  <script type="text/javascript">alert("請先登入喔");window.location.replace("/Q&A/all");</script>      
-  @else
-@endif
 @endsection
 
 @section('Q&Acontent')
@@ -33,7 +28,7 @@
               <span class="help-block">TESTTTT</span>
             </div>
             
-            <button type="submit" class="col-sm-3 col-sm-offset-2 btn btn-info btn-raised">Submit</button>
+            <button type="submit" class="col-sm-3 btn btn-info btn-raised">Submit</button>
           </form>
     </div>
 @endsection

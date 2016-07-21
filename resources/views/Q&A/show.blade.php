@@ -21,14 +21,14 @@
           </table>
 
           <div class="panel panel-primary">
-              <div class="panel-heading"><h1><strong>問題:</strong>{{ $Q->topic }}</h2></div>
+              <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/Q.png') }}" width="10%" height="10%">:{{ $Q->topic }}</h1></div>
               <div class="panel-body">
               <h3><strong>{{$Q->content}}</strong></h3><h4><p>
                
               </div>
           </div>
           <div class="panel panel-success">
-              <div class="panel-heading"><h1><strong>回答:</strong></h2></div>
+              <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/A.png') }}" width="10%" height="10%"></h1></div>
               <div class="panel-body">
                   @if (!empty($Q->response))
                   <h4>{{$Q->response}}</h4>
@@ -38,26 +38,29 @@
                   </p></h4>
               </div>
           </div>
+          @can('management')
                <a href="#demo" class="btn btn-info btn-raised" data-toggle="collapse"><i class="glyphicon glyphicon-ok" aria-hidden="true"></i> 我要回答</a>
                <button type="button" class="btn btn-raised" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash fa-lg"></i> 刪除</button>
+               <a href="{{action('QandAController@edit',$Q->id)}}" class="btn btn-raised"><i class="fa fa-eye" aria-hidden="true">編輯</i></a>
               <!-- collapse -->
               <div id="demo" class="collapse">
                 <div class="panel panel-default">
                   <div class="panel-heading"><h3>回答:</h3></div>
                   <div class="panel-body">
                     <form role="form" action="{{action('QandAController@update',$Q->id)}}" method="post">
-                          {{ csrf_field() }}
-                          {{ method_field('PATCH') }} 
+                      {{ csrf_field() }}{{ method_field('PATCH') }} 
                       <div class="form-group">
                         <textarea name="response" class="form-control" rows="5"></textarea>
                         <p></p>
-                        <button type="submit" class="col-sm-2 col-md-offset-5 btn btn-info">Submit</button>
+                        <button type="submit" class="col-sm-2 col-md-offset-5 btn btn-info btn-raised">Submit</button>
                       </div>
                     </form>
                   </div>
                 </div>
               </div>
               <!-- collapse -->
+          @endcan
+              
               
        
 
