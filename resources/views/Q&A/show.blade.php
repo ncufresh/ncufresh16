@@ -1,13 +1,11 @@
-@extends('layouts.Q&Alayouts')
+@extends('layouts.layout')
 
 @section('title','Q&A')
 
-
-@section('js')
-@stop
-
-@section('Q&Acontent')
-        <div class="col-xs-7">
+@section('content')
+<div class="container">
+@include('Q&A.Q&Alayouts')
+        <div class="col-md-7">
           <table class="table table-hover">
             <thead><tr><th>分類</th><th>日期</th><th>點閱率</th></tr></thead>
                 <tbody>
@@ -26,6 +24,7 @@
                
               </div>
           </div>
+          
           <div class="panel panel-success">
               <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/A.png') }}" width="10%" height="10%"><strong> : 回答</strong></h1></div>
               <div class="panel-body">
@@ -66,6 +65,7 @@
         </div>
 
 
+
 <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -92,5 +92,6 @@
     </div>
   </div>
   <!-- Modal -->
+
 @endsection
 
