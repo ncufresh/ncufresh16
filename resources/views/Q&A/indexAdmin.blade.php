@@ -20,13 +20,13 @@
           <td>{{ $Q->click_count }}</td>
           <td><a href="{{action('QandAController@show',$Q->id)}}"><i class="fa fa-eye" aria-hidden="true">檢視</i></a></td>
           <td><a href="{{action('QandAController@edit',$Q->id)}}"><i class="fa fa-eye" aria-hidden="true">編輯</i></a></td>
-          <td><button type="button" class="btn btn-fab" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash fa-lg"></i></button></td>
+          <td><button type="button" class="btn btn-fab" data-toggle="modal" data-target="#myModal{{$Q->id}}"><i class="fa fa-trash fa-lg"></i></button></td>
         </tr>
 
 
 
         <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="myModal{{$Q->id}}" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
@@ -36,10 +36,12 @@
         </div>
         <div class="modal-body">
           <p align="center">你真的確定要刪除嗎?</p>
+          <p align="center">標題:{{$Q->topic}}</p>
         </div>
         <div class="modal-footer">
         <form action="{{ URL::action('QandAController@destroy',$Q->id) }}" method="post"  class="form_del">
-        {{ csrf_field() }}{{ method_field('DELETE') }}
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
         <button type="submit" class="btn btn-danger"><i class="fa fa-trash fa-lg"></i> 刪除</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">否</button>
         </form>
