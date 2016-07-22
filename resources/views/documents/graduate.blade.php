@@ -1,4 +1,4 @@
-  @extends('layouts.layout')
+@extends('layouts.layout')
 
 @section('title', '新生必讀 - 研究所')
 
@@ -139,7 +139,7 @@
 
 @section('content')
 <div class="wrapper">
-  <div class="container-fulid">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-md-3"></div>
       <div class="col-md-6">
@@ -156,6 +156,7 @@
             <button type="button" class="btn btn-primary">Learn More</button>
           </section>
           @endforeach
+        </section>
         @endforeach
 
       </div><!-- /col-md-6 -->
@@ -240,8 +241,7 @@
   {{-- 新增研究所的新生必讀資料 --}}
   <div class="container-fulid" id="add">
     <div class="row">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-6 center">
+      <div class="col-sm-12 center">
         <h1>新增內容</h1>
         <form action="{{ url('/doc/graduate') }}" method="POST">
           {{ csrf_field() }}
@@ -255,8 +255,7 @@
         </form>
         <!-- 留白給 footer -->
         <br><br><br><br><br><br><br><br>
-      </div><!-- /col-sm-6 -->
-      <div class="col-sm-3"></div>
+      </div>
     </div><!-- /row -->
   </div><!-- /container-fulid -->
 </div><!-- /wrapper -->

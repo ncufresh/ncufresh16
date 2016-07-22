@@ -45,6 +45,8 @@ Route::get('/ann/{ann}', 'AnnouncementController@show');
 
 // 新生必讀
 //************************************************************
+# mixed
+Route::get('/doc', 'DocumentController@index');
 # 大學部
 Route::get('/doc/under', 'DocumentController@underIndex');
 Route::post('/doc/under', 'DocumentController@underStore');

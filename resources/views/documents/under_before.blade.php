@@ -156,6 +156,7 @@
             </ul>
             </li>
           @endforeach
+
         </ul>
       </div>
       <div class="col-md-6">
@@ -236,7 +237,8 @@
   {{-- 新增大學部的新生必讀資料 --}}
   <div class="container-fulid" id="add">
     <div class="row">
-      <div class="col-md-12 center">
+      <div class="col-md-3"></div>
+      <div class="col-md-6 center">
         <h1>新增內容</h1>
         <form action="{{ url('/doc/under') }}" method="POST">
           {{ csrf_field() }}
@@ -251,8 +253,9 @@
         <!-- 留白給 footer -->
         <br><br><br><br><br><br><br><br>
       </div>
-    </div><!-- /row -->
-  </div><!-- /container-fulid -->
-</div><!-- /wrapper -->
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+</div>
 
 @endsection

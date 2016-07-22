@@ -8,6 +8,34 @@ use App\Document;
 
 class DocumentController extends Controller
 {
+    // mixed
+    public function index(){
+        // 先比對是否為大學部的資料、再分別對應到三個主要類別
+        for($i=0;$i<3;$i++){
+            $mainUnders[$i] = Document::where('is_graduate',false)
+                                      ->where('position_of_main',''.($i+1))
+                                      ->get();
+        }  
+
+        // 先比對是否為研究所的資料、再分別對應到三個主要類別
+        for($i=0;$i<3;$i++){
+            $mainGraduates[$i] = Document::where('is_graduate',true)
+                                         ->where('position_of_main',''.($i+1))
+                                         ->get();
+        }
+
+        for($i=0;$i<=3;$i++){
+            $count[$i] = 0;
+        }
+        
+        // 回傳網頁位置與資料
+        return view('documents.index',
+            [
+                'mainUnders' => $mainUnders,
+                'mainGraduates' => $mainGraduates,
+                'count' => $count
+            ]);
+    }
 	/* 大學部 */
     public function underIndex(){
     	// 先比對是否為大學部的資料、再分別對應到三個主要類別
