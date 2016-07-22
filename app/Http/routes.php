@@ -45,7 +45,7 @@ Route::get('/ann/{ann}', 'AnnouncementController@show');
 
 // 新生必讀
 //************************************************************
-Route::group(['prefix' => 'docs'], function () {
+Route::group(['prefix' => 'doc'], function () {
     Route::get('/', 'DocumentController@index');
     # 大學部
     Route::group(['prefix' => 'under'], function () {
