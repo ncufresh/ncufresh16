@@ -440,7 +440,7 @@
         <p class="test4"></p>
         {{-- 顯示大學部的新生必讀資料 --}}
         <ul class="nav side-nav hidden-xs hidden-sm"><!-- data-spy="affix" -->
-          <li><h1 class="center">大學部　<small><a href="{{ url('/docs/graduate') }}">研究所</a></small></h1></li>
+          <li><h1 class="center">大學部　<small><a href="{{ url('/doc/graduate') }}">研究所</a></small></h1></li>
           @foreach ($mainUnders as $unders)
             <li><a href="#main-{{ ++$count[0] }}">大學部主條目 {{ $count[0] }}</a>
             <ul class="nav side-nav">
@@ -502,7 +502,7 @@
         <p class="test3"></p>
         <p class="test4"></p>
         <ul class="nav side-nav hidden-xs hidden-sm"><!-- data-spy="affix" -->
-          <li><h1 class="center"><small><a href="{{ url('/docs/under') }}">大學部</a></small>　研究所</h1></li>
+          <li><h1 class="center"><small><a href="{{ url('/doc/under') }}">大學部</a></small>　研究所</h1></li>
           @foreach ($mainGraduates as $graduates)
             <li><a href="#main-{{ ++$count[0] }}">研究所主條目 {{ $count[0] }}</a>
             <ul class="nav side-nav">
@@ -558,7 +558,7 @@
       <div class="col-xs-3"></div>
       <div class="col-xs-6">
         <h1>新增內容</h1>
-        <form action="{{ url('/docs/under') }}" method="POST">
+        <form action="{{ url('/doc/under') }}" method="POST">
           {{ csrf_field() }}
           <p>標題</p>
           <p><input type="text" name="title" id="title" required></p>
@@ -580,7 +580,7 @@
     <div class="row">
       <div class="col-sm-9">
         <h1>新增內容</h1>
-        <form action="{{ url('/docs/graduate') }}" method="POST">
+        <form action="{{ url('/doc/graduate') }}" method="POST">
           {{ csrf_field() }}
           <p>標題</p>
           <p><input type="textbox" name="title"></p>
