@@ -219,7 +219,7 @@
   $("#btnOpenLeftPage").click(function() {
     test();
     // close init screen
-    $("#initScreen").fadeOut("fast");
+    $("#topScreen").fadeOut("fast");
     status = LEFT_SCREEN; // set status for resize condition
     // animation...
     $("#openAnimationScreen").css("display", "block");
@@ -258,14 +258,14 @@
     }).delay("fast").animate({ "width": ($(window).width() + 17) / 2 }, "fast");
     // open init srceen
     $("#openAnimationScreen").delay("slow").delay("fast").fadeOut("slow");
-    $("#initScreen").delay("slow").delay("fast").fadeIn("slow");
+    $("#topScreen").delay("slow").delay("fast").fadeIn("slow");
   });
 
   // open right page
   $("#btnOpenRightPage").click(function() {
     test();
     // close init screen
-    $("#initScreen").fadeOut("fast");
+    $("#topScreen").fadeOut("fast");
     status = RIGHT_SCREEN; // set status for resize condition
     // animation...
     $("#openAnimationScreen").css("display", "block");
@@ -309,7 +309,7 @@
     }, "fast");
     // open init srceen
     $("#openAnimationScreen").delay("slow").delay("fast").fadeOut("slow");
-    $("#initScreen").delay("slow").delay("fast").fadeIn("slow");
+    $("#topScreen").delay("slow").delay("fast").fadeIn("slow");
   });
 
   // if resize set navBlock height again
@@ -398,7 +398,7 @@
 <!-- 新生必讀 -->
   <div class="container-fluid">
     <!-- 最上方畫面 -->
-    <div class="row" id="initScreen">
+    <div class="row" id="topScreen">
       <!-- 左半邊大學部按鈕 -->
       <div class="col-xs-6 col-center" id="outerLeftSidebar">
         <h1>大學部<small>新生必讀</small></h1>
