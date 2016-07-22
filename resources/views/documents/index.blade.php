@@ -3,6 +3,7 @@
 @section('title', '新生必讀')
 
 @section('css')
+<!-- <link rel="stylesheet" href="{{ asset('docs/doc.css') }}"> -->
 <style type="text/css">
   /*html {
     overflow: hidden;
@@ -11,61 +12,72 @@
   body {
     display: none;
   }
-  body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
+
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4 {
     font-family: Helvetica, Arial, '微軟正黑體', '新細明體', sans-serif;
   }
-  
+
   h3 span {
     color: #286090;
   }
-  
+
   section {
     padding: 40px 0;
     border-bottom: 1px solid #c1e1ec;
   }
-  
+
   #main-1,
   #main-2,
   #main-3 {
     padding-bottom: 0;
   }
-  
+
   section:last-child {
     border-bottom: none;
   }
-  
+
   .side-nav a {
     color: black;
     font-style: italic;
   }
-  
+
   .side-nav li a:hover,
   .side-nav li a:focus {
     background: #86c5da;
   }
-  
+
   .side-nav .active {
     font-weight: bold;
     background: #72bcd4;
   }
-  
+
   .side-nav .side-nav {
     display: none;
   }
-  
+
   .side-nav .active .side-nav {
     display: block;
   }
-  
+
   .side-nav .side-nav a {
     font-weight: normal;
     font-size: .85em;
   }
-  
+
   .side-nav .side-nav span {
     margin: 0 5px 0 2px;
   }
-  
+
   .side-nav .side-nav .active a,
   .side-nav .side-nav .active:hover a,
   .side-nav .side-nav .active:focus a {
@@ -73,7 +85,7 @@
     padding-left: 30px;
     border-left: 5px solid black;
   }
-  
+
   .side-nav .side-nav .active span,
   .side-nav .side-nav .active:hover span,
   .side-nav .side-nav .active:focus span {
@@ -87,6 +99,7 @@
   #innerRightSidebar {
     background: rgba(255, 255, 255, 250);
   }
+
   #outerLeftSidebar {
     background: #47a3da;
   }
@@ -96,12 +109,12 @@
     padding-right: 15px;
     padding-left: 15px;
   }
-  
-  #innerLeftPage {
+
+  #innerLeftContent {
     background: #34495e;
     color: white;
   }
-  
+
   #innerRightPage {
     background: #ecf0f1;
   }
@@ -109,7 +122,7 @@
   #outerRightSidebar {
     background: #fff;
   }
-  
+
   .col-center {
     text-align: center;
   }
@@ -121,12 +134,17 @@
   #addNewGraduateScreen {
     background: #eee;
   }
+
+  .wrapper {
+    margin-top: 60px;
+  }
 </style>
 @stop
 
 @section('js')
+<!-- <script src="{{ asset('docs/doc.js') }}"></script> -->
 <script>
-$(document).ready(function() {
+  $(document).ready(function() {
   $("body").fadeIn("slow");
   var getNavBlockHeight = ($("nav").outerHeight(true) - 20);
   var getFooterBlockHeight = 150;
@@ -149,11 +167,11 @@ $(document).ready(function() {
 
   function init() {
     $("#addNewUnderScreen").css("display", "none");
-    $("#addNewGraduateScreen").css("display","none");
+    $("#addNewGraduateScreen").css("display", "none");
     $("#leftScreen").css("display", "none");
     $("#rightScreen").css("display", "none");
     $("#openAnimationScreen").css("display", "none");
-    $("#innerLeftPage").css("display", "none");
+    $("#innerLeftContent").css("display", "none");
     $("#innerRightPage").css("display", "none");
     $("#innerLeftSidebar").css({
       "display": "none",
@@ -218,7 +236,7 @@ $(document).ready(function() {
     $("#openAnimationScreen").delay("fast").delay("fast").fadeOut("slow");
     $("#leftScreen").css("display", "block");
     $("#innerLeftSidebar").delay("fast").delay("fast").fadeIn("slow");
-    $("#innerLeftPage").delay("fast").delay("fast").fadeIn("slow");
+    $("#innerLeftContent").delay("fast").delay("fast").fadeIn("slow");
   });
 
   // back to origin from left
@@ -228,7 +246,7 @@ $(document).ready(function() {
     $("#addNewUnderScreen").css("display", "none");
     $("#leftScreen").fadeOut("slow");
     $("#innerLeftSidebar").fadeOut("slow");
-    $("#innerLeftPage").fadeOut("slow");
+    $("#innerLeftContent").fadeOut("slow");
     // set status for resize condition
     status = INIT_SCREEN;
     // animation...
@@ -260,7 +278,7 @@ $(document).ready(function() {
       "width": $(window).width() / 2,
       "height": $(window).height() - getNavBlockHeight
     }).delay("fast").animate({
-      "left": ($(window).width() - 17) * 3 / 4, 
+      "left": ($(window).width() - 17) * 3 / 4,
       "width": ($(window).width() - 17) / 4
     }, "fast");
     // show right screen
@@ -274,7 +292,7 @@ $(document).ready(function() {
   $("#btnBackRightPage").click(function() {
     test();
     // close right screen
-    $("#addNewGraduateScreen").css("display","none");
+    $("#addNewGraduateScreen").css("display", "none");
     $("#rightScreen").fadeOut("slow");
     // set status for resize condition
     status = INIT_SCREEN;
@@ -282,11 +300,11 @@ $(document).ready(function() {
     $("#openAnimationScreen").css("display", "block");
     $("#openAnimationBox").css({
       "top": getNavBlockHeight,
-      "left": $(window).width() * 3 / 4, 
+      "left": $(window).width() * 3 / 4,
       "width": $(window).width() / 4,
       "height": $(window).height() - getNavBlockHeight
     }).delay("fast").animate({
-      "left": ($(window).width() + 17) / 2, 
+      "left": ($(window).width() + 17) / 2,
       "width": ($(window).width() + 17) / 2
     }, "fast");
     // open init srceen
@@ -316,7 +334,7 @@ $(document).ready(function() {
     // if (status === RIGHT_SCREEN) {
     $("#innerRightSidebar").css({
       "top": getNavBlockHeight,
-      "left": ($(window).width() * 3 / 4), 
+      "left": ($(window).width() * 3 / 4),
       "width": ($(window).width() / 4),
       "height": $(window).height()
     });
@@ -339,38 +357,38 @@ $(document).ready(function() {
     test();
   });
 
-  $("#btnAddUnder").click(function () {
-    if ($("#addNewUnderScreen").css("display")==="none") {
-      $("#addNewUnderScreen").css("display","block");
+  $("#btnAddUnder").click(function() {
+    if ($("#addNewUnderScreen").css("display") === "none") {
+      $("#addNewUnderScreen").css("display", "block");
     } else {
-      $("#addNewUnderScreen").css("display","none");
+      $("#addNewUnderScreen").css("display", "none");
     }
   });
 
-  $("#btnAddGraduate").click(function () {
-    if ($("#addNewGraduateScreen").css("display")==="none") {
-      $("#addNewGraduateScreen").css("display","block");
+  $("#btnAddGraduate").click(function() {
+    if ($("#addNewGraduateScreen").css("display") === "none") {
+      $("#addNewGraduateScreen").css("display", "block");
     } else {
-      $("#addNewGraduateScreen").css("display","none");
+      $("#addNewGraduateScreen").css("display", "none");
     }
   });
 
-  // $("#innerLeftPage").mouseover(function(){
+  // $("#innerLeftContent").mouseover(function(){
   //   $("html").css("overflow", "auto");
   // });
-  
-  // $("#innerLeftPage").mouseout(function(){
+
+  // $("#innerLeftContent").mouseout(function(){
   //   $("html").css("overflow", "hidden");
   // });
 
   // $("#innerRightPage").mouseover(function(){
   //   $("html").css("overflow", "auto");
   // });
-  
+
   // $("#innerRightPage").mouseout(function(){
   //   $("html").css("overflow", "hidden");
   // });
-});
+  });
 
 </script>
 @stop
@@ -379,13 +397,9 @@ $(document).ready(function() {
 <div class="wrapper">
 <!-- 新生必讀 -->
   <div class="container-fluid">
-    <!-- 在導覽列的位置產生一個 block -->
-    <div class="row">
-      <div class="col-xs-12" id="navBlock"></div>
-    </div>
-    <!-- 初始畫面 -->
+    <!-- 最上方畫面 -->
     <div class="row" id="initScreen">
-      <!-- 左邊大學部導覽列 -->
+      <!-- 左半邊大學部按鈕 -->
       <div class="col-xs-6 col-center" id="outerLeftSidebar">
         <h1>大學部<small>新生必讀</small></h1>
         <p>
@@ -397,8 +411,8 @@ $(document).ready(function() {
         <p class="test3"></p>
         <p class="test4"></p>
       </div>
-      <!-- /左邊大學部導覽列 -->
-      <!-- 右邊研究所導覽列 -->
+      <!-- /左半邊大學部按鈕 -->
+      <!-- 右半邊研究所按鈕 -->
       <div class="col-xs-6 col-center" id="outerRightSidebar">
         <h1>研究所<small>新生必讀</small></h1>
         <p>
@@ -410,9 +424,9 @@ $(document).ready(function() {
         <p class="test3"></p>
         <p class="test4"></p>
       </div>
-      <!-- /右邊研究所導覽列 -->
+      <!-- /右半邊研究所按鈕 -->
     </div>
-    <!-- /初始畫面 -->
+    <!-- /最上方畫面 -->
     <!-- 左邊大學部畫面 -->
     <div class="row" id="leftScreen">
       <div class="scrollspy" id="innerLeftSidebar">
@@ -426,7 +440,7 @@ $(document).ready(function() {
         <p class="test4"></p>
         {{-- 顯示大學部的新生必讀資料 --}}
         <ul class="nav side-nav hidden-xs hidden-sm"><!-- data-spy="affix" -->
-          <li><h1 class="center">大學部　<small><a href="{{ url('/doc/graduate') }}">研究所</a></small></h1></li>
+          <li><h1 class="center">大學部　<small><a href="{{ url('/docs/graduate') }}">研究所</a></small></h1></li>
           @foreach ($mainUnders as $unders)
             <li><a href="#main-{{ ++$count[0] }}">大學部主條目 {{ $count[0] }}</a>
             <ul class="nav side-nav">
@@ -441,7 +455,7 @@ $(document).ready(function() {
       </div>
       <div class="col-xs-3"></div>
       <!-- 為了對齊 -->
-      <div class="col-xs-9" id="innerLeftPage">
+      <div class="col-xs-9" id="innerLeftContent">
         <h1>新生必讀 - 大學部</h1>
         @foreach ($mainUnders as $unders)
         <section id="main-{{ ++$count[1] }}">
@@ -488,7 +502,7 @@ $(document).ready(function() {
         <p class="test3"></p>
         <p class="test4"></p>
         <ul class="nav side-nav hidden-xs hidden-sm"><!-- data-spy="affix" -->
-          <li><h1 class="center"><small><a href="{{ url('/doc/under') }}">大學部</a></small>　研究所</h1></li>
+          <li><h1 class="center"><small><a href="{{ url('/docs/under') }}">大學部</a></small>　研究所</h1></li>
           @foreach ($mainGraduates as $graduates)
             <li><a href="#main-{{ ++$count[0] }}">研究所主條目 {{ $count[0] }}</a>
             <ul class="nav side-nav">
@@ -544,7 +558,7 @@ $(document).ready(function() {
       <div class="col-xs-3"></div>
       <div class="col-xs-6">
         <h1>新增內容</h1>
-        <form action="{{ url('/doc/under') }}" method="POST">
+        <form action="{{ url('/docs/under') }}" method="POST">
           {{ csrf_field() }}
           <p>標題</p>
           <p><input type="text" name="title" id="title" required></p>
@@ -566,7 +580,7 @@ $(document).ready(function() {
     <div class="row">
       <div class="col-sm-9">
         <h1>新增內容</h1>
-        <form action="{{ url('/doc/graduate') }}" method="POST">
+        <form action="{{ url('/docs/graduate') }}" method="POST">
           {{ csrf_field() }}
           <p>標題</p>
           <p><input type="textbox" name="title"></p>

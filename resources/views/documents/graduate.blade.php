@@ -162,7 +162,7 @@
       </div><!-- /col-md-6 -->
       <div class="col-md-3 scrollspy">
         <ul id="nav" class="nav side-nav hidden-xs hidden-sm" data-spy="affix">
-          <li><h1 class="center"><small><a href="{{ url('/doc/under') }}">大學部</a></small>　研究所</h1></li>
+          <li><h1 class="center"><small><a href="{{ url('/docs/under') }}">大學部</a></small>　研究所</h1></li>
           {{-- 顯示大學部的新生必讀資料 --}}
           @foreach ($mainGraduates as $graduates)
             <li><a href="#main-{{ ++$count[0] }}">大學部主條目 {{ $count[0] }}</a>
@@ -214,7 +214,7 @@
 <!-- <div class="container notosanstc">
     <div class="row">
         {{-- 顯示研究所的新生必讀資料 --}}
-        <h1><small><a href="{{ url('/doc/under') }}">大學部</a></small>　研究所</h1>
+        <h1><small><a href="{{ url('/docs/under') }}">大學部</a></small>　研究所</h1>
         <ul>
             <?php $count = 0; ?>
             @foreach ($mainGraduates as $graduates)
@@ -224,10 +224,10 @@
                         <li>{{ $g->title }}</li>
                         <ul>
                             <li>{{ $g->content }}</li>
-                            <form action="{{ url('/doc/graduate/'.$g->id.'/edit') }}" method="GET">
+                            <form action="{{ url('/docs/graduate/'.$g->id.'/edit') }}" method="GET">
                                 <button type="submit" id="edit-document-{{ $g->id }}">編輯</button>
                             </form>
-                            <form action="{{ url('/doc/graduate/'.$g->id) }}" method="POST">
+                            <form action="{{ url('/docs/graduate/'.$g->id) }}" method="POST">
                                 {!! csrf_field() !!}
                                 {!! method_field('DELETE') !!}
                                 <button type="submit" id="delete-document-{{ $g->id }}">刪除</button>
@@ -243,7 +243,7 @@
     <div class="row">
       <div class="col-sm-12 center">
         <h1>新增內容</h1>
-        <form action="{{ url('/doc/graduate') }}" method="POST">
+        <form action="{{ url('/docs/graduate') }}" method="POST">
           {{ csrf_field() }}
           <p>標題</p>
           <p><input type="textbox" name="title"></p>

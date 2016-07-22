@@ -45,20 +45,31 @@ Route::get('/ann/{ann}', 'AnnouncementController@show');
 
 // 新生必讀
 //************************************************************
-# mixed
-Route::get('/doc', 'DocumentController@index');
-# 大學部
-Route::get('/doc/under', 'DocumentController@underIndex');
-Route::post('/doc/under', 'DocumentController@underStore');
-Route::delete('/doc/under/{under}', 'DocumentController@underDestroy');
-Route::get('/doc/under/{under}/edit','DocumentController@underEdit');
-Route::patch('/doc/under/{under}', 'DocumentController@underUpdate');
-# 研究所
-Route::get('/doc/graduate', 'DocumentController@graduateIndex');
-Route::post('/doc/graduate', 'DocumentController@graduateStore');
-Route::delete('/doc/graduate/{graduate}', 'DocumentController@graduateDestroy');
-Route::get('/doc/graduate/{graduate}/edit','DocumentController@graduateEdit');
-Route::patch('/doc/graduate/{graduate}', 'DocumentController@graduateUpdate');
+Route::group(['prefix' => 'docs'], function () {
+    Route::get('/', 'DocumentController@index');
+    # 大學部
+    Route::group(['prefix' => 'under'], function () {
+    	Route::get('/', 'DocumentController@underIndex');
+		Route::post('/', 'DocumentController@underStore');
+		Route::delete('/{under}', 'DocumentController@underDestroy');
+		Route::get('/{under}/edit','DocumentController@underEdit');
+		Route::patch('/{under}', 'DocumentController@underUpdate');
+    });
+	Route::get('/under', 'DocumentController@underIndex');
+	Route::post('/under', 'DocumentController@underStore');
+	Route::delete('/under/{under}', 'DocumentController@underDestroy');
+	Route::get('/under/{under}/edit','DocumentController@underEdit');
+	Route::patch('/under/{under}', 'DocumentController@underUpdate');
+	# 研究所
+	Route::group(['prefix' => 'graduate'], function () {
+		Route::get('/', 'DocumentController@graduateIndex');
+		Route::post('/', 'DocumentController@graduateStore');
+		Route::delete('/{graduate}', 'DocumentController@graduateDestroy');
+		Route::get('/{graduate}/edit','DocumentController@graduateEdit');
+		Route::patch('/{graduate}', 'DocumentController@graduateUpdate');
+    });
+});
+
 //************************************************************
 
 // 校園導覽
