@@ -22,7 +22,7 @@
           <td>{{ $Q->click_count }}</td>
           <td><a href="{{action('QandAController@show',$Q->id)}}"><i class="fa fa-eye" aria-hidden="true">檢視</i></a></td>
           <td><a href="{{action('QandAController@edit',$Q->id)}}"><i class="fa fa-eye" aria-hidden="true">編輯</i></a></td>
-          <td><button type="button" class="btn btn-fab" data-toggle="modal" data-target="#myModal{{$Q->id}}"><i class="fa fa-trash fa-lg"></i></button></td>
+          <td><button type="button" class="btn btn-fab btn-fab-mini" data-toggle="modal" data-target="#myModal{{$Q->id}}"><i class="fa fa-trash fa-lg"></i></button></td>
         </tr>
                                     <!-- Modal -->
                               <div class="modal fade" id="myModal{{$Q->id}}" role="dialog">
@@ -31,7 +31,7 @@
                                   <div class="modal-content">
                                     <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                      <h4 class="modal-title"><i class="fa fa-trash fa-lg"></i> 刪除</h4>
+                                      <h4 class="modal-title"><i class="fa fa-trash"></i> 刪除</h4>
                                     </div>
                                     <div class="modal-body">
                                       <p align="center">你真的確定要刪除嗎?</p>
