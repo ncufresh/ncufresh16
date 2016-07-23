@@ -6,8 +6,21 @@
 body {
    font-family: Helvetica, Arial, '微軟正黑體', '新細明體', sans-serif;
 }
-body > .container {
-  padding: 90px 15px; /* 上,左 */
+main > .container {
+    padding: 90px 15px; /* 上,左 */
+}
+main {
+    min-height: 100vh;
+    /* 幹XD http://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers */
+    overflow-x:hidden;
+    /*background-image:url('../img/home/spring.png');*/
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+    background-position: center center;
+    background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
 }
 /****************************************************/
 
@@ -127,11 +140,11 @@ ul.nav > li.mydropdown:hover {
 .navbar.navbar-ncufresh {
   /*margin-bottom: 0;
   border: 0;*/
-  font-size: 15px; /* 預設14 */
+  font-size: 16px; /* 預設14 */
   letter-spacing: 4px; /* 字的間距 */
   opacity:0.9;
 
-  background-color: #00bfa5;
+  background-color: #20d4bb; /* #00bfa5 */
   color: #ffffff;
 }
 .navbar.navbar-ncufresh .navbar-form .form-group input.form-control::-moz-placeholder,
