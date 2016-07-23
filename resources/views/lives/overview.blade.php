@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('title', '中大生活')
 
@@ -9,11 +9,65 @@
 	    margin-top: 0; // remove the gap so it doesn't close
 	 }
 
-	 #food {
-	 	position:relative; 
-  		top:10px; 
-  		left:50px; 
+
+	 
+	 li{
+	 	 list-style: none;
 	 }
+
+	 .list-deco{
+	 	width: 20%;
+	 	height: auto;
+	 }
+
+	 .puzzle{
+		position: absolute;
+		width:40%;
+		max-width: 60%;
+		font-size :150%;
+	}
+	 
+
+	 #lifeFrame {
+		position: relative;
+	}
+
+	#groundFrame{
+		position: absolute;
+		width:100%;
+		height: 150%;
+	
+	}
+
+
+	 #foodFrame{
+	  	top:80%;
+		left:0%;
+
+	  
+	 }
+
+	  #foodMenu {
+	 	position:absolute; 
+  		top:5% ;
+  		left:-30%; 
+	 }
+
+	 #housingFrame{
+	 	top:50%;
+		left:30%;
+	
+		
+	 }
+
+	 #housingMenu {
+	 	position:absolute; 
+  		top:5%; 
+  		left:40%; 
+	 }
+
+	
+
 	
 </style>
 	
@@ -41,31 +95,42 @@ $(".btn btn-default").click(function(){
 @stop
 
 @section('content')
-
-		
-			<div class="container">
-
 				
-       		<img onmouseover="click() " onmouseout="click()"  class="btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#food" src="{{ asset('image/food.png')  }}">
-
-			<ul class="collapse" id="food">
-				@foreach ($food as $food)
-				<li><a href="{{action('LifeController@getContent',['food', $food->id])}}">{{ $food->title }}</a></li>
-				@endforeach
-			</ul>
-
-			<img onmouseover="click() " onmouseout="click()"  class="btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#housing" src="{{ asset('image/housing.png')  }}">
-
-			<ul class="collapse" id="housing">
-				@foreach ($housing as $housing)
-				<li><a href="{{action('LifeController@getContent',['housing', $housing->id])}}">{{ $housing->title }}</a></li>
-				@endforeach
-			</ul>
+		
 			
+		<div class="container"  id="lifeFrame">
 
+					<div id="groundFrame">
+						<img class="list-deco" src="{{ asset('img/life/sun.png')  }}"> 
+					</div>
+					
+		       		<div class="puzzle" id="foodFrame">
+		       		<img onmouseover="click()" onmouseout="click()"  class="img-responsive btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#foodMenu" src="{{ asset('img/life/food.png')  }}">
 
+					<ul class="collapse" id="foodMenu">
+						@foreach ($food as $food)
+						<li ><img class="list-deco" src="{{ asset('img/life/knife.png')  }}"> <a href="{{action('LifeController@getContent',['food', $food->id])}}">{{ $food->title }}</a></li>
+						@endforeach
+					</ul>	
+					</div>
+					
+			
+				
 
-			</div>
+					<div class="puzzle" id="housingFrame">
+						<img onmouseover="click()" onmouseout="click()"  class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#housingMenu" src="{{ asset('img/life/housing.png')  }}">
+
+						<ul class="collapse" id="housingMenu">
+							@foreach ($housing as $housing)
+							<li><img class="list-deco" src="{{ asset('img/life/cloth.png')  }}"> <a href="{{action('LifeController@getContent',['housing', $housing->id])}}">{{ $housing->title }}</a></li>
+							@endforeach
+						</ul>
+					</div>
+					
+				
+			
+		</div>
+	
 		
 
 @endsection

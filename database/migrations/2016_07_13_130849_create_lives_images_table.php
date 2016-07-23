@@ -14,7 +14,7 @@ class CreateLivesImagesTable extends Migration
     {
         Schema::create('lives_images', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('life_id');
+            $table->integer('life_id');
             $table->string('filename');
             $table->string('imagesTitle');
             $table->string('imagesContent');
