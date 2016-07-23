@@ -1,4 +1,18 @@
 $("document").ready(function () {
+    // scroll 監聽
+    var currentScroll = $(this).scrollTop();
+    if (currentScroll == 0 ) {
+        $('.navbar.navbar-ncufresh').css('background-color','transparent').css('font-size','1em');
+    }
+    $(window).scroll(function () {
+        currentScroll = $(this).scrollTop();
+        if (currentScroll != 0 ) {
+            $('.navbar.navbar-ncufresh').css('background-color','#20d4bb').css('font-size','1.15em');
+        } else {
+            $('.navbar.navbar-ncufresh').css('background-color','transparent').css('font-size','1em');
+        }
+    });
+
     // 換生活照
     $("#logo").backstretch([
         "img/home/background1.jpg"

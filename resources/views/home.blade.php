@@ -24,7 +24,7 @@
             <div class="intro-text">
                 <img class="img-responsive center-block" src="{{ asset('img/home/logo.png') }}">
                 <h1 class="text-center">新生都該擁有的校園生活攻略</h1>
-                {{-- <br> --}}
+
                 <a href="#news" class="btn btn-circle">
                     <i class="fa fa-angle-double-down fa-3x"></i>
                 </a>

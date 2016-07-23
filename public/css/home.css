@@ -3,7 +3,7 @@
 @media (min-width:992px){
     /* 一般 */
     section {
-      padding: 100px 0 0 0; /* 上左下右 */
+      padding: 5em 0 0 0; /* 上左下右 */
     }
 }
 @media (max-width:991px){
@@ -11,6 +11,12 @@
     section {
       padding: 50px 0;
     }
+}
+.navbar.navbar-ncufresh {
+    background-color: transparent;
+    transition: all ease 0.7s;
+    -webkit-transition: all ease 0.7s;
+    -moz-transition: all ease 0.7s;
 }
 /* 到最上面的連結 */
 #totop {
@@ -40,7 +46,7 @@
   background: #ff8e8e !important;
 }
 .summer_c {
-  background: #8eccff !important;
+  background: #456e7a !important;
 }
 .fall_c {
   background: #ff9800 !important;
@@ -52,7 +58,7 @@
   background: #ff8e8e !important;
 }
 #timeline.summer:before {
-  background: #8eccff !important;
+  background: #456e7a !important;
 }
 #timeline.fall:before {
   background: #ff9800 !important;
@@ -64,7 +70,7 @@
   border-left: 7px solid #ff8e8e !important;
 }
 .timeline-content.left.summer:before {
-  border-left: 7px solid #8eccff !important;
+  border-left: 7px solid #456e7a !important;
 }
 .timeline-content.left.fall:before {
   border-left: 7px solid #ff9800 !important;
@@ -76,7 +82,7 @@
   border-right: 7px solid #ff8e8e !important;
 }
 .timeline-content.right.summer:before {
-  border-right: 7px solid #8eccff !important;
+  border-right: 7px solid #456e7a !important;
 }
 .timeline-content.right.fall:before {
   border-right: 7px solid #ff9800 !important;
@@ -114,11 +120,11 @@
       height: 100vh;
     }
     #logo img {
-      width: 30vw;
+      width: 28vw;
     }
     #logo .intro-text {
-      padding-top: 50px;
-      padding-bottom: 200px;
+      padding-top: 8vh;
+      padding-bottom: 0;
     }
 }
 @media (max-width:991px){
@@ -128,14 +134,20 @@
         padding-bottom: 50px;
     }
 }
+#logo h1 {
+  font-size: 3em;
+  margin-top: 0;
+}
 #logo .btn-circle {
     color: #fff;
     border: 2px solid #fff;
-    padding: 16px 16px;
+    padding: 1em;
     background-color: transparent;
     border-radius: 100%;
-    width: 80px;
-    height: 80px;
+    width: 5.3em;
+    height: 5.3em;
+    /*width: 80px;
+    height: 80px;*/
 }
 /* 往下拉的動畫 */
 #logo .btn-circle:hover {
@@ -143,8 +155,8 @@
     animation: mymove 0.50s linear infinite alternate;
 }
 @keyframes mymove {
-    from {font-size: 14px;}
-    to {font-size:18px;}
+    from {font-size: 1em;}
+    to {font-size:1.3em;}
 }
 /****************************************************/
 
@@ -162,11 +174,24 @@
     -webkit-transition: all ease 0.7s;
     -moz-transition: all ease 0.7s;
 }
-#ann {
+#ann .list-group {
     margin-bottom: 15px;
     height: 400px;
-    overflow-y:scroll;
     box-shadow: 0 0 10px #999;
+    overflow-y:scroll;
+}
+#ann ::-webkit-scrollbar {
+    width: 0.25em;
+    background-color: #F5F5F5;
+}
+#ann ::-webkit-scrollbar-track {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+#ann ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #616161;
 }
 #ann a {
     text-decoration: none;
@@ -178,15 +203,18 @@
     padding: 16px;
 }
 #ann .list-group-item i {
-    background-color: #ff8e8e;
+    background-color: transparent;
     color: #fff;
     font-size: 26px;
 }
-#ann .list-group-item:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    transition: all ease 0.8s;
-    -webkit-transition: all ease 0.8s;
-    -moz-transition: all ease 0.8s;
+@media (min-width:992px){
+    /* 手機 */
+    #ann .list-group-item:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        transition: all ease 0.8s;
+        -webkit-transition: all ease 0.8s;
+        -moz-transition: all ease 0.8s;
+    }
 }
 #ann .list-group-item p {
     color: black;
@@ -337,10 +365,9 @@
 #timeline {
   margin: 0;
   padding: 0;
-  font-family: helvetica, arial, tahoma, verdana;
   line-height: 20px;
   font-size: 14px;
-  color: #726f77;
+  color: #726f77; /*字的顏色*/
 }
 
 #about .container {
@@ -362,7 +389,7 @@
   content: "";
   width: 3px;
   height: 100%;
-  background: #ff8e8e;
+  background-color: transparent; /* 線線顏色 */
   left: 50%;
   top: 0;
   position: absolute;
@@ -378,7 +405,7 @@
   position: relative;
 }
 #timeline .timeline-item .timeline-icon {
-  background: #ff8e8e;
+  background-color: transparent; /* icon顏色 */
   width: 50px;
   height: 50px;
   position: absolute;
@@ -421,7 +448,7 @@
 }
 #timeline .timeline-item .timeline-content h2 {
   padding: 15px;
-  background: #ff8e8e;
+  background-color: transparent; /* 標題顏色 */
   color: #fff;
   margin: -20px -20px 0 -20px;
   font-weight: 300;
@@ -442,7 +469,7 @@
   height: 0;
   border-top: 7px solid transparent;
   border-bottom: 7px solid transparent;
-  border-left: 7px solid #ff8e8e;
+  border-left: 7px solid transparent; /* 左箭頭顏色 */
 }
 #timeline .timeline-item .timeline-content.right {
   float: right;
@@ -452,7 +479,7 @@
   right: 45%;
   left: inherit;
   border-left: 0;
-  border-right: 7px solid #ff8e8e;
+  border-right: 7px solid transparent; /* 右箭頭顏色 */
 }
 
 @media screen and (max-width: 768px) {
@@ -468,6 +495,13 @@
     width: 90%;
     float: right;
   }
+  #timeline .timeline-item .timeline-content:before, #timeline .timeline-item .timeline-content.right:before {
+     left: 10%;
+     /* bug
+     margin-left: -6px;
+     border-left: 0;
+     border-right: 7px solid #181717;*/
+   }
   #timeline .timeline-item .timeline-icon {
     left: 0;
   }

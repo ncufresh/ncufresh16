@@ -4,7 +4,7 @@
 參考:https://www.ptt.cc/bbs/Web_Design/M.1279032453.A.80B.html
 */
 body {
-   font-family: Helvetica, Arial, '微軟正黑體', '新細明體', sans-serif;
+   font-family: '微軟正黑體', '新細明體', sans-serif;
 }
 main > .container {
     padding: 90px 15px; /* 上,左 */
@@ -140,7 +140,7 @@ ul.nav > li.mydropdown:hover {
 .navbar.navbar-ncufresh {
   /*margin-bottom: 0;
   border: 0;*/
-  font-size: 16px; /* 預設14 */
+  font-size: 1.15em; /* 預設14px */
   letter-spacing: 4px; /* 字的間距 */
   opacity:0.9;
 
