@@ -4,7 +4,7 @@
 	<a href="{{ url('/groups/clubs/create') }}">新增</a>
 	@foreach ($clubs as $club)
 		<?php $photo = json_decode($club->clubs_photo); ?>
-		
+		<a href="{{ url('/groups/clubs/'.$club->id.'/edit') }}">編輯</a>
 		<div class="container">
 		  
 		  <!-- Trigger the modal with a button -->
@@ -26,7 +26,7 @@
 		          <p>{{$club->clubs_activity}}</p>
 		          <p>{{$club->clubs_join}}</p>
 		        </div>
-		        
+
 		        <div id="myCarousel{{$club->id}}" class="carousel slide" data-ride="carousel">
 				    
 					    <!-- Indicators -->

@@ -1,11 +1,8 @@
 @extends('layouts.layout')
-
-
-
 @section('content')
 
 
-	<form action="{{ URL::action('ClubController@store') }}" method="post" enctype="multipart/form-data">
+	<form action="{{ URL::action('ClubController@store') }}" method="post">
 	{{csrf_field()}}
 		<br><br><br><br><br><br><br><br>
 		<div>

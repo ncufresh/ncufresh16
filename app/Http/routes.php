@@ -91,6 +91,8 @@ Route::get('/groups/clubs', 'ClubController@index');
 Route::post('/groups/clubs', 'ClubController@store');
 Route::get('/groups/clubs/create', 'ClubController@create');
 Route::get('/groups/clubs/{clubs_kind}', 'ClubController@show');
+Route::get('/groups/clubs/{id}/edit', 'ClubController@edit');
+Route::patch('/groups/clubs/{clubs_kind}', 'ClubController@update');
 #系所
 Route::get('/groups/departments', 'DepartmentController@index');
 Route::post('/groups/departments', 'DepartmentController@store');
