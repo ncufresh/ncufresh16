@@ -156,7 +156,7 @@
 }
 @keyframes mymove {
     from {font-size: 1em;}
-    to {font-size:1.3em;}
+    to {font-size:1.2em;}
 }
 /****************************************************/
 
@@ -180,6 +180,7 @@
     box-shadow: 0 0 10px #999;
     overflow-y:scroll;
 }
+/* 拉霸樣式 */
 #ann ::-webkit-scrollbar {
     width: 0.25em;
     background-color: #F5F5F5;
