@@ -8,8 +8,6 @@
 	    display: block;
 	    margin-top: 0; // remove the gap so it doesn't close
 	 }
-
-
 	 
 	 li{
 	 	 list-style: none;
@@ -30,19 +28,21 @@
 
 	 #lifeFrame {
 		position: relative;
+		width:100%;
+		height: auto;
+		left: 25%;	
+			
 	}
 
 	#groundFrame{
 		position: absolute;
-		width:100%;
-		height: auto;
-		left: 20%;
+		
 	}
 
 
 	 #foodFrame{
-	  	top:80%;
-		left:10%;
+	  	top:20%;
+		left:-10%;
 	  
 	 }
 
@@ -53,7 +53,7 @@
 	 }
 
 	 #housingFrame{
-	 	top:40%;
+	 	top:0%;
 		left:40%;	
 	 }
 
@@ -64,8 +64,8 @@
 	 }
 
 	  #transportationFrame{
-	 	top:250%;
-		left:55%;	
+	 	top:70%;
+		left:65%;	
 	 }
 
 	 #transportationMenu {
@@ -75,8 +75,8 @@
 	 }
 	
 	 #educationFrame{
-	 	top:260%;
-		left:25%;	
+	 	top:80%;
+		left:15%;	
 	 }
 
 	 #educationMenu {
@@ -86,8 +86,8 @@
 	 }
 
 	 #entertainmentFrame{
-	 	top:100%;
-		left:60%;	
+	 	top:30%;
+		left:80%;	
 	 }
 
 	 #entertainmentMenu {
@@ -96,12 +96,67 @@
   		left:40%; 
 	 }
 
+	 #foodFrame:hover {
+	 	 -ms-transform: scale(1.2, 1.2); /* IE 9 */
+    -webkit-transform: scale(2, 3); /* Safari */
+    transform: scale(1.2, 1.2);
+	 }
+
 	
 </style>
 	
 @stop
 
 @section('js')
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $(".puzzle").click(function(){
+	       	var form = document.getElementById("form_name");
+	        var clicks = $(this).data('clicks');
+			  if (clicks) {
+			     
+		        $("#foodFrame").animate({
+		            left: '-10%',
+		            top: '20%'
+		        });
+ 				$("#housingFrame").animate({
+		            top:'0%',
+					left:'40%'
+		        });
+
+		        $("#transportationFrame").animate({       
+					top:'70%',
+					left:'65%'	
+		        });
+		        $("#educationFrame").animate({       
+					top:'80%',
+					left:'15%'
+		        });
+		         $("#entertainmentFrame").animate({       
+					top:'30%',
+					left:'80%'
+		        });        
+
+		        $(".puzzle").fadeIn(1000);
+
+			  } else {
+			     $(this).animate({
+	            	left: '30%',
+	            	top: '35%'
+		        });
+			 
+			    $(".puzzle").fadeOut(1000);
+			    $(this).fadeIn(1000);
+		       
+		  
+			  }
+			  $(this).data("clicks", !clicks);
+
+	        
+	    });
+	    
+	});
+</script>
 
 
 @stop
@@ -113,11 +168,11 @@
 		<div class="container"  id="lifeFrame">
 					<!-- 背景 -->
 					<div id="groundFrame">
-						<img src="{{ asset('img/life/sun.png')  }}"> 	
-					</div>
+						<img id="sunPic" src="{{ asset('img/life/sun.png')  }}"> 	
+					
 					
 		       		<div class="puzzle" id="foodFrame">
-		       		<img onmouseover="click()" onmouseout="click()"  class="img-responsive btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#foodMenu" src="{{ asset('img/life/food.png')  }}">
+		       		<img class="img-responsive btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#foodMenu" src="{{ asset('img/life/food.png')  }}">
 
 					<ul class="collapse" id="foodMenu">
 						@foreach ($food as $food)
@@ -128,7 +183,7 @@
 					
 					<!-- 住 -->
 					<div class="puzzle" id="housingFrame">
-						<img onmouseover="click()" onmouseout="click()"  class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#housingMenu" src="{{ asset('img/life/housing.png')  }}">
+						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#housingMenu" src="{{ asset('img/life/housing.png')  }}">
 
 						<ul class="collapse" id="housingMenu">
 							@foreach ($housing as $housing)
@@ -139,7 +194,7 @@
 
 					<!-- 行 -->
 					<div class="puzzle" id="transportationFrame">
-						<img onmouseover="click()" onmouseout="click()"  class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#transportationMenu" src="{{ asset('img/life/transportation.png')  }}">
+						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#transportationMenu" src="{{ asset('img/life/transportation.png')  }}">
 
 						<ul class="collapse" id="transportationMenu">
 							@foreach ($transportation as $transportation)
@@ -150,7 +205,7 @@
 					
 					<!-- 育 -->
 					<div class="puzzle" id="educationFrame">
-						<img onmouseover="click()" onmouseout="click()"  class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#educationMenu" src="{{ asset('img/life/education.png')  }}">
+						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#educationMenu" src="{{ asset('img/life/education.png')  }}">
 
 						<ul class="collapse" id="educationMenu">
 							@foreach ($transportation as $transportation)
@@ -161,13 +216,15 @@
 					
 					<!-- 樂 -->
 					<div class="puzzle" id="entertainmentFrame">
-						<img onmouseover="click()" onmouseout="click()"  class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#entertainmentMenu" src="{{ asset('img/life/entertainment.png')  }}">
+						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#entertainmentMenu" src="{{ asset('img/life/entertainment.png')  }}">
 
 						<ul class="collapse" id="entertainmentMenu">
 							@foreach ($transportation as $transportation)
 							<li><img class="list-deco" src="{{ asset('img/life/pen.png')  }}"> <a href="{{action('LifeController@getContent',['entertainment', $entertainment->id])}}">{{ $entertainment->title }}</a></li>
 							@endforeach
 						</ul>
+					</div>
+
 					</div>
 			
 		</div>

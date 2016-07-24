@@ -23,6 +23,8 @@ class LifeController extends Controller
 	   	return view('lives.overview', ['food' => $food, 'housing' => $housing, 'transportation' => $transportation, 'education' => $education, 'entertainment' => $entertainment]);
 	}
 
+	
+
 	public function getContent($topic ,Life $content){
 	    $image = Life_image::where('life_id',$content->id)->get();
 	   	$num_of_pics = count($image);
