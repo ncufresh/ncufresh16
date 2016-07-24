@@ -23,16 +23,16 @@ class ClubController extends Controller
 
 	public function create()
     {
-  //   	$test = array();
+        //   	$test = array();
 
-  //   	for($i=1 ; $i<10 ;$i++){
-  //   		$test[]=$i;
-  //   	}
-  //   	//字串
-  //   	$testt = json_encode($test);
-  //   	//陣列
-  //   	$testtt = json_decode($testt);
-		// return $testtt[0];
+        //   	for($i=1 ; $i<10 ;$i++){
+        //   		$test[]=$i;
+        //   	}
+        //   	//字串
+        //   	$testt = json_encode($test);
+        //   	//陣列
+        //   	$testtt = json_decode($testt);
+    	// return $testtt[0];
 
        return view('clubs.create');
     }
@@ -65,7 +65,7 @@ class ClubController extends Controller
     	$club->clubs_summary = $request->clubs_summary;
     	$club->clubs_activity = $request->clubs_activity;
     	$club->clubs_join = $request->clubs_join;
-    	$club->clubs_photo = json_encode($request->clubs_photo);
+    	$club->clubs_photo = json_encode($request->clubs_photo);//字串
     	$club->save();
     	return redirect('/groups/clubs');
 
@@ -73,7 +73,7 @@ class ClubController extends Controller
     	
 	}
 
-	public function destroy(Request $request, Message $message)
+	public function destroy($id,$key)
 	{
     	
 	}
@@ -94,16 +94,17 @@ class ClubController extends Controller
 	public function update(Request $request, $id)
 	{
 	    $clubs = Club::find($id);
+        // 沒辦法用all() 因為clubs_photo要先json_encode
         // $input = Request::all();
         // $clubs->fill($input)->save();
         // $clubs = update($request->all());
         // $clubs = $request->all();
 		$clubs->clubs_intro = $request->clubs_intro;
-    	// $clubs->clubs_file = $request->clubs_file;
+    	$clubs->clubs_file = $request->clubs_file;
     	$clubs->clubs_summary = $request->clubs_summary;
     	$clubs->clubs_activity = $request->clubs_activity;
     	$clubs->clubs_join = $request->clubs_join;
-    	// $clubs->clubs_photo = json_encode($request->clubs_photo);
+    	$clubs->clubs_photo = json_encode($request->clubs_photo);
     	$clubs->save();
         return redirect('/groups/clubs');
 	}

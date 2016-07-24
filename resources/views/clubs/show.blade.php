@@ -3,6 +3,7 @@
 	<br><br><br><br>	
 	<a href="{{ url('/groups/clubs/create') }}">新增</a>
 	@foreach ($clubs as $club)
+		<!-- json_decode變陣列 -->
 		<?php $photo = json_decode($club->clubs_photo); ?>
 		<a href="{{ url('/groups/clubs/'.$club->id.'/edit') }}">編輯</a>
 		<div class="container">

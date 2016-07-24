@@ -93,10 +93,14 @@ Route::get('/groups/clubs/create', 'ClubController@create');
 Route::get('/groups/clubs/{clubs_kind}', 'ClubController@show');
 Route::get('/groups/clubs/{id}/edit', 'ClubController@edit');
 Route::patch('/groups/clubs/{clubs_kind}', 'ClubController@update');
+Route::delete('/groups/clubs/{id}/{key}', 'ClubController@destroy');
 #系所
 Route::get('/groups/departments', 'DepartmentController@index');
 Route::post('/groups/departments', 'DepartmentController@store');
 Route::get('/groups/departments/create', 'DepartmentController@create');
+Route::get('/groups/departments/{departments_kind}', 'DepartmentController@show');
+Route::get('/groups/departments/{id}/edit', 'DepartmentController@edit');
+Route::patch('/groups/departments/{departments_kind}', 'DepartmentController@update');
 // #各社團
 // Route::get('/groups/clubs/{clubs_id}/create', 'AllclubController@create');
 // Route::get('/groups/clubs/{clubs_id}', 'AllclubController@index');
