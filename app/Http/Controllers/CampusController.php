@@ -23,6 +23,8 @@ use App\Building;
 
 use App\Buildingimg;
 
+use App\mapobject;
+
 
 class CampusController extends Controller
 {
@@ -78,7 +80,7 @@ class CampusController extends Controller
             if($request->hasFile('imgUrl')){
                            
             $img =$request->file('imgUrl');
-            $upload = 'upload/img';
+            $upload = 'img/campus';
             $filename = uniqid().".".$request->file('imgUrl')->getClientOriginalExtension();
             $success = $img->move($upload,$filename);//將檔案傳至指定路由 並用亂碼命名
             
@@ -135,7 +137,7 @@ class CampusController extends Controller
         if($request->hasFile('imgUrl')){
                            
             $img =$request->file('imgUrl');
-            $upload = 'upload/img';
+            $upload = 'img/campus';
             $filename = uniqid().".".$request->file('imgUrl')->getClientOriginalExtension();
             $success = $img->move($upload,$filename);//將檔案傳至指定路由 並用亂碼命名
             
@@ -167,7 +169,7 @@ class CampusController extends Controller
         $imgsNeedDel = DB::table('buildingimgs')->where('BuildingId',$bid)->get();
         
         foreach($imgsNeedDel as $imgNeedDel){
-            $path = 'upload/img/';
+            $path = 'img/campus/';
             $filename = $imgNeedDel->imgUrl;
             unlink($path.$filename);
         }
@@ -194,7 +196,7 @@ class CampusController extends Controller
             ),400);
         }else{
             $img =$request->file('inputImg');
-            $upload = 'upload/img';
+            $upload = 'img/campus';
             $filename = uniqid().".".$request->file('inputImg')->getClientOriginalExtension();
             $success = $img->move($upload,$filename);//將檔案傳至指定路由 並用亂碼命名
             
@@ -211,7 +213,7 @@ class CampusController extends Controller
     }
     public function dropBuildingImg($bid){
         $img = DB::table('buildingimgs')->where('id','=',$bid)->first();
-        $path = 'upload/img/';
+        $path = 'img/campus/';
         $filename = $img->imgUrl;
         
         
@@ -220,5 +222,120 @@ class CampusController extends Controller
         
         $imgNeedDel = Buildingimg::destroy($bid);
         return response()->json($imgNeedDel);
+    }
+    
+    public function newObj(){
+        $building = Building::all();
+        $mapobjs = mapobject::all();
+        
+        $mapData = DB::table('mapobjects')
+                       ->join('Buildings', 'mapobjects.Building_id','=','Buildings.id')
+                       ->select('mapobjects.*','Buildings.buildingName')      
+                       ->get();
+        //return $mapData;
+        return view('campus.guide.newObj',[
+            'building'=>$building,
+            'mapobjs' =>$mapobjs,
+            'mapData' =>$mapData
+        ]);
+        
+    }
+    
+    public function createObj(Request $request){
+         //驗證
+        $validator = Validator::make($request->all(),array(
+            'Building_id' => 'required',
+            'Xcoordinate' => 'required',
+            'Ycoordinate' => 'required',
+            'objWidth'    => 'required',
+            'objImg' => 'mimes: jpg,jpeg,png,pmb,gif,svg|max:100|required',
+        ));
+
+        if($validator->fails()){
+        //驗證失敗
+            return response()->json(array(
+            'fail' => true,
+            'errors' => $validator->getMessageBag()->toArray()
+            ),400);
+        }else{
+             if($request->hasFile('objImg')){
+                           
+            $img =$request->file('objImg');
+            $upload = 'img/campus';
+            $filename = uniqid().".".$request->file('objImg')->getClientOriginalExtension();
+            $success = $img->move($upload,$filename);//將檔案傳至指定路由 並用亂碼命名
+            
+            $mapobject = new mapobject;
+            $mapobject->Building_id = $request->Building_id;
+            $mapobject->Xcoordinate = $request->Xcoordinate;
+            $mapobject->Ycoordinate = $request->Ycoordinate;
+            $mapobject->objWidth = $request->objWidth;
+            $mapobject->objImg = $filename;
+            $mapobject->save();
+            
+            $mapData = DB::table('mapobjects')
+                       ->select('mapobjects.*','Buildings.*','mapobjects.id as objId')                       
+                       ->join('Buildings', 'mapobjects.Building_id','=','Buildings.id')                       
+                       ->where('mapobjects.objImg',$filename)       
+                       ->first();
+            
+            return response()->json($mapData);
+
+                                    
+            }                                                
+        }
+    }
+    
+    public function getObj($bid){        
+        $mapobjects = DB::table('mapobjects')
+                ->where('id',$bid)
+                ->first();
+        return response()->json($mapobjects);
+    }
+    
+    
+    public function updateObj(Request $request,$bid){
+        $validator = Validator::make($request->all(),array(
+            'edXcoordinate' => 'required',
+            'edYcoordinate' => 'required',
+            'edobjWidth'    => 'required',           
+        ));
+
+        if($validator->fails()){
+        //驗證失敗
+            return response()->json(array(
+            'fail' => true,
+            'errors' => $validator->getMessageBag()->toArray()
+            ),400);
+        }else{
+            $mapobject = mapobject::find($bid);
+            $mapobject->Xcoordinate = $request->edXcoordinate;
+            $mapobject->Ycoordinate = $request->edYcoordinate;
+            $mapobject->objWidth = $request->edobjWidth;
+            $mapobject->save();
+            
+            $newmapData =DB::table('mapobjects')
+                       ->select('mapobjects.*','Buildings.*','mapobjects.id as objId')                       
+                       ->join('Buildings', 'mapobjects.Building_id','=','Buildings.id')                       
+                       ->where('Buildings.id',$bid)       
+                       ->first();
+//            return response()->json($newmapData);
+            
+            
+             return response()->json($mapobject);
+            
+        }        
+    }
+    public function dropObj($bid){
+        $obj = DB::table('mapobjects')->where('id','=',$bid)->first();
+        $path = 'img/campus/';
+        $filename = $obj->objImg;
+        
+        
+        
+        unlink($path.$filename);
+        
+        $objNeedDel = mapobject::destroy($bid);
+        return response()->json($objNeedDel);
     }
 }

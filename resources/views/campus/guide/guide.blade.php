@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <style>
@@ -18,6 +18,7 @@
 
     }
 </style>
+<script src="{{ asset('include/jquery/jquery-1.12.4.js') }}"></script>
 <div class="container">
     <!--網頁路徑-->
     <div>
@@ -31,7 +32,8 @@
     <div class="jumbotron back row">
         <div class='col-md-4 col-md-offset-1'>
             <h1>校園介紹</h1>
-            <button type="button" class="btn" onclick="location.href='{{url('/campus/newData')}}'">新增</button>
+            <button type="button" class="btn btn-primary" onclick="location.href='{{url('/campus/newData')}}'">新增建築物</button><br>
+            <button type="button" class="btn btn-primary" onclick="location.href='{{url('/campus/newObj')}}'">新增地圖物件</button>
         </div>
         <div class="col-md-1"><button type='button' class="btn btn-info">行政</button></div>
         <div class="col-md-1"><button type='button' class="btn btn-info">系館</button></div>
@@ -46,11 +48,11 @@
 
         </div>
     </div>
-    <!-- Modal -->
+    <!--Introduction Modal -->
    <div class="modal fade" id="eng5" role="dialog">
     <div class="modal-dialog">
 
-      <!-- Modal content-->
+      <!--Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -63,11 +65,15 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-
+           
     </div>
   </div>
+  
+  
 </div>
-
+<script>
+  
+</script>
 
 
 @endsection

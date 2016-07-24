@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 
@@ -14,12 +14,14 @@
         text-align: center;
     }
     .imgSize{
-        width: 300px;
+        width: 50%;
         height: auto;
     }
+    
 </style>
 <div class="container">
-    
+    <h1>建築物資料</h1>
+    <button id="btn-back" name="btn-back" class="btn btn-primary"  onclick="location.href='{{url('/campus/guide')}}'">回前頁</button>
     <button id="btn-add" name="btn-add" class="btn btn-primary">新增建築物</button>
     <!--Model For Building-->
     <meta name="_token" content="{!! csrf_token() !!}" />
@@ -233,7 +235,7 @@
                 enctype: 'multipart/form-data',
                 success: function(data){
                     console.log("success:"+data);
-                    var newImg = "<div class='imgg' id='imgg"+data.id+"'><img src='/upload/img/"+data.imgUrl+"' class='img-rounded imgSize'  alt='Building Img'><div class=''><button class='btn btn-danger delBtn' value='"+data.id+"'>刪除</button><span>新增時間："+data.created_at+"</span></div></div><br>";
+                    var newImg = "<div class='imgg' id='imgg"+data.id+"'><img src='/img/campus/"+data.imgUrl+"' class='img-rounded imgSize'  alt='Building Img'><div class=''><button class='btn btn-danger delBtn' value='"+data.id+"'>刪除</button><span>新增時間："+data.created_at+"</span></div></div><br>";
                      $('#imgList').append(newImg);
                      $('input:text').val('');
                      $('input:file').val('');
@@ -262,7 +264,7 @@
                 manyImg="";
                 for(var i=0,l = data.length;i<l;i++){
                     console.log("key"+data[i].imgUrl);
-                    manyImg+="<div class='imgg' id='imgg"+data[i].id+"'><img src='/upload/img/"+data[i].imgUrl+"' class='img-rounded imgSize'  alt='Building Img'><div class=''><button class='btn btn-danger delBtn' value='"+data[i].id+"'>刪除</button><span>新增時間："+data[i].created_at+"</span></div></div><br>";
+                    manyImg+="<div class='imgg' id='imgg"+data[i].id+"'><img src='/img/campus/"+data[i].imgUrl+"' class='img-rounded imgSize'  alt='Building Img'><div class=''><button class='btn btn-danger delBtn' value='"+data[i].id+"'>刪除</button><span>新增時間："+data[i].created_at+"</span></div></div><br>";
                 }
                 $('#imgList').append(manyImg);
                 $('#imgModel').modal('show');
@@ -310,7 +312,7 @@
             }           
          });
 
-        
+        //新增建築
         var url = "newData/Building";
          $('#btn-add').click(function(){
             $('#btn-save').val("add");
@@ -318,6 +320,8 @@
             $('#myModal').modal('show');
             
         });
+   
+   
    
     $("#btn-save").click(function (e) {
        

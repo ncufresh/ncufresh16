@@ -63,6 +63,7 @@ Route::patch('/doc/graduate/{graduate}', 'DocumentController@graduateUpdate');
 //************************************************************
 Route::get('/campus','CampusController@index');
 Route::get('/campus/guide','CampusController@guide');
+//導向建築物
 Route::get('/campus/newData','CampusController@newData');
 //oldfunction
 Route::get('/campus/create','CampusController@createData');
@@ -80,6 +81,19 @@ Route::get('/campus/newData/Building/img/{imgid?}', 'CampusController@getBuildin
 Route::post('/campus/newData/Building/newImg/{bid?}', 'CampusController@newBuildingImg');
 //刪除圖片
 Route::delete('/campus/newData/Building/delImg/{bid?}', 'CampusController@dropBuildingImg');
+//導向地圖物件
+Route::get('/campus/newObj','CampusController@newObj');
+//新增地圖物件
+Route::post('/campus/newObj/createObj','CampusController@createObj');
+//查詢地圖物件
+Route::get('/campus/newObj/createObj/{bid?}','CampusController@getObj');
+//更新地圖物件
+Route::put('/campus/newObj/createObj/updateObj/{bid?}','CampusController@updateObj');
+//刪除地圖物件
+Route::delete('/campus/newObj/createObj/{bid?}','CampusController@dropObj');
+
+
+
 //************************************************************
 
 // 系所社團
