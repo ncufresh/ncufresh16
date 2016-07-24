@@ -2,11 +2,7 @@
 
 @section('content')
 <style>
-    .back{
-        background-color: #b3d9ff;
-        border-style: solid ;
-        border-color: #80bfff;
-    }
+    
     .btn{
         width: 80px;
     }
@@ -17,6 +13,17 @@
 	width: 15%;
 
     }
+    .mapobj{
+        position: absolute;
+    }
+    .mapobj:hover{
+        -webkit-transform:scale(1.25); /* Safari and Chrome */
+        -moz-transform:scale(1.25); /* Firefox */
+        -ms-transform:scale(1.25); /* IE 9 */
+        -o-transform:scale(1.25); /* Opera */
+         transform:scale(1.25);
+    }
+    
 </style>
 <script src="{{ asset('include/jquery/jquery-1.12.4.js') }}"></script>
 <div class="container">
@@ -42,14 +49,18 @@
         <div class="col-md-1"><button type='button' class="btn btn-info">住宿</button></div>
         <div class="col-md-1"><button type='button' class="btn btn-info">飲食</button></div>
         <div class="col-md-1"></div>
-        <div class="col-md-8 col-md-offset-5 container" >
-            <img src='/img/background.png' width='85%'>
-            <a href="#" data-toggle="modal" data-target="#eng5" ><img src="/img/eng5.png" class="eng5" alt="no found"></a>
+        <div class="col-md-8 col-md-offset-5 container map" >
+            <img src='/img/campus/background.png' width='85%'>
+            @foreach($mapData as $mapData)
+            <a href="#"><img src="/img/campus/{{$mapData->objImg}}" class="cate{$mapData->building_id}} mapobj" id='{{$mapData->id}}' alt="no found" value="{{$mapData->id}}" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"
+                 data-toggle='tooltip' data-placement='top' title="{{$mapData->buildingName}}"
+                 ></a>
 
+             @endforeach
         </div>
     </div>
     <!--Introduction Modal -->
-   <div class="modal fade" id="eng5" role="dialog">
+   <div class="modal fade" id="objModel" role="dialog">
     <div class="modal-dialog">
 
       <!--Modal content-->
@@ -72,7 +83,10 @@
   
 </div>
 <script>
-  
+    $(document).on('ready',function(){
+        console.log($(".map").offset());
+        
+    });
 </script>
 
 

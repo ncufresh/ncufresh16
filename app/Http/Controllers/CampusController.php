@@ -37,8 +37,14 @@ class CampusController extends Controller
     }
     public function guide(){
          $building = Building::all();
+         $mapData = DB::table('mapobjects')
+                       ->select('mapobjects.*','Buildings.*','mapobjects.id as objId')                       
+                       ->join('Buildings', 'mapobjects.Building_id','=','Buildings.id')                           
+                       ->get();
+        //return $mapData;
         return view('campus.guide.guide',[
             'building'=>$building,
+            'mapData'=>$mapData,
         ]);
     }
     public function newData(){
@@ -124,7 +130,7 @@ class CampusController extends Controller
             'building_id' => 'required',
             'buildingName' => 'required',
             'buildingExplain' => 'required',
-            'imgUrl' => 'mimes: jpg,jpeg,png,pmb,gif,svg|max:100',
+            'imgUrl' => 'mimes: jpg,jpeg,png,pmb,gif,svg|max:500',
         ));
 
         if($validator->fails()){

@@ -12,7 +12,7 @@
 <div class="container">
     <h1>地圖物件</h1>
     <button id="btn-back" name="btn-back" class="btn btn-raised btn-primary"  onclick="location.href='{{url('/campus/guide')}}'">回前頁</button>
-    <button id="newObj" name="newObj" class="btn btn-primary">新增建築物</button>
+    <button id="newObj" name="newObj" class="btn btn-primary">新增地圖物件</button>
     
     <meta name="_token" content="{!! csrf_token() !!}" />
   <!-- New Object Model -->
@@ -21,7 +21,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <h4 class="modal-title" id="myModalLabel">新增建築物</h4>
+                            <h4 class="modal-title" id="myModalLabel">新增地圖物件</h4>
                         </div>
                         <div class="modal-body">
                             
