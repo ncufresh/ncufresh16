@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLivesTable extends Migration
+class AddExcerptToArticlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,8 @@ class CreateLivesTable extends Migration
      */
     public function up()
     {
-        Schema::create('lives', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('topic');
-            $table->string('title');
-            $table->text('content');
-            $table->timestamps();
+        Schema::table('lives', function (Blueprint $table) {
+            $table->string('image');
         });
     }
 
@@ -28,6 +24,8 @@ class CreateLivesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('lives');
+        Schema::table('lives', function (Blueprint $table) {
+            //
+        });
     }
 }

@@ -16,8 +16,11 @@ class LifeController extends Controller
 	public function getTitle(){
 	    $food = Life::where('topic','食')->get();
 	    $housing = Life::where('topic','住')->get();
+	    $transportation = Life::where('topic','行')->get();
+	    $education = Life::where('topic','育')->get();
+	    $entertainment = Life::where('topic','樂')->get();
 
-	   	return view('lives.overview', ['food' => $food, 'housing' => $housing]);
+	   	return view('lives.overview', ['food' => $food, 'housing' => $housing, 'transportation' => $transportation, 'education' => $education, 'entertainment' => $entertainment]);
 	}
 
 	public function getContent($topic ,Life $content){

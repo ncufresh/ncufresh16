@@ -52,7 +52,9 @@
   }
 
 
-
+.container {
+  display: none;
+}
 
   
 
@@ -63,7 +65,11 @@
 @stop
 
 @section('js')
-
+  <script type="text/javascript">
+   $(document).ready(function(){
+        $(".container").fadeIn(1300);
+});
+  </script>
 
 @stop
 
@@ -75,7 +81,7 @@
   <div class="col-md-3" id="leftPart">
 <div class="row">
     <div  class="col-md-12" id="titleFrame">
-      <img src="{{ asset('../img/life/f.png')  }}" class="img-responsive">
+      <img src="{{ asset($content->image) }}" class="img-responsive">
     </div>
 
     <div class="col-md-12" id="more">   
