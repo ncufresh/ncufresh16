@@ -26,7 +26,7 @@
 		          <p>{{$club->clubs_summary}}</p>
 		          <p>{{$club->clubs_activity}}</p>
 		          <p>{{$club->clubs_join}}</p>
-		        </div>
+		        
 
 		        <div id="myCarousel{{$club->id}}" class="carousel slide" data-ride="carousel">
 				    
@@ -34,9 +34,9 @@
 					    <ol class="carousel-indicators">
 					    @foreach ($photo as $key => $p)
 						    @if($key == 0)
-								<li data-target="#myCarousel" data-slide-to="{{$key}}" class="active"></li>
+								<li data-target="#myCarousel{{$club->id}}" data-slide-to="{{$key}}" class="active"></li>
 							@else
-								<li data-target="#myCarousel" data-slide-to="{{$key}}"></li>
+								<li data-target="#myCarousel{{$club->id}}" data-slide-to="{{$key}}"></li>
 							@endif
 						@endforeach
 						</ol>
@@ -66,17 +66,18 @@
 						<span class="sr-only">Next</span>
 					</a>
 				</div>
-			</div>
+				</div>
+			
 		        
 		        <div class="modal-footer">
 		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		        </div>
-
-		      </div>
+			</div>
 		    </div>
 		</div>
+    </div>
 
-		  <!-- 幻燈片 -->
+
 		  
   
 		</div>

@@ -65,15 +65,19 @@ class DepartmentController extends Controller
 	public function update(Request $request, $id)
 	{
 	    $departments = Department::find($id);
-	    $department->departments_intro = $request->departments_intro;
-    	$department->departments_summary = $request->departments_summary;
-    	$department->departments_association = $request->departments_association;
-    	$department->departments_activity = $request->departments_activity;
-    	$department->departments_sport = $request->departments_sport;
-    	$department->departments_course = $request->departments_course;
-    	$department->departments_file = $request->departments_file;
-    	$department->departments_photo = json_encode($request->departments_photo);
-    	$department->save();
+	    $departments->departments_intro = $request->departments_intro;
+    	$departments->departments_summary = $request->departments_summary;
+    	$departments->departments_association = $request->departments_association;
+    	$departments->departments_activity = $request->departments_activity;
+    	$departments->departments_sport = $request->departments_sport;
+    	$departments->departments_course = $request->departments_course;
+    	$departments->departments_file = $request->departments_file;
+    	$departments->departments_photo_1 = json_encode($request->departments_photo_1);
+        $departments->departments_photo_2 = json_encode($request->departments_photo_2);
+        $departments->departments_photo_3 = json_encode($request->departments_photo_3);
+        $departments->departments_photo_4 = json_encode($request->departments_photo_4);
+        $departments->departments_photo_5 = json_encode($request->departments_photo_5);
+    	$departments->save();
     	return redirect('/groups/departments');
 	}
 }
