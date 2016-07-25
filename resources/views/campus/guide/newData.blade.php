@@ -8,7 +8,7 @@
     $amount = 1;
 
 ?>
-<script src="{{ asset('include/jquery/jquery-1.12.4.js') }}"></script>
+
 <style>
     .imgg{
         text-align: center;
@@ -153,6 +153,7 @@
         </table>
     </div>
 </div>
+@section('js')
 <script>
     var cate = ['','行政','系館','中大景點','運動','飲食','住宿'];
     $(document).on('ready',function(){
@@ -274,7 +275,7 @@
         
         //編輯
         $('body').on('click','.open-modal',function(){
-            
+           
             var bid = $(this).val();
             upbid = bid;
             $.get(url + '/' + bid, function (data) {
@@ -400,6 +401,7 @@
    
 
 </script>
+@stop
 
 
 @endsection

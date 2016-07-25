@@ -2,13 +2,23 @@
 
 @section('content')
 
-<script src="{{ asset('include/jquery/jquery-1.12.4.js') }}"></script>
+@section('css')
 <style>
     
-    img{
-        width: 50%;
+    .imgg{
+        width: 40%;
+    }
+    .map{
+        text-align: center;
+        width: 750px;
+        height: 500px;
+        position: relative;
+    }
+    .mapObj{
+        position: absolute;
     }
 </style>
+@stop
 <div class="container">
     <h1>地圖物件</h1>
     <button id="btn-back" name="btn-back" class="btn btn-raised btn-primary"  onclick="location.href='{{url('/campus/guide')}}'">回前頁</button>
@@ -114,6 +124,7 @@
                                         <input type="text" class="form-control" id="edobjWidth" name="edobjWidth" value="" required placeholder="請輸入圖片寬度">
                                     </div>
                                 </div>
+                                
                                                               
                                  <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary" id="btn-update" value="add">Save changes</button>
@@ -121,7 +132,16 @@
                                 </div>
                                
                                 
-                           </form>
+                            </form><hr>
+                            <lable for="prewiew" class="col-sm-3 control-label">預覽</lable><br>
+                               
+                                    <div class="map">
+                                        <img src='/img/campus/dontdel/background.png' id="map" width="100%" >    
+                                        <span>
+                                        <img src="" class="mapObj" id='objSample' alt="no found" >
+                                        </span>
+                                    </div>                                  
+                                
                         </div>
                        
                     </div>
@@ -151,7 +171,7 @@
                     <th id="{{$mapData->id}}x">{{$mapData->Xcoordinate}}</th>
                     <th id="{{$mapData->id}}y">{{$mapData->Ycoordinate}}</th>
                     <th id="{{$mapData->id}}w">{{$mapData->objWidth}}</th>
-                    <th><img src="/img/campus/{{$mapData->objImg}}" alt="{{$mapData->buildingName}}"></th>
+                    <th><img class="imgg" src="/img/campus/{{$mapData->objImg}}" alt="{{$mapData->buildingName}}"></th>
                     <th>
                         <button class="btn btn-warning btn-xs btn-detail editObj" value="{{$mapData->id}}">Edit</button>
                         <button class="btn btn-danger btn-xs btn-delete deleteObj" value="{{$mapData->id}}">Delete</button>
@@ -164,12 +184,34 @@
         </table>
     </div>
 </div>
+@section('js')
 <script>
     
     
       var url = "/campus/newObj/createObj";
       $(document).on('ready',function(){
           
+          
+          //即時預覽
+          $('#edXcoordinate').on('change', function() {
+             $('#objSample').css('left',this.value+'%');
+          });
+          $('#edYcoordinate').on('change', function() {
+             $('#objSample').css('top',this.value+'%');
+          });
+          $('#edobjWidth').on('change', function() {
+             $('#objSample').css('width',this.value+'%');
+          });
+          $("#map").click(function(e){
+            var parentOffset = $(this).parent().offset(); 
+            //or $(this).offset(); if you really just want the current element's offset
+            var relX = e.pageX - parentOffset.left;
+            var X = relX/$('#map').width();
+            var relY = e.pageY - parentOffset.top;
+            var X = relY/$('#map').height();
+//            $('#edXcoordinate').val(relX);
+//            $('#edYcoordinate').val(relY);
+         });
           //刪除
         $('body').on('click','.deleteObj',function(){
             if(confirm("確定要刪除？")){
@@ -255,6 +297,13 @@
                 $('#edobjWidth').val(data.objWidth);  
                 $('#edbid').val(data.id);
                                     
+                $('#objSample').attr('src',"/img/campus/"+data.objImg);
+                $('#objSample').css('left',data.Xcoordinate+'%');
+                $('#objSample').css('top',data.Ycoordinate+'%');
+                $('#objSample').css('width',data.objWidth+'%');
+                
+                                    
+                                    
                 $('#editObjModel').modal('show');
             });            
         });
@@ -317,6 +366,6 @@
    
 
 </script>
-
+@stop
 
 @endsection

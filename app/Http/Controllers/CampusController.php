@@ -37,14 +37,16 @@ class CampusController extends Controller
     }
     public function guide(){
          $building = Building::all();
-         $mapData = DB::table('mapobjects')
+         $mapDatas = DB::table('mapobjects')
                        ->select('mapobjects.*','Buildings.*','mapobjects.id as objId')                       
                        ->join('Buildings', 'mapobjects.Building_id','=','Buildings.id')                           
                        ->get();
-        //return $mapData;
+         $buildimgs = Buildingimg::all();
+//        return $mapDatas;
         return view('campus.guide.guide',[
             'building'=>$building,
-            'mapData'=>$mapData,
+            'mapDatas'=>$mapDatas,
+            'buildimgs'=>$buildimgs,
         ]);
     }
     public function newData(){
