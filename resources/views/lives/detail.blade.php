@@ -11,6 +11,8 @@
   }
   #background{
     position: relative;
+    width: 100%;
+    height: 150%;
     background-color: #fff9c4;
   }
 
@@ -56,9 +58,10 @@
   display: none;
 }
 
-  
 
-  
+  .modal-body ,.modal-content .modal-body{
+    padding: 0px;
+  }
 
 </style>
 

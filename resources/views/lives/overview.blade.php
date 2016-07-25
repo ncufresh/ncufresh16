@@ -11,7 +11,7 @@
 	 
 	 li{
 	 	 list-style: none;
-	 	 font-size: 130%;
+	 	 font-size: 200%;
 	 }
 
 	 .list-deco{
@@ -28,17 +28,15 @@
 
 	 #lifeFrame {
 		position: relative;
-		width:100%;
+		max-width:100%;
 		height: auto;
-		left: 25%;	
+		
 			
 	}
 
 	#groundFrame{
 		position: absolute;
-		
 	}
-
 
 	 #foodFrame{
 	  	top:20%;
@@ -46,21 +44,9 @@
 	  
 	 }
 
-	  #foodMenu {
-	 	position:absolute; 
-  		top:5% ;
-  		left:-30%; 
-	 }
-
 	 #housingFrame{
 	 	top:0%;
 		left:40%;	
-	 }
-
-	 #housingMenu {
-	 	position:absolute; 
-  		top:5%; 
-  		left:40%; 
 	 }
 
 	  #transportationFrame{
@@ -68,21 +54,9 @@
 		left:65%;	
 	 }
 
-	 #transportationMenu {
-	 	position:absolute; 
-  		top:5%; 
-  		left:40%; 
-	 }
-	
 	 #educationFrame{
 	 	top:80%;
 		left:15%;	
-	 }
-
-	 #educationMenu {
-	 	position:absolute; 
-  		top:5%; 
-  		left:40%; 
 	 }
 
 	 #entertainmentFrame{
@@ -90,19 +64,26 @@
 		left:80%;	
 	 }
 
-	 #entertainmentMenu {
+	  #foodMenu,  #housingMenu, #transportationMenu, #educationMenu, #entertainmentMenu  {
 	 	position:absolute; 
-  		top:5%; 
-  		left:40%; 
+	 	width: 120%;
+  		top:-80% ;
+  		left:80%; 
 	 }
 
-	 #foodFrame:hover {
+	#foodFrame:hover {
 	 	 -ms-transform: scale(1.2, 1.2); /* IE 9 */
     -webkit-transform: scale(2, 3); /* Safari */
     transform: scale(1.2, 1.2);
 	 }
-
 	
+	/*.container {
+  display: none;
+}*/
+
+.container {
+  display: none;
+}
 </style>
 	
 @stop
@@ -110,6 +91,7 @@
 @section('js')
 <script type="text/javascript">
 	$(document).ready(function(){
+		 $(".container").fadeIn(1300);
 	    $(".puzzle").click(function(){
 	       	var form = document.getElementById("form_name");
 	        var clicks = $(this).data('clicks');
@@ -143,10 +125,12 @@
 			     $(this).animate({
 	            	left: '30%',
 	            	top: '35%'
+
 		        });
 			 
 			    $(".puzzle").fadeOut(1000);
 			    $(this).fadeIn(1000);
+
 		       
 		  
 			  }
@@ -174,12 +158,13 @@
 		       		<div class="puzzle" id="foodFrame">
 		       		<img class="img-responsive btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#foodMenu" src="{{ asset('img/life/food.png')  }}">
 
-					<ul class="collapse" id="foodMenu">
+		       		<ul class="collapse" id="foodMenu">
 						@foreach ($food as $food)
 						<li><img class="list-deco" src="{{ asset('img/life/knife.png')  }}"> <a href="{{action('LifeController@getContent',['food', $food->id])}}">{{ $food->title }}</a></li>
 						@endforeach
 					</ul>	
 					</div>
+
 					
 					<!-- 住 -->
 					<div class="puzzle" id="housingFrame">
