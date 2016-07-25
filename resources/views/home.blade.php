@@ -141,7 +141,7 @@
 </div>
 <div id="timeline">
 	  <div class="timeline-item">
-  			<a href="#">
+  			<a href="{{url('/')}}">
             <div class="timeline-icon">
                 <i class="material-icons">rss_feed</i>
   			    </div>
@@ -154,7 +154,7 @@
 				</div>
 		</div>
 		<div class="timeline-item">
-        <a href="#">
+        <a href="{{url('/Q&A/all')}}">
     				<div class="timeline-icon">
                 <i class="material-icons">cloud</i>
     				</div>
@@ -167,7 +167,7 @@
   			</div>
 		</div>
 		<div class="timeline-item">
-        <a href="#">
+        <a href="{{url('/campus')}}">
     				<div class="timeline-icon">
                 <i class="material-icons">directions_bike</i>
     				</div>
@@ -180,7 +180,7 @@
   			</div>
 		</div>
     <div class="timeline-item">
-        <a href="#">
+        <a href="{{url('/groups')}}">
     				<div class="timeline-icon">
                 <i class="material-icons">face</i>
     				</div>
@@ -193,7 +193,7 @@
   			</div>
 		</div>
     <div class="timeline-item">
-        <a href="#">
+        <a href="{{url('/life')}}">
     				<div class="timeline-icon">
                 <i class="material-icons">pets</i>
     				</div>
@@ -206,7 +206,7 @@
   			</div>
 		</div>
     <div class="timeline-item">
-        <a href="#">
+        <a href="{{url('/videos')}}">
     				<div class="timeline-icon">
                 <i class="material-icons">play_circle_outline</i>
     				</div>
@@ -219,7 +219,7 @@
   			</div>
 		</div>
     <div class="timeline-item">
-        <a href="#">
+        <a href="{{url('/')}}">
     				<div class="timeline-icon">
                 <i class="material-icons">bubble_chart</i>
     				</div>

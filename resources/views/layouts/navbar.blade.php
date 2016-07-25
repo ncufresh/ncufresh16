@@ -22,17 +22,19 @@
 
             {{-- 右邊的 Navbar --}}
             <ul class="nav navbar-nav navbar-right">
+                @can('management')
                 <li class="dropdown mydropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        借放 <span class="caret"></span>
+                        管理 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="http://lovenery.me/old/">去年的</a></li>
                         <li><a href="http://ncufresh.ncu.edu.tw/summer/">今年的</a></li>
                         <li><a href="{{ url('/admin') }}">後台管理</a></li>
-                        <li><a href="{{ url('/ann') }}">公告</a></li>
+                        <li><a href="{{ url('/ann') }}">公告管理</a></li>
                     </ul>
                 </li>
+                @endcan
                 <li><a href="{{ url('/doc/under') }}">新生必讀</a></li>
                 <li><a href="{{ url('/Q&A/all') }}">新生Q&amp;A</a></li>
                 <li><a href="{{ url('/campus') }}">校園導覽</a></li>
@@ -47,9 +49,10 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/personal') }}"><i class="fa fa-user"></i> 個人專區</a></li>
-                            <li><a href="{{ url('/smallgame') }}"><i class="fa fa-gamepad"></i> 小遊戲</a></li>
-                            <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out"></i> 登出</a></li>
+                            <li><a href="{{ url('/personal') }}"><i class="fa fa-users"></i>個人專區</a></li>
+                            <li><a href="{{ url('/smallgame') }}"><i class="fa fa-gamepad"></i>小遊戲</a></li>
+                            <li><a href="{{ url('/user/edit') }}"><i class="fa fa-user"></i>修改資料</a></li>
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out"></i>登出</a></li>
                         </ul>
                     </li>
                 @endif
