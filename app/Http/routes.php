@@ -65,6 +65,7 @@ Route::patch('/doc/graduate/{graduate}', 'DocumentController@graduateUpdate');
 //************************************************************
 Route::get('/campus','CampusController@index');
 Route::get('/campus/guide','CampusController@guide');
+//導向建築物
 Route::get('/campus/newData','CampusController@newData');
 //oldfunction
 Route::get('/campus/create','CampusController@createData');
@@ -73,11 +74,28 @@ Route::post('/campus/newData/Building','CampusController@createBuilding');
 //編輯建築物 查詢建築資料
 Route::get('/campus/newData/Building/{bid?}','CampusController@getBuilding');
 //編輯建築物 更新建築物資料
-Route::put('/campus/newData/Building/{bid?}','CampusController@putBuilding');
+Route::put('/campus/newData/Building/edit/{bid?}','CampusController@putBuilding');
 //刪除資料
 Route::delete('/campus/newData/Building/{bid?}', 'CampusController@dropBuilding');
 //編輯圖片 查詢圖片資料
-Route::get('/campus/newData/Building/img/{imgid?}', 'CampusComtroller@getBuildingImg');
+Route::get('/campus/newData/Building/img/{imgid?}', 'CampusController@getBuildingImg');
+//新增圖片(資料型態FromData只能用post)
+Route::post('/campus/newData/Building/newImg/{bid?}', 'CampusController@newBuildingImg');
+//刪除圖片
+Route::delete('/campus/newData/Building/delImg/{bid?}', 'CampusController@dropBuildingImg');
+//導向地圖物件
+Route::get('/campus/newObj','CampusController@newObj');
+//新增地圖物件
+Route::post('/campus/newObj/createObj','CampusController@createObj');
+//查詢地圖物件
+Route::get('/campus/newObj/createObj/{bid?}','CampusController@getObj');
+//更新地圖物件
+Route::put('/campus/newObj/createObj/updateObj/{bid?}','CampusController@updateObj');
+//刪除地圖物件
+Route::delete('/campus/newObj/createObj/{bid?}','CampusController@dropObj');
+
+
+
 //************************************************************
 
 // 系所社團
