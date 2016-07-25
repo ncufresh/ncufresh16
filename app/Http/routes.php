@@ -19,13 +19,15 @@ Route::group( ['middleware' => 'admin'], function () {
 });
 //************************************************************
 
-// 註冊,登入頁
+// 註冊,登入
 //************************************************************
 Route::get('login', 'Auth\AuthController@showLoginForm');
 Route::post('login', 'Auth\AuthController@login');
 Route::get('logout', 'Auth\AuthController@logout');
 Route::get('register', 'Auth\AuthController@showRegistrationForm');
 Route::post('register', 'Auth\AuthController@register');
+Route::get('/user/edit', 'UserController@edit');
+Route::post('/user/update', 'UserController@update');
 //************************************************************
 
 // 首頁
