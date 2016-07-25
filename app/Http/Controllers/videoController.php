@@ -25,13 +25,19 @@ class videoController extends Controller
 
 	public function store(Request $request)
 	{
-    	$videos = new videos;
+    	$videos = new Videos;
+        $videos->videos_id = $request->videos_id;
     	$videos->videos_kind = $request->videos_kind;
     	$videos->videos_intro = $request->videos_intro;
     	$videos->videos = $request->videos;
     	$videos->save();
-    	return redirect('/index');
+    	return redirect('/videos');
 	}
+
+    public function show()
+    {
+       return view('videos.index');
+    }
 
         public function live()
     {
