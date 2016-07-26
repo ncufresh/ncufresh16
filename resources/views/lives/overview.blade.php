@@ -4,6 +4,9 @@
 
 @section('css')
 <style>
+body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
+main { background-image:url('../img/home/spring.png'); }
+
 	.dropdown:hover .dropdown-menu {
 	    display: block;
 	    margin-top: 0; // remove the gap so it doesn't close
@@ -16,7 +19,7 @@
 
 	 .list-deco{
 	 	width: 20%;
-	 	height: auto;
+	 	
 	 }
 
 	 .puzzle{
@@ -26,21 +29,25 @@
 	}
 	 
 
-	 #lifeFrame {
+	#groundFrame{
+		min-height: 650px;
 		position: relative;
 		max-width:100%;
-		height: auto;
-		
-			
+		max-height: auto;
+		background-image: url(img/life/sun.png);
+	 	background-repeat:no-repeat;
+	 	background-position: center center;
+	
 	}
 
-	#groundFrame{
-		position: absolute;
+	#lifeFrame{
+		top:40%;
+		left:40%;
 	}
 
 	 #foodFrame{
 	  	top:20%;
-		left:-10%;
+		left:0%;
 	  
 	 }
 
@@ -51,22 +58,22 @@
 
 	  #transportationFrame{
 	 	top:70%;
-		left:65%;	
+		left:60%;	
 	 }
 
 	 #educationFrame{
-	 	top:80%;
-		left:15%;	
+	 	top:75%;
+		left:25%;	
 	 }
 
 	 #entertainmentFrame{
 	 	top:30%;
-		left:80%;	
+		left:70%;	
 	 }
 
 	  #foodMenu,  #housingMenu, #transportationMenu, #educationMenu, #entertainmentMenu  {
 	 	position:absolute; 
-	 	width: 120%;
+	 	max-width: 120%;
   		top:-80% ;
   		left:80%; 
 	 }
@@ -98,8 +105,8 @@
 			  if (clicks) {
 			     
 		        $("#foodFrame").animate({
-		            left: '-10%',
-		            top: '20%'
+		            top:'20%',
+		            left: '0%'
 		        });
  				$("#housingFrame").animate({
 		            top:'0%',
@@ -108,23 +115,23 @@
 
 		        $("#transportationFrame").animate({       
 					top:'70%',
-					left:'65%'	
+					left:'60%'	
 		        });
 		        $("#educationFrame").animate({       
-					top:'80%',
-					left:'15%'
+					top:'75%',
+					left:'25%'
 		        });
 		         $("#entertainmentFrame").animate({       
 					top:'30%',
-					left:'80%'
+					left:'70%'
 		        });        
 
 		        $(".puzzle").fadeIn(1000);
 
 			  } else {
 			     $(this).animate({
-	            	left: '30%',
-	            	top: '35%'
+	            	left: '35%',
+	            	top: '30%'
 
 		        });
 			 
@@ -149,11 +156,13 @@
 				
 		
 			
-		<div class="container"  id="lifeFrame">
+		<div class="container" >
 					<!-- 背景 -->
 					<div id="groundFrame">
-						<img id="sunPic" src="{{ asset('img/life/sun.png')  }}"> 	
-					
+							
+					<div class="puzzle" id="lifeFrame">
+						<img src="img/life/nculife.png">
+					</div>
 					
 		       		<div class="puzzle" id="foodFrame">
 		       		<img class="img-responsive btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#foodMenu" src="{{ asset('img/life/food.png')  }}">
