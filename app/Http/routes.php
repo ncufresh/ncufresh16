@@ -173,14 +173,15 @@ Route::resource('/personal', 'PersonalController');
 // 影音專區
 //************************************************************
 Route::get('/videos','videocontroller@index');
-Route::get('/videos/food','videocontroller@food');
-Route::post('/videos/create', 'videoController@store');
+//Route::get('/videos/food','videocontroller@food');
+Route::post('/videos', 'videoController@store');
 Route::get('/videos/create', 'videoController@create');
-Route::get('/videos/live','videocontroller@live');
-Route::get('/videos/traffic','videocontroller@traffic');
-Route::get('/videos/edu','videocontroller@edu');
-Route::get('/videos/fun','videocontroller@fun');
-Route::get('/videos/ncu','videocontroller@ncu');
+Route::get('/videos/{videos}', 'videoController@show');
+//Route::get('/videos/live','videocontroller@live');
+//Route::get('/videos/traffic','videocontroller@traffic');
+//Route::get('/videos/edu','videocontroller@edu');
+//Route::get('/videos/fun','videocontroller@fun');
+//Route::get('/videos/ncu','videocontroller@ncu');
 //Route::get('/video/')
 //************************************************************
 

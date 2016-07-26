@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 @section('title', '影音專區')
 
 @section('content')
@@ -44,7 +44,7 @@
 	<a href="{{ url('/videos/create') }}">
 	<input type="button" value="新增" style="width:120px;height:40px;border:2px blue none;"></a>
 </div>
-
+  {{ csrf_field() }}
 <div class="panel panel-primary">
   <div class="panel-heading">食</div>
   <div class="panel-body">
