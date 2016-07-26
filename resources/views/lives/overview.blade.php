@@ -18,6 +18,11 @@ main { background-image:url('../img/home/spring.png'); }
 	 	
 	 }
 
+	 li img{
+	 	max-width: 80px;
+	 	height: auto;
+	 }
+
 	
 
 	 .puzzle{
@@ -71,9 +76,9 @@ main { background-image:url('../img/home/spring.png'); }
 	  .menu{
 	 	position:absolute; 
 	 	/*max-width: 4px;*/
-  		/*top:5%;
-  		bottom: 5%;*/
-  		margin:0px auto;
+  		top:5%;
+  		bottom: 5%;
+  	/*	margin:0px auto;*/
   		left:70%; 
 	 }
 
@@ -123,6 +128,7 @@ main { background-image:url('../img/home/spring.png'); }
 		        });        
 
 		        $(".puzzle").fadeIn(1000);
+		        $("#lifeFrame").fadeIn(1000);
 
 			  } else {
 			     $(this).animate({
@@ -132,6 +138,8 @@ main { background-image:url('../img/home/spring.png'); }
 		        });
 			 
 			    $(".puzzle").fadeOut(1000);
+			    $("#lifeFrame").fadeOut(1000);
+			   
 			    $(this).fadeIn(1000);
 
 		       
