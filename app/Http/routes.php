@@ -172,7 +172,7 @@ Route::resource('/personal', 'PersonalController');
 
 // 影音專區
 //************************************************************
-Route::get('/videos','videocontroller@index');
+Route::get('/videos','videoController@index');
 //Route::get('/videos/food','videocontroller@food');
 Route::post('/videos', 'videoController@store');
 Route::get('/videos/create', 'videoController@create');
