@@ -49,15 +49,16 @@ button{
   }*/
 
 #more img{
-    width: 35%; 
+    max-width: 180px; 
     height: auto;   
    
   }
 
   .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
-    width: 70%;
+    width: 100%;
     margin: auto;
+
   }
 
 

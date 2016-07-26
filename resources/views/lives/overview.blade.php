@@ -14,13 +14,11 @@ main { background-image:url('../img/home/spring.png'); }
 	 
 	 li{
 	 	 list-style: none;
-	 	 font-size: 200%;
-	 }
-
-	 .list-deco{
-	 	width: 20%;
+	 	 font-size: 24px;
 	 	
 	 }
+
+	
 
 	 .puzzle{
 		position: absolute;
@@ -32,8 +30,6 @@ main { background-image:url('../img/home/spring.png'); }
 	#groundFrame{
 		min-height: 650px;
 		position: relative;
-		max-width:100%;
-		max-height: auto;
 		background-image: url(img/life/sun.png);
 	 	background-repeat:no-repeat;
 	 	background-position: center center;
@@ -41,6 +37,7 @@ main { background-image:url('../img/home/spring.png'); }
 	}
 
 	#lifeFrame{
+		position: absolute;
 		top:40%;
 		left:40%;
 	}
@@ -71,22 +68,21 @@ main { background-image:url('../img/home/spring.png'); }
 		left:70%;	
 	 }
 
-	  #foodMenu,  #housingMenu, #transportationMenu, #educationMenu, #entertainmentMenu  {
+	  .menu{
 	 	position:absolute; 
-	 	max-width: 120%;
-  		top:-80% ;
-  		left:80%; 
+	 	/*max-width: 4px;*/
+  		/*top:5%;
+  		bottom: 5%;*/
+  		margin:0px auto;
+  		left:70%; 
 	 }
 
-	#foodFrame:hover {
+	.puzzle:hover {
 	 	 -ms-transform: scale(1.2, 1.2); /* IE 9 */
-    -webkit-transform: scale(2, 3); /* Safari */
-    transform: scale(1.2, 1.2);
+	    -webkit-transform: scale(2, 3); /* Safari */
+	    transform: scale(1.2, 1.2);
 	 }
 	
-	/*.container {
-  display: none;
-}*/
 
 .container {
   display: none;
@@ -160,64 +156,64 @@ main { background-image:url('../img/home/spring.png'); }
 					<!-- 背景 -->
 					<div id="groundFrame">
 							
-					<div class="puzzle" id="lifeFrame">
+					<div id="lifeFrame">
 						<img src="img/life/nculife.png">
 					</div>
 					
 		       		<div class="puzzle" id="foodFrame">
 		       		<img class="img-responsive btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#foodMenu" src="{{ asset('img/life/food.png')  }}">
-
-		       		<ul class="collapse" id="foodMenu">
+		       		</div>
+		       		<ul class="collapse menu" id="foodMenu">
 						@foreach ($food as $food)
-						<li><img class="list-deco" src="{{ asset('img/life/knife.png')  }}"> <a href="{{action('LifeController@getContent',['food', $food->id])}}">{{ $food->title }}</a></li>
+						<li><img src="{{ asset('img/life/knife.png')  }}"> <a href="{{action('LifeController@getContent',['food', $food->id])}}">{{ $food->title }}</a></li>
 						@endforeach
 					</ul>	
-					</div>
+					
 
 					
 					<!-- 住 -->
 					<div class="puzzle" id="housingFrame">
 						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#housingMenu" src="{{ asset('img/life/housing.png')  }}">
-
-						<ul class="collapse" id="housingMenu">
+					</div>	
+						<ul class="collapse menu" id="housingMenu">
 							@foreach ($housing as $housing)
-							<li><img class="list-deco" src="{{ asset('img/life/cloth.png')  }}"> <a href="{{action('LifeController@getContent',['housing', $housing->id])}}">{{ $housing->title }}</a></li>
+							<li><img  src="{{ asset('img/life/cloth.png')  }}"> <a href="{{action('LifeController@getContent',['housing', $housing->id])}}">{{ $housing->title }}</a></li>
 							@endforeach
 						</ul>
-					</div>
+					
 
 					<!-- 行 -->
 					<div class="puzzle" id="transportationFrame">
 						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#transportationMenu" src="{{ asset('img/life/transportation.png')  }}">
-
-						<ul class="collapse" id="transportationMenu">
+					</div>
+						<ul class="collapse menu" id="transportationMenu">
 							@foreach ($transportation as $transportation)
-							<li><img class="list-deco" src="{{ asset('img/life/transportation.png')  }}"> <a href="{{action('LifeController@getContent',['transportation', $transportation->id])}}">{{ $transportation->title }}</a></li>
+							<li><img   src="{{ asset('img/life/transportation.png')  }}"> <a href="{{action('LifeController@getContent',['transportation', $transportation->id])}}">{{ $transportation->title }}</a></li>
 							@endforeach
 						</ul>
-					</div>
+					
 					
 					<!-- 育 -->
 					<div class="puzzle" id="educationFrame">
 						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#educationMenu" src="{{ asset('img/life/education.png')  }}">
-
-						<ul class="collapse" id="educationMenu">
+					</div>
+						<ul class="collapse menu" id="educationMenu">
 							@foreach ($transportation as $transportation)
-							<li><img class="list-deco" src="{{ asset('img/life/foot.png')  }}"> <a href="{{action('LifeController@getContent',['education', $education->id])}}">{{ $education->title }}</a></li>
+							<li><img  src="{{ asset('img/life/foot.png')  }}"> <a href="{{action('LifeController@getContent',['education', $education->id])}}">{{ $education->title }}</a></li>
 							@endforeach
 						</ul>
-					</div>
+					
 					
 					<!-- 樂 -->
 					<div class="puzzle" id="entertainmentFrame">
 						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#entertainmentMenu" src="{{ asset('img/life/entertainment.png')  }}">
-
-						<ul class="collapse" id="entertainmentMenu">
+					</div>
+						<ul class="collapse menu" id="entertainmentMenu">
 							@foreach ($transportation as $transportation)
-							<li><img class="list-deco" src="{{ asset('img/life/pen.png')  }}"> <a href="{{action('LifeController@getContent',['entertainment', $entertainment->id])}}">{{ $entertainment->title }}</a></li>
+							<li><img  src="{{ asset('img/life/pen.png')  }}"> <a href="{{action('LifeController@getContent',['entertainment', $entertainment->id])}}">{{ $entertainment->title }}</a></li>
 							@endforeach
 						</ul>
-					</div>
+					
 
 					</div>
 			
