@@ -1,129 +1,199 @@
-/*html {
-    overflow: hidden;
-  }*/
+/*!!! use z-index to layer element !!!*/
 
-body {
-  display: none;
+
+/*--- @override bootstrap.css ---*/
+
+.navbar {
+    margin-bottom: 0;
 }
 
+.col-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+/*--- 自定義 ---*/
+
+
+/* 浮動按鈕 */
+
+.fixed-button {
+    position: fixed;
+    bottom: 15%;
+    width: 100%;
+    text-align: center;
+}
+
+
+/*--- 圓圈按鈕 ---*/
+
+.btn-circle {
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 16px 16px;
+    background-color: transparent;
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+}
+
+
+/* 圓圈按鈕的動畫 */
+
+.btn-circle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    animation: mymove 0.50s linear infinite alternate;
+}
+
+@keyframes mymove {
+    from {
+        font-size: 14px;
+    }
+    to {
+        font-size: 18px;
+    }
+}
+
+
+/* for fadeIn() animation */
+
 body,
+#innerLeftPage-2,
+#innerLeftPage-3,
+#innerRightPage-2,
+#innerRightPage-3 {
+    display: none;
+}
+
+
+/*--- @override layout.css */
+
+/*#footer {
+    border-top: 1px solid #c1e1ec;
+    height: 160px;
+}*/
+
+
+/* living space for footer */
+
+.wrapper {
+    padding-bottom: 160px;
+}
+
+
+/* hidden until open */
+
+#leftScreen,
+#rightScreen,
+#bottomScreen {
+    display: none;
+}
+
+
+/*--- scrollspy and affix effects ---*/
+
+body {
+    background: lightblue;
+    position: relative;
+    margin-bottom: 0px;
+}
+
 h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4 {
-  font-family: Helvetica, Arial, '微軟正黑體', '新細明體', sans-serif;
+h2 {
+    font-weight: 700;
 }
 
 h3 span {
-  color: #286090;
+    color: #286090;
+}
+
+.jumbotron {
+    overflow: hidden;
+    border-radius: 0;
+    margin-bottom: 0;
+    /* @override bootstrap.css */
+    padding: 0;
+}
+
+.jumbotron button {
+    margin-top: 10px;
 }
 
 section {
-  padding: 40px 0;
-  border-bottom: 1px solid #c1e1ec;
-}
-
-#main-1,
-#main-2,
-#main-3 {
-  padding-bottom: 0;
+    padding: 40px 0;
+    border-bottom: 1px solid #c1e1ec;
 }
 
 section:last-child {
-  border-bottom: none;
+    border-bottom: none;
+}
+
+.side-nav {
+    background: #4baac8;
 }
 
 .side-nav a {
-  color: black;
-  font-style: italic;
+    color: black;
+    font-style: italic;
 }
 
 .side-nav li a:hover,
 .side-nav li a:focus {
-  background: #86c5da;
+    background: #86c5da;
 }
 
 .side-nav .active {
-  font-weight: bold;
-  background: #72bcd4;
+    font-weight: bold;
+    background: #72bcd4;
 }
 
 .side-nav .side-nav {
-  display: none;
+    display: none;
 }
 
 .side-nav .active .side-nav {
-  display: block;
+    display: block;
 }
 
 .side-nav .side-nav a {
-  font-weight: normal;
-  font-size: .85em;
+    font-weight: normal;
+    font-size: .85em;
 }
 
 .side-nav .side-nav span {
-  margin: 0 5px 0 2px;
+    margin: 0 5px 0 2px;
 }
 
 .side-nav .side-nav .active a,
 .side-nav .side-nav .active:hover a,
 .side-nav .side-nav .active:focus a {
-  font-weight: bold;
-  padding-left: 30px;
-  border-left: 5px solid black;
+    font-weight: bold;
+    padding-left: 30px;
+    border-left: 5px solid black;
 }
 
 .side-nav .side-nav .active span,
 .side-nav .side-nav .active:hover span,
 .side-nav .side-nav .active:focus span {
-  display: none;
+    display: none;
 }
 
-#innerLeftSidebar {
-  background: rgba(71, 163, 218, 250);
+.mixed {
+    border-top: 1px solid #c1e1ec;
 }
 
-#innerRightSidebar {
-  background: rgba(255, 255, 255, 250);
+.affix-top {
+    position: relative;
 }
 
-#outerLeftSidebar {
-  background: #47a3da;
+.affix-bottom {
+    position: absolute;
 }
 
-#innerLeftSidebar,
-#innerRightSidebar {
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-#innerLeftPage {
-  background: #34495e;
-  color: white;
-}
-
-#innerRightPage {
-  background: #ecf0f1;
-}
-
-#outerRightSidebar {
-  background: #fff;
-}
-
-.col-center {
-  text-align: center;
-}
-
-#addNewUnderScreen {
-  background: #eee;
-}
-
-#addNewGraduateScreen {
-  background: #eee;
+@media (min-width: 1200px) {
+    .affix,
+    .affix-bottom {
+        width: 263px;
+    }
 }

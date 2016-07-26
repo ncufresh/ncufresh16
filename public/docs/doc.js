@@ -1,245 +1,214 @@
 $(document).ready(function() {
-  $("body").fadeIn("slow");
-  var getNavBlockHeight = ($("nav").outerHeight(true) - 20);
-  var getFooterBlockHeight = 150;
+    // 根據視窗調整按鈕大小、參考值還需要調整!!!
+    $("img").width($(window).height() / 4);
 
-  function test() {
-    $(".test1").text('$("body").width(): ' + $("body").width());
-    $(".test2").text('$("body").innerWidth():' + $("body").innerWidth());
-    $(".test3").text($("#addNewUnderScreen").css("display"));
-    $(".test4").text('$(window).innerWidth(): ' + $(window).innerWidth());
-    $("body").attr("data-target", ".scrollspy").css("background-color", "#2d2d30");
-  }
+    // @override body attr.
+    // fadeIn() animation
+    $("body").attr("data-target", ".scrollspy").css("overflow", "auto").fadeIn("slow");
 
-  // status : 頁面的狀態
-  const INIT_SCREEN = 0; // 初始畫面
-  const LEFT_SCREEN = 1; // 開啟左邊的大學部新生必讀
-  const RIGHT_SCREEN = 2; // 開啟右邊的研究所新生必讀
-
-  var status = INIT_SCREEN;
-  const scrollbarWidth = 17;
-
-  function init() {
-    $("#addNewUnderScreen").css("display", "none");
-    $("#addNewGraduateScreen").css("display", "none");
-    $("#leftScreen").css("display", "none");
-    $("#rightScreen").css("display", "none");
-    $("#openAnimationScreen").css("display", "none");
-    $("#innerLeftPage").css("display", "none");
-    $("#innerRightPage").css("display", "none");
-    $("#innerLeftSidebar").css({
-      "display": "none",
-      "position": "fixed",
-      "top": getNavBlockHeight,
-      "left": 0,
-      "width": ($(window).width() - 17) / 4,
-      "height": $(window).height()
+    $(".jumbotron").css({
+        // 在上方導覽列的位置留空
+        "padding-top": $("nav").height(),
+        // 設定高度
+        "height": $(window).height() - $(".footer-below").outerHeight() - $(".footer-above").outerHeight()
     });
-    $("#innerRightSidebar").css({
-      "display": "none",
-      "position": "fixed",
-      "top": getNavBlockHeight,
-      "left": ($(window).width() - 17) * 3 / 4,
-      "width": $(window).width() / 4,
-      "height": $(window).height()
+
+    // 設定中間畫面的高度
+    $("#leftScreen, #rightScreen").css("height", $(".jumbotron").height());
+
+    // 讓上方畫面的內容垂直置中
+    $("#outerLeftSidebar, #outerRightSidebar").css({
+        "padding-top": ($(".jumbotron").height() - $("#outerLeftSidebar").height()) / 2
     });
-    $("#outerLeftSidebar").css({
-      "height": $(window).height() - getNavBlockHeight - getFooterBlockHeight,
-      "display": "none"
-    }).fadeIn("slow");
-    $("#outerRightSidebar").css({
-      "height": $(window).height() - getNavBlockHeight - getFooterBlockHeight,
-      "display": "none"
-    }).fadeIn("slow");
-  }
 
-  function setNavBlockHeight() {
-    $("#navBlock").css("height", getNavBlockHeight);
-  }
+    // 用來讓 scrollspy 提前結束追蹤位置
+    // $("#left-hiddden-section").css("padding", $("nav").height() / 2);
 
-  function hasHorizontalScrollbar() {
-    if ($("body").height() > $(window).height()) {
-      return true;
-    } else {
-      return false;
+    // 設定 .affix (在中間) 時候
+    // $(".nav.side-nav.hidden-xs.hidden-sm.affix").css({
+    //     "width": $(window).width() / 4,
+    //     "top": $("nav").height()
+    // });
+
+    // 大學部、研究所導覽列 affix offset 位置
+    // $("#leftNav, #rightNav").affix({
+    //     offset: {
+    //         top: $(".jumbotron").outerHeight() - $("nav").height(),
+    //         bottom: $("footer").outerHeight(true)
+    //     }
+    // });
+
+    // 點下 "開啟大學部畫面" 或 "開啟研究所畫面" 的圖片時
+    $("p a[href='#under-1'], p a[href='#graduate-1']").on('click', function(event) {
+        // 設定 scrollspy 的高度
+        // $(".affix, .affix-top, .affix-bottom").css("height", $(window).height() - $("nav").height());
+
+        if (this.hash !== "") {
+            // 顯示 scrollbar
+            $("body").css("overflow", "auto");
+            // 砍掉 footer 的 fixed
+            $("footer").removeAttr("style");
+            // Prevent default anchor click behavior
+            event.preventDefault();
+            // Store hash
+            var hash = this.hash;
+            if (hash === "#under-1") {
+                $("#leftScreen").fadeIn("fast");
+                $("#rightScreen").hide();
+            } else {
+                $("#leftScreen").hide();
+                $("#rightScreen").fadeIn("fast");
+            }
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, "slow");
+        }
+    });
+
+    // 調整視窗大小時
+    $(window).resize(function() {
+
+        $("img").width($(window).height() / 4);
+
+        $(".jumbotron").css({
+            // 在上方導覽列的位置留空
+            "padding-top": $("nav").height() + $("nav").height(),
+            // 設定高度
+            "height": $(window).height() - $(".footer-below").outerHeight() - $(".footer-above").outerHeight()
+        });
+
+        // 設定中間畫面的高度
+        $("#leftScreen, #rightScreen").css("height", $(".jumbotron").height());
+
+        // 讓上方畫面的內容垂直置中
+        $("#outerLeftSidebar, #outerRightSidebar").css({
+            "padding-top": ($(".jumbotron").height() - $("#outerLeftSidebar").height()) / 2
+        });
+
+        // 調整 scrollspy 的高度
+        // $(".affix, .affix-top, .affix-bottom").css("height", $(window).height() - $("nav").height());
+
+        // 調整大學部、研究所導覽列 affix offset 位置
+        // $("#leftNav, #rightNav").affix({
+        //     offset: {
+        //         top: $(".jumbotron").outerHeight() - $("nav").height(),
+        //         bottom: $("footer").outerHeight(true)
+        //     }
+        // });
+
+        // affix-top 時清除 inline style
+        // $(".nav.side-nav.hidden-xs.hidden-sm.affix-top").removeAttr("style");
+
+        // affix 時調整寬度與頂部位置
+        // $(".nav.side-nav.hidden-xs.hidden-sm.affix").css({
+        //     "width": $(window).width() / 4,
+        //     "top": $("nav").height()
+        // });
+
+        // affix-bottom 時調整寬度
+        // $(".nav.side-nav.hidden-xs.hidden-sm.affix-bottom").css("width", $(window).width() / 4);
+
+        // 設定 scrollspy 的高度
+        // $(".affix, .affix-top, .affix-bottom").css("height", $(window).height() - $("nav").height());
+    });
+
+    // 滾動畫面時
+    $(window).scroll(function() {
+
+        // $(".jumbotron").css({
+        //     // 在上方導覽列的位置留空
+        //     "padding-top": $("nav").height(),
+        //     // 設定高度
+        //     "height": $(window).height() - $(".footer-below").outerHeight() - $(".footer-above").outerHeight()
+        // });
+
+        // 調整大學部、研究所導覽列 affix offset 位置
+        // $("#leftNav, #rightNav").affix({
+        //     offset: {
+        //         top: $(".jumbotron").outerHeight() - $("nav").height(),
+        //         bottom: $("footer").outerHeight(true)
+        //     }
+        // });
+
+        // affix-top 時清除 inline style
+        // $(".nav.side-nav.hidden-xs.hidden-sm.affix-top").removeAttr("style").css("height", $(window).height() - $("nav").height());
+
+        // affix 時調整寬度與頂部位置
+        // $(".nav.side-nav.hidden-xs.hidden-sm.affix").css({
+        //     "width": $(window).width() / 4,
+        //     "top": $("nav").height(),
+        //     "height": $(window).height() - $("nav").height()
+        // });
+
+        // affix-bottom 時調整寬度
+        // $(".nav.side-nav.hidden-xs.hidden-sm.affix-bottom").css({
+        //     "width": $(window).width() / 4,
+        //     "height": $(window).height() - $("nav").height()
+        // });
+
+        // 當滾動到最上方讓畫面回復初始狀態
+        if ($(document).scrollTop() === 0) {
+            window.location.hash = "";
+            $("footer").css({
+                "position": "fixed",
+                "bottom": $(".footer-above").outerHeight() + $(".footer-below").outerHeight() - $("footer").height()
+            }).hide().fadeIn("fast");
+            $("body").css("overflow", "hidden");
+            $("#leftScreen").fadeOut("fast");
+            $("#rightScreen").fadeOut("fast");
+            $("#bottomScreen").fadeOut("fast");
+        }
+    });
+
+    // 
+    $(".fixed-button").click(function() {
+        test();
+        // Make sure this.hash has a value before overriding default behavior
+        // 顯示 scrollbar
+        $("body").css("overflow", "auto");
+        // 砍掉 footer 的 fixed
+        $("footer").removeAttr("style");
+        $("#leftScreen").fadeOut("slow");
+        $("#rightScreen").fadeOut("slow");
+        $("#bottomScreen").fadeIn("slow");
+
+        // Using jQuery's animate() method to add smooth page scroll
+        // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+        $('html, body').animate({
+            scrollTop: $("#bottomScreen").offset().top
+        }, "slow");
+    });
+
+    // 平滑移動視窗
+    $("footer a[href='#app-layout']").on('click', function(event) {
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            event.preventDefault();
+            // Store hash
+            var hash = this.hash;
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+
+            $("footer").css({
+                "position": "fixed",
+                "bottom": 0
+            });
+
+            $("#leftScreen").fadeOut(900);
+            $("#rightScreen").fadeOut(900);
+            $("#bottomScreen").fadeOut(900);
+        } // End if
+    });
+
+    // testing
+    function test() {
+        $(".test1").text($(".footer-above").outerHeight() + $(".footer-below").outerHeight() - $("footer").height());
+        // $(".test2").text($(window).width() / 4);
+        // $(".test3").text($(".jumbotron").height() / 2 - $(window).width() / 4);
+        // $(".test4").text(($(".jumbotron").height() / 2) - ($(window).width() / 4));
     }
-  }
-
-  setNavBlockHeight();
-  init();
-  test();
-
-  // open left page
-  $("#btnOpenLeftPage").click(function() {
-    test();
-    // close init screen
-    $("#initScreen").fadeOut("fast");
-    status = LEFT_SCREEN; // set status for resize condition
-    // animation...
-    $("#openAnimationScreen").css("display", "block");
-    $("#openAnimationBox").removeAttr("style").css({
-      "display": "block",
-      "background": "#47a3da",
-      "position": "fixed",
-      "top": getNavBlockHeight,
-      "left": 0,
-      "width": $(window).width() / 2,
-      "height": $(window).height() - getNavBlockHeight
-    }).delay("fast").animate({ "width": ($(window).width() - 17) / 4 }, "fast");
-    // show left screen
-    $("#openAnimationScreen").delay("fast").delay("fast").fadeOut("slow");
-    $("#leftScreen").css("display", "block");
-    $("#innerLeftSidebar").delay("fast").delay("fast").fadeIn("slow");
-    $("#innerLeftPage").delay("fast").delay("fast").fadeIn("slow");
-  });
-
-  // back to origin from left
-  $("#btnBackLeftPage").click(function() {
-    test();
-    // close left screen
-    $("#addNewUnderScreen").css("display", "none");
-    $("#leftScreen").fadeOut("slow");
-    $("#innerLeftSidebar").fadeOut("slow");
-    $("#innerLeftPage").fadeOut("slow");
-    // set status for resize condition
-    status = INIT_SCREEN;
-    // animation...
-    $("#openAnimationScreen").css("display", "block");
-    $("#openAnimationBox").css({
-      "top": getNavBlockHeight,
-      "width": $(window).width() / 4,
-      "height": $(window).height() - getNavBlockHeight
-    }).delay("fast").animate({ "width": ($(window).width() + 17) / 2 }, "fast");
-    // open init srceen
-    $("#openAnimationScreen").delay("slow").delay("fast").fadeOut("slow");
-    $("#initScreen").delay("slow").delay("fast").fadeIn("slow");
-  });
-
-  // open right page
-  $("#btnOpenRightPage").click(function() {
-    test();
-    // close init screen
-    $("#initScreen").fadeOut("fast");
-    status = RIGHT_SCREEN; // set status for resize condition
-    // animation...
-    $("#openAnimationScreen").css("display", "block");
-    $("#openAnimationBox").removeAttr("style").css({
-      "display": "block",
-      "position": "fixed",
-      "background": "#fff",
-      "top": getNavBlockHeight,
-      "left": $(window).width() / 2,
-      "width": $(window).width() / 2,
-      "height": $(window).height() - getNavBlockHeight
-    }).delay("fast").animate({
-      "left": ($(window).width() - 17) * 3 / 4,
-      "width": ($(window).width() - 17) / 4
-    }, "fast");
-    // show right screen
-    $("#openAnimationScreen").delay("fast").delay("fast").fadeOut("fast");
-    $("#rightScreen").css("display", "block");
-    $("#innerRightSidebar").delay("fast").delay("fast").fadeIn("slow");
-    $("#innerRightPage").delay("fast").delay("fast").fadeIn("slow");
-  });
-
-  // back to origin from right
-  $("#btnBackRightPage").click(function() {
-    test();
-    // close right screen
-    $("#addNewGraduateScreen").css("display", "none");
-    $("#rightScreen").fadeOut("slow");
-    // set status for resize condition
-    status = INIT_SCREEN;
-    // animation...
-    $("#openAnimationScreen").css("display", "block");
-    $("#openAnimationBox").css({
-      "top": getNavBlockHeight,
-      "left": $(window).width() * 3 / 4,
-      "width": $(window).width() / 4,
-      "height": $(window).height() - getNavBlockHeight
-    }).delay("fast").animate({
-      "left": ($(window).width() + 17) / 2,
-      "width": ($(window).width() + 17) / 2
-    }, "fast");
-    // open init srceen
-    $("#openAnimationScreen").delay("slow").delay("fast").fadeOut("slow");
-    $("#initScreen").delay("slow").delay("fast").fadeIn("slow");
-  });
-
-  // if resize set navBlock height again
-  $(window).resize(function() {
-    test();
-    getNavBlockHeight = ($("nav").outerHeight(true) - 20);
-    setNavBlockHeight();
-    // 若在初始狀態
-    // if (status === INIT_SCREEN) {
-    $("#outerLeftSidebar").css("height", $(window).height() - getNavBlockHeight - getFooterBlockHeight);
-    $("#outerRightSidebar").css("height", $(window).height() - getNavBlockHeight - getFooterBlockHeight);
-    // }
-    // 若打開了左邊大學部新生必讀
-    // if (status === LEFT_SCREEN) {
-    $("#innerLeftSidebar").css({
-      "top": getNavBlockHeight,
-      "width": ($(window).width() / 4),
-      "height": $(window).height()
-    });
-    // }
-    // 若打開了右邊研究所新生必讀
-    // if (status === RIGHT_SCREEN) {
-    $("#innerRightSidebar").css({
-      "top": getNavBlockHeight,
-      "left": ($(window).width() * 3 / 4),
-      "width": ($(window).width() / 4),
-      "height": $(window).height()
-    });
-    // }
-  });
-
-  $("#test1").click(function() {
-    test();
-  });
-
-  $("#test2").click(function() {
-    test();
-  });
-
-  $("#test3").click(function() {
-    test();
-  });
-
-  $("#test4").click(function() {
-    test();
-  });
-
-  $("#btnAddUnder").click(function() {
-    if ($("#addNewUnderScreen").css("display") === "none") {
-      $("#addNewUnderScreen").css("display", "block");
-    } else {
-      $("#addNewUnderScreen").css("display", "none");
-    }
-  });
-
-  $("#btnAddGraduate").click(function() {
-    if ($("#addNewGraduateScreen").css("display") === "none") {
-      $("#addNewGraduateScreen").css("display", "block");
-    } else {
-      $("#addNewGraduateScreen").css("display", "none");
-    }
-  });
-
-  // $("#innerLeftPage").mouseover(function(){
-  //   $("html").css("overflow", "auto");
-  // });
-
-  // $("#innerLeftPage").mouseout(function(){
-  //   $("html").css("overflow", "hidden");
-  // });
-
-  // $("#innerRightPage").mouseover(function(){
-  //   $("html").css("overflow", "auto");
-  // });
-
-  // $("#innerRightPage").mouseout(function(){
-  //   $("html").css("overflow", "hidden");
-  // });
+    // test();
 });
