@@ -45,7 +45,8 @@ PHP:
 [Font Awesome-4.6.3](http://fontawesome.io)  
 [jQuery-1.12.4](http://api.jquery.com)  
 [pickadate.js-3.5.6](http://amsul.ca/pickadate.js/date/)  
-
+[jquery-backstretch-2.0.4](https://github.com/srobbin/jquery-backstretch)
+[jQuery-iziModal-v1.2.0](http://izimodal.marcelodolce.com)
 
 ## 部署
 
@@ -59,6 +60,7 @@ PHP:
 `php artisan db:seed`  
 `php artisan serve`
 
+`composer dump-autoload`:有人不照規則改migration檔就要使用
 
 ## 權限懶人包
 
@@ -111,6 +113,24 @@ CKEDITOR.replace( '你的textarea的id或name', {
 <img id="holder" style="margin-top:15px;max-height:100px;">
 ```
 `$('#lfm').filemanager('image');` or `$('#lfm').filemanager('file');`
+
+
+## 季節懶人包
+春 夏 秋 冬
+```
+body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
+main { background-image:url('../img/home/spring.png'); }
+
+body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(145,214,234,.8) 100%); }
+main { background-image:url('../img/home/summer.png'); }
+
+body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(197,121,002,.8) 100%); }
+main { background-image:url('../img/home/fall.png'); }
+
+body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(1,50,104,.8) 100%); }
+main { background-image:url('../img/home/winter.png'); }
+```
+
 
 ## 程式碼準則
 HTML:  

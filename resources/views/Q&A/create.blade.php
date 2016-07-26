@@ -1,10 +1,11 @@
-@extends('layouts.Q&Alayouts')
+@extends('layouts.layout')
 @section('title','提出疑問|Q&A')
-@section('js')
-@endsection
 
-@section('Q&Acontent')
-    <div class="col-sm-7">
+
+@section('content')
+<div class="container">
+@include('Q&A.Q&Alayouts')
+    <div class="col-md-7">
        <form action="{{action('QandAController@store')}}" method="post">
         {{ csrf_field() }}
             <div class="form-group">
@@ -28,7 +29,8 @@
               <span class="help-block">TESTTTT</span>
             </div>
             
-            <button type="submit" class="col-sm-3 btn btn-info btn-raised">Submit</button>
+            <button type="submit" class="col-md-3 btn btn-info btn-raised">Submit</button>
           </form>
     </div>
+</div>  
 @endsection
