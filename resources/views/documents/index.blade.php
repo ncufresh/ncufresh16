@@ -219,22 +219,22 @@
                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
                 <div class="row">
                     <div class="col-sm-4">
-                        <p><img src="img/kirby.png" alt="kirby"></p>
+                        <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
                     </div>
                     <div class="col-sm-4">
-                        <p><img src="img/kirby.png" alt="kirby"></p>
+                        <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
                     </div>
                     <div class="col-sm-4">
-                        <p><img src="img/kirby.png" alt="kirby"></p>
+                        <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
                     </div>
                     <div class="col-sm-4">
-                        <p><img src="img/kirby.png" alt="kirby"></p>
+                        <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
                     </div>
                     <div class="col-sm-4">
-                        <p><img src="img/kirby.png" alt="kirby"></p>
+                        <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
                     </div>
                     <div class="col-sm-4">
-                        <p><img src="img/kirby.png" alt="kirby"></p>
+                        <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
                     </div>
                 </div>
             </section>
