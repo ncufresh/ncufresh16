@@ -4,6 +4,12 @@
 
 @section('css')
 <style>
+body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(197,121,002,.8) 100%); }
+
+button{
+   border: 3px solid black;
+}
+
   #contentModal{
     background-color: #e1f5fe;
     margin-top: 10%;
@@ -13,7 +19,7 @@
     position: relative;
     width: 100%;
     height: 150%;
-    background-color: #fff9c4;
+/*    background-color: #fff9c4;*/
   }
 
   /*#leftPart{
@@ -43,14 +49,16 @@
   }*/
 
 #more img{
-    width: 50%;    
+    max-width: 180px; 
+    height: auto;   
    
   }
 
   .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
-    width: 70%;
+    width: 100%;
     margin: auto;
+
   }
 
 
@@ -63,6 +71,15 @@
     padding: 0px;
   }
 
+  .btn-default{
+      margin:10px 1px;
+      padding:8px 30px;
+      background:0 0;
+      border-color:#00D4FF ;
+  }
+
+
+  
 </style>
 
 @stop
@@ -81,22 +98,22 @@
 
 <div class="container" id="background" >
 <div class="row">
-  <div class="col-md-3" id="leftPart">
+  <div class="col-md-4" id="leftPart">
 <div class="row">
-    <div  class="col-md-12" id="titleFrame">
+    <div  class="col-md-offset-3 col-md-9"" id="titleFrame">
       <img src="{{ asset($content->image) }}" class="img-responsive">
     </div>
 
-    <div class="col-md-12" id="more">   
+    <div class="col-md-offset-3 col-md-9" id="more">   
       <img src="{{ asset('img/life/detail/more.png')  }}" href="javascript:void(0)" class="btn img-rounded " data-toggle="collapse" data-target="#linkMenu">
       <!--  <a href="javascript:void(0)" class="btn btn-info btn-fab  dropdown-toggle-right" data-toggle="collapse" data-target="#linkMenu"><i class="material-icons">grade</i></a> -->
 
       <ul class="collapse" id="linkMenu" role="group" >
         <!-- Trigger the modal with a button -->
-        <button class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal">相片導覽</button>
+        <button class="btn-default btn-block" data-toggle="modal" data-target="#myModal">相片導覽</button>
 
         @foreach ($more as $more)
-        <a class="btn btn-default btn-block"  target="_blank" href="{{ asset($more->link) }}">{{ $more->location }}</a>
+        <a target="_blank" href="{{ asset($more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
         @endforeach
       </ul>
     </div>  
@@ -157,8 +174,9 @@
 </div>
   </div>
 
-  <div class="col-md-9" id="rightPart">
-    <div class="modal-content" id="contentModal">
+  <div class="col-md-8" id="rightPart">
+<div class="row">
+    <div class="col-md-10 modal-content" id="contentModal">
       <div class="modal-header">
         <a href=".." type="button" class="close">×</a>
       </div>
@@ -167,6 +185,7 @@
         <p>{{$content->content}}</p>
       </div>
 
+    </div>
     </div>
   </div>
 </div>
