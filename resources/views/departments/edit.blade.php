@@ -1,12 +1,12 @@
 @extends('layouts.layout')
-
+@section('title', '系所社團')
 	@section('js')
 	<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
 	<script type="text/javascript">
 	$('#lfm').filemanager('image');
 	</script>
 	@stop
-
+@section('title', '系所社團')
 @section('content')
 	<form method="post" action="{{ URL::action('DepartmentController@update',$departments->id) }}">
         {{ csrf_field() }}

@@ -1,13 +1,15 @@
 @extends('layouts.layout')
+@section('title', '系所社團')
 @section('content')
-	<br><br><br><br>	
-	
-	<div>
-		<a href="{{ url('/') }}">首頁</a>><a href="{{ url('/groups') }}">系所社團</a>><a href="{{ url('/groups/clubs') }}">社團</a>
-		
-	</div>
-	<a href="{{ url('/groups/clubs/create') }}">新增</a>
-	
+<div class="container">
+	<ol class="breadcrumb">
+		<li><a href="/">首頁</a></li>
+		<li><a href="{{ url('/groups') }}">系所社團</a></li>
+		<li><a href="{{ url('/groups/clubs') }}">社團</a></li>
+	</ol>
+	@can('management')
+	<a href="{{ url('/groups/clubs/create') }}" class="btn btn-success btn-raised" role="button">新增</a>
+	@endcan
 
 	<div>
 		<a href="{{ url('/groups/clubs/1') }}">
@@ -33,7 +35,6 @@
 			<span>服務性</span>
 		</a>
 	</div>
-	
-
+</div>
 	
 @endsection
