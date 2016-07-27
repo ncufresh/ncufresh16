@@ -1,11 +1,21 @@
 @extends('layouts.layout')
 
 @section('title','Q&A')
-
+@section('js')
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript">
+CKEDITOR.replace( 'response', {
+    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+});
+</script>
+@stop
 @section('content')
 <div class="container">
 @include('Q&A.Q&Alayouts')
-        <div class="col-md-7">
+        <div class="col-md-8">
           <table class="table table-hover">
             <thead><tr><th>分類</th><th>日期</th><th>點閱率</th></tr></thead>
                 <tbody>
@@ -29,7 +39,7 @@
               <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/A.png') }}" width="10%" height="10%"><b> : 回答</b></h1></div>
               <div class="panel-body">
                   @if (!empty($Q->response))
-                  <h4>{{$Q->response}}</h4>
+                  <h4>{!!$Q->response!!}</h4>
                   @else
                   <h3>很抱歉目前尚無回答，請在稍等一會</h3>
                   @endif
@@ -94,4 +104,5 @@
   <!-- Modal -->
 
 @endsection
+
 

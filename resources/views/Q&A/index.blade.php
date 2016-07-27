@@ -15,7 +15,7 @@
 @section('content')
 <div class="container">
 @include('Q&A.Q&Alayouts')
-  <div class="col-md-7">
+  <div class="col-md-8">
 
   <div class="panel hot">
         <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/bulb2.png') }}" width="5%" height="5%"><b> 熱門問題</b></h1></div>
