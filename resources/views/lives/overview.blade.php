@@ -9,7 +9,7 @@ main { background-image:url('../img/home/spring.png'); }
 
 	.dropdown:hover .dropdown-menu {
 	    display: block;
-	    margin-top: 0; // remove the gap so it doesn't close
+	    margin-top: 0; /*// remove the gap so it doesn't close*/
 	 }
 	 
 	 li{
@@ -151,6 +151,16 @@ main { background-image:url('../img/home/spring.png'); }
 	    });
 	    
 	});
+
+$(".newTitle").keypress(function (event) {
+    if (event.which === 13)
+    {
+        $(".submit-title").click();
+    }
+});
+
+
+
 </script>
 
 
@@ -175,6 +185,16 @@ main { background-image:url('../img/home/spring.png'); }
 						@foreach ($food as $food)
 						<li><img src="{{ asset('img/life/knife.png')  }}"> <a href="{{action('LifeController@getContent',['food', $food->id])}}">{{ $food->title }}</a></li>
 						@endforeach
+
+						<li><img src="{{ asset('img/life/knife.png')  }}">
+							<form action="{{ url('life') }}" method="POST">
+						    {{ csrf_field() }}
+						    <input type="text" name="title">
+						    <input type="hidden" name="topic" value="food">
+						    <button class="submit-title" type="submit">新增</button>
+							</form>
+						</li>
+
 					</ul>	
 					
 

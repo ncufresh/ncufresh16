@@ -4,7 +4,8 @@
 
 @section('css')
 <style>
-body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(197,121,002,.8) 100%); }
+body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
+main { background-image:url('../../img/home/spring.png'); }
 
 button{
    border: 3px solid black;
@@ -88,8 +89,23 @@ button{
   <script type="text/javascript">
    $(document).ready(function(){
         $(".container").fadeIn(1300);
+          CKEDITOR.instances['textArea'].setData($("#tempText").val());
 });
+
   </script>
+
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript">
+
+CKEDITOR.replace( 'textArea', {
+    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+});
+
+</script>
+
 
 @stop
 
@@ -115,8 +131,19 @@ button{
         @foreach ($more as $more)
         <a target="_blank" href="{{ asset($more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
         @endforeach
+
+        <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/add' }}" method="POST">
+            {{ csrf_field() }}
+            <input type="hidden" name="life_id" value="{{$content->id}}">
+            <input type="text" name="location">
+            <input type="text" name="link" >
+            <button type="submit">新增</button>
+        </form>
+        
       </ul>
+
     </div>  
+
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -174,22 +201,37 @@ button{
 </div>
   </div>
 
+
   <div class="col-md-8" id="rightPart">
 <div class="row">
     <div class="col-md-10 modal-content" id="contentModal">
+     <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/edit' }}" method="POST">
+     {{ csrf_field() }}
       <div class="modal-header">
-        <a href=".." type="button" class="close">×</a>
+     <!--    <button class="material-icons" data-toggle="collapse" data-target="#showArea">edit</button> -->
+        <button class="material-icons">edit</button>
+        <button type="submit" class="material-icons">done</button>
+        <a href=".." class="material-icons close">clear</a> 
+        
       </div>
 
-      <div class="modal-body">
-        <p>{{$content->content}}</p>
-      </div>
+        <div class="modal-body">
 
+          <!-- <div id="showArea" class="collapse"> -->
+          <textarea type="text" name="content" id="textArea"></textarea>
+          <input type="hidden" value="{{$content->content}}" id="tempText">
+         <!--  </div>  -->
+
+        <p>{!!$content->content!!}</p>
+      </div>
+</form>
     </div>
     </div>
   </div>
+  
 </div>
 </div>
 
 
 @endsection
+
