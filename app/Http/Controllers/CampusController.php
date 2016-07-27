@@ -182,7 +182,7 @@ class CampusController extends Controller {
 
     public function newBuildingImg(Request $request, $bid) {
         $validator = Validator::make($request->all(), array(
-                    'inputImg' => 'mimes: jpg,jpeg,png,pmb,gif,svg|max:100',
+                    'inputImg' => 'mimes: jpg,jpeg,png,pmb,gif,svg|max:500',
         ));
         if ($validator->fails()) {
             return response()->json(array(
@@ -242,7 +242,7 @@ class CampusController extends Controller {
                     'Xcoordinate' => 'required',
                     'Ycoordinate' => 'required',
                     'objWidth' => 'required',
-                    'objImg' => 'mimes: jpg,jpeg,png,pmb,gif,svg|max:100|required',
+                    'objImg' => 'mimes: jpg,jpeg,png,pmb,gif,svg|max:500|required',
         ));
 
         if ($validator->fails()) {

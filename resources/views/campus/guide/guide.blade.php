@@ -3,7 +3,15 @@
 @section('content')
 
 <style>
+    body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
+    main { background-image:url('../img/home/spring.png'); }
 
+    .modal-body {
+        position: relative;
+        overflow-y: auto;
+        max-height: 5000px;
+        padding: 15px;
+    }
     .btn{
         width: 80px;
     }
@@ -42,10 +50,19 @@
     }
     .objImg-big{
         width: 40%;
-        
+
     }
     body{
         font-size: 24px;
+    }
+    .back{
+        text-align: center;
+    }
+    .container{
+        display: none;
+    }
+    .cateBtn{
+        width: 15%;
     }
 
 </style>
@@ -66,14 +83,22 @@
         <button type="button" class="btn btn-primary" onclick="location.href ='{{url('/campus/newObj')}}'">編輯地圖物件</button>
     </div>
     <div class="jumbotron back row">
-
+        <button type='button' class="btn btn-info">全部</button>
         <button type='button' class="btn btn-info">行政</button>
         <button type='button' class="btn btn-info">系館</button>
-        <button type='button' class="btn btn-info">中大景點</button>
+        <button type='button' class="btn btn-info">景點</button>
         <button type='button' class="btn btn-info">運動</button>
         <button type='button' class="btn btn-info">住宿</button>
         <button type='button' class="btn btn-info">飲食</button>
         <br>
+        <img class="cateBtn" src="/img/campus/dontdel/1.png" alt="行政">
+        <img class="cateBtn" src="/img/campus/dontdel/2.png" alt="系館">
+        <img class="cateBtn" src="/img/campus/dontdel/3.png" alt="景點">
+        <img class="cateBtn" src="/img/campus/dontdel/4.png" alt="運動">
+        <img class="cateBtn" src="/img/campus/dontdel/5.png" alt="住宿">
+        <img class="cateBtn" src="/img/campus/dontdel/6.png" alt="飲食">
+        <br>
+        
         <div class="col-md-12 map" >
             <img src='/img/campus/dontdel/background.png' width='95%'>
             @foreach($mapDatas as $mapData)
@@ -85,7 +110,11 @@
             @endforeach
         </div>
     </div>
-    @foreach($mapDatas as $mapDataa)
+    
+
+
+</div>
+@foreach($mapDatas as $mapDataa)
     <!--Introduction Modal -->
     <div class="modal fade" id="modal{{$mapDataa->id}}" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -101,15 +130,16 @@
 
                     <div class="objImg">
                         <img class="objImg-big img-rounded" src="" alt="not found" id="bigImg{{$mapDataa->id}}"><br>
-                        @foreach($buildimgs as $buildimg)
-                        <?php if (($mapDataa->id) == ($buildimg->BuildingId)) { ?>
-                        <img class="objImg-sam img-rounded" src='/img/campus/{{$buildimg->imgUrl}}' alt='Not found' id="{{$mapDataa->id}}">
-                            <?php                            
+                        @foreach($buildimgs as $buildimga)
+                        <?php if (($mapDataa->id) == ($buildimga->BuildingId)) { ?>
+                            <img class="objImg-sam img-rounded" src='/img/campus/{{$buildimga->imgUrl}}' alt='Not found' id="{{$mapDataa->id}}">
+                            <?php
                         }
                         ?>
                         @endforeach
 
                     </div>
+
                     <br>
                     <div class="row label-box">
                         <label for="BuildName" id="objlabel" class="col-md-2 control-label">建築物名稱</label>
@@ -134,26 +164,21 @@
         </div>
     </div>
     @endforeach
-
-
-</div>
 @section('js')
 
 <script>
 //    更換圖片
     $(document).on('ready', function(){
-        $('body').on('click','.objImg-sam',function(){
-            var imgId = $(this).attr('id');
-            var imgSrc = $(this).attr('src');
-            
-            $('#bigImg'+imgId).attr('src',imgSrc);
-        });
-        $('body').on('click','.cloMod',function(){
-            var imgId = $(this).val();
-            $('#bigImg'+imgId).attr('src','');
-        });
-        
-        
+    $(".container").fadeIn(3000);
+    $('body').on('click', '.objImg-sam', function(){
+    var imgId = $(this).attr('id');
+    var imgSrc = $(this).attr('src');
+    $('#bigImg' + imgId).attr('src', imgSrc);
+    });
+    $('body').on('click', '.cloMod', function(){
+    var imgId = $(this).val();
+    $('#bigImg' + imgId).attr('src', '');
+    });
     });
 </script>
 @stop

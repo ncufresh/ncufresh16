@@ -9,12 +9,21 @@ $amount = 1;
 ?>
 
 <style>
+    body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
+    main { background-image:url('../img/home/spring.png'); }
+
     .imgg{
         text-align: center;
     }
     .imgSize{
         width: 50%;
         height: auto;
+    }
+    .container{
+        display: none;
+    }
+    body{
+        font-size: 24px;
     }
 
 </style>
@@ -93,18 +102,18 @@ $amount = 1;
             </thead>
 
             <tbody id="buildings-list" name="buildings-list">
-                @foreach($building as $building)
-                <tr id="{{$building->id}}">                   
-                    <th><?php /* echo $i;$i++; */ ?></th>
-                    <th>{{$building->buildingName}}</th>
+                @foreach($building as $buildinga)
+                <tr id="{{$buildinga->id}}">                   
+                    <th></th>
+                    <th>{{$buildinga->buildingName}}</th>
                     <th><?php
-                        echo $cate[$building->building_id];
+                        echo $cate[$buildinga->building_id];
                         ?></th>
-                    <th>{{$building->buildingExplain}}</th>
-                    <th><button class="btn btn-warning btn-xs btn-detail watchImg" value="{{$building->id}}">watch</button></th>
+                    <th><button class="btn btn-warning btn-xs btn-detail" value="{{$buildinga->id}}" data-toggle="modal" data-target="#Exp{{$buildinga->id}}">瀏覽</button></th>
+                    <th><button class="btn btn-warning btn-xs btn-detail watchImg" value="{{$buildinga->id}}">瀏覽</button></th>
                     <th>
-                        <button class="btn btn-warning btn-xs btn-detail open-modal" value="{{$building->id}}">Edit</button>
-                        <button class="btn btn-danger btn-xs btn-delete delete-building" value="{{$building->id}}">Delete</button>
+                        <button class="btn btn-warning btn-xs btn-detail open-modal" value="{{$buildinga->id}}">編輯</button>
+                        <button class="btn btn-danger btn-xs btn-delete delete-building" value="{{$buildinga->id}}">刪除</button>
                     </th>
                 </tr>
                 @endforeach
@@ -146,7 +155,30 @@ $amount = 1;
                     </div>
                 </div>
             </div>
+            <div id="expArea">
+                @foreach($building as $buildingg)
+                <!-- Explain Modal -->
+                <div id="Exp{{$buildingg->id}}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
 
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">{{$buildingg->buildingName}} 簡介</h4>
+                            </div>
+                            <div class="modal-body">
+                                {!!$buildingg->buildingExplain!!}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                @endforeach
+            </div>
 
 
         </table>
@@ -165,12 +197,12 @@ $amount = 1;
     function CKupdate(){
     for (instance in CKEDITOR.instances)
             CKEDITOR.instances[instance].updateElement();
-            CKEDITOR.instances[instance].setData('');
+    CKEDITOR.instances[instance].setData('');
     }
     var cate = ['', '行政', '系館', '中大景點', '運動', '飲食', '住宿'];
     $(document).on('ready', function () {
 
-
+    $(".container").fadeIn(1000);
     $(document).on('change', ':file', function () {
     var input = $(this),
             numFiles = input.get(0).files ? input.get(0).files.length : 1,
@@ -278,11 +310,10 @@ $amount = 1;
     $.get(url + '/' + bid, function (data) {
     //success data
     console.log(data);
-    CKupdate();
     $('#building_id').val(data.building_id);
     $('#buildingName').val(data.buildingName);
 //    $('#buildingExplain').val(data.buildingExplain);
-    CKEDITOR.instances['buildingExplain'].insertText(data.buildingExplain);
+    CKEDITOR.instances['buildingExplain'].setData(data.buildingExplain);
     $('#btn-save').val("update");
     $('#myModal').modal('show');
     });
@@ -354,12 +385,18 @@ $amount = 1;
             enctype: 'multipart/form-data',
             success: function (data) {
             console.log(data);
-            var building = '<tr id="' + data.id + '"><th></th><th>' + data.buildingName + '</th><th>' + cate[data.building_id] + '</th><th>' + data.buildingExplain + '</th><th><button class="btn btn-warning btn-xs btn-detail watchImg" value="' + data.id + '">watch</button></th><th><button class="btn btn-warning btn-xs btn-detail open-modal" value="' + data.id + '">Edit</button>' +
+            var building = '<tr id="' + data.id + '"><th></th><th>' + data.buildingName + '</th><th>' + cate[data.building_id] +
+                    '</th><th><button class="btn btn-warning btn-xs btn-detail" value="' + data.id +
+                    '" data-toggle="modal" data-target="#Exp' + data.id +
+                    '">瀏覽</button></th><th><button class="btn btn-warning btn-xs btn-detail watchImg" value="' + data.id + '">watch</button></th><th><button class="btn btn-warning btn-xs btn-detail open-modal" value="' + data.id + '">Edit</button>' +
                     '<button class="btn btn-danger btn-xs btn-delete delete-building" value="' + data.id + '">Delete</button></th></tr>';
-            if (state == "add") { //if user added a new record
+            var newExpMod = '<div id="Exp' + data.id + '" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">' + data.buildingName + ' 簡介</h4></div><div class="modal-body">' + data.buildingExplain + '</div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>'
+                    if (state == "add") { //if user added a new record
             $('#buildings-list').append(building);
+            $('#expArea').append(newExpMod);
             } else { //if user updated an existing record                                       
             $("#" + bid).replaceWith(building);
+            $("#Exp" + data.id).replaceWith(newExpMod);
             }
 
             $('#frmBuildings').trigger("reset");

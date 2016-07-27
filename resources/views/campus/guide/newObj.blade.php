@@ -5,6 +5,11 @@
 @section('css')
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 <style>
+    body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
+    main { background-image:url('../img/home/spring.png'); }
+    body{
+        font-size: 24px;
+    }
 
     .imgg{
         width: 40%;
@@ -17,6 +22,9 @@
     }
     .mapObj{
         position: absolute;
+    }
+    .container{
+        display: none;
     }
 </style>
 @stop
@@ -194,6 +202,8 @@
         var url = "/campus/newObj/createObj";
         $(document).on('ready', function () {
 
+            $(".container").fadeIn(1000);
+
             $('#objSample').draggable();
             $("#map").droppable({
                 drop: function (event, ui) {
@@ -350,7 +360,7 @@
 //                    data = JSON.parse(qdata);
 //                        console.log("success:" + data.id);
 //                        console.log(data.id);
-                        var object = '<tr id="' + data.objId + '"><th>' + data.buildingName + '</th><th id="' + data.objId + 'x">' + data.Xcoordinate + '</th><th id="' + data.objId + 'y">' + data.Ycoordinate + '</th><th id="' + data.objId + 'w">' + data.objWidth + '</th><th><img src="/img/campus/' + data.objImg + '" alt="' + data.buildingName + '"></th><th><button class="btn btn-warning btn-xs btn-detail editObj" value="' + data.objId + '">Edit</button>' +
+                        var object = '<tr id="' + data.objId + '"><th>' + data.buildingName + '</th><th id="' + data.objId + 'x">' + data.Xcoordinate + '</th><th id="' + data.objId + 'y">' + data.Ycoordinate + '</th><th id="' + data.objId + 'w">' + data.objWidth + '</th><th><img style="width: 40%" src="/img/campus/' + data.objImg + '" alt="' + data.buildingName + '"></th><th><button class="btn btn-warning btn-xs btn-detail editObj" value="' + data.objId + '">Edit</button>' +
                                 '<button class="btn btn-danger btn-xs btn-delete deleteObj" value="' + data.objId + '">Delete</button></th></tr>';
 
                         $('#objects-list').append(object);
