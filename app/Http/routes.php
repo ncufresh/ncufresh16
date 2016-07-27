@@ -19,13 +19,15 @@ Route::group( ['middleware' => 'admin'], function () {
 });
 //************************************************************
 
-// 註冊,登入頁
+// 註冊,登入
 //************************************************************
 Route::get('login', 'Auth\AuthController@showLoginForm');
 Route::post('login', 'Auth\AuthController@login');
 Route::get('logout', 'Auth\AuthController@logout');
 Route::get('register', 'Auth\AuthController@showRegistrationForm');
 Route::post('register', 'Auth\AuthController@register');
+Route::get('/user/edit', 'UserController@edit');
+Route::post('/user/update', 'UserController@update');
 //************************************************************
 
 // 首頁
@@ -109,10 +111,16 @@ Route::get('/groups/clubs', 'ClubController@index');
 Route::post('/groups/clubs', 'ClubController@store');
 Route::get('/groups/clubs/create', 'ClubController@create');
 Route::get('/groups/clubs/{clubs_kind}', 'ClubController@show');
+Route::get('/groups/clubs/{id}/edit', 'ClubController@edit');
+Route::patch('/groups/clubs/{clubs_kind}', 'ClubController@update');
+Route::delete('/groups/clubs/{id}/{key}', 'ClubController@destroy');
 #系所
 Route::get('/groups/departments', 'DepartmentController@index');
 Route::post('/groups/departments', 'DepartmentController@store');
 Route::get('/groups/departments/create', 'DepartmentController@create');
+Route::get('/groups/departments/{departments_kind}', 'DepartmentController@show');
+Route::get('/groups/departments/{id}/edit', 'DepartmentController@edit');
+Route::patch('/groups/departments/{departments_kind}', 'DepartmentController@update');
 // #各社團
 // Route::get('/groups/clubs/{clubs_id}/create', 'AllclubController@create');
 // Route::get('/groups/clubs/{clubs_id}', 'AllclubController@index');
@@ -164,7 +172,16 @@ Route::resource('/personal', 'PersonalController');
 
 // 影音專區
 //************************************************************
-Route::get('/videos','videocontroller@index');
+Route::get('/videos','videoController@index');
+//Route::get('/videos/food','videocontroller@food');
+Route::post('/videos', 'videoController@store');
+Route::get('/videos/create', 'videoController@create');
+Route::get('/videos/{videos}', 'videoController@show');
+//Route::get('/videos/live','videocontroller@live');
+//Route::get('/videos/traffic','videocontroller@traffic');
+//Route::get('/videos/edu','videocontroller@edu');
+//Route::get('/videos/fun','videocontroller@fun');
+//Route::get('/videos/ncu','videocontroller@ncu');
 //Route::get('/video/')
 //************************************************************
 

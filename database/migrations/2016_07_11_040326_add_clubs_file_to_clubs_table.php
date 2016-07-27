@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddExcerptToClubsTable extends Migration
+class AddClubsFileToClubsTable extends Migration
 {
     /**
      * Run the migrations.
