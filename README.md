@@ -62,6 +62,32 @@ PHP:
 
 `composer dump-autoload`:有人不照規則改migration檔就要使用
 
+## URL連結位置
+
+css圖片的url最前面不用加斜線
+```
+background-image:url("img/example.png");
+```
+
+ajax的url最前面不用加斜線
+```
+$.ajax({
+    url: "exa/mple"
+    type: "GET"
+  });
+```
+
+連結, 路由 用url help function
+```
+<a href="{{ url('example') }}">
+```
+
+css, js, 圖片, 檔案 用asset help function
+```
+<img src="{{ asset('img/example') }}">
+```
+
+
 ## 權限懶人包
 
 目前的測試帳號
@@ -92,9 +118,9 @@ Route::group( ['middleware' => 'admin'], function () {
 <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript">
 CKEDITOR.replace( '你的textarea的id或name', {
-    filebrowserImageBrowseUrl: '{{ url('/laravel-filemanager?type=Images') }}',
+    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
     filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
-    filebrowserBrowseUrl: '{{ url('/laravel-filemanager?type=Files') }}',
+    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
     filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
 });
 </script>
@@ -119,16 +145,16 @@ CKEDITOR.replace( '你的textarea的id或name', {
 春 夏 秋 冬
 ```
 body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
-main { background-image:url('../img/home/spring.png'); }
+main { background-image:url('img/home/spring.png'); }
 
 body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(145,214,234,.8) 100%); }
-main { background-image:url('../img/home/summer.png'); }
+main { background-image:url('img/home/summer.png'); }
 
 body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(197,121,002,.8) 100%); }
-main { background-image:url('../img/home/fall.png'); }
+main { background-image:url('img/home/fall.png'); }
 
 body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(1,50,104,.8) 100%); }
-main { background-image:url('../img/home/winter.png'); }
+main { background-image:url('img/home/winter.png'); }
 ```
 
 
