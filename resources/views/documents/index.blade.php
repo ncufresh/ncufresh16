@@ -12,14 +12,6 @@
 @stop
 
 @section('content')
-<!-- 顯示綜合畫面的浮動按鈕 -->
-<div class="fixed-button">
-    <a href="#bottomPage" class="btn btn-circle">
-        <i class="fa fa-angle-double-down fa-3x"></i>
-        <div class="ripple-container"></div>
-    </a>
-</div>
-<!-- /顯示綜合畫面的浮動按鈕 -->
 <!-- 新生必讀 -->
 <div class="wrapper">
     <!-- 上方兩個按鈕畫面 -->
@@ -57,73 +49,148 @@
     </div>
     <!-- /.jumbotron -->
     <!-- /上方兩個按鈕畫面 -->
-    <!-- 大學部畫面 -->
+    <!-- #leftScreen 大學部畫面 -->
     <div class="container-fluid" id="leftScreen">
         <div class="row">
-            <div class="col-xs-3 col-fluid" id="innerLeftSidenav">
+            <div class="col-xs-3 col-fluid scrollspy" id="innerLeftSidenav">
                 <ul class="nav side-nav" id="leftNav">
                     <li>
                         <h1>大學部</h1></li>
-                    <li><a href="#under-1">under-1</a></li>
-                    <li><a href="#under-2">under-2</a></li>
-                    <li><a href="#under-3">under-3</a></li>
+                    <li><a href="#under-1">主要項目 A</a></li>
+                    <li><a href="#under-2">主要項目 B</a></li>
+                    <li><a href="#under-3">主要項目 C</a></li>
                 </ul>
             </div>
-            <!-- /.col-xs-3.col-fluid /#innerLeftSidenav-->
+            <!-- /#innerLeftSidenav-->
+
+{{--
+            <?php $count = 0; ?>
+            @foreach ($mainUnders as $unders)
+                <li>大學部主條目 {{ ++$count }}</li>
+                <ul>
+                    @foreach ($unders as $u)
+                       <li>{{ $u->title }}</li>
+                       <ul>
+                           <li>{{ $u->content }}</li>
+                           <form action="{{ url('/doc/under/'.$u->id.'/edit') }}" method="GET">
+                                <button type="submit" id="edit-under-{{ $u->id }}">編輯</button>
+                            </form>
+                            <form action="{{ url('/doc/under/'.$u->id) }}" method="POST">
+                                {!! csrf_field() !!}
+                                {!! method_field('DELETE') !!}
+                                <button type="submit" id="delete-document-{{ $u->id }}">刪除</button>
+                            </form>
+                        </ul>
+                    @endforeach 
+                </ul>
+            @endforeach
+--}}
+
             <div class="col-xs-6 innerLeftPage" id="innerLeftPage-1">
                 <section id="under-1">
-                    <h2><!-- <span class="fa fa-edit"> --></span> under-1</h2>
-                    <p>under-1</p>
-                    <section id="under-1-1">
-                        <h3>section-1-1</h3>
-                        <p>section-1-1</p>
-                    </section>
-                    <section id="under-1-2">
-                        <h3>section-1-2</h3>
-                        <p>section-1-2</p>
-                    </section>
-                    <section id="under-1-3">
-                        <h3>section-1-3</h3>
-                        <p>section-1-3</p>
-                    </section>
+                    <h2><!-- <span class="fa fa-edit"></span> -->大學部主要項目 A</h2>
+                    <p>大學部主要項目 A</p>
+                    <div class="row">
+                        <div class="col-md-4 round-col">
+                            <h3>細項目1</h3>
+                            <p>
+                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+                            </p>
+                            <!-- Modal -->
+                            <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Modal Header</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Some text in the modal.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目2</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目3</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 round-col">
+                            <h3>細項目4</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目5</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目6</h3>
+                        </div>
+                    </div>
                 </section>
                 <!-- /#under-1 -->
             </div>
             <div class="col-xs-6 innerLeftPage" id="innerLeftPage-2">
                 <section id="under-2">
-                    <h2><!-- <span class="fa fa-edit"> --></span> under-2</h2>
-                    <p>under-2</p>
-                    <section id="under-2-1">
-                        <h3>section-2-1</h3>
-                        <p>section-2-1</p>
-                    </section>
-                    <section id="under-2-2">
-                        <h3>section-2-2</h3>
-                        <p>section-2-2</p>
-                    </section>
-                    <section id="under-2-3">
-                        <h3>section-2-3</h3>
-                        <p>section-2-3</p>
-                    </section>
+                    <h2><!-- <span class="fa fa-edit"></span> -->大學部主要項目 B</h2>
+                    <p>大學部主要項目 B</p>
+                    <div class="row">
+                        <div class="col-md-4 round-col">
+                            <h3>細項目1</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目2</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目3</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 round-col">
+                            <h3>細項目4</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目5</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目6</h3>
+                        </div>
+                    </div>
                 </section>
                 <!-- /#under-2 -->
             </div>
             <div class="col-xs-6 innerLeftPage" id="innerLeftPage-3">
                 <section id="under-3">
-                    <h2><!-- <span class="fa fa-edit"> --></span> under-3</h2>
-                    <p>under-3</p>
-                    <section id="under-3-1">
-                        <h3>section-3-1</h3>
-                        <p>section-3-1</p>
-                    </section>
-                    <section id="under-3-2">
-                        <h3>section-3-2</h3>
-                        <p>section-3-2</p>
-                    </section>
-                    <section id="under-3-3">
-                        <h3>section-3-3</h3>
-                        <p>section-3-3</p>
-                    </section>
+                    <h2><!-- <span class="fa fa-edit"></span> -->大學部主要項目 C</h2>
+                    <p>大學部主要項目 C</p>
+                    <div class="row">
+                        <div class="col-md-4 round-col">
+                            <h3>細項目1</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目2</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目3</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 round-col">
+                            <h3>細項目4</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目5</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目6</h3>
+                        </div>
+                    </div>
                 </section>
                 <!-- /#under-3 -->
             </div>
@@ -132,135 +199,140 @@
         </div>
         <!-- /.row -->
     </div>
-    <!-- /#leftScreen -->
-    <!-- /大學部畫面 -->
-    <!-- 研究所畫面 -->
+    <!-- /#leftScreen /大學部畫面 -->
+    <!-- #rightScreen 研究所畫面 -->
     <div class="container-fluid" id="rightScreen">
         <div class="row">
-            <div class="col-xs-3"></div>
-            <div class="col-xs-6 innerRightPage" id="innerRightPage-1">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-8 innerRightPage" id="innerRightPage-1">
                 <section id="graduate-1">
-                    <h2><!-- <span class="fa fa-edit"> --></span> graduate-1</h2>
-                    <p>graduate-1</p>
-                    <section id="graduate-1-1">
-                        <h3>section-1-1</h3>
-                        <p>section-1-1</p>
-                    </section>
-                    <section id="graduate-1-2">
-                        <h3>section-1-2</h3>
-                        <p>section-1-2</p>
-                    </section>
-                    <section id="graduate-1-3">
-                        <h3>section-1-3</h3>
-                        <p>section-1-3</p>
-                    </section>
+                    <h2><!-- <span class="fa fa-edit"></span> -->研究所主要項目 A</h2>
+                    <p>研究所主要項目 A</p>
+                    <div class="row">
+                        <div class="col-md-4 round-col">
+                            <h3>細項目1</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目2</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目3</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 round-col">
+                            <h3>細項目4</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目5</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目6</h3>
+                        </div>
+                    </div>
                 </section>
                 <!-- /#graduate-1 -->
             </div>
-            <div class="col-xs-6 innerRightPage" id="innerRightPage-2">
+            <div class="col-xs-8 innerRightPage" id="innerRightPage-2">
                 <section id="graduate-2">
-                    <h2><!-- <span class="fa fa-edit"> --></span> graduate-2</h2>
-                    <p>graduate-2</p>
-                    <section id="graduate-2-1">
-                        <h3>section-2-1</h3>
-                        <p>section-2-1</p>
-                    </section>
-                    <section id="graduate-2-2">
-                        <h3>section-2-2</h3>
-                        <p>section-2-2</p>
-                    </section>
-                    <section id="graduate-2-3">
-                        <h3>section-2-3</h3>
-                        <p>section-2-3</p>
-                    </section>
+                    <h2><!-- <span class="fa fa-edit"></span> -->研究所主要項目 B</h2>
+                    <p>研究所主要項目 B</p>
+                    <div class="row">
+                        <div class="col-md-4 round-col">
+                            <h3>細項目1</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目2</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目3</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 round-col">
+                            <h3>細項目4</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目5</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目6</h3>
+                        </div>
+                    </div>
                 </section>
                 <!-- /#graduate-2 -->
-                <div class="col-xs-6 innerRightPage" id="innerRightPage-3">
-                    <section id="graduate-3">
-                        <h2><!-- <span class="fa fa-edit"> --></span> graduate-3</h2>
-                        <p>graduate-3</p>
-                        <section id="graduate-3-1">
-                            <h3>section-3-1</h3>
-                            <p>section-3-1</p>
-                        </section>
-                        <section id="graduate-3-2">
-                            <h3>section-3-2</h3>
-                            <p>section-3-2</p>
-                        </section>
-                        <section id="graduate-3-3">
-                            <h3>section-3-3</h3>
-                            <p>section-3-3</p>
-                        </section>
-                    </section>
-                    <section id="right-hiddden-section">
-                    </section>
-                    <!-- /#graduate-3 -->
-                </div>
-                <!-- /.col-xs-9 /#innerRightPage -->
-                <div class="col-xs-3 col-fluid" id="innerRightSidenav">
-                    <ul class="nav side-nav hidden-xs hidden-sm" id="rightNav" data-spy="affix">
-                        <li>
-                            <h1>研究所</h1></li>
-                        <li><a href="#graduate-1">graduate-1</a></li>
-                        <li><a href="#graduate-2">graduate-2</a></li>
-                        <li><a href="#graduate-3">graduate-3</a></li>
-                    </ul>
-                </div>
-                <!-- /.col-xs-3.col-fluid /#innerLeftSidenav-->
             </div>
-            <!-- /.row -->
+            <div class="col-xs-8 innerRightPage" id="innerRightPage-3">
+                <section id="graduate-3">
+                    <h2><!-- <span class="fa fa-edit"></span>  -->研究所主要項目 C</h2>
+                    <p>研究所主要項目 C</p>
+                    <div class="row">
+                        <div class="col-md-4 round-col">
+                            <h3>細項目1</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目2</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目3</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 round-col">
+                            <h3>細項目4</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目5</h3>
+                        </div>
+                        <div class="col-md-4 round-col">
+                            <h3>細項目6</h3>
+                        </div>
+                    </div>
+                </section>
+                <!-- /#graduate-3 -->
+            </div>
+            <!-- /.col-xs-8 /#innerRightPage -->
+            <div class="col-xs-2 col-fluid scrollspy" id="innerRightSidenav">
+                <ul class="nav side-nav" id="rightNav">
+                    <li><h1>研究所</h1></li>
+                    <li><a href="#graduate-1">主要項目 A</a></li>
+                    <li><a href="#graduate-2">主要項目 B</a></li>
+                    <li><a href="#graduate-3">主要項目 C</a></li>
+                </ul>
+            </div>
+            <!-- /.col-xs-3.col-fluid /#innerLeftSidenav -->    
         </div>
+        <!-- /.row -->
     </div>
-    <!-- /#leftScreen -->
-    <!-- /研究所畫面 -->
-    <div class="container" id="bottomScreen">
-        <section class="mixed" id="bottomPage">
-            <h2>大學部 X 研究所</h2>
-            <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    <!-- /#rightScreen /研究所畫面 -->
+    <section class="mixed" id="bottomPage">
+        <div class="container" id="bottomScreen">
             <div class="row">
-                <div class="col-sm-4">
-                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                </div>
-                <div class="col-sm-4">
-                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                </div>
-                <div class="col-sm-4">
-                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                </div>
-                <div class="col-sm-4">
-                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                </div>
-                <div class="col-sm-4">
-                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                </div>
-                <div class="col-sm-4">
-                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                </div>
+                <h2>大學部 X 研究所</h2>
             </div>
-        </section>
-    </div>
-    <!-- /.container /#bottomScreen -->
-    
-    <!-- /新生必讀 -->
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
+            <div class="row">
+                <div class="col-xs-4 round-col">
+                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
                 </div>
-                <div class="modal-body">
-                    <p>Some text in the modal.</p>
+                <div class="col-xs-4 round-col">
+                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <div class="col-xs-4 round-col">
+                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
                 </div>
-            </div>
+                <div class="col-xs-4 round-col">
+                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
+                </div>
+                <div class="col-xs-4 round-col">
+                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
+                </div>
+                <div class="col-xs-4 round-col">
+                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
+                </div>
+            </div>   
         </div>
-    </div>
+    </section>
+    <!-- /.container /#bottomScreen -->
 </div>
 <!-- /新生必讀 -->
 {{--
@@ -426,7 +498,14 @@
       <div class="col-sm-3"></div>
     </div><!-- /row -->
   </div><!-- /container-fulid -->
- --}}
 </div>
-
+ --}}
+ <!-- 顯示綜合畫面的浮動按鈕 -->
+<div class="fixed-button">
+    <a href="#bottomPage" class="btn btn-circle">
+        <i class="fa fa-angle-double-down fa-3x"></i>
+        <div class="ripple-container"></div>
+    </a>
+</div>
+<!-- /顯示綜合畫面的浮動按鈕 -->
 @endsection

@@ -16,11 +16,17 @@
 /*--- @override layout.css ---*/
 
 footer {
-    bottom: 10px;
+    position: static;
+    bottom: 0;
 }
 
 
 /*--- 自定義 ---*/
+
+.round-col {
+    border: 2px solid black;
+    border-radius: 5px;
+}
 
 
 /* 浮動按鈕 */
