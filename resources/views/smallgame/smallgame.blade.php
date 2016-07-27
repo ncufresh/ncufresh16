@@ -86,7 +86,8 @@
       #myCanvas{ 
         background: #eee; display: block; margin: 0 auto; 
         margin-top:5%;
-        
+
+
       }
       button{
 
@@ -199,9 +200,10 @@
       <canvas id="myCanvas" width="1000" height="500"></canvas>
 
       <audio id="bgm" loop="loop"><source src="/img/game/bgm.mp3" type="audio/mpeg"></audio>
+      <audio id="game_4" loop="loop"><source src="/img/game/Game_4.mp3" type="audio/mpeg"></audio>
       <audio id="jump"><source src="/img/game/jump.mp3" type="audio/mpeg"></audio>
+      <audio id="Blow1"><source src="/img/game/Blow1.mp3" type="audio/mpeg"></audio>
       <audio id="gameover"><source src="/img/game/gameover.mp3" type="audio/mpeg"></audio>
-      
 
 
 @endsection
@@ -228,6 +230,8 @@ function display(){
 var bgm_music = document.getElementById("bgm");
 var jump_music = document.getElementById("jump");
 var gameover_music = document.getElementById("gameover");
+var blow_music =document.getElementById("Blow1");
+var game_4_music=document.getElementById("game_4");
 bgm_music.play();
 
 
@@ -738,6 +742,9 @@ function player_animation(width, height,images, x, y, type) {//主角constructor
                     if(character_heart>0){
                       delete heart[character_heart-1];
                     }
+
+                    blow_music.play();//打擊音效
+
                     character_heart--;
                     character_heart_bool=true;
                     reboot_heart_bool();//讓角色有無敵時間
@@ -886,6 +893,7 @@ function choose(){
       if(character_heart>0){
         delete heart[character_heart-1];
       }
+      blow_music.play();//打擊音效
       character_heart--;
       character_heart_bool=true;
       reboot_heart_bool();
@@ -1033,11 +1041,14 @@ function draw(){
   else if(gameState===GAME_4){//開始遊戲!
     //game play!!
     draw_GAME_4();
+    bgm_music.pause();
+
+    game_4_music.play();
 
 
   }
   else if(gameState===GAMEOVER){
-    bgm_music.pause();
+    game_4_music.pause();
 
     //讓gameover_music只播放一次
     if(gameover_music_bool){
@@ -1076,3 +1087,4 @@ draw();
 */
 </script>
 @endsection
+<!-- 小遊戲讓手機使用者也能玩  ,  建立資料庫連結 -->
