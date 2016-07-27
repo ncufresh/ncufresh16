@@ -8,25 +8,98 @@ use App\Document;
 
 class DocumentController extends Controller
 {
-    public function undergraduate(){
-    	$unders1 = Document::where('position_of_main','1')->get();
-    	$unders2 = Document::where('position_of_main','2')->get();
-    	$unders3 = Document::where('position_of_main','3')->get();
-		return view('documents.undergraduate', [
-			'unders1' => $unders1,
-			'unders2' => $unders2,
-			'unders3' => $unders3,
-		]);
+	/* 大學部 */
+    public function underIndex(){
+    	// 先比對是否為大學部的資料、再分別對應到三個主要類別
+    	for($i=0;$i<3;$i++){
+    		$mainUnders[$i] = Document::where('is_graduate',false)
+    								  ->where('position_of_main',''.($i+1))
+    								  ->get();
+    	}
+        $count[0] = $count[1] = 0;
+    	// 回傳大學部的網頁位置與三個主類別中的子類別
+		return view('documents.under',
+            [
+                'mainUnders' => $mainUnders,
+                'count' => $count
+            ]);
     }
 
-    public function graduate(){
-    	$graduates1 = Document::where('position_of_main','1')->get();
-    	$graduates2 = Document::where('position_of_main','2')->get();
-    	$graduates3 = Document::where('position_of_main','3')->get();
-		return view('documents.graduate', [
-			'graduates1' => $graduates1,
-			'graduates2' => $graduates2,
-			'graduates3' => $graduates3,
-		]);
+    public function underStore(Request $request){
+    	// 新增一筆資料
+    	$document = new Document; 
+    	$document->title = $request->title;
+    	$document->content = $request->content;
+    	$document->is_graduate = false;
+    	$document->position_of_main = $request->position_of_main;
+    	// 儲存後返回
+		$document->save();
+		return redirect('/doc/under');
     }
+
+    public function underDestroy(Request $request, Document $under) {
+		$under->delete();
+		return redirect('/doc/under');
+	}
+
+	public function underEdit(Document $under){
+		return view('documents.underedit',['under'=>$under]);
+	}
+
+	public function underUpdate(Request $request, Document $under){
+		$under->update([
+			'title' => $request->title,
+			'content' => $request->content,
+			'position_of_main' => $request->position_of_main
+		]);
+		return redirect('/doc/under');
+	}
+
+    /* 研究所 */
+    public function graduateIndex(){
+    	// 先比對是否為研究所的資料、再分別對應到三個主要類別
+    	for($i=0;$i<3;$i++){
+    		$mainGraduates[$i] = Document::where('is_graduate',true)
+    									 ->where('position_of_main',''.($i+1))
+    									 ->get();
+    	}
+        $count[0] = $count[1] = 0;
+    	// 回傳研究所的網頁位置與三個主類別中的子類別
+		return view('documents.graduate',
+            [
+                'mainGraduates' => $mainGraduates,
+                'count' => $count
+            ]);
+    }
+
+    public function graduateStore(Request $request){
+    	// 新增一筆資料
+    	$document = new Document;
+    	// $->欄位 = $request->name
+    	$document->title = $request->title;
+    	$document->content = $request->content;
+    	$document->is_graduate = true;
+    	$document->position_of_main = $request->position_of_main;
+    	// 儲存後返回
+		$document->save();
+		return redirect('/doc/graduate');
+    }
+
+    public function graduateDestroy(Request $request, Document $graduate) {
+		$graduate->delete();
+		return redirect('/doc/graduate');
+	}
+
+	public function graduateEdit(Document $graduate){
+		return view('documents.graduateedit',['graduate'=>$graduate]);
+	}
+
+	public function graduateUpdate(Request $request, Document $graduate){
+		$graduate->update([
+			'title' => $request->title,
+			'content' => $request->content,
+			'position_of_main' => $request->position_of_main
+		]);
+		return redirect('/doc/graduate');
+	}
 }

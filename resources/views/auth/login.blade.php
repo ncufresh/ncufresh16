@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', '登入')
+
 @section('js')
 <script type="text/javascript">
     $(document).ready(function(){
@@ -13,10 +15,28 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary">
-                <div class="panel-heading">登入</div>
+                <div class="panel-heading"><i class="fa fa-sign-in"></i> 登入</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
+
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <a href="{{ url('/register') }}" class="btn btn-success btn-lg btn-block btn-raised">
+                                    <i class="fa fa-mortar-board"></i> 校內Portal登入
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <h4>一般使用者登入</h4>
+                            </div>
+                        </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-2 control-label">E-Mail</label>
@@ -58,20 +78,17 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-10 col-md-offset-1">
-                                <button type="submit" class="btn btn-raised btn-block btn-primary">
+                                <button type="submit" class="btn btn-primary btn-lg btn-raised btn-block">
                                     <i class="fa fa-btn fa-sign-in"></i> &nbsp;登入
                                 </button>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="row">
                             <div class="col-md-10 col-md-offset-1">
-                              <div class="btn-group btn-group-justified btn-group-raised">
-                                  <a href="{{ url('/register') }}" class="btn btn-danger">註冊</a>
-                                  <a href="{{ url('/register') }}" class="btn btn-success">校內Portal登入</a>
-                                  <a href="{{ url('/register') }}" class="btn btn-info">Facebook登入</a>
-                              </div>
+                                <a href="{{ url('/register') }}" class="btn btn-danger btn-lg btn-block btn-raised">
+                                    <i class="fa fa-user-plus"></i> 註冊
+                                </a>
                             </div>
-
                         </div>
                     </form>
                 </div>

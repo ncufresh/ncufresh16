@@ -1,8 +1,9 @@
-@extends('layouts.Q&Alayouts')
+@extends('layouts.layout')
 @section('title','編輯疑問|Q&A')
-
-@section('Q&Acontent')
-    <div class="col-sm-7">
+@section('content')
+<div class="container">
+@include('Q&A.Q&Alayouts')
+    <div class="col-md-7">
        <form role="form" action="{{action('QandAController@update',$Q->id)}}" method="post">
         {{ csrf_field() }}{{ method_field('PATCH') }}
             <div class="form-group">
@@ -32,7 +33,8 @@
               <span class="help-block">TESTTTT</span>
             </div>
             
-            <button type="submit" class="col-sm-4 col-md-offset-4 btn btn-info btn-raised">Submit</button>
+            <button type="submit" class="col-md-4 col-md-offset-4 btn btn-info btn-raised">Submit</button>
           </form>
     </div>
+</div>
 @endsection

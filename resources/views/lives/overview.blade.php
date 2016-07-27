@@ -1,71 +1,232 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('title', '中大生活')
 
 @section('css')
 <style>
+body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
+main { background-image:url('../img/home/spring.png'); }
+
 	.dropdown:hover .dropdown-menu {
 	    display: block;
 	    margin-top: 0; // remove the gap so it doesn't close
 	 }
+	 
+	 li{
+	 	 list-style: none;
+	 	 font-size: 24px;
+	 	
+	 }
 
-	 #food {
-	 	position:relative; 
-  		top:10px; 
-  		left:50px; 
+	 li img{
+	 	max-width: 80px;
+	 	height: auto;
+	 }
+
+	
+
+	 .puzzle{
+		position: absolute;
+		width:40%;
+		max-width: 60%;
+	}
+	 
+
+	#groundFrame{
+		min-height: 650px;
+		position: relative;
+		background-image: url(img/life/sun.png);
+	 	background-repeat:no-repeat;
+	 	background-position: center center;
+	
+	}
+
+	#lifeFrame{
+		position: absolute;
+		top:40%;
+		left:40%;
+	}
+
+	 #foodFrame{
+	  	top:20%;
+		left:0%;
+	  
+	 }
+
+	 #housingFrame{
+	 	top:0%;
+		left:40%;	
+	 }
+
+	  #transportationFrame{
+	 	top:70%;
+		left:60%;	
+	 }
+
+	 #educationFrame{
+	 	top:75%;
+		left:25%;	
+	 }
+
+	 #entertainmentFrame{
+	 	top:30%;
+		left:70%;	
+	 }
+
+	  .menu{
+	 	position:absolute; 
+	 	/*max-width: 4px;*/
+  		top:5%;
+  		bottom: 5%;
+  	/*	margin:0px auto;*/
+  		left:70%; 
+	 }
+
+	.puzzle:hover {
+	 	 -ms-transform: scale(1.2, 1.2); /* IE 9 */
+	    -webkit-transform: scale(2, 3); /* Safari */
+	    transform: scale(1.2, 1.2);
 	 }
 	
+
+.container {
+  display: none;
+}
 </style>
 	
 @stop
 
 @section('js')
+<script type="text/javascript">
+	$(document).ready(function(){
+		 $(".container").fadeIn(1300);
+	    $(".puzzle").click(function(){
+	       	var form = document.getElementById("form_name");
+	        var clicks = $(this).data('clicks');
+			  if (clicks) {
+			     
+		        $("#foodFrame").animate({
+		            top:'20%',
+		            left: '0%'
+		        });
+ 				$("#housingFrame").animate({
+		            top:'0%',
+					left:'40%'
+		        });
 
-	<!-- <script type="text/javascript"> 
-		$( "panel-heading" ).click(function() {
-			$( "this" ).click();
-		});
-	</script>
-	 -->
-<!-- 舊版滑動動畫
-	<script type="text/javascript"> 
-$(document).ready(function(){
-$(".btn btn-default").click(function(){
-    $(".panel").slideToggle("slow");
-  });
-});
+		        $("#transportationFrame").animate({       
+					top:'70%',
+					left:'60%'	
+		        });
+		        $("#educationFrame").animate({       
+					top:'75%',
+					left:'25%'
+		        });
+		         $("#entertainmentFrame").animate({       
+					top:'30%',
+					left:'70%'
+		        });        
+
+		        $(".puzzle").fadeIn(1000);
+		        $("#lifeFrame").fadeIn(1000);
+
+			  } else {
+			     $(this).animate({
+	            	left: '35%',
+	            	top: '30%'
+
+		        });
+			 
+			    $(".puzzle").fadeOut(1000);
+			    $("#lifeFrame").fadeOut(1000);
+			   
+			    $(this).fadeIn(1000);
+
+		       
+		  
+			  }
+			  $(this).data("clicks", !clicks);
+
+	        
+	    });
+	    
+	});
 </script>
--->
 
 
 @stop
 
 @section('content')
-
-		
-			<div class="container">
-
 				
-       		<img onmouseover="click() " onmouseout="click()"  class="btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#food" src="{{ asset('image/food.png')  }}">
-
-			<ul class="collapse" id="food">
-				@foreach ($food as $food)
-				<li><a href="{{action('LifeController@getContent',['food', $food->id])}}">{{ $food->title }}</a></li>
-				@endforeach
-			</ul>
-
-			<img onmouseover="click() " onmouseout="click()"  class="btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#housing" src="{{ asset('image/housing.png')  }}">
-
-			<ul class="collapse" id="housing">
-				@foreach ($housing as $housing)
-				<li><a href="{{action('LifeController@getContent',['housing', $housing->id])}}">{{ $housing->title }}</a></li>
-				@endforeach
-			</ul>
+		
 			
+		<div class="container" >
+					<!-- 背景 -->
+					<div id="groundFrame">
+							
+					<div id="lifeFrame">
+						<img src="img/life/nculife.png">
+					</div>
+					
+		       		<div class="puzzle" id="foodFrame">
+		       		<img class="img-responsive btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#foodMenu" src="{{ asset('img/life/food.png')  }}">
+		       		</div>
+		       		<ul class="collapse menu" id="foodMenu">
+						@foreach ($food as $food)
+						<li><img src="{{ asset('img/life/knife.png')  }}"> <a href="{{action('LifeController@getContent',['food', $food->id])}}">{{ $food->title }}</a></li>
+						@endforeach
+					</ul>	
+					
 
+					
+					<!-- 住 -->
+					<div class="puzzle" id="housingFrame">
+						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#housingMenu" src="{{ asset('img/life/housing.png')  }}">
+					</div>	
+						<ul class="collapse menu" id="housingMenu">
+							@foreach ($housing as $housing)
+							<li><img  src="{{ asset('img/life/cloth.png')  }}"> <a href="{{action('LifeController@getContent',['housing', $housing->id])}}">{{ $housing->title }}</a></li>
+							@endforeach
+						</ul>
+					
 
+					<!-- 行 -->
+					<div class="puzzle" id="transportationFrame">
+						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#transportationMenu" src="{{ asset('img/life/transportation.png')  }}">
+					</div>
+						<ul class="collapse menu" id="transportationMenu">
+							@foreach ($transportation as $transportation)
+							<li><img   src="{{ asset('img/life/transportation.png')  }}"> <a href="{{action('LifeController@getContent',['transportation', $transportation->id])}}">{{ $transportation->title }}</a></li>
+							@endforeach
+						</ul>
+					
+					
+					<!-- 育 -->
+					<div class="puzzle" id="educationFrame">
+						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#educationMenu" src="{{ asset('img/life/education.png')  }}">
+					</div>
+						<ul class="collapse menu" id="educationMenu">
+							@foreach ($transportation as $transportation)
+							<li><img  src="{{ asset('img/life/foot.png')  }}"> <a href="{{action('LifeController@getContent',['education', $education->id])}}">{{ $education->title }}</a></li>
+							@endforeach
+						</ul>
+					
+					
+					<!-- 樂 -->
+					<div class="puzzle" id="entertainmentFrame">
+						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#entertainmentMenu" src="{{ asset('img/life/entertainment.png')  }}">
+					</div>
+						<ul class="collapse menu" id="entertainmentMenu">
+							@foreach ($transportation as $transportation)
+							<li><img  src="{{ asset('img/life/pen.png')  }}"> <a href="{{action('LifeController@getContent',['entertainment', $entertainment->id])}}">{{ $entertainment->title }}</a></li>
+							@endforeach
+						</ul>
+					
 
-			</div>
+					</div>
+			
+		</div>
+	
 		
 
 @endsection

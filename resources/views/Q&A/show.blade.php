@@ -1,18 +1,15 @@
-@extends('layouts.Q&Alayouts')
+@extends('layouts.layout')
 
 @section('title','Q&A')
 
-
-@section('js')
-@stop
-
-@section('Q&Acontent')
-        <div class="col-xs-7">
+@section('content')
+<div class="container">
+@include('Q&A.Q&Alayouts')
+        <div class="col-md-7">
           <table class="table table-hover">
-            <thead><tr><th>排行</th><th>分類</th><th>日期</th><th>點閱率</th></tr></thead>
+            <thead><tr><th>分類</th><th>日期</th><th>點閱率</th></tr></thead>
                 <tbody>
                     <tr>
-                      <td>{{ $Q->id }}</td>
                       <td>{{ $Q->classify }}</td>
                       <td><?php echo substr($Q->created_at,5,5) ?></td>
                       <td>{{ $Q->click_count }}</td>
@@ -21,14 +18,15 @@
           </table>
 
           <div class="panel panel-primary">
-              <div class="panel-heading"><h1><strong>問題:</strong>{{ $Q->topic }}</h2></div>
+              <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/Q.png') }}" width="10%" height="10%">:{{ $Q->topic }}</h1></div>
               <div class="panel-body">
               <h3><strong>{{$Q->content}}</strong></h3><h4><p>
                
               </div>
           </div>
+          
           <div class="panel panel-success">
-              <div class="panel-heading"><h1><strong>回答:</strong></h2></div>
+              <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/A.png') }}" width="10%" height="10%"><strong> : 回答</strong></h1></div>
               <div class="panel-body">
                   @if (!empty($Q->response))
                   <h4>{{$Q->response}}</h4>
@@ -65,7 +63,8 @@
        
 
         </div>
-@endsection
+
+
 
 <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -93,3 +92,6 @@
     </div>
   </div>
   <!-- Modal -->
+
+@endsection
+
