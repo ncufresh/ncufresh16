@@ -210,37 +210,38 @@
             </div>
             <!-- /.row -->
         </div>
-        <!-- /#leftScreen -->
-        <!-- /研究所畫面 -->
-        <div class="container" id="bottomScreen">
-            <section class="mixed" id="bottomPage">
-                <h2>大學部 X 研究所</h2>
-                <!-- Trigger the modal with a button -->
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                    </div>
-                    <div class="col-sm-4">
-                        <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                    </div>
-                    <div class="col-sm-4">
-                        <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                    </div>
-                    <div class="col-sm-4">
-                        <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                    </div>
-                    <div class="col-sm-4">
-                        <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                    </div>
-                    <div class="col-sm-4">
-                        <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <!-- /.container /#bottomScreen -->
     </div>
+    <!-- /#leftScreen -->
+    <!-- /研究所畫面 -->
+    <div class="container" id="bottomScreen">
+        <section class="mixed" id="bottomPage">
+            <h2>大學部 X 研究所</h2>
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+            <div class="row">
+                <div class="col-sm-4">
+                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
+                </div>
+                <div class="col-sm-4">
+                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
+                </div>
+                <div class="col-sm-4">
+                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
+                </div>
+                <div class="col-sm-4">
+                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
+                </div>
+                <div class="col-sm-4">
+                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
+                </div>
+                <div class="col-sm-4">
+                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- /.container /#bottomScreen -->
+    
     <!-- /新生必讀 -->
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">

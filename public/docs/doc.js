@@ -164,12 +164,12 @@ $(document).ready(function() {
 
     // 
     $(".fixed-button").click(function() {
-        test();
+        
         // Make sure this.hash has a value before overriding default behavior
         // 顯示 scrollbar
         $("body").css("overflow", "auto");
         // 砍掉 footer 的 fixed
-        $("footer").removeAttr("style");
+        $("footer").fadeOut("slow");
         $("#leftScreen").fadeOut("slow");
         $("#rightScreen").fadeOut("slow");
         $("#bottomScreen").fadeIn("slow");
@@ -179,6 +179,7 @@ $(document).ready(function() {
         $('html, body').animate({
             scrollTop: $("#bottomScreen").offset().top
         }, "slow");
+        test();
     });
 
     // 平滑移動視窗
