@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+@extends('layouts.layout')
+@section('title','校園導覽')
 @section('content')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 <script>
@@ -19,6 +19,9 @@
     });
 </script>
 <style>
+    body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
+    main { background-image:url('../img/home/spring.png'); }
+
     .back{
         background-color: #b3d9ff;
         border-style: solid ;
@@ -30,6 +33,13 @@
         border-style: solid ;
         border-color: #0000e6;
     }
+    img{
+        width: 49%;
+    }
+    .container{
+        display: none;
+        font-size: 24px;
+    }
 </style>
 
 <div class="container">
@@ -40,12 +50,21 @@
         <a href="{{url('/campus')}}">校園介紹</a>
     </div>
     <div class="back row jumbotron">
-        <a href="{{url('campus/guide')}}"><div class="font col-md-3 col-md-offset-2" id="guide">校園導覽</div></a>
-        <div class="font col-md-3 col-md-offset-2" id="firefight">校園消防</div>
+        <a href="{{url('campus/guide')}}"><img src="\img\campus\dontdel\map.png" alt="map"></a>
+        <a ><img src="\img\campus\dontdel\fire.png" alt="map"></a>
     </div>
 </div>
 
+@section('js')
 
+<script>
+
+    $(document).on('ready', function(){
+    $(".container").fadeIn(1000);
+   
+    });
+</script>
+@stop
 
 
 
