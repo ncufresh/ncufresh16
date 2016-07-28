@@ -135,6 +135,15 @@ CKEDITOR.replace( 'textArea', {
         @foreach ($more as $more)
         <a class="" target="_blank" href="{{ asset($more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
         
+       <!--  修改鈕 -->
+         <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/update' }}" method="POST">
+             {{ csrf_field() }}
+             {{ method_field('PATCH') }}
+             <input type="hidden" name="more_id" value="{{$more->id}}">
+              <input type="text" name="location" value="{{$more->location}}">
+            <input type="text" name="link" value="{{$more->link}}">
+              <button class="material-icons">edit</button>
+         </form>    
         <!-- 刪除紐 -->
         <form action="{{ url('life/'.$content->id.'/'.$more->id) }}" method="POST">
           {!! csrf_field() !!}
@@ -143,6 +152,7 @@ CKEDITOR.replace( 'textArea', {
         </form>
         @endforeach
 
+        <!-- 新增鈕 -->
         <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/add' }}" method="POST">
             {{ csrf_field() }}
             <input type="hidden" name="life_id" value="{{$content->id}}">
@@ -171,8 +181,7 @@ CKEDITOR.replace( 'textArea', {
               @endfor
 
             </ol>
-
-            <!-- Wrapper for slides -->
+           <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
              <div class="item active">
               <img src="{{ asset($image[0]->filename) }}" alt="Chania" width="460" height="345">
@@ -182,6 +191,7 @@ CKEDITOR.replace( 'textArea', {
               </div>
             </div>
 
+          
             @for ($i = 1; $i < $num_of_pics; $i++)
             <div class="item">
              <img src="{{ asset($image[$i]->filename) }}" alt="Chania" width="460" height="345">
