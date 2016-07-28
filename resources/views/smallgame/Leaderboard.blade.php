@@ -73,7 +73,7 @@
 
 	@section('content')
 
-		<div>
+		<div >
 
 			<img class="background" src="/img/game/BG_sky.jpg">
 			<div class="container" id="totleBoard">
@@ -101,7 +101,7 @@
 
 			</div>
 
-			<div class="container" id="personalBoard">
+			<div class="container" id="personalBoard" >
 				<p class="title">個人得分排行</p>
 				<table class="table">
 					<thead>
