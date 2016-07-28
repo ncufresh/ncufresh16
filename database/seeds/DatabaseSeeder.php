@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(WatchtowerTableSeeder::class);
         $this->call(BuildingCategorySeeder::class);
         $this->call(LivesTableSeeder::class);
+        $this->call(questionSeeder::class);
     }
 }
