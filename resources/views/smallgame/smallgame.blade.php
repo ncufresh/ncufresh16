@@ -138,11 +138,15 @@
             </tr>
           </thead>
           <tbody id="tasks-list" name="tasks-list">
-            <tr>
-              <th>1.</th>
-                  <th>tommy522588</th>
-                  <th>100</th>
-            </tr>
+            @foreach($scores as $score)
+              <tr>
+              <th>{{$score->id}}</th>
+                  <th>{{$score->name}}</th>
+                  <th>{{$score->score}}</th>
+              </tr>
+            @endforeach
+<!-- 可以從資料庫提取資料，現在要進行對分數的排序，只顯示十組，若分數不到十組，則顯示全部 -->
+            
             <tr>
               <th>1.</th>
                   <th>tommy522588</th>
@@ -204,7 +208,7 @@
       <audio id="jump"><source src="/img/game/jump.mp3" type="audio/mpeg"></audio>
       <audio id="Blow1"><source src="/img/game/Blow1.mp3" type="audio/mpeg"></audio>
       <audio id="gameover"><source src="/img/game/gameover.mp3" type="audio/mpeg"></audio>
-
+      {{$scores[0]->name}}
 
 @endsection
 @section('js')
@@ -233,11 +237,54 @@ var gameover_music = document.getElementById("gameover");
 var blow_music =document.getElementById("Blow1");
 var game_4_music=document.getElementById("game_4");
 bgm_music.play();
+//////////////音樂
 
 
+
+/////////////////
+var score_records=[];
+
+$(document).ready(function(){
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')//csrf token
+    }
+  });
+  var url = "/getScores";
+  var a=2;
+
+  $.get(url, function (data) {//retrieve data from database
+    //success data
+    console.log(data);
+    score_records=data;//若要從資料庫提取複數列的資料，則以陣列表示，真是佛心來的
+  }) 
+  //create new task / update existing task
+  //傳送資料開始
+});
+
+function test(){
+  console.log("Hello console");//
+  console.log(score_records[0].name);//
+}
+setTimeout("test()",3000);
+
+
+
+
+/////////////////get the score
+
+
+
+
+
+
+
+
+
+//////////////////get the question
 var questions=[];//題目
 var questions_temp=[];//題目亂序化
-//////////////////get the question
+
 $(document).ready(function(){
   $.ajaxSetup({
     headers: {
@@ -964,10 +1011,11 @@ function draw_GAME_4(){
       //upload the scores 
       //傳送資料開始
       var upload=true;
+      var username="{{ Auth::user()->name }}";
       if(upload){//因為資料會重複傳送(不知道原因)，為了解決此問題，而多設一到匣門
        $(document).ready(function(){
           var formData = {
-                name: "aaa",
+                name:username ,
                 score: score,
             };
 
@@ -1045,6 +1093,7 @@ function draw(){
 
     game_4_music.play();
 
+    
 
   }
   else if(gameState===GAMEOVER){

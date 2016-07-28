@@ -15,7 +15,9 @@ use Illuminate\Routing\Controller;
 class GameController extends Controller
 {
     public function index(){
-    	return view('smallgame.smallgame');
+         $scores=Record_score::all();
+         $customer="aa";
+    	return view('smallgame.smallgame',array('scores'=>$scores));
     }
     public function leaderboard(){
         return view('smallgame.Leaderboard');
@@ -36,7 +38,7 @@ class GameController extends Controller
         return response()->json($scores);
     }
     public function getScores(){//取得分數
-        $scores=Question_collection::all();
+        $scores=Record_score::all();
         return response()->json($scores); //為何跟Rounter的寫法需要不一樣?
     }
 
