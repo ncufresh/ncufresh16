@@ -10,7 +10,7 @@
     border-radius:50%;
 }
 body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
-main { background-image:url('../img/home/spring.png'); }
+main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 #profile > .row {
     padding: 1em;
 }

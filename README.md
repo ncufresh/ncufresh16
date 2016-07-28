@@ -18,11 +18,10 @@
 [Button製作大師(with font-awesome)](http://www.plugolabs.com/twitter-bootstrap-button-generator-with-awesome-font/)  
 [挑顏色好用](http://materializecss.com/color.html)  
 
-[Bootstrap Material詳細文件](http://rosskevin.github.io/bootstrap-material-design/components/buttons/)  
-[Bootstrap Material範例集](http://fezvrasta.github.io/bootstrap-material-design/)  
+[Bootstrap Material範例集](http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html)  
 
 可用小圖案:  
-[Google Material Icon(只能原生不能改)](https://design.google.com/icons/)  
+[Google Material Icon(縮放用css)](https://design.google.com/icons/)  
 [Font Awesome](http://fontawesome.io/icons/)  
 [Bootstrap](http://getbootstrap.com/components/#glyphicons)
 
@@ -45,8 +44,8 @@ PHP:
 [Font Awesome-4.6.3](http://fontawesome.io)  
 [jQuery-1.12.4](http://api.jquery.com)  
 [pickadate.js-3.5.6](http://amsul.ca/pickadate.js/date/)  
-[jquery-backstretch-2.0.4](https://github.com/srobbin/jquery-backstretch)
-[jQuery-iziModal-v1.2.0](http://izimodal.marcelodolce.com)
+[jquery-backstretch-2.0.4](https://github.com/srobbin/jquery-backstretch)  
+[jQuery-iziModal-v1.2.0](http://izimodal.marcelodolce.com)  
 
 ## 部署
 
@@ -58,31 +57,33 @@ PHP:
 再更改 .env , 建資料庫  
 `php artisan migrate`    
 `php artisan db:seed`  
-`php artisan serve`
+`php artisan serve`  
 
-`composer dump-autoload`:有人不照規則改migration檔就要使用
 
 ## URL連結位置
 
-css圖片的url最前面不用加斜線
+css圖片的url 建議在blade用asset 都試試  
 ```
+background-image:url("{{asset('img/example.png')}}");
+background-image:url("../img/example.png");
 background-image:url("img/example.png");
+
 ```
 
-ajax的url最前面不用加斜線
+ajax的url最前面不用加斜線  
 ```
 $.ajax({
     url: "exa/mple"
     type: "GET"
-  });
+    ......
 ```
 
-連結, 路由 用url help function
+連結, 路由 用url help function  
 ```
 <a href="{{ url('example') }}">
 ```
 
-css, js, 圖片, 檔案 用asset help function
+css, js, 圖片, 檔案 用asset help function  
 ```
 <img src="{{ asset('img/example') }}">
 ```
@@ -91,19 +92,25 @@ css, js, 圖片, 檔案 用asset help function
 ## 權限懶人包
 
 目前的測試帳號
-email: q@q  
-password: q  
+email: "q@q"  
+password: "q"  
 
 在blade模板你可以:  
 ```
 @can('management')
-    有權限修改的code
+    管理員才看得到
+@endcan
+```
+or
+```
+@can('management')
+    管理員才看得到
 @else
-    一般人看到的code
+    其他人都看得到
 @endcan
 ```
 
-在routes你可以:  
+需要的路由加在最上面那坨:  
 ```
 Route::group( ['middleware' => 'admin'], function () {
     Route::get('/test', function () { return '嗨!我是管理員'; });
@@ -145,16 +152,16 @@ CKEDITOR.replace( '你的textarea的id或name', {
 春 夏 秋 冬
 ```
 body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
-main { background-image:url('img/home/spring.png'); }
+main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 
 body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(145,214,234,.8) 100%); }
-main { background-image:url('img/home/summer.png'); }
+main { background-image:url("{{asset('img/layout/summer.png')}}"); }
 
 body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(197,121,002,.8) 100%); }
-main { background-image:url('img/home/fall.png'); }
+main { background-image:url("{{asset('img/layout/fall.png')}}"); }
 
 body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(1,50,104,.8) 100%); }
-main { background-image:url('img/home/winter.png'); }
+main { background-image:url("{{asset('img/layout/winter.png')}}"); }
 ```
 
 
@@ -176,13 +183,3 @@ Modal字首大寫、單數
 資料表字首小寫、複數  
 Controller字首大寫  
 View的檔案名稱及資料夾名稱應全小寫  
-
-## 正式上線
-`composer dump-autoload`  
-`composer install --no-dev`  
-`php artisan env`
-```
-APP_ENV=production
-APP_DEBUG=false
-```
-把`vendor/unisharp/laravel-filemanager/src/controllers/UploadController.php`第111行註解  
