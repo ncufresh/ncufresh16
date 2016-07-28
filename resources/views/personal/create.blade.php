@@ -30,24 +30,14 @@
 @stop
 
 @section('js')
-<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}">
-  
-</script>
+<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
 <script type="text/javascript">$('#lfm').filemanager('image');</script>
 
 @stop
 
 @section('content')
 <div class="container">
-    <div class="input-group">
-    <span class="input-group-btn">
-      <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-        <i class="fa fa-picture-o"></i> Choose
-      </a>
-    </span>
-    <input id="thumbnail" class="form-control" type="text" name="filepath">
-  </div>
-  <img id="holder" style="margin-top:15px;max-height:100px;">
+    
 </div>
 
 @endsection

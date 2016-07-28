@@ -9,8 +9,10 @@
 
   position: fixed;
   bottom: 0;
-  left: 90%;
+  left: 85%;
+  z-index: 100;
 }
+
 
 </style>
 <div class="row head">
@@ -32,7 +34,7 @@
      @endcan
     </div>
 </div>
-             
-<a href="{{action('QandAController@create')}}" class="btn btn-info btn-lg btn-raised fixed"><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i>我要發問</a>
+      
+      <a class="fixed" href="{{action('QandAController@create')}}"  ><img src="{{ asset('img/Q&A/ask.png') }}" width="80%"></a>       
 
 
