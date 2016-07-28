@@ -93,7 +93,7 @@ button{
   $('#lfm').filemanager('image');
    $(document).ready(function(){
         $(".container").fadeIn(1300);
-          CKEDITOR.instances['textArea'].setData($("#tempText").val());
+          // CKEDITOR.instances['textArea'].setData($("#textArea").val());
 });
 
   </script>
@@ -134,6 +134,8 @@ CKEDITOR.replace( 'textArea', {
 
         @foreach ($more as $more)
         <a target="_blank" href="{{ asset($more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
+        <!-- 刪除紐 -->
+        <i class="material-icons">delete_forever</i>
         @endforeach
 
         <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/add' }}" method="POST">
@@ -225,8 +227,8 @@ CKEDITOR.replace( 'textArea', {
         <div class="modal-body">
 
           <!-- <div id="showArea" class="collapse"> -->
-          <textarea type="text" name="content" id="textArea"></textarea>
-          <input type="hidden" value="{{$content->content}}" id="tempText">
+          <textarea type="text" name="content" id="textArea" >{{$content->content}}</textarea>
+       
          <!--  </div>  -->
 
         <p>{!!$content->content!!}</p>

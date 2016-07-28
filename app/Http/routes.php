@@ -192,6 +192,6 @@ Route::get('/life/{topic}/{content}','LifeController@getContent');
 Route::post('/life', 'LifeController@addTitle');
 Route::post('/life/{topic}/{content}/add', 'LifeController@addMore');
 Route::patch('/life/{topic}/{content}/updateContent','LifeController@updateContent');
-// Route::patch('/life/{topic}/{content}/updateContent','LifeController@updateContent');
+Route::delete('/life/{id}', 'LifeController@deleteTitle');
 
 //************************************************************

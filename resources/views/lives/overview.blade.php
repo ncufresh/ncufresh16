@@ -184,6 +184,13 @@ $(".newTitle").keypress(function (event) {
 		       		<ul class="collapse menu" id="foodMenu">
 						@foreach ($food as $food)
 						<li><img src="{{ asset('img/life/knife.png')  }}"> <a href="{{action('LifeController@getContent',['food', $food->id])}}">{{ $food->title }}</a></li>
+						
+						<!-- 刪除紐 -->
+						<form action="{{ url('life/'.$food->id) }}" method="POST">
+							{!! csrf_field() !!}
+	        				{!! method_field('DELETE') !!}
+	       					<button type="submit" class="material-icons">delete_forever</button>
+	       				</form>
 						@endforeach
 
 						<li><img src="{{ asset('img/life/knife.png')  }}">

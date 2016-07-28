@@ -55,6 +55,7 @@ class LifeController extends Controller
 
 	public function addTitle(Request $request)
 	{
+	    // return $request;
 	    $life = new Life;
 	    $life->topic = $request->topic;
 	    $life->title = $request->title;
@@ -75,25 +76,27 @@ class LifeController extends Controller
 
 	public function updateContent(Request $request, $topic ,Life $content)
 	{
-	   
-	    	 $content->content = $request->content;
-		   
-		   
-	  
-	    	$content->image = $request->filepath;
-		 $content->save();
-	
-	   
-	     return redirect('/life/'.$topic.'/'.$content->id);
-	    // $message->update([
-     //    'body' => $request->body
+    	$content->content = $request->content;
+  
+    	if($request->filepath){
+    		$content->image = $request->filepath;
+    	}
+    	
+	 	$content->save();	   
+	    // $content->update([
+     //    'content' => $request->content,
+     //    'image' => $request->filepath
    		// ]);
-
+   		return redirect('/life/'.$topic.'/'.$content->id);
+	    
 	    
 	}
-	// public function updateThemeImg(Request $request, $topic ,Life $content)
-	// {
-	   
-	// }
+
+	public function deleteTitle(Life $id){
+		 $id->delete();
+		 Life_link::where('life_id', $id->id)->delete();
+		 Life_image::where('life_id', $id->id)->delete();
+		 return redirect('life');
+	}
 
 }
