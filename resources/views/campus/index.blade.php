@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-
+@section('title','校園導覽')
 @section('content')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 <script>
@@ -38,6 +38,7 @@
     }
     .container{
         display: none;
+        font-size: 24px;
     }
 </style>
 

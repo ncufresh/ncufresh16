@@ -329,5 +329,18 @@ class CampusController extends Controller {
         $objNeedDel = mapobject::destroy($bid);
         return response()->json($objNeedDel);
     }
+    public function getIndexBuilding($bid){
+        $mapDatas = DB::table('mapobjects')
+                ->select('mapobjects.*', 'Buildings.*', 'mapobjects.id as objId')
+                ->join('Buildings', 'mapobjects.Building_id', '=', 'Buildings.id')
+                ->where('mapobjects.Building_id',$bid)
+                ->first();
+        $buildimgs = DB::table('buildingimgs')
+                ->where('BuildingId',$bid)
+                ->get();
+//        return $buildimgs;
+        return response()->json([$mapDatas,$buildimgs]);
+                        
+    }
 
 }

@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-
+@section('title','新增地圖物件')
 @section('content')
 
 @section('css')
@@ -7,10 +7,7 @@
 <style>
     body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
     main { background-image:url('../img/home/spring.png'); }
-    body{
-        font-size: 24px;
-    }
-
+    
     .imgg{
         width: 40%;
     }
@@ -25,6 +22,7 @@
     }
     .container{
         display: none;
+        font-size: 24px;
     }
 </style>
 @stop

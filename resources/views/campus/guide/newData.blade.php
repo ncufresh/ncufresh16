@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-
+@section('title','新增建築物')
 @section('content')
 
 <?php
@@ -21,10 +21,9 @@ $amount = 1;
     }
     .container{
         display: none;
-    }
-    body{
         font-size: 24px;
     }
+    
 
 </style>
 <div class="container">

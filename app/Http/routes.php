@@ -93,6 +93,8 @@ Route::get('/campus/newObj/createObj/{bid?}','CampusController@getObj');
 Route::put('/campus/newObj/createObj/updateObj/{bid?}','CampusController@updateObj');
 //刪除地圖物件
 Route::delete('/campus/newObj/createObj/{bid?}','CampusController@dropObj');
+//主頁 查詢建築物資料
+Route::get('/campus/guide/getBuild/{bid?}','CampusController@getIndexBuilding');
 
 
 
