@@ -169,6 +169,7 @@ Route::delete('/Q&A/{Q}', 'QandAController@destroy');
 // 個人專區
 //************************************************************
 Route::resource('/personal', 'PersonalController');
+Route::post('/personal/updateBackground', 'UserController@updateBackground');
 //************************************************************
 
 
