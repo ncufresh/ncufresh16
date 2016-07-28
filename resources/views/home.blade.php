@@ -206,6 +206,9 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
                 <i class="material-icons">rss_feed</i>
   			    </div>
         </a>
+        <div class="timeline-clickme">
+            <img src="img/home/squirrel.png" alt="" />
+        </div>
 				<div class="timeline-content left">
   					<h2>新生必讀</h2>
   					<p>

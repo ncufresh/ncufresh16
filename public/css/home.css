@@ -25,7 +25,7 @@
 @media (min-width:992px){
     /* 一般 */
     #totop:hover {
-        background-color: rgb(57, 149, 235);
+        background-color: #22ab82;
     }
     #totop {
         background-color: transparent;
@@ -39,6 +39,19 @@
         -webkit-transition: all ease 0.7s;
         -moz-transition: all ease 0.7s;
       }
+}
+
+/* 時間軸松鼠 */
+#timeline .timeline-item .timeline-clickme {
+    display: none;
+}
+@media (min-width:769px){
+    #timeline .timeline-item .timeline-clickme {
+        display: block;
+        position: absolute;
+        top: -30%;
+        left: 53%;
+    }
 }
 
 /* 四季主題給該死的時間軸 跟箭頭 */
