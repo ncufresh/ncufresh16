@@ -11,11 +11,25 @@ use Illuminate\Routing\Controller;
 // 後台
 //************************************************************
 Route::group( ['middleware' => 'admin'], function () {
-    Route::get('/test', function () { return '管理員才可以進的路由都放這 包含新增之類的 不用急著丟'; });
+    Route::get('/test', function () { return 'just for test'; });
+    /*****************後台統整連結******************/
+    Route::get('/admin', function(){
+        return view('admin');
+    });
     /*****************Q&A******************/
     Route::get('/Q&A/admin/', 'QandAController@indexAdmin');
     Route::get('/Q&A/admin/{Q}', 'QandAController@edit');
     Route::patch('/Q&A/content/{Q}', 'QandAController@update');
+    /*****************公告******************/
+    Route::get('/ann', 'AnnouncementController@index');
+    Route::post('/ann', 'AnnouncementController@store');
+    Route::get('/ann/{ann}', 'AnnouncementController@show');
+});
+//************************************************************
+
+// 神域
+//************************************************************
+Route::group( ['middleware' => 'god'], function () {
 });
 //************************************************************
 
@@ -33,16 +47,6 @@ Route::post('/user/update', 'UserController@update');
 // 首頁
 //************************************************************
 Route::get('/', 'HomeController@index');
-Route::get('/admin', function(){
-    return view('admin');
-});
-//************************************************************
-
-// 公告
-//************************************************************
-Route::get('/ann', 'AnnouncementController@index');
-Route::post('/ann', 'AnnouncementController@store');
-Route::get('/ann/{ann}', 'AnnouncementController@show');
 //************************************************************
 
 // 新生必讀
