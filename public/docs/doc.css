@@ -34,10 +34,14 @@ footer {
 
 /* 浮動按鈕 */
 
-.fixed-button {
-    position: fixed;
-    bottom: 35%;
-    /*width: 100%;*/
+.little-button-container {
+    position: relative;
+}
+
+.little-button {
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
     text-align: center;
 }
 

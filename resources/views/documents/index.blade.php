@@ -37,7 +37,7 @@ CKEDITOR.replace( 'new_gra', {
     <!-- 上方兩個按鈕畫面 -->
     <div class="jumbotron" id="topScreen">
         <div class="container-fluid">
-            <div class="row text-center">
+            <div class="row text-center little-button-container">
                 <!-- 左邊大學部導覽列 -->
                 <div class="col-xs-6" id="outerLeftSidebar">
                     <p><a href="#under-1"><img src="{{ asset('docs/img/col.png') }}" alt="kirby" id="openLeft"></a></p>
@@ -58,6 +58,14 @@ CKEDITOR.replace( 'new_gra', {
                     <p class="test4"></p>
                 </div>
                 <!-- /右邊研究所導覽列 -->
+                <!-- 顯示綜合畫面的按鈕 -->
+                <div class="little-button">
+                    <a href="#bottomPage" class="btn btn-circle">
+                        <i class="fa fa-angle-double-down fa-3x"></i>
+                        <div class="ripple-container"></div>
+                    </a>
+                </div>
+                <!-- /顯示綜合畫面的按鈕 -->
             </div>
             <!-- /.row -->
         </div>
@@ -79,8 +87,8 @@ CKEDITOR.replace( 'new_gra', {
                 <!-- 新增大學部資料 -->
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-new-under">新增</button>
                 <!-- Modal -->
-                <div id="modal-new-under" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
+                <div id="modal-new-under" class="modal fade text-left" role="dialog">
+                    <div class="modal-dialog modal-lg">
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
@@ -96,11 +104,11 @@ CKEDITOR.replace( 'new_gra', {
                                     <p><textarea name="content" id="new_under" required></textarea></p>
                                     <p>隸屬於哪個主項目</p>
                                     <p><input type="number" name="position_of_main" min="1" max="3" step="1" value="1" required></p>
-                                    <p><button type="submit" class="btn btn-primary">新增</button></p>
-                                </form> 
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                                    <p>
+                                        <button type="submit" class="btn btn-primary">新增</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                                    </p>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -109,18 +117,13 @@ CKEDITOR.replace( 'new_gra', {
                 <!-- /新增大學部資料 -->
             </div>
             <!-- /#innerLeftSidenav-->
-            <?php $mainCount = 0; ?>
+            <?php $mainCount = 0; 
+                  $mainTitles = array("註冊", "新生週", "共同課程"); ?>
             {{-- 產生三個大學部主要項目 --}}
             @foreach ($mainUnders as $unders)
                 <section id="under-{{ ++$mainCount }}">
                     <div class="col-xs-8 innerLeftPage" id="innerLeftPage-{{ $mainCount }}">
-                        @if ($mainCount == 1)
-                        <h1>註冊</h1>
-                        @elseif ($mainCount == 2)
-                        <h1>新生週</h1>
-                        @else
-                        <h1>共同課程</h1>
-                        @endif
+                        <h1>{{ $mainTitles[ $mainCount-1 ] }}</h1>
                         <div class="row">
                         <?php $subCount = 0; ?>
                         {{-- 產生大學部主要項目裡的細部項目 --}}
@@ -132,7 +135,7 @@ CKEDITOR.replace( 'new_gra', {
                                 </p>
                                 <!-- Modal -->
                                 <div id="modal-{{ $u->id }}" class="modal fade" role="dialog">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-lg">
                                         <!-- Modal content-->
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -176,13 +179,7 @@ CKEDITOR.replace( 'new_gra', {
             @foreach ($mainGraduates as $graduates)
                 <section id="graduate-{{ ++$mainCount }}">
                     <div class="col-xs-8 col-xs-offset-2 innerRightPage" id="innerRightPage-{{ $mainCount }}">
-                        @if ($mainCount == 1)
-                        <h1>註冊</h1>
-                        @elseif ($mainCount == 2)
-                        <h1>新生週</h1>
-                        @else
-                        <h1>共同課程</h1>
-                        @endif
+                        <h1>{{ $mainTitles[ $mainCount-1 ] }}</h1>
                         <div class="row">
                         <?php $subCount = 0; ?>
                         {{-- 產生研究所主要項目裡的細部項目 --}}
@@ -194,7 +191,7 @@ CKEDITOR.replace( 'new_gra', {
                                 </p>
                                 <!-- Modal -->
                                 <div id="modal-{{ $g->id }}" class="modal fade" role="dialog">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-lg">
                                         <!-- Modal content-->
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -237,7 +234,7 @@ CKEDITOR.replace( 'new_gra', {
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-new-graduate">新增</button>
                 <!-- Modal -->
                 <div id="modal-new-graduate" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-lg">
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
@@ -299,12 +296,4 @@ CKEDITOR.replace( 'new_gra', {
     <!-- /.container /#bottomScreen -->
 </div>
 <!-- /新生必讀 -->
-<!-- 顯示綜合畫面的浮動按鈕 -->
-<div class="fixed-button">
-    <a href="#bottomPage" class="btn btn-circle">
-        <i class="fa fa-angle-double-down fa-3x"></i>
-        <div class="ripple-container"></div>
-    </a>
-</div>
-<!-- /顯示綜合畫面的浮動按鈕 -->
 @endsection
