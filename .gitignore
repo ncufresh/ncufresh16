@@ -1,6 +1,6 @@
 /vendor
 /node_modules
-/public/storage
+/public/upload
 .env
 /nbproject/private/
 /nbproject
