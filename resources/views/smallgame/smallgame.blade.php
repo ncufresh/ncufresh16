@@ -923,27 +923,27 @@ function reboot_rightanswer(){//讓角色有無敵時間
 function draw_MENU(){
   context.clearRect(0, 0, canvas.width, canvas.height);
   gameStateManager[0][gameState_menu_state].draw();
-  show(msg);
+  //show(msg);
 }
 function draw_README(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[README].draw();
-    show(msg);
+    //show(msg);
 }
 function draw_GAME_1(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_1].draw();
-    show(msg);
+    //show(msg);
 }
 function draw_GAME_2(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_2].draw();
-    show(msg);
+   // show(msg);
 }
 function draw_GAME_3(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_3].draw();
-    show(msg);
+    //show(msg);
 }
 
 function draw_GAME_4(){
@@ -1021,13 +1021,13 @@ function draw_GAME_4(){
     else{
       getScore();//若沒死亡，則持續得分  
     }
-    show(msg);
+    //show(msg);
 }
 function drawGameOver(){
 
   context.clearRect(0, 0, canvas.width, canvas.height);
   gameStateManager[5][gameState_over_state].draw();
-  show(msg);
+  //show(msg);
 }
 
 
@@ -1101,4 +1101,4 @@ draw();
 */
 </script>
 @endsection
-<!-- 小遊戲讓手機使用者也能玩  ,  建立資料庫連結 -->
+<!-- (2)小遊戲讓手機使用者也能玩  ,  (1)美化分數欄位 ，  (3)寫好seed -->

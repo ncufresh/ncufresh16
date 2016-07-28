@@ -12,7 +12,7 @@ class CreateQuestionCollection extends Migration
      */
     public function up()
     {
-        Schema::create('Question_collection', function (Blueprint $table) {
+        Schema::create('question_collection', function (Blueprint $table) {
             $table->increments('id');
             $table->string('question');
             $table->string('selection_1');
