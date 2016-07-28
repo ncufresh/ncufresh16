@@ -1,5 +1,9 @@
 /*!!! use z-index to layer element !!!*/
 
+img {
+    width: 100%;
+}
+
 
 /*--- @override bootstrap.css ---*/
 
@@ -33,7 +37,7 @@ footer {
 .fixed-button {
     position: fixed;
     bottom: 35%;
-    width: 100%;
+    /*width: 100%;*/
     text-align: center;
 }
 
@@ -70,7 +74,6 @@ footer {
 
 /* for fadeIn() animation */
 
-body,
 #innerLeftPage-2,
 #innerLeftPage-3,
 #innerRightPage-2,
@@ -81,9 +84,7 @@ body,
 
 /* hidden until open */
 
-#leftScreen,
-#rightScreen,
-#bottomScreen {
+#rightScreen {
     display: none;
 }
 
@@ -91,18 +92,14 @@ body,
 /*--- scrollspy and affix effects ---*/
 
 body {
-    background: lightblue;
     position: relative;
     margin-bottom: 0px;
+    display: none;
 }
 
 h1,
 h2 {
     font-weight: 700;
-}
-
-h3 span {
-    color: #286090;
 }
 
 .jumbotron {
@@ -111,14 +108,7 @@ h3 span {
     margin-bottom: 0;
     /* @override bootstrap.css */
     padding: 0;
-}
-
-.jumbotron button {
-    margin-top: 10px;
-}
-
-section {
-    border-bottom: 1px solid #c1e1ec;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 section:last-child {
@@ -126,22 +116,20 @@ section:last-child {
 }
 
 .side-nav {
-    background: #4baac8;
+    /*background: #4baac8;*/
 }
 
 .side-nav a {
     color: black;
-    font-style: italic;
 }
 
 .side-nav li a:hover,
 .side-nav li a:focus {
-    background: #86c5da;
+    /*background: #86c5da;*/
 }
 
 .side-nav .active {
     font-weight: bold;
-    background: #72bcd4;
 }
 
 .side-nav .side-nav {
@@ -167,29 +155,4 @@ section:last-child {
     font-weight: bold;
     padding-left: 30px;
     border-left: 5px solid black;
-}
-
-.side-nav .side-nav .active span,
-.side-nav .side-nav .active:hover span,
-.side-nav .side-nav .active:focus span {
-    display: none;
-}
-
-.mixed {
-    border-top: 1px solid #c1e1ec;
-}
-
-.affix-top {
-    position: relative;
-}
-
-.affix-bottom {
-    position: absolute;
-}
-
-@media (min-width: 1200px) {
-    .affix,
-    .affix-bottom {
-        width: 263px;
-    }
 }

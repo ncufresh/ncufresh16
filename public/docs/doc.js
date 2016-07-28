@@ -1,10 +1,8 @@
 $(document).ready(function() {
     // 根據視窗調整按鈕大小、參考值還需要調整!!!
-    // $("img").width($(window).height() / 4);
 
-    // @override body attr.
     // fadeIn() animation
-    $("body").attr("data-target", ".scrollspy").fadeIn("slow");
+    $("body").fadeIn("slow");
 
     $(".jumbotron").css("padding-top", $("nav").height());
 
@@ -32,9 +30,8 @@ $(document).ready(function() {
         }, "slow");
     });
 
-    // 切換大學部的三個主項目畫面
+    // 切換研究所的三個主項目畫面
     $("li a[href='#graduate-1'], li a[href='#graduate-2'], li a[href='#graduate-3']").on('click', function(event) {
-        $(".test1").text("hi");
         if (window.location.hash !== this.hash) {
             // Prevent default anchor click behavior
             event.preventDefault();
@@ -67,9 +64,8 @@ $(document).ready(function() {
         }
     });
 
-    // 切換研究所的三個主項目畫面
+    // 切換大學部的三個主項目畫面
     $("li a[href='#under-1'], li a[href='#under-2'], li a[href='#under-3']").on('click', function(event) {
-        $(".test1").text("hi");
         if (window.location.hash !== this.hash) {
             // Prevent default anchor click behavior
             event.preventDefault();
@@ -104,24 +100,12 @@ $(document).ready(function() {
 
     // 調整視窗大小時
     $(window).resize(function() {
-
-        // $("img").width($(window).height() / 4);
-
         $(".jumbotron").css("padding-top", $("nav").height() + $("nav").height());
 
         // 讓上方畫面的內容垂直置中
         $("#outerLeftSidebar, #outerRightSidebar").css({
             "padding-top": ($(".jumbotron").height() - $("#outerLeftSidebar").height()) / 2
         });
-    });
-
-    // 滾動畫面時
-    $(window).scroll(function() {
-        if ($(document).scrollTop() === 0) {
-            $("#leftScreen").fadeOut("fast");
-            $("#rightScreen").fadeOut("fast");
-            $("#bottomScreen").fadeOut("fast");
-        }
     });
 
     // 
