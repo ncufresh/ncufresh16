@@ -35,7 +35,7 @@
                     </ul>
                 </li>
                 @endcan
-                <li><a href="{{ url('/doc/under') }}">新生必讀</a></li>
+                <li><a href="{{ url('/doc') }}">新生必讀</a></li>
                 <li><a href="{{ url('/Q&A/all') }}">新生Q&amp;A</a></li>
                 <li><a href="{{ url('/campus') }}">校園導覽</a></li>
                 <li><a href="{{ url('/groups') }}">系所社團</a></li>
