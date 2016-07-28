@@ -57,11 +57,6 @@ Route::group(['prefix' => 'doc'], function () {
 		Route::get('/{under}/edit','DocumentController@underEdit');
 		Route::patch('/{under}', 'DocumentController@underUpdate');
     });
-	Route::get('/under', 'DocumentController@underIndex');
-	Route::post('/under', 'DocumentController@underStore');
-	Route::delete('/under/{under}', 'DocumentController@underDestroy');
-	Route::get('/under/{under}/edit','DocumentController@underEdit');
-	Route::patch('/under/{under}', 'DocumentController@underUpdate');
 	# 研究所
 	Route::group(['prefix' => 'graduate'], function () {
 		Route::get('/', 'DocumentController@graduateIndex');
