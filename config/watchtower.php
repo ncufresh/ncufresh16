@@ -247,6 +247,6 @@ return [
     'route' => [
         'prefix'    => 'admin',
         'as'        => 'watchtower.',
-        'middleware'=> ( str_contains( app()->version(), '5.2') ? ['web'] : ['auth'] )
+        'middleware'=> ( str_contains( app()->version(), '5.2') ? ['web','admin'] : ['auth','admin'] )
     ]
 ];
