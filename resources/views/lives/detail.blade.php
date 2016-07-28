@@ -92,7 +92,7 @@ button{
   <script type="text/javascript">
   $('#lfm').filemanager('image');
    $(document).ready(function(){
-        $(".container").fadeIn(1300);
+        $(".container").fadeIn(1000);
           // CKEDITOR.instances['textArea'].setData($("#textArea").val());
 });
 
@@ -133,9 +133,14 @@ CKEDITOR.replace( 'textArea', {
         <button class="btn-default btn-block" data-toggle="modal" data-target="#myModal">相片導覽</button>
 
         @foreach ($more as $more)
-        <a target="_blank" href="{{ asset($more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
+        <a class="" target="_blank" href="{{ asset($more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
+        
         <!-- 刪除紐 -->
-        <i class="material-icons">delete_forever</i>
+        <form action="{{ url('life/'.$content->id.'/'.$more->id) }}" method="POST">
+          {!! csrf_field() !!}
+              {!! method_field('DELETE') !!}
+              <button type="submit" class="material-icons">delete_forever</button>
+        </form>
         @endforeach
 
         <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/add' }}" method="POST">
@@ -211,7 +216,7 @@ CKEDITOR.replace( 'textArea', {
   <div class="col-md-8" id="rightPart">
 <div class="row">
     <div class="col-md-10 modal-content" id="contentModal">
-     <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/updateContent' }}" method="POST">
+     <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/update' }}" method="POST">
      {{ csrf_field() }}
      {{ method_field('PATCH') }}
       <div class="modal-header">

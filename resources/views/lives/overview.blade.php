@@ -99,7 +99,7 @@ main { background-image:url('../img/home/spring.png'); }
 @section('js')
 <script type="text/javascript">
 	$(document).ready(function(){
-		 $(".container").fadeIn(1300);
+		 $(".container").fadeIn(1000);
 	    $(".puzzle").click(function(){
 	       	var form = document.getElementById("form_name");
 	        var clicks = $(this).data('clicks');
@@ -185,7 +185,16 @@ $(".newTitle").keypress(function (event) {
 						@foreach ($food as $food)
 						<li><img src="{{ asset('img/life/knife.png')  }}"> <a href="{{action('LifeController@getContent',['food', $food->id])}}">{{ $food->title }}</a></li>
 						
-						<!-- 刪除紐 -->
+					<!--title更改鈕 -->
+						<form action="{{ url('life/'.$food->topic.'/'.$food->id).'/update' }}" method="POST">
+						     {{ csrf_field() }}
+						     {{ method_field('PATCH') }}
+						<input type="text" name="title" value="{{ $food->title }}">
+						<button class="material-icons">edit</button>
+						<button type="submit" class="material-icons">done</button>
+						</form>	
+
+						<!-- title刪除紐 -->
 						<form action="{{ url('life/'.$food->id) }}" method="POST">
 							{!! csrf_field() !!}
 	        				{!! method_field('DELETE') !!}

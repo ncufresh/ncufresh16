@@ -74,14 +74,18 @@ class LifeController extends Controller
 	    return redirect('/life/'.$topic.'/'.$content);
 	}
 
-	public function updateContent(Request $request, $topic ,Life $content)
-	{
-    	$content->content = $request->content;
-  
-    	if($request->filepath){
-    		$content->image = $request->filepath;
+	public function update(Request $request, $topic ,Life $content)
+	{	
+		if($request->title){
+    		$content->title = $request->title;
+    		$content->save();	
+    		return redirect('life');
     	}
-    	
+
+    	$content->content = $request->content;
+      	if($request->filepath){
+    		$content->image = $request->filepath;
+    	} 	
 	 	$content->save();	   
 	    // $content->update([
      //    'content' => $request->content,
@@ -89,8 +93,10 @@ class LifeController extends Controller
    		// ]);
    		return redirect('/life/'.$topic.'/'.$content->id);
 	    
-	    
+
 	}
+
+
 
 	public function deleteTitle(Life $id){
 		 $id->delete();
@@ -98,5 +104,12 @@ class LifeController extends Controller
 		 Life_image::where('life_id', $id->id)->delete();
 		 return redirect('life');
 	}
+
+	public function deleteMore(Life $id, Life_link $more_id){
+		$more_id->delete();
+		 return redirect('/life/'.$id->topic.'/'.$id->id);
+	}
+
+	
 
 }
