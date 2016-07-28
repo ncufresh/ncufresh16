@@ -1,0 +1,162 @@
+/*!!! use z-index to layer element !!!*/
+
+img {
+    width: 100%;
+}
+
+
+/*--- @override bootstrap.css ---*/
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.col-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+/*--- @override layout.css ---*/
+
+footer {
+    height: 0;
+}
+
+
+/*--- 自定義 ---*/
+
+.round-col {
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+
+/* 浮動按鈕 */
+
+.little-button-container {
+    position: relative;
+}
+
+.little-button {
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+    text-align: center;
+}
+
+
+/*--- 圓圈按鈕 ---*/
+
+.btn-circle {
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 16px 16px;
+    background-color: transparent;
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+}
+
+
+/* 圓圈按鈕的動畫 */
+
+.btn-circle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    animation: mymove 0.50s linear infinite alternate;
+}
+
+@keyframes mymove {
+    from {
+        font-size: 14px;
+    }
+    to {
+        font-size: 18px;
+    }
+}
+
+
+/* for fadeIn() animation */
+
+#innerLeftPage-2,
+#innerLeftPage-3,
+#innerRightPage-2,
+#innerRightPage-3 {
+    display: none;
+}
+
+
+/* hidden until open */
+
+#rightScreen {
+    display: none;
+}
+
+
+/*--- scrollspy and affix effects ---*/
+
+body {
+    position: relative;
+    margin-bottom: 0px;
+    display: none;
+}
+
+h1,
+h2 {
+    font-weight: 700;
+}
+
+.jumbotron {
+    overflow: hidden;
+    border-radius: 0;
+    margin-bottom: 0;
+    /* @override bootstrap.css */
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+section:last-child {
+    border-bottom: none;
+}
+
+.side-nav {
+    /*background: #4baac8;*/
+}
+
+.side-nav a {
+    color: black;
+}
+
+.side-nav li a:hover,
+.side-nav li a:focus {
+    /*background: #86c5da;*/
+}
+
+.side-nav .active {
+    font-weight: bold;
+}
+
+.side-nav .side-nav {
+    display: none;
+}
+
+.side-nav .active .side-nav {
+    display: block;
+}
+
+.side-nav .side-nav a {
+    font-weight: normal;
+    font-size: .85em;
+}
+
+.side-nav .side-nav span {
+    margin: 0 5px 0 2px;
+}
+
+.side-nav .side-nav .active a,
+.side-nav .side-nav .active:hover a,
+.side-nav .side-nav .active:focus a {
+    font-weight: bold;
+    padding-left: 30px;
+    border-left: 5px solid black;
+}

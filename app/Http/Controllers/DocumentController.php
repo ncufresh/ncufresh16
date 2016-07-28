@@ -8,20 +8,27 @@ use App\Document;
 
 class DocumentController extends Controller
 {
-	/* 大學部 */
-    public function underIndex(){
-    	// 先比對是否為大學部的資料、再分別對應到三個主要類別
-    	for($i=0;$i<3;$i++){
-    		$mainUnders[$i] = Document::where('is_graduate',false)
-    								  ->where('position_of_main',''.($i+1))
-    								  ->get();
-    	}
-        $count[0] = $count[1] = 0;
-    	// 回傳大學部的網頁位置與三個主類別中的子類別
-		return view('documents.under',
+    // mixed
+    public function index(){
+        // 先比對是否為大學部的資料、再分別對應到三個主要類別
+        for($i=0;$i<3;$i++){
+            $mainUnders[$i] = Document::where('is_graduate',false)
+                                      ->where('position_of_main',''.($i+1))
+                                      ->get();
+        }  
+
+        // 先比對是否為研究所的資料、再分別對應到三個主要類別
+        for($i=0;$i<3;$i++){
+            $mainGraduates[$i] = Document::where('is_graduate',true)
+                                         ->where('position_of_main',''.($i+1))
+                                         ->get();
+        }
+        
+        // 回傳網頁位置與資料
+        return view('documents.index',
             [
                 'mainUnders' => $mainUnders,
-                'count' => $count
+                'mainGraduates' => $mainGraduates,
             ]);
     }
 
@@ -34,12 +41,12 @@ class DocumentController extends Controller
     	$document->position_of_main = $request->position_of_main;
     	// 儲存後返回
 		$document->save();
-		return redirect('/doc/under');
+		return redirect('/doc');
     }
 
     public function underDestroy(Request $request, Document $under) {
 		$under->delete();
-		return redirect('/doc/under');
+		return redirect('/doc');
 	}
 
 	public function underEdit(Document $under){
@@ -52,26 +59,10 @@ class DocumentController extends Controller
 			'content' => $request->content,
 			'position_of_main' => $request->position_of_main
 		]);
-		return redirect('/doc/under');
+		return redirect('/doc');
 	}
 
     /* 研究所 */
-    public function graduateIndex(){
-    	// 先比對是否為研究所的資料、再分別對應到三個主要類別
-    	for($i=0;$i<3;$i++){
-    		$mainGraduates[$i] = Document::where('is_graduate',true)
-    									 ->where('position_of_main',''.($i+1))
-    									 ->get();
-    	}
-        $count[0] = $count[1] = 0;
-    	// 回傳研究所的網頁位置與三個主類別中的子類別
-		return view('documents.graduate',
-            [
-                'mainGraduates' => $mainGraduates,
-                'count' => $count
-            ]);
-    }
-
     public function graduateStore(Request $request){
     	// 新增一筆資料
     	$document = new Document;
@@ -82,12 +73,12 @@ class DocumentController extends Controller
     	$document->position_of_main = $request->position_of_main;
     	// 儲存後返回
 		$document->save();
-		return redirect('/doc/graduate');
+		return redirect('/doc');
     }
 
     public function graduateDestroy(Request $request, Document $graduate) {
 		$graduate->delete();
-		return redirect('/doc/graduate');
+		return redirect('/doc');
 	}
 
 	public function graduateEdit(Document $graduate){
@@ -100,6 +91,6 @@ class DocumentController extends Controller
 			'content' => $request->content,
 			'position_of_main' => $request->position_of_main
 		]);
-		return redirect('/doc/graduate');
+		return redirect('/doc');
 	}
 }
