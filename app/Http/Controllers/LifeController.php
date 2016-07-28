@@ -75,13 +75,25 @@ class LifeController extends Controller
 
 	public function updateContent(Request $request, $topic ,Life $content)
 	{
-	    $content->content = $request->content;
-	    $content->save();
+	   
+	    	 $content->content = $request->content;
+		   
+		   
+	  
+	    	$content->image = $request->filepath;
+		 $content->save();
+	
+	   
+	     return redirect('/life/'.$topic.'/'.$content->id);
 	    // $message->update([
      //    'body' => $request->body
    		// ]);
 
-	    return redirect('/life/'.$topic.'/'.$content->id);
+	    
 	}
+	// public function updateThemeImg(Request $request, $topic ,Life $content)
+	// {
+	   
+	// }
 
 }

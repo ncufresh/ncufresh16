@@ -86,7 +86,11 @@ button{
 @stop
 
 @section('js')
+
+<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
+
   <script type="text/javascript">
+  $('#lfm').filemanager('image');
    $(document).ready(function(){
         $(".container").fadeIn(1300);
           CKEDITOR.instances['textArea'].setData($("#tempText").val());
@@ -205,10 +209,13 @@ CKEDITOR.replace( 'textArea', {
   <div class="col-md-8" id="rightPart">
 <div class="row">
     <div class="col-md-10 modal-content" id="contentModal">
-     <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/edit' }}" method="POST">
+     <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/updateContent' }}" method="POST">
      {{ csrf_field() }}
+     {{ method_field('PATCH') }}
       <div class="modal-header">
      <!--    <button class="material-icons" data-toggle="collapse" data-target="#showArea">edit</button> -->
+     
+        <button class="material-icons"><a id="lfm" data-input="thumbnail" data-preview="holder">add_a_photo</a></button>
         <button class="material-icons">edit</button>
         <button type="submit" class="material-icons">done</button>
         <a href=".." class="material-icons close">clear</a> 
@@ -224,11 +231,29 @@ CKEDITOR.replace( 'textArea', {
 
         <p>{!!$content->content!!}</p>
       </div>
+     <!--  主題圖片路徑 -->
+       <input id="thumbnail" class="form-control" type="hidden" name="filepath">
 </form>
     </div>
     </div>
   </div>
+
+<!-- <div class="input-group">
+  <span class="input-group-btn">
+    <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+      <i class="material-icons">add_a_photo</i>
+    </a>
+  </span>
   
+  
+
+</div> -->
+<img id="holder" style="margin-top:15px;max-height:100px;">
+      
+     
+
+
+
 </div>
 </div>
 
