@@ -29,6 +29,6 @@ class CreateQuestionCollection extends Migration
      */
     public function down()
     {
-        Schema::drop('Question_collection');
+        Schema::drop('question_collection');
     }
 }
