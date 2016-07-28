@@ -62,7 +62,7 @@ $("#other").append("<div class='item'>"+test[0].videos+"</div>")
 <style>
 
 body { background: linear-gradient(to bottom,rgba(145,214,234,.8) 20%,rgb(0, 102, 153) 100%); }
-main { background-image:url('img/home/summer.png'); }
+main { background-image:url("{{asset('img/layout/summer.png')}}"); }
 
 .add{
 

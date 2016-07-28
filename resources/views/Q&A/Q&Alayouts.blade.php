@@ -1,7 +1,7 @@
 <style type="text/css">
     
     body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(197,121,002,.8) 100%); }
-    main { background-image:url('/img/home/fall.png'); }
+    main { background-image:url("{{asset('img/layout/fall.png')}}"); }
     .leftbutton .btn-primary{
         background-color: #C57A02 !important;
     }
