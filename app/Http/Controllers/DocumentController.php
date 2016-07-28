@@ -41,12 +41,12 @@ class DocumentController extends Controller
     	$document->position_of_main = $request->position_of_main;
     	// 儲存後返回
 		$document->save();
-		return redirect('/doc/under');
+		return redirect('/doc');
     }
 
     public function underDestroy(Request $request, Document $under) {
 		$under->delete();
-		return redirect('/doc/under');
+		return redirect('/doc');
 	}
 
 	public function underEdit(Document $under){
@@ -59,7 +59,7 @@ class DocumentController extends Controller
 			'content' => $request->content,
 			'position_of_main' => $request->position_of_main
 		]);
-		return redirect('/doc/under');
+		return redirect('/doc');
 	}
 
     /* 研究所 */
@@ -73,12 +73,12 @@ class DocumentController extends Controller
     	$document->position_of_main = $request->position_of_main;
     	// 儲存後返回
 		$document->save();
-		return redirect('/doc/graduate');
+		return redirect('/doc');
     }
 
     public function graduateDestroy(Request $request, Document $graduate) {
 		$graduate->delete();
-		return redirect('/doc/graduate');
+		return redirect('/doc');
 	}
 
 	public function graduateEdit(Document $graduate){
@@ -91,6 +91,6 @@ class DocumentController extends Controller
 			'content' => $request->content,
 			'position_of_main' => $request->position_of_main
 		]);
-		return redirect('/doc/graduate');
+		return redirect('/doc');
 	}
 }

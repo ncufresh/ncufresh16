@@ -52,7 +52,7 @@
     <!-- #leftScreen 大學部畫面 -->
     <div class="container-fluid" id="leftScreen">
         <div class="row">
-            <div class="col-xs-3 col-fluid scrollspy" id="innerLeftSidenav">
+            <div class="col-xs-2 col-fluid scrollspy" id="innerLeftSidenav">
                 <ul class="nav side-nav" id="leftNav">
                     <li>
                         <h1>大學部</h1></li>
@@ -62,140 +62,61 @@
                 </ul>
             </div>
             <!-- /#innerLeftSidenav-->
-
-{{--
-            <?php $count = 0; ?>
+            <?php $mainCount = 0; ?>
+            {{-- 產生三個大學部主要項目 --}}
             @foreach ($mainUnders as $unders)
-                <li>大學部主條目 {{ ++$count }}</li>
-                <ul>
-                    @foreach ($unders as $u)
-                       <li>{{ $u->title }}</li>
-                       <ul>
-                           <li>{{ $u->content }}</li>
-                           <form action="{{ url('/doc/under/'.$u->id.'/edit') }}" method="GET">
-                                <button type="submit" id="edit-under-{{ $u->id }}">編輯</button>
-                            </form>
-                            <form action="{{ url('/doc/under/'.$u->id) }}" method="POST">
-                                {!! csrf_field() !!}
-                                {!! method_field('DELETE') !!}
-                                <button type="submit" id="delete-document-{{ $u->id }}">刪除</button>
-                            </form>
-                        </ul>
-                    @endforeach 
-                </ul>
-            @endforeach
---}}
+                <div class="col-xs-8 innerLeftPage" id="innerLeftPage-{{ ++$mainCount }}">          
+                    <section id="under-{{ $mainCount }}">
+                        <h2>大學部主要項目 {{ $mainCount }}</h2>
+                        <p>大學部主要項目 {{ $mainCount }}</p>
+                        <div class="row">
+                        <?php $subCount = 0; ?>
+                        {{-- 產生大學部主要項目裡的細部項目 --}}
+                        @foreach ($unders as $u)
 
-            <div class="col-xs-6 innerLeftPage" id="innerLeftPage-1">
-                <section id="under-1">
-                    <h2><!-- <span class="fa fa-edit"></span> -->大學部主要項目 A</h2>
-                    <p>大學部主要項目 A</p>
-                    <div class="row">
-                        <div class="col-md-4 round-col">
-                            <h3>細項目1</h3>
-                            <p>
-                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-                            </p>
-                            <!-- Modal -->
-                            <div id="myModal" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Modal Header</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Some text in the modal.</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                        @if ($subCount == 3)
+                        </div>
+                        <div class="row">
+                        @endif
+                            <div class="col-md-4 round-col">
+                                <h3>{{ $u->title }}</h3>
+                                <p>
+                                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-{{ $mainCount }}-{{ ++$subCount }}">Open Modal {{ $u->id }}</button>
+                                </p>
+                                <!-- Modal -->
+                                <div id="modal-{{ $mainCount }}-{{ $subCount }}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">{{ $u->title }}</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>{{ $u->content }}</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- /Modal -->
+                                <form action="{{ url('/doc/under/'.$u->id.'/edit') }}" method="GET">
+                                    <button type="submit" class="btn btn-success btn-lg" id="edit-under-{{ $u->id }}">編輯</button>
+                                </form>
+                                <form action="{{ url('/doc/under/'.$u->id) }}" method="POST">
+                                    {!! csrf_field() !!}
+                                    {!! method_field('DELETE') !!}
+                                    <button type="submit" class="btn btn-danger btn-lg" id="delete-document-{{ $u->id }}">刪除</button>
+                                </form>
                             </div>
+                        @endforeach
                         </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目2</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目3</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 round-col">
-                            <h3>細項目4</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目5</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目6</h3>
-                        </div>
-                    </div>
-                </section>
-                <!-- /#under-1 -->
-            </div>
-            <div class="col-xs-6 innerLeftPage" id="innerLeftPage-2">
-                <section id="under-2">
-                    <h2><!-- <span class="fa fa-edit"></span> -->大學部主要項目 B</h2>
-                    <p>大學部主要項目 B</p>
-                    <div class="row">
-                        <div class="col-md-4 round-col">
-                            <h3>細項目1</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目2</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目3</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 round-col">
-                            <h3>細項目4</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目5</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目6</h3>
-                        </div>
-                    </div>
-                </section>
-                <!-- /#under-2 -->
-            </div>
-            <div class="col-xs-6 innerLeftPage" id="innerLeftPage-3">
-                <section id="under-3">
-                    <h2><!-- <span class="fa fa-edit"></span> -->大學部主要項目 C</h2>
-                    <p>大學部主要項目 C</p>
-                    <div class="row">
-                        <div class="col-md-4 round-col">
-                            <h3>細項目1</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目2</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目3</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 round-col">
-                            <h3>細項目4</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目5</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目6</h3>
-                        </div>
-                    </div>
-                </section>
-                <!-- /#under-3 -->
-            </div>
-            <!-- /.col-xs-6.innerLeftPage -->
-            <div class="col-xs-3"></div>
+                    </section>
+                    <!-- /#under-{{ $mainCount }} -->
+                </div>
+            @endforeach
         </div>
         <!-- /.row -->
     </div>
@@ -204,93 +125,61 @@
     <div class="container-fluid" id="rightScreen">
         <div class="row">
             <div class="col-xs-2"></div>
-            <div class="col-xs-8 innerRightPage" id="innerRightPage-1">
-                <section id="graduate-1">
-                    <h2><!-- <span class="fa fa-edit"></span> -->研究所主要項目 A</h2>
-                    <p>研究所主要項目 A</p>
-                    <div class="row">
-                        <div class="col-md-4 round-col">
-                            <h3>細項目1</h3>
+            <?php $mainCount = 0; ?>
+            {{-- 產生三個研究所主要項目 --}}
+            @foreach ($mainGraduates as $graduates)
+                <div class="col-xs-8 innerRightPage" id="innerRightPage-{{ ++$mainCount }}">          
+                    <section id="graduate-{{ $mainCount }}">
+                        <h2>研究所主要項目 {{ $mainCount }}</h2>
+                        <p>研究所主要項目 {{ $mainCount }}</p>
+                        <div class="row">
+                        <?php $subCount = 0; ?>
+                        {{-- 產生研究所主要項目裡的細部項目 --}}
+                        @foreach ($graduates as $g)
+                        {{-- 每三個 col-md-4 換一個 row --}}
+                        @if ($subCount == 3)
                         </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目2</h3>
+                        <div class="row">
+                        @endif
+                            <div class="col-md-4 round-col">
+                                <h3>{{ $g->title }}</h3>
+                                <p>
+                                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-{{ $mainCount }}-{{ ++$subCount }}">Open Modal {{ $g->id }}</button>
+                                </p>
+                                <!-- Modal -->
+                                <div id="modal-{{ $mainCount }}-{{ $subCount }}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">{{ $g->title }}</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>{{ $g->content }}</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Modal -->
+                                <form action="{{ url('/doc/graduate/'.$g->id.'/edit') }}" method="GET">
+                                    <button type="submit" class="btn btn-success btn-lg" id="edit-graduate-{{ $g->id }}">編輯</button>
+                                </form>
+                                <form action="{{ url('/doc/graduate/'.$g->id) }}" method="POST">
+                                    {!! csrf_field() !!}
+                                    {!! method_field('DELETE') !!}
+                                    <button type="submit" class="btn btn-danger btn-lg" id="delete-document-{{ $g->id }}">刪除</button>
+                                </form>
+                            </div>
+                        @endforeach
                         </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目3</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 round-col">
-                            <h3>細項目4</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目5</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目6</h3>
-                        </div>
-                    </div>
-                </section>
-                <!-- /#graduate-1 -->
-            </div>
-            <div class="col-xs-8 innerRightPage" id="innerRightPage-2">
-                <section id="graduate-2">
-                    <h2><!-- <span class="fa fa-edit"></span> -->研究所主要項目 B</h2>
-                    <p>研究所主要項目 B</p>
-                    <div class="row">
-                        <div class="col-md-4 round-col">
-                            <h3>細項目1</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目2</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目3</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 round-col">
-                            <h3>細項目4</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目5</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目6</h3>
-                        </div>
-                    </div>
-                </section>
-                <!-- /#graduate-2 -->
-            </div>
-            <div class="col-xs-8 innerRightPage" id="innerRightPage-3">
-                <section id="graduate-3">
-                    <h2><!-- <span class="fa fa-edit"></span>  -->研究所主要項目 C</h2>
-                    <p>研究所主要項目 C</p>
-                    <div class="row">
-                        <div class="col-md-4 round-col">
-                            <h3>細項目1</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目2</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目3</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 round-col">
-                            <h3>細項目4</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目5</h3>
-                        </div>
-                        <div class="col-md-4 round-col">
-                            <h3>細項目6</h3>
-                        </div>
-                    </div>
-                </section>
-                <!-- /#graduate-3 -->
-            </div>
+                    </section>
+                    <!-- /#graduate-{{ $mainCount }} -->
+                </div>
+            @endforeach
             <!-- /.col-xs-8 /#innerRightPage -->
             <div class="col-xs-2 col-fluid scrollspy" id="innerRightSidenav">
                 <ul class="nav side-nav" id="rightNav">
@@ -300,7 +189,7 @@
                     <li><a href="#graduate-3">主要項目 C</a></li>
                 </ul>
             </div>
-            <!-- /.col-xs-3.col-fluid /#innerLeftSidenav -->    
+            <!-- /.col-xs-3.col-fluid /#innerRightSidenav -->    
         </div>
         <!-- /.row -->
     </div>

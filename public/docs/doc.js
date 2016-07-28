@@ -1,39 +1,12 @@
-function initSrceen() {
-    $("footer").css({
-        "position": "fixed",
-        "bottom": $(".footer-above").outerHeight() + $(".footer-below").outerHeight() - $("footer").height()
-    }).hide().fadeIn("fast");
-    $("body").css("overflow", "hidden");
-    $("#leftScreen").fadeOut("fast");
-    $("#rightScreen").fadeOut("fast");
-    $("#bottomScreen").fadeOut("fast");
-}
-
 $(document).ready(function() {
     // 根據視窗調整按鈕大小、參考值還需要調整!!!
-    $("img").width($(window).height() / 4);
+    // $("img").width($(window).height() / 4);
 
     // @override body attr.
     // fadeIn() animation
-    $("body").attr("data-target", ".scrollspy").css("overflow", "hidden").fadeIn("slow");
+    $("body").attr("data-target", ".scrollspy").fadeIn("slow");
 
-    $(".jumbotron").css({
-        // 在上方導覽列的位置留空
-        "padding-top": $("nav").height(),
-        // 設定高度
-        "height": $(window).height() - $(".footer-below").outerHeight() - $(".footer-above").outerHeight()
-    });
-
-    $("footer").css({
-        "position": "fixed",
-        "bottom": $(".footer-above").outerHeight() + $(".footer-below").outerHeight() - $("footer").height()
-    });
-
-    // 設定底部畫面的高
-    $("#bottomScreen").css("height", $(".jumbotron").height());
-
-    // 設定中間畫面的高度
-    $("#leftScreen, #rightScreen").css("height", $(window).height());
+    $(".jumbotron").css("padding-top", $("nav").height());
 
     // 讓上方畫面的內容垂直置中
     $("#outerLeftSidebar, #outerRightSidebar").css({
@@ -42,10 +15,6 @@ $(document).ready(function() {
 
     // 點下 "開啟大學部畫面" 或 "開啟研究所畫面" 的圖片時
     $("p a[href='#under-1'], p a[href='#graduate-1']").on('click', function(event) {
-        // 顯示 scrollbar
-        $("body").css("overflow", "auto");
-        // 砍掉 footer 的 fixed
-        $("footer").removeAttr("style");
         // Prevent default anchor click behavior
         event.preventDefault();
         // Store hash
@@ -88,7 +57,7 @@ $(document).ready(function() {
                     $("#innerRightPage-3").show();
                     break;
             }
-            
+
             // Using jQuery's animate() method to add smooth page scroll
             $('html, body').animate({
                 scrollTop: $(hash).offset().top - $("nav").height()
@@ -123,7 +92,7 @@ $(document).ready(function() {
                     $("#innerLeftPage-3").show();
                     break;
             }
-            
+
             // Using jQuery's animate() method to add smooth page scroll
             $('html, body').animate({
                 scrollTop: $(hash).offset().top - $("nav").height()
@@ -136,20 +105,9 @@ $(document).ready(function() {
     // 調整視窗大小時
     $(window).resize(function() {
 
-        $("img").width($(window).height() / 4);
+        // $("img").width($(window).height() / 4);
 
-        // 重設底部畫面的高
-        $("#bottomScreen").css("height", $(".jumbotron").height());
-
-        $(".jumbotron").css({
-            // 在上方導覽列的位置留空
-            "padding-top": $("nav").height() + $("nav").height(),
-            // 設定高度
-            "height": $(window).height() // - $(".footer-below").outerHeight() - $(".footer-above").outerHeight()
-        });
-
-        // 設定中間畫面的高度
-        $("#leftScreen, #rightScreen").css("height", $(".jumbotron").height());
+        $(".jumbotron").css("padding-top", $("nav").height() + $("nav").height());
 
         // 讓上方畫面的內容垂直置中
         $("#outerLeftSidebar, #outerRightSidebar").css({
@@ -160,16 +118,14 @@ $(document).ready(function() {
     // 滾動畫面時
     $(window).scroll(function() {
         if ($(document).scrollTop() === 0) {
-            initSrceen();
+            $("#leftScreen").fadeOut("fast");
+            $("#rightScreen").fadeOut("fast");
+            $("#bottomScreen").fadeOut("fast");
         }
     });
 
     // 
     $(".fixed-button").click(function() {
-        // 顯示 scrollbar
-        $("body").css("overflow", "auto");
-        // 砍掉 footer 的 fixed
-        $("footer").removeAttr("style");
         $("#bottomScreen").fadeIn("slow");
 
         // Using jQuery's animate() method to add smooth page scroll
@@ -181,10 +137,10 @@ $(document).ready(function() {
 
     // testing
     function test() {
-        $(".test1").text($(".footer-above").outerHeight());
-        $(".test2").text($(".footer-below").outerHeight());
-        $(".test3").text($("footer").height());
-        $(".test4").text($(".footer-above").outerHeight() + $(".footer-below").outerHeight() - $("footer").height());
+        $(".test1").text();
+        $(".test2").text();
+        $(".test3").text();
+        $(".test4").text();
     }
-    test();
+    // test();
 });

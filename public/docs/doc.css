@@ -16,8 +16,7 @@
 /*--- @override layout.css ---*/
 
 footer {
-    position: static;
-    bottom: 0;
+    height: 0;
 }
 
 
@@ -80,13 +79,6 @@ body,
 }
 
 
-/* living space for footer */
-
-.wrapper {
-    padding-bottom: 160px;
-}
-
-
 /* hidden until open */
 
 #leftScreen,
@@ -126,7 +118,6 @@ h3 span {
 }
 
 section {
-    padding: 40px 0;
     border-bottom: 1px solid #c1e1ec;
 }
 
