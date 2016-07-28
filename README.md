@@ -183,3 +183,8 @@ Modal字首大寫、單數
 資料表字首小寫、複數  
 Controller字首大寫  
 View的檔案名稱及資料夾名稱應全小寫  
+
+## 後台middleware
+`config/lfm.php`  
+`config/watchtower.php`  
+`app/Http/routes.php`  
