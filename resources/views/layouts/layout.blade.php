@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <title>@yield('title', '記得改標題!!不是改我')</title>
+    <title>@yield('title')</title>
     {{-- mete區 --}}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

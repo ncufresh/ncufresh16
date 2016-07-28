@@ -1,11 +1,17 @@
 @extends('layouts.layout')
+@section('title', '系所社團')
 @section('content')
-	<br><br><br><br>	
+	<br><br><br><br>
+<!-- 權限 -->
+@can('management')	
 	<a href="{{ url('/groups/clubs/create') }}">新增</a>
+@endcan
 	@foreach ($clubs as $club)
 		<!-- json_decode變陣列 -->
 		<?php $photo = json_decode($club->clubs_photo); ?>
+		@can('management')
 		<a href="{{ url('/groups/clubs/'.$club->id.'/edit') }}">編輯</a>
+		@endcan
 		<div class="container">
 		  
 		  <!-- Trigger the modal with a button -->
@@ -23,7 +29,7 @@
 		          <h4 class="modal-title">{{$club->clubs_intro}}</h4>
 		        </div>
 		        <div class="modal-body">
-		          <p>{{$club->clubs_summary}}</p>
+		          <p>{!!$club->clubs_summary!!}</p>
 		          <p>{{$club->clubs_activity}}</p>
 		          <p>{{$club->clubs_join}}</p>
 		        
@@ -81,6 +87,7 @@
 		  
   
 		</div>
+	
 	@endforeach
 
 @endsection
