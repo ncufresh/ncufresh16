@@ -10,30 +10,45 @@
 	@can('management')
 	<a href="{{ url('/groups/clubs/create') }}" class="btn btn-success btn-raised" role="button">新增</a>
 	@endcan
-
-	<div>
-		<a href="{{ url('/groups/clubs/1') }}">
-			<img src="{{ asset('')  }}">
-			<span>學術性</span>
-		</a>
-	</div>
-	<div>
-		<a href="{{ url('/groups/clubs/2') }}">
-			<img src="{{ asset('')  }}">
-			<span>康樂性</span>
-		</a>
-	</div>
-	<div>
-		<a href="{{ url('/groups/clubs/3') }}">
-			<img src="{{ asset('')  }}">
-			<span>聯誼性</span>
-		</a>
-	</div>
-	<div>
-		<a href="{{ url('/groups/clubs/4') }}">
-			<img src="{{ asset('')  }}">
-			<span>服務性</span>
-		</a>
+	<div class="row">
+		<div class="card-group">
+			<div class="col-sm-6">
+				<div class="card">
+				<a href="{{ url('/groups/clubs/1') }}">
+					<img src="{{ asset('')  }}">
+					<h4 class="card-title">學術性</h4>
+					<p class="card-text"></p>
+				</a>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="card">
+				<a href="{{ url('/groups/clubs/2') }}">
+					<img src="{{ asset('')  }}">
+					<h4 class="card-title">康樂性</h4>
+					<p class="card-text"></p>
+				</a>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="card">
+				<a href="{{ url('/groups/clubs/3') }}">
+					<img src="{{ asset('')  }}">
+					<h4 class="card-title">聯誼性</h4>
+					<p class="card-text"></p>
+				</a>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="card">
+				<a href="{{ url('/groups/clubs/4') }}">
+					<img src="{{ asset('')  }}">
+					<h4 class="card-title">服務性</h4>
+					<p class="card-text"></p>
+				</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 	

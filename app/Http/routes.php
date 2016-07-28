@@ -118,10 +118,11 @@ Route::get('groups', function () {
 #社團
 Route::get('/groups/clubs', 'ClubController@index');
 Route::get('/groups/clubs/{clubs_kind}', 'ClubController@show');
-Route::delete('/groups/clubs/{id}/{key}', 'ClubController@destroy');
+Route::delete('/groups/clubs/{id}', 'ClubController@destroy');
 #系所
 Route::get('/groups/departments', 'DepartmentController@index');
 Route::get('/groups/departments/{departments_kind}', 'DepartmentController@show');
+Route::delete('/groups/departments/{id}', 'DepartmentController@destroy');
 // #各社團
 // Route::get('/groups/clubs/{clubs_id}/create', 'AllclubController@create');
 // Route::get('/groups/clubs/{clubs_id}', 'AllclubController@index');

@@ -73,9 +73,12 @@ class ClubController extends Controller
     	
 	}
 
-	public function destroy($id,$key)
+	public function destroy($id)
 	{
-    	
+    	$clubs = Club::find($id);
+        $clubs->delete();
+        return redirect('/groups/clubs');
+        
 	}
 
 	public function show($id)

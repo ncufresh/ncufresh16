@@ -5,19 +5,55 @@
 	<script type="text/javascript">
 	$('#lfm').filemanager('image');
 	</script>
+	<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+	<script type="text/javascript">
+	CKEDITOR.replace( 'departments_summary', {
+	    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+	    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+	    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+	    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+	});
+	CKEDITOR.replace( 'departments_association', {
+	    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+	    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+	    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+	    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+	});
+	CKEDITOR.replace( 'departments_activity', {
+	    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+	    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+	    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+	    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+	});
+	CKEDITOR.replace( 'departments_sport', {
+	    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+	    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+	    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+	    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+	});
+	CKEDITOR.replace( 'departments_course', {
+	    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+	    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+	    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+	    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+	});
+	</script>
 	@stop
 @section('title', '系所社團')
 @section('content')
+<div class="container">
 	<form method="post" action="{{ URL::action('DepartmentController@update',$departments->id) }}">
         {{ csrf_field() }}
     	{{ method_field('PATCH') }}
-		<br><br><br><br><br><br><br><br>
-		<div>
-			<input type="text" name="departments_intro" value="{{$departments->departments_intro}}">
-			<label>系所名稱</label>
+    <div class="content">
+		<div class="form-group">
+		 	<label for="usr">系所名稱</label>
+		  	<input type="text" class="form-control" id="usr" name="departments_intro" value="{{$departments->departments_intro}}">
 		</div>
- 		
-		<!-- 系所封面照 -->		
+		
+		<!-- 系所封面照 -->
+		<div class="form-group">
+			  <label>系所封面照</label>			
 		<div class="input-group">
 			<span class="input-group-btn">
 		    <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
@@ -29,48 +65,49 @@
        		</input>
 		</div>
 		<img id="holder" style="margin-top:15px;max-height:100px;" src="{{$departments->departments_file}}">
+		</div>
 
-
-
-
-		<div>
-			<input type="text" name="departments_summary" value="{{$departments->departments_summary}}">
+		<div class="form-group">
 			<label>系所介紹</label>
-			<input id="button1" type="button" value="Add photo" />
-	 		<div id="test1"></div>
+			<textarea type="text" name="departments_summary">{{$departments->departments_summary}}</textarea>
+			<div id="test1">
+				<input id="button1" class="btn btn-warning btn-raised" type="button" value="Add photo" />
+ 			</div>
 		</div>
 
-		<div>
-			<input type="text" name="departments_association" value="{{$departments->departments_association}}">
+		<div class="form-group">
 			<label>系學會</label>
-			<input id="button2" type="button" value="Add photo" />
-	 		<div id="test2"></div>
+			<textarea type="text" name="departments_association">{{$departments->departments_association}}</textarea>
+			<div id="test2">
+				<input id="button2" class="btn btn-warning btn-raised" type="button" value="Add photo" />
+ 			</div>
 		</div>
 
-		<div>
-			<input type="text" name="departments_activity" value="{{$departments->departments_activity}}">
+		<div class="form-group">
 			<label>系上活動</label>
-			<input id="button3" type="button" value="Add photo" />
-	 		<div id="test3"></div>
+			<textarea type="text" name="departments_activity">{{$departments->departments_activity}}</textarea>
+			<div id="test3">
+				<input id="button3" class="btn btn-warning btn-raised" type="button" value="Add photo" />
+ 			</div>
 		</div>
 
-		<div>
-			<input type="text" name="departments_sport" value="{{$departments->departments_sport}}"> 
+		<div class="form-group">
 			<label>系隊</label>
-			<input id="button4" type="button" value="Add photo" />
-	 		<div id="test4"></div>
+			<textarea type="text" name="departments_sport">{{$departments->departments_sport}}</textarea>
+			<div id="test4">
+				<input id="button4" class="btn btn-warning btn-raised" type="button" value="Add photo" />
+ 			</div>
 		</div>
 
-		<div>
-			<input type="text" name="departments_course" value="{{$departments->departments_course}}">
+		<div class="form-group">
 			<label>系上課程</label>
-			<input id="button5" type="button" value="Add photo" />
-	 		<div id="test5"></div>
+			<textarea type="text" name="departments_course">{{$departments->departments_course}}</textarea>
+			<div id="test5">
+				<input id="button5" class="btn btn-warning btn-raised" type="button" value="Add photo" />
+ 			</div>
 		</div>
-
-		<div>
-			<label>更改照片</label>
-			
+		
+		<div class="form-group">
 			<!-- 修改幻燈片 -->
 			<!-- json_decode變陣列 -->
 			<?php $photo1 = json_decode($departments->departments_photo_1); ?>
@@ -78,7 +115,7 @@
 			<?php $photo3 = json_decode($departments->departments_photo_3); ?>
 			<?php $photo4 = json_decode($departments->departments_photo_4); ?>
 			<?php $photo5 = json_decode($departments->departments_photo_5); ?>		
-			
+			<div class="form-group">
 			<label>更改 [系所介紹] 照片</label>
 			@foreach ($photo1 as $key => $p)
 			<div class="input-group">
@@ -122,10 +159,11 @@
 				</script>
 			@endif
 
-		@endforeach
-
-		<label>更改 [系學會] 照片</label>
-		@foreach ($photo2 as $key => $p)
+			@endforeach
+			</div>
+			<div class="form-group">
+			<label>更改 [系學會] 照片</label>
+			@foreach ($photo2 as $key => $p)
 			<div class="input-group">
 				
 				<span class="input-group-btn">
@@ -167,10 +205,11 @@
 				</script>
 			@endif
 
-		@endforeach
-
-		<label>更改 [系上活動] 照片</label>
-		@foreach ($photo3 as $key => $p)
+			@endforeach
+			</div>
+			<div class="form-group">
+			<label>更改 [系上活動] 照片</label>
+			@foreach ($photo3 as $key => $p)
 			<div class="input-group">
 				
 				<span class="input-group-btn">
@@ -212,10 +251,11 @@
 				</script>
 			@endif
 
-		@endforeach
-
-		<label>更改 [系隊] 照片</label>
-		@foreach ($photo4 as $key => $p)
+			@endforeach
+			</div>
+			<div class="form-group">
+			<label>更改 [系隊] 照片</label>
+			@foreach ($photo4 as $key => $p)
 			<div class="input-group">
 				
 				<span class="input-group-btn">
@@ -257,10 +297,11 @@
 				</script>
 			@endif
 
-		@endforeach
-
-		<label>更改 [系上課程] 照片</label>
-		@foreach ($photo5 as $key => $p)
+			@endforeach
+			</div>
+			<div class="form-group">
+			<label>更改 [系上課程] 照片</label>
+			@foreach ($photo5 as $key => $p)
 			<div class="input-group">
 				
 				<span class="input-group-btn">
@@ -302,20 +343,17 @@
 				</script>
 			@endif
 
-		@endforeach
-		
-		</div>	
-
-		
+			@endforeach
 			
-		
-
+			</div>
+			</div>
 		<th colspan="2">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-            <input type="submit" value="submit">
+            <input type="submit" value="submit" class="btn btn-primary btn-raised">
         </th>
-	
+		</div>
 	</form>
+</div>	
 
 
 	
