@@ -8,7 +8,7 @@
         top:3%;
         left:0%;
         width: 100%;
-        height:90%;
+        height:100%;
         z-index: -1;
         opacity:0.4;
         position:fixed; 
@@ -115,11 +115,17 @@
             </tr>
           </thead>
           <tbody id="tasks-list" name="tasks-list">
-            <tr>
-              <th>1.</th>
-                          <th>tommy522588</th>
-                          <th>100</th>
-            </tr>
+            <?php $number=1; ?>
+            @foreach($total_scores as $total_score)
+              <tr>
+              <?php if($number>10){break;}  ?>
+              <th>{{$number}}</th>
+              <?php $number+=1; ?>
+                  <th>{{$total_score->name}}</th>
+                  <th>{{$total_score->score}}</th>
+              </tr>
+            @endforeach
+            
           </tbody>
         </table>
 
@@ -138,61 +144,20 @@
             </tr>
           </thead>
           <tbody id="tasks-list" name="tasks-list">
-            @foreach($scores as $score)
+            <?php $number=1; ?>
+            @foreach($personal_scores as $personal_score)
               <tr>
-              <th>{{$score->id}}</th>
-                  <th>{{$score->name}}</th>
-                  <th>{{$score->score}}</th>
+              <?php if($number>10){break;}  ?>
+              <th>{{$number}}</th>
+              <?php $number+=1; ?>
+                  <th>{{$personal_score->name}}</th>
+                  <th>{{$personal_score->score}}</th>
               </tr>
             @endforeach
 <!-- 可以從資料庫提取資料，現在要進行對分數的排序，只顯示十組，若分數不到十組，則顯示全部 -->
             
-            <tr>
-              <th>1.</th>
-                  <th>tommy522588</th>
-                  <th>100</th>
-            </tr>
-            <tr>
-              <th>1.</th>
-                  <th>tommy522588</th>
-                  <th>100</th>
-            </tr>
-            <tr>
-              <th>1.</th>
-                  <th>tommy522588</th>
-                  <th>100</th>
-            </tr>
-            <tr>
-              <th>1.</th>
-                  <th>tommy522588</th>
-                  <th>100</th>
-            </tr>
-            <tr>
-              <th>1.</th>
-                  <th>tommy522588</th>
-                  <th>100</th>
-            </tr>
-            <tr>
-              <th>1.</th>
-                  <th>tommy522588</th>
-                  <th>100</th>
-            </tr>
-            <tr>
-              <th>1.</th>
-                  <th>tommy522588</th>
-                  <th>100</th>
-            </tr> 
-            <tr>
-              <th>1.</th>
-                  <th>tommy522588</th>
-                  <th>100</th>
-            </tr>
-            <tr>
-              <th>1.</th>
-                  <th>tommy522588</th>
-                  <th>100</th>
-            </tr>
-            <tr>
+            
+            
           </tbody>
         </table>
       </div>
@@ -208,7 +173,7 @@
       <audio id="jump"><source src="/img/game/jump.mp3" type="audio/mpeg"></audio>
       <audio id="Blow1"><source src="/img/game/Blow1.mp3" type="audio/mpeg"></audio>
       <audio id="gameover"><source src="/img/game/gameover.mp3" type="audio/mpeg"></audio>
-      {{$scores[0]->name}}
+     
 
 @endsection
 @section('js')

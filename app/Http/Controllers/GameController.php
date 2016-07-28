@@ -10,14 +10,18 @@ use App\Smallgame_score;//model
 use App\Record_score;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
+use DB;
 
 class GameController extends Controller
 {
     public function index(){
-         $scores=Record_score::all();
-         $customer="aa";
-    	return view('smallgame.smallgame',array('scores'=>$scores));
+         $personal_scores=Record_score::all();
+         $total_scores=Record_score::all();
+         $personal_scores = DB::table('record_scores')->where('name', 'admin')->orderBy('score','DESC')->get();//拿到名字為admin的分數(原始個人分數)
+         $total_scores=DB::table('record_scores')->orderBy('score','DESC')->get();//拿到原始全部的分數
+         /*
+         */
+    	return view('smallgame.smallgame',array('personal_scores'=>$personal_scores,'total_scores'=>$total_scores));
     }
     public function leaderboard(){
         return view('smallgame.Leaderboard');
