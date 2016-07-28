@@ -9,6 +9,10 @@ use Image;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function edit(){
         return view('users.edit', [
             'user' => Auth::user(),
