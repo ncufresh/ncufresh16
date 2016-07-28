@@ -201,7 +201,7 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
 </div>
 <div id="timeline">
 	  <div class="timeline-item">
-  			<a href="{{url('/')}}">
+  			<a href="{{url('/doc')}}">
             <div class="timeline-icon">
                 <i class="material-icons">rss_feed</i>
   			    </div>
