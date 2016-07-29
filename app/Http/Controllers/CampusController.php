@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use DB;
 use Illuminate\Support\Facades\Storage;
 use App\Buildingcategory;
@@ -17,8 +16,13 @@ use App\mapobject;
 class CampusController extends Controller {
 
     public function index() {
-
+        $mapobjects = DB::table('mapobjects')
+                ->select('mapobjects.*', 'Buildings.*', 'mapobjects.id as objId')
+                ->join('Buildings', 'mapobjects.Building_id', '=', 'Buildings.id')
+                ->get();
+//        return $mapobjects;
         return view('campus.index', [
+            'mapobjects' => $mapobjects,
         ]);
     }
 
@@ -28,12 +32,10 @@ class CampusController extends Controller {
                 ->select('mapobjects.*', 'Buildings.*', 'mapobjects.id as objId')
                 ->join('Buildings', 'mapobjects.Building_id', '=', 'Buildings.id')
                 ->get();
-        $buildimgs = Buildingimg::all();
 //        return $mapDatas;
         return view('campus.guide.guide', [
             'building' => $building,
             'mapDatas' => $mapDatas,
-            'buildimgs' => $buildimgs,
         ]);
     }
 
