@@ -370,7 +370,7 @@ var falling=false;
 var jumping=false;
 var fallSpeed=0.7;
 var maxFallSpeed = 25;
-var jumpStart=-28;
+var jumpStart=-30;
 
 var background=new component(1000,500,"/img/game/BG_sky.jpg",0,0,"image");
 
@@ -404,16 +404,16 @@ for(var i=0 ; i<5 ; i++){
 }
 
 
-var runSpeed=4;//跑速
+var runSpeed=5;//跑速
 var runSpeedUp=false;//是否開始加速(gameState===4才開始加速)
 
 
-var heart_width=20;
-var heart_height=20;
+var heart_width=40;
+var heart_height=40;
 var heartX=[];
 var heart=[];
 for(var i=0;i<character_heart;i++){
-  heartX.push(i*heart_width);
+  heartX.push(i*heart_width+i*10);
 }
 for(var i=0;i<character_heart;i++){
   heart.push(new component(heart_width,heart_height,"/img/game/heart.png",heartX[i],0,"image"));
@@ -629,7 +629,7 @@ function btn_2(x,y,width,height) {
 function btn_3(x,y,width,height) {
       context.beginPath();
       context.lineWidth="6";
-    context.strokeStyle="black";
+      context.strokeStyle="black";
       context.rect(x, y, width, height);
       context.stroke();
       context.fillStyle = "#000000";
@@ -807,10 +807,18 @@ function draw_Q_onTheCanvas(){
 function draw_score_onTheCanvas(){//in the state game_4
   //繪製分數
     context.font = '20px Tahoma';
-    context.fillStyle = "#1569C7";
+    context.fillStyle = "#FFFFFF";
     context.textAlign = "left";
     context.textBaseline = "bottom";
-    context.fillText(score, 80, 20);
+    context.fillText("分數:"+score, 0, 60);
+}
+function draw_score_onTheCanvas_gameover(){//in the state game_4
+  //繪製分數
+    context.font = '30px Tahoma';
+    context.fillStyle = "#000000";
+    context.textAlign = "center";
+    context.textBaseline = "bottom";
+    context.fillText("分數:"+score, 500, 185);
 }
 function draw_theBricks_onTheCanvas(){//in the state game_4
   for(var i=0;i<brickXs.length;i++){
@@ -913,10 +921,10 @@ function choose(){
   }
 }
 function reboot_choose_bool(){//讓角色有無敵時間
-  var t=setTimeout("choose_bool=false",500);
+  var t=setTimeout("choose_bool=false",700);
 }
 function reboot_rightanswer(){//讓角色有無敵時間
-  var a=setTimeout("rightanswer=false",200);
+  var a=setTimeout("rightanswer=false",700);
 }
 
 
@@ -938,7 +946,7 @@ function draw_GAME_1(){
 function draw_GAME_2(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_2].draw();
-   // show(msg);
+    //show(msg);
 }
 function draw_GAME_3(){
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -971,12 +979,15 @@ function draw_GAME_4(){
 
     
 
-    if(!character_heart) {//陣亡，若要免除死亡功能，則將此區塊註解
+    if(character_heart<=0) {//陣亡，若要免除死亡功能，則將此區塊註解
 
       //upload the scores 
       //傳送資料開始
+
       var upload=true;
       var username="{{ Auth::user()->name }}";
+      runSpeed=0;
+      character_heart_bool=true;
       if(upload){//因為資料會重複傳送(不知道原因)，為了解決此問題，而多設一到匣門
        $(document).ready(function(){
           var formData = {
@@ -1007,14 +1018,15 @@ function draw_GAME_4(){
                   }
               });
               //傳送資料結束
+              
         });
         upload=false;
       }
         //傳送資料結束
         //upload the scores end
 
-
-      gameState=GAMEOVER;//GAMEOVER===6
+      gameState=GAMEOVER;
+      //GAMEOVER===6
       /*alert("GAME OVER");
       document.location.reload();// restarting the game by reloading the page.*/
     }
@@ -1026,7 +1038,9 @@ function draw_GAME_4(){
 function drawGameOver(){
 
   context.clearRect(0, 0, canvas.width, canvas.height);
+
   gameStateManager[5][gameState_over_state].draw();
+  draw_score_onTheCanvas_gameover();
   //show(msg);
 }
 
@@ -1101,5 +1115,5 @@ draw();
 */
 </script>
 @endsection
-<!-- (2)小遊戲讓手機使用者也能玩  ,  (1)美化分數欄位 ，  (3)寫好seed -->
-<!-- **問旭為什麼我的圖片沒有傳上去  -->
+<!-- (2)小遊戲讓手機使用者也能玩  >> 難以做到,  
+<!-- 防url改變js變數 -->
