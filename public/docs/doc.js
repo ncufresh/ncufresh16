@@ -2,6 +2,16 @@ $(document).ready(function() {
     // fadeIn() animation
     $("body").fadeIn("slow");
 
+    alert(document.getElementById("innerRightSidenav").style.height);
+
+    // 高度為螢幕高度
+    $("#topScreen, #midScreen").css("height", $(window).innerHeight());
+
+
+    // 垂直置中
+    $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
+    
+
     // 點下 "開啟大學部畫面" 或 "開啟研究所畫面" 的圖片時
     $("p a[href='#under-1'], p a[href='#graduate-1']").on('click', function(event) {
         // Prevent default anchor click behavior
@@ -11,9 +21,11 @@ $(document).ready(function() {
         if (hash === "#under-1") {
             $("#leftScreen").fadeIn("fast");
             $("#rightScreen").hide();
+            $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
         } else {
             $("#leftScreen").hide();
             $("#rightScreen").fadeIn("fast");
+            $("#innerRightSidenav").css("padding-top", ($(window).innerHeight() - $("#innerRightSidenav").height()) / 2);
         }
         // Using jQuery's animate() method to add smooth page scroll
         $('html, body').animate({
@@ -95,7 +107,7 @@ $(document).ready(function() {
     });
 
     // 
-    $("a[href='#bottomScreen']").on('click', function(event) {
+    $("a[href='#midScreen'], a[href='#bottomScreen']").on('click', function(event) {
         // Prevent default anchor click behavior
         event.preventDefault();
         // Store hash
@@ -114,5 +126,4 @@ $(document).ready(function() {
         $(".test3").text();
         $(".test4").text();
     }
-    // test();
 });

@@ -1,5 +1,3 @@
-/*!!! use z-index to layer element !!!*/
-
 div>p>a>img {
     width: 35vw;
 }
@@ -44,8 +42,13 @@ footer {
     height: 0;
 }
 
+/* 底部畫面 margin-bottom */
 
-/*--- 自定義 ---*/
+#bottomScreen {
+    margin-bottom: 100px;
+}
+
+/* 側邊導覽列的顏色 */
 
 .side-nav-title {
     color: orange;
