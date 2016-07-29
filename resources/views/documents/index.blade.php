@@ -5,13 +5,13 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('docs/doc.css') }}">
 <style>
-
-
 body {
-    background: rgba(197,121,002,.4);
-    background-image: url("{{ asset('docs/img/fal.png') }}");
-    background-image: url("{{ asset('docs/img/fal.png') }}"), linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(197,121,002,.8) 100%); /* W3C */
+    background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(197,121,002,.8) 100%);
 }
+main {
+    background-image: url("{{ asset('docs/img/fal.png') }}");
+}
+
 </style>
 @stop
 
@@ -26,6 +26,12 @@ CKEDITOR.replace( 'new_under', {
     filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
 });
 CKEDITOR.replace( 'new_gra', {
+    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+});
+CKEDITOR.replace( 'new_mix', {
     filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
     filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
     filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
@@ -269,44 +275,103 @@ CKEDITOR.replace( 'new_gra', {
         <!-- /.row -->
     </div>
     <!-- /#rightScreen /研究所畫面 -->
+    <!-- 綜合畫面 #bottomScreen -->
     <section class="mixed" id="bottomScreen">
         <div class="container">
             <div class="row">
                 <h2>大學部 X 研究所</h2>
+                <!-- 新增共同資料 -->
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-new-mix">新增</button>
+                <!-- Modal -->
+                <div id="modal-new-mix" class="modal fade text-left" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">共同 - 新增內容</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ url('/doc/mix') }}" method="POST">
+                                    {{ csrf_field() }}
+                                    <p>標題</p>
+                                    <p><input type="textbox" name="title" required></p>
+                                    <p>內文</p>
+                                    <p><textarea name="content" id="new_mix" required></textarea></p>
+                                    <p>隸屬於哪個主項目</p>
+                                    <p><input type="number" name="position_of_main" min="1" max="6" step="1" value="1" required></p>
+                                    <p>
+                                        <button type="submit" class="btn btn-primary">新增</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Modal -->
+                <!-- /新增共同資料 -->
             </div>
             <div class="row">
-                <div class="col-xs-4 text-center">
+            @foreach ($mainMixs as $mixs)
+                <div class="col-md-4 text-center">
                     <div class="dropdown">
                         <a class="dropdown-toggle" type="button" data-toggle="dropdown">
                             <img src="{{ asset('docs/kirby.png') }}" alt="Dropdown">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-custom">
-                            <li><a href="">HTML</a></li>
-                            <li><a href="">CSS</a></li>
-                            <li><a href="">JavaScript</a></li>
+                        @foreach($mixs as $m)
+                            <li>
+                                <a data-toggle="modal" data-target="#modal-{{ $m->id }}">{{ $m->title }}</a>
+                            </li>
+                        @endforeach
                         </ul>
                     </div>
-                    <p></p>
                 </div>
-                <div class="col-xs-4 text-center">
-                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
+                @foreach($mixs as $m)
+                <!-- Modal {{ $m->id }} -->
+                <div id="modal-{{ $m->id }}" class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">{{ $m->title }}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <p>{!! $m->content !!}</p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 text-right">
+                                        <form action="{{ url('/doc/mix/'.$m->id.'/edit') }}" method="GET">
+                                            <button type="submit" class="btn btn-success btn-lg" id="edit-mix-{{ $m->id }}">編輯</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                         <form action="{{ url('/doc/mix/'.$m->id) }}" method="POST">
+                                            {!! csrf_field() !!}
+                                            {!! method_field('DELETE') !!}
+                                            <button type="submit" class="btn btn-danger btn-lg" id="delete-mix-{{ $m->id }}">刪除</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-xs-4 text-center">
-                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                </div>
-                <div class="col-xs-4 text-center">
-                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                </div>
-                <div class="col-xs-4 text-center">
-                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                </div>
-                <div class="col-xs-4 text-center">
-                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                </div>
-            </div>   
+                <!-- /Modal {{ $m->id }} -->
+                @endforeach
+            @endforeach
+            </div>
+            <!-- /.row -->
         </div>
+        <!-- /.container -->
     </section>
-    <!-- /.container /#bottomScreen -->
+    <!-- /綜合畫面 /#bottomScreen -->
 </div>
 <!-- /新生必讀 -->
 @endsection
