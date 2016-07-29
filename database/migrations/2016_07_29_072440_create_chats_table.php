@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQandATable extends Migration
+class CreateChatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +12,15 @@ class CreateQandATable extends Migration
      */
     public function up()
     {
-        Schema::create('QandA', function (Blueprint $table) {
+        Schema::create('chats', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('classify');
-            $table->string('topic');
-            $table->text('content');
-            $table->text('response');
-            $table->integer('asked_id');
-            $table->integer('click_count');
-
+            $table->string('name');
+            $table->string('content');
+            $table->boolean('show_name');
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -31,6 +28,6 @@ class CreateQandATable extends Migration
      */
     public function down()
     {
-        Schema::drop('QandA');
+        Schema::drop('chats');
     }
 }

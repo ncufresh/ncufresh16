@@ -8,7 +8,7 @@
     .fixed {
 
   position: fixed;
-  bottom: 0;
+  bottom: 3%;
   left: 85%;
   z-index: 100;
 }
