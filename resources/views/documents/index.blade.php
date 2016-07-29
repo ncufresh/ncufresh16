@@ -92,7 +92,7 @@ CKEDITOR.replace( 'new_mix', {
             <div class="col-md-2 col-xs-3 col-fluid scrollspy" id="innerLeftSidenav">
                 <ul class="nav side-nav" id="leftNav">
                     <li>
-                        <h1 class="text-orange">大學部</h1></li>
+                        <h1 class="side-nav-title">大學部</h1></li>
                     <li><a href="#under-1"><img src="{{ asset('docs/img/sign.png') }}" alt="註冊"></a></li>
                     <li><a href="#under-2"><img src="{{ asset('docs/img/firstweek.png') }}" alt="新生週"></a></li>
                     <li><a href="#under-3"><img src="{{ asset('docs/img/course.png') }}" alt="共同課程"></a></li>
@@ -136,7 +136,7 @@ CKEDITOR.replace( 'new_mix', {
             @foreach ($mainUnders as $unders)
                 <section id="under-{{ ++$mainCount }}">
                     <div class="col-md-8 col-xs-9 innerLeftPage" id="innerLeftPage-{{ $mainCount }}">
-                        <h1>{{ $mainTitles[ $mainCount-1 ] }}</h1>
+                        <h1 class="inner-page-title">{{ $mainTitles[ $mainCount-1 ] }}</h1>
                         <div class="row">
                         <?php $subCount = 0; ?>
                         {{-- 產生大學部主要項目裡的細部項目 --}}
@@ -213,7 +213,7 @@ CKEDITOR.replace( 'new_mix', {
             @foreach ($mainGraduates as $graduates)
                 <section id="graduate-{{ ++$mainCount }}">
                     <div class="col-xs-8 col-xs-offset-2 innerRightPage" id="innerRightPage-{{ $mainCount }}">
-                        <h1>{{ $mainTitles[ $mainCount-1 ] }}</h1>
+                        <h1 class="inner-page-title">{{ $mainTitles[ $mainCount-1 ] }}</h1>
                         <div class="row">
                         <?php $subCount = 0; ?>
                         {{-- 產生研究所主要項目裡的細部項目 --}}
@@ -268,10 +268,9 @@ CKEDITOR.replace( 'new_mix', {
             <!-- /.col-xs-8 /#innerRightPage -->
             <div class="col-xs-2 col-fluid scrollspy" id="innerRightSidenav">
                 <ul class="nav side-nav" id="rightNav">
-                    <li><h1 class="text-orange">研究所</h1></li>
+                    <li><h1 class="side-nav-title">研究所</h1></li>
                     <li><a href="#graduate-1"><img src="{{ asset('docs/img/sign.png') }}" alt="註冊"></a></li>
                     <li><a href="#graduate-2"><img src="{{ asset('docs/img/firstweek.png') }}" alt="新生週"></a></li>
-                    <li><a href="#graduate-3"><img src="{{ asset('docs/img/course.png') }}" alt="共同課程"></a></li>
                 </ul>
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-new-graduate">新增</button>
                 <!-- Modal -->
@@ -291,7 +290,7 @@ CKEDITOR.replace( 'new_mix', {
                                     <p>內文</p>
                                     <p><textarea name="content" id="new_gra" required></textarea></p>
                                     <p>隸屬於哪個主項目</p>
-                                    <p><input type="number" name="position_of_main" min="1" max="3" step="1" value="1" required></p>
+                                    <p><input type="number" name="position_of_main" min="1" max="2" step="1" value="1" required></p>
                                     <p>
                                         <button type="submit" class="btn btn-primary">新增</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
@@ -324,7 +323,7 @@ CKEDITOR.replace( 'new_mix', {
     <section class="mixed" id="bottomScreen">
         <div class="container">
             <div class="row">
-                <h2>大學部 X 研究所</h2>
+                <h1 class="inner-page-title">大學部 X 研究所</h1>
                 <!-- 新增共同資料 -->
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-new-mix">新增</button>
                 <!-- Modal -->
@@ -344,7 +343,7 @@ CKEDITOR.replace( 'new_mix', {
                                     <p>內文</p>
                                     <p><textarea name="content" id="new_mix" required></textarea></p>
                                     <p>隸屬於哪個主項目</p>
-                                    <p><input type="number" name="position_of_main" min="1" max="6" step="1" value="1" required></p>
+                                    <p><input type="number" name="position_of_main" min="1" max="3" step="1" value="1" required></p>
                                     <p>
                                         <button type="submit" class="btn btn-primary">新增</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>

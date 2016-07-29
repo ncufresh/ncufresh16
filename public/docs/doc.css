@@ -5,15 +5,18 @@ div>p>a>img {
 }
 
 .side-nav>li>a>img {
-    width: 15vw;
+    width: 20vw;
 }
 
-
-/* col-xs-3 */
-
-@media (max-width: 991px) {
+@media (min-width: 768px) {
     .side-nav>li>a>img {
-        width: 25vw;
+        width: 23vw;
+    }
+}
+
+@media (min-width: 992px) {
+    .side-nav>li>a>img {
+        width: 15vw;
     }
 }
 
@@ -44,8 +47,14 @@ footer {
 
 /*--- 自定義 ---*/
 
-.text-orange {
+.side-nav-title {
     color: orange;
+    font-size: 4vw;
+}
+
+.inner-page-title {
+    text-align: center;
+    font-size: 4vw;
 }
 
 
@@ -70,6 +79,9 @@ footer {
     position: relative;
 }
 
+
+/* smaller than 768px */
+
 .little-button {
     position: absolute;
     left: 0;
@@ -81,29 +93,30 @@ footer {
 .btn-circle-container {
     border-radius: 100%;
     margin: 0 auto;
-    width: 89px;
-    height: 89px;
+    width: 49px;
+    height: 49px;
     box-shadow: 2px 2px 100px yellow;
 }
 
 .btn-circle-outline {
     border-radius: 100%;
     margin: 0;
-    width: 89px;
-    height: 89px;
+    width: 49px;
+    height: 49px;
     border: 5px solid yellow;
 }
 
 .btn-circle {
     color: white;
-    padding: 15px 0 0 0;
+    padding: 5px 0 0 0;
     margin: 0;
     border: 2px solid rgba(24, 24, 24, .8);
     background-color: transparent;
-    width: 80px;
-    height: 80px;
+    width: 40px;
+    height: 40px;
     border-radius: 100%;
     text-shadow: 0px 0px 10px yellow;
+    font-size: 10px;
 }
 
 
@@ -116,10 +129,10 @@ footer {
 
 @keyframes mymove {
     from {
-        font-size: 14px;
+        font-size: 8px;
     }
     to {
-        font-size: 18px;
+        font-size: 11px;
     }
 }
 
@@ -133,38 +146,56 @@ footer {
     display: none;
 }
 
-@media (max-width: 991px) {
+@media (min-width: 768px) {
     .btn-circle-container {
-        border-radius: 100%;
-        margin: 0 auto;
-        width: 49px;
-        height: 49px;
-        box-shadow: 2px 2px 100px yellow;
+        width: 69px;
+        height: 69px;
     }
     .btn-circle-outline {
-        border-radius: 100%;
-        margin: 0;
-        width: 49px;
-        height: 49px;
+        width: 69px;
+        height: 69px;
         border: 5px solid yellow;
     }
     .btn-circle {
-        padding: 5px 0 0 0;
-        width: 40px;
-        height: 40px;
-        border-radius: 100%;
-        text-shadow: 0px 0px 10px yellow;
-        font-size: 10px;
-    }
-
-    @keyframes mymove {
-    from {
-        font-size: 8px;
-    }
-    to {
+        padding: 10px 0 0 0;
+        width: 60px;
+        height: 60px;
         font-size: 12px;
     }
+    @keyframes mymove {
+        from {
+            font-size: 11px;
+        }
+        to {
+            font-size: 16px;
+        }
+    }
 }
+
+@media (min-width: 992px) {
+    .btn-circle-container {
+        width: 89px;
+        height: 89px;
+    }
+    .btn-circle-outline {
+        width: 89px;
+        height: 89px;
+        border: 5px solid yellow;
+    }
+    .btn-circle {
+        padding: 15px 0 0 0;
+        width: 80px;
+        height: 80px;
+        font-size: 16px;
+    }
+    @keyframes mymove {
+        from {
+            font-size: 14px;
+        }
+        to {
+            font-size: 18px;
+        }
+    }
 }
 
 
