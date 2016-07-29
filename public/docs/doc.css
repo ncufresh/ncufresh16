@@ -1,7 +1,20 @@
 /*!!! use z-index to layer element !!!*/
 
-img {
-    width: 100%;
+div>p>a>img {
+    width: 35vw;
+}
+
+.side-nav>li>a>img {
+    width: 16.66666667vw;
+}
+
+
+/* col-xs-3 */
+
+@media (max-width: 991px) {
+    .side-nav>li>a>img {
+        width: 25vw;
+    }
 }
 
 
@@ -31,13 +44,23 @@ footer {
 
 /*--- 自定義 ---*/
 
+
+/* 綜合畫面下拉式選單的位置 */
+
 .dropdown-menu-custom {
     top: 10%;
     left: auto;
     right: 0;
 }
 
-/* 浮動按鈕 */
+
+/*--- 圓圈按鈕 ---*/
+
+#topScreen,
+#leftScreen,
+#rightScreen {
+    position: relative;
+}
 
 .little-button-container {
     position: relative;
@@ -45,22 +68,38 @@ footer {
 
 .little-button {
     position: absolute;
+    left: 0;
     bottom: 5%;
     width: 100%;
     text-align: center;
 }
 
+.btn-circle-container {
+    border-radius: 100%;
+    margin: 0 auto;
+    width: 89px;
+    height: 89px;
+    box-shadow: 2px 2px 100px yellow;
+}
 
-/*--- 圓圈按鈕 ---*/
+.btn-circle-outline {
+    border-radius: 100%;
+    margin: 0;
+    width: 89px;
+    height: 89px;
+    border: 5px solid yellow;
+}
 
 .btn-circle {
-    color: #fff;
-    border: 2px solid #fff;
-    padding: 16px 16px;
+    color: white;
+    padding: 15px 0 0 0;
+    margin: 0;
+    border: 2px solid rgba(24, 24, 24, .8);
     background-color: transparent;
-    border-radius: 100%;
     width: 80px;
     height: 80px;
+    border-radius: 100%;
+    text-shadow: 0px 0px 10px yellow;
 }
 
 
@@ -90,6 +129,40 @@ footer {
     display: none;
 }
 
+@media (max-width: 767px) {
+    .btn-circle-container {
+        border-radius: 100%;
+        margin: 0 auto;
+        width: 49px;
+        height: 49px;
+        box-shadow: 2px 2px 100px yellow;
+    }
+    .btn-circle-outline {
+        border-radius: 100%;
+        margin: 0;
+        width: 49px;
+        height: 49px;
+        border: 5px solid yellow;
+    }
+    .btn-circle {
+        padding: 5px 0 0 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        text-shadow: 0px 0px 10px yellow;
+        font-size: 10px;
+    }
+
+    @keyframes mymove {
+    from {
+        font-size: 8px;
+    }
+    to {
+        font-size: 12px;
+    }
+}
+}
+
 
 /* hidden until open */
 
@@ -101,7 +174,6 @@ footer {
 /*--- scrollspy and affix effects ---*/
 
 body {
-    position: relative;
     margin-bottom: 0px;
     display: none;
 }
@@ -122,6 +194,10 @@ h2 {
 
 section:last-child {
     border-bottom: none;
+}
+
+.side-nav>li>a {
+    padding: 0;
 }
 
 .side-nav {

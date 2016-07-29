@@ -69,10 +69,14 @@ CKEDITOR.replace( 'new_mix', {
                 <!-- /右邊研究所導覽列 -->
                 <!-- 顯示綜合畫面的按鈕 -->
                 <div class="little-button">
-                    <a href="#bottomScreen" class="btn btn-circle">
-                        <i class="fa fa-angle-double-down fa-3x"></i>
-                        <div class="ripple-container"></div>
-                    </a>
+                    <div class="btn-circle-container">
+                        <div class="btn-circle-outline">
+                            <a href="#bottomScreen" class="btn btn-circle">
+                                <i class="fa fa-angle-double-down fa-3x"></i>
+                                <div class="ripple-container"></div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <!-- /顯示綜合畫面的按鈕 -->
             </div>
@@ -85,7 +89,7 @@ CKEDITOR.replace( 'new_mix', {
     <!-- #leftScreen 大學部畫面 -->
     <div class="container-fluid text-center" id="leftScreen">
         <div class="row">
-            <div class="col-xs-2 col-fluid scrollspy" id="innerLeftSidenav">
+            <div class="col-md-2 col-xs-3 col-fluid scrollspy" id="innerLeftSidenav">
                 <ul class="nav side-nav" id="leftNav">
                     <li>
                         <h1>大學部</h1></li>
@@ -131,7 +135,7 @@ CKEDITOR.replace( 'new_mix', {
             {{-- 產生三個大學部主要項目 --}}
             @foreach ($mainUnders as $unders)
                 <section id="under-{{ ++$mainCount }}">
-                    <div class="col-xs-8 innerLeftPage" id="innerLeftPage-{{ $mainCount }}">
+                    <div class="col-md-8 col-xs-9 innerLeftPage" id="innerLeftPage-{{ $mainCount }}">
                         <h1>{{ $mainTitles[ $mainCount-1 ] }}</h1>
                         <div class="row">
                         <?php $subCount = 0; ?>
@@ -185,6 +189,18 @@ CKEDITOR.replace( 'new_mix', {
                 </section>
                 <!-- /#under-{{ $mainCount }} -->
             @endforeach
+            <!-- 顯示綜合畫面的按鈕 -->
+            <div class="little-button">
+                <div class="btn-circle-container">
+                    <div class="btn-circle-outline">
+                        <a href="#bottomScreen" class="btn btn-circle">
+                            <i class="fa fa-angle-double-down fa-3x"></i>
+                            <div class="ripple-container"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- /顯示綜合畫面的按鈕 -->
         </div>
         <!-- /.row -->
     </div>
@@ -287,7 +303,19 @@ CKEDITOR.replace( 'new_mix', {
                 </div>
                 <!-- /Modal -->
             </div>
-            <!-- /.col-xs-3.col-fluid /#innerRightSidenav -->    
+            <!-- /.col-xs-3.col-fluid /#innerRightSidenav -->
+            <!-- 顯示綜合畫面的按鈕 -->
+            <div class="little-button">
+                <div class="btn-circle-container">
+                    <div class="btn-circle-outline">
+                        <a href="#bottomScreen" class="btn btn-circle">
+                            <i class="fa fa-angle-double-down fa-3x"></i>
+                            <div class="ripple-container"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- /顯示綜合畫面的按鈕 -->
         </div>
         <!-- /.row -->
     </div>
@@ -331,7 +359,7 @@ CKEDITOR.replace( 'new_mix', {
             </div>
             <div class="row">
             @foreach ($mainMixs as $mixs)
-                <div class="col-md-4 text-center">
+                <div class="col-sm-4 text-center">
                     <div class="dropdown">
                         <a class="dropdown-toggle" type="button" data-toggle="dropdown">
                             <img src="{{ asset('docs/kirby.png') }}" alt="Dropdown">
