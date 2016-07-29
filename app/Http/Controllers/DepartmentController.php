@@ -44,8 +44,11 @@ class DepartmentController extends Controller
     	return redirect('/groups/departments');
 	}
 
-	public function destroy(Request $request, Message $message)
-	{
+	public function destroy($id)
+	{ 
+        $departments = Department::find($id);
+        $departments->delete();
+        return redirect('/groups/departments');
     	
 	}
 
