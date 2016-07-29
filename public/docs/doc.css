@@ -6,6 +6,20 @@ div>p>a>img {
     width: 20vw;
 }
 
+.side-nav>li>a {
+    margin: 20px 0;
+}
+
+img.img {
+    width: 15vw;
+}
+
+.col-md-4 {
+    padding: 0 10px;
+    height: 17vw;
+    /*background-color: rgba(255, 255, 255, 0.25);*/
+}
+
 @media (min-width: 768px) {
     .side-nav>li>a>img {
         width: 23vw;
@@ -58,6 +72,7 @@ footer {
 .inner-page-title {
     text-align: center;
     font-size: 4vw;
+    margin-bottom: 10rem;
 }
 
 
@@ -98,7 +113,6 @@ footer {
     margin: 0 auto;
     width: 49px;
     height: 49px;
-    box-shadow: 2px 2px 100px yellow;
 }
 
 .btn-circle-outline {
@@ -106,7 +120,7 @@ footer {
     margin: 0;
     width: 49px;
     height: 49px;
-    border: 5px solid yellow;
+    border: 5px solid black;
 }
 
 .btn-circle {
@@ -118,7 +132,6 @@ footer {
     width: 40px;
     height: 40px;
     border-radius: 100%;
-    text-shadow: 0px 0px 10px yellow;
     font-size: 10px;
 }
 
@@ -157,7 +170,7 @@ footer {
     .btn-circle-outline {
         width: 69px;
         height: 69px;
-        border: 5px solid yellow;
+        border: 5px solid black;
     }
     .btn-circle {
         padding: 10px 0 0 0;
@@ -183,7 +196,7 @@ footer {
     .btn-circle-outline {
         width: 89px;
         height: 89px;
-        border: 5px solid yellow;
+        border: 5px solid black;
     }
     .btn-circle {
         padding: 15px 0 0 0;
@@ -236,10 +249,6 @@ section:last-child {
 
 .side-nav>li>a {
     padding: 0;
-}
-
-.side-nav {
-    background: rgba(255, 255, 255, 0.25);
 }
 
 .side-nav a {

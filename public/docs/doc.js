@@ -2,11 +2,8 @@ $(document).ready(function() {
     // fadeIn() animation
     $("body").fadeIn("slow");
 
-    alert(document.getElementById("innerRightSidenav").style.height);
-
     // 高度為螢幕高度
     $("#topScreen, #midScreen").css("height", $(window).innerHeight());
-
 
     // 垂直置中
     $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);

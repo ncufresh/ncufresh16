@@ -68,7 +68,7 @@ CKEDITOR.replace( 'new_mix', {
                 </div>
                 <!-- /右邊研究所導覽列 -->
                 <!-- 顯示綜合畫面的按鈕 -->
-                <div class="little-button">
+                <!-- <div class="little-button">
                     <div class="btn-circle-container">
                         <div class="btn-circle-outline">
                             <a href="#midScreen" class="btn btn-circle">
@@ -77,7 +77,7 @@ CKEDITOR.replace( 'new_mix', {
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- /顯示綜合畫面的按鈕 -->
             </div>
             <!-- /.row -->
@@ -138,15 +138,19 @@ CKEDITOR.replace( 'new_mix', {
                 @foreach ($mainUnders as $unders)
                     <section id="under-{{ ++$mainCount }}">
                         <div class="col-md-8 col-xs-9 innerLeftPage" id="innerLeftPage-{{ $mainCount }}">
-                            <h1 class="inner-page-title">{{ $mainTitles[ $mainCount-1 ] }}</h1>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h1 class="inner-page-title">{{ $mainTitles[ $mainCount-1 ] }}</h1>
+                                </div>
+                            </div>
                             <div class="row">
                             <?php $subCount = 0; ?>
                             {{-- 產生大學部主要項目裡的細部項目 --}}
                             @foreach ($unders as $u)
-                                <div class="col-md-4" style="background-color: rgba(255, 255, 255, {{ (++$subCount * (0.125)) }});">
+                                <div class="col-md-4">
                                     <h3>{{ $u->title }}</h3>
                                     <p>
-                                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-{{ $u->id }}">Open Modal {{ $u->id }}</button>
+                                        <a type="button" data-toggle="modal" data-target="#modal-{{ $u->id }}"><img src="{{ asset('docs/img/course/1.png') }}" class="img" alt=""></a>
                                     </p>
                                     <!-- Modal -->
                                     <div id="modal-{{ $u->id }}" class="modal fade text-left" role="dialog">
@@ -194,7 +198,7 @@ CKEDITOR.replace( 'new_mix', {
                 <!-- 顯示綜合畫面的按鈕 -->
                 <div class="little-button">
                     <div class="btn-circle-container">
-                        <div class="btn-circle-outline">
+                        <div>
                             <a href="#bottomScreen" class="btn btn-circle">
                                 <i class="fa fa-angle-double-down fa-3x"></i>
                                 <div class="ripple-container"></div>
@@ -214,13 +218,17 @@ CKEDITOR.replace( 'new_mix', {
                 {{-- 產生三個研究所主要項目 --}}
                 @foreach ($mainGraduates as $graduates)
                     <section id="graduate-{{ ++$mainCount }}">
-                        <div class="col-xs-8 col-xs-offset-2 innerRightPage" id="innerRightPage-{{ $mainCount }}">
-                            <h1 class="inner-page-title">{{ $mainTitles[ $mainCount-1 ] }}</h1>
+                        <div class="col-md-8 col-md-offset-2 col-xs-9 innerRightPage" id="innerRightPage-{{ $mainCount }}">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                   <h1 class="inner-page-title">{{ $mainTitles[ $mainCount-1 ] }}</h1> 
+                                </div>
+                            </div>
                             <div class="row">
                             <?php $subCount = 0; ?>
                             {{-- 產生研究所主要項目裡的細部項目 --}}
                             @foreach ($graduates as $g)
-                                <div class="col-md-4" style="background-color: rgba(255, 255, 255, {{ (++$subCount * (0.125)) }});">
+                                <div class="col-md-4">
                                     <h3>{{ $g->title }}</h3>
                                     <p>
                                         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-{{ $g->id }}">Open Modal {{ $g->id }}</button>
@@ -268,7 +276,7 @@ CKEDITOR.replace( 'new_mix', {
                     <!-- /#graduate-{{ $mainCount }} -->
                 @endforeach
                 <!-- /.col-xs-8 /#innerRightPage -->
-                <div class="col-xs-2 col-fluid scrollspy" id="innerRightSidenav">
+                <div class="col-md-2 col-xs-3 col-fluid scrollspy" id="innerRightSidenav">
                     <ul class="nav side-nav" id="rightNav">
                         <li><h1 class="side-nav-title">研究所</h1></li>
                         <li><a href="#graduate-1"><img src="{{ asset('docs/img/sign.png') }}" alt="註冊"></a></li>
@@ -308,7 +316,7 @@ CKEDITOR.replace( 'new_mix', {
                 <!-- 顯示綜合畫面的按鈕 -->
                 <div class="little-button">
                     <div class="btn-circle-container">
-                        <div class="btn-circle-outline">
+                        <div>
                             <a href="#bottomScreen" class="btn btn-circle">
                                 <i class="fa fa-angle-double-down fa-3x"></i>
                                 <div class="ripple-container"></div>
@@ -327,7 +335,11 @@ CKEDITOR.replace( 'new_mix', {
     <section class="mixed" id="bottomScreen">
         <div class="container">
             <div class="row">
-                <h1 class="inner-page-title">大學部 X 研究所</h1>
+                <div class="col-xs-12">
+                    <h1 class="inner-page-title">大學部 X 研究所</h1>
+                </div>
+            </div>
+            <div class="row">
                 <!-- 新增共同資料 -->
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-new-mix">新增</button>
                 <!-- Modal -->
