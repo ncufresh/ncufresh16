@@ -26,7 +26,7 @@ class DocumentController extends Controller
 
         // 先比對是否為共同的資料、再分別對應到三個主要類別
         for($i=0;$i<3;$i++){
-            $mainMixs[$i] = Document::where('position_of_screen',3) // 3 代表共同
+            $mainMixs[$i] = Document::where('position_of_screen',3) // 3 代表共同項目
                                          ->where('position_of_main',''.($i+1))
                                          ->get();
         }
