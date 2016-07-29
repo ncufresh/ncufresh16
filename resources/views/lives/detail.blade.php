@@ -146,9 +146,10 @@ CKEDITOR.replace( 'textArea', {
               <button class="material-icons">edit</button>
          </form>    
         <!-- 刪除紐 -->
-        <form action="{{ url('life/'.$content->id.'/'.$more->id) }}" method="POST">
+        <form action="{{ url('life/'.$content->id.'/deleteDetail') }}" method="POST">
           {!! csrf_field() !!}
               {!! method_field('DELETE') !!}
+              <input type="hidden" name="linkId" value="{{$more->id}}">
               <button type="submit" class="material-icons">delete_forever</button>
         </form>
         @endforeach
@@ -181,6 +182,7 @@ CKEDITOR.replace( 'textArea', {
               <li data-target="#myCarousel" data-slide-to="{{$i}}" ></li>
               @endfor
 
+          <!--新增相片導覽的照片 -->
               <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/add' }}" method="POST">
                 {{ csrf_field() }}
                   <button class="material-icons"><a id="PicChooser" data-input="pics" data-preview="hold">add_circle</a></button>
@@ -190,6 +192,7 @@ CKEDITOR.replace( 'textArea', {
                  <button type="submit" class="material-icons">done</button>
 
               </form> 
+             
 
             </ol>
            <!-- Wrapper for slides -->
@@ -197,8 +200,18 @@ CKEDITOR.replace( 'textArea', {
              <div class="item active">
               <img src="{{ asset($image[0]->filename) }}" alt="Chania" width="460" height="345">
               <div class="carousel-caption">
+
+                <!--  刪除相片導覽的照片 -->
+                <form action="{{ url('life/'.$content->id.'/deleteDetail') }}" method="POST">
+              {!! csrf_field() !!}
+              {!! method_field('DELETE') !!}
+              <input type="hidden" name="imgId" value="{{$image[0]->id}}">
+              <button type="submit" class="material-icons">delete_forever</button>
+            </form>
+
                 <h3>{{ $image[0]->imagesTitle}}</h3>
                 <p>{{ $image[0]->imagesContent}}</p>
+
               </div>
             </div>
 
@@ -207,6 +220,14 @@ CKEDITOR.replace( 'textArea', {
             <div class="item">
              <img src="{{ asset($image[$i]->filename) }}" alt="Chania" width="460" height="345">
              <div class="carousel-caption">
+
+              <!--  刪除相片導覽的照片 -->
+                <form action="{{ url('life/'.$content->id.'/deleteDetail') }}" method="POST">
+              {!! csrf_field() !!}
+              {!! method_field('DELETE') !!}
+              <input type="hidden" name="imgId" value="{{$image[$i]->id}}">
+              <button type="submit" class="material-icons">delete_forever</button>
+            </form>
 
               <h3>{{ $image[$i]->imagesTitle}}</h3>
               <p>{{ $image[$i]->imagesContent}}</p>

@@ -12,7 +12,7 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 	    margin-top: 0; /*// remove the gap so it doesn't close*/
 	 }
 	 
-	 li{
+	 .menu li{
 	 	 list-style: none;
 	 	 font-size: 24px;
 	 	

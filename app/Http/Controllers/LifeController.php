@@ -118,8 +118,15 @@ class LifeController extends Controller
 		 return redirect('life');
 	}
 
-	public function deleteMore(Life $id, Life_link $more_id){
-		$more_id->delete();
+	public function deleteDetail(Request $request, Life $id){
+		 
+		if($request->linkId){
+			Life_link::where('id', $request->linkId)->delete();
+		}
+		if($request->imgId){
+			Life_image::where('id', $request->imgId)->delete();
+		}
+		
 		 return redirect('/life/'.$id->topic.'/'.$id->id);
 	}
 
