@@ -131,7 +131,7 @@ CKEDITOR.replace( 'new_gra', {
                         <?php $subCount = 0; ?>
                         {{-- 產生大學部主要項目裡的細部項目 --}}
                         @foreach ($unders as $u)
-                            <div class="col-md-4">
+                            <div class="col-md-4" style="background-color: rgba(255, 255, 255, {{ (++$subCount * (0.125)) }});">
                                 <h3>{{ $u->title }}</h3>
                                 <p>
                                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-{{ $u->id }}">Open Modal {{ $u->id }}</button>
