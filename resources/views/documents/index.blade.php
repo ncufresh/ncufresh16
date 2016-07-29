@@ -92,7 +92,7 @@ CKEDITOR.replace( 'new_mix', {
             <div class="col-md-2 col-xs-3 col-fluid scrollspy" id="innerLeftSidenav">
                 <ul class="nav side-nav" id="leftNav">
                     <li>
-                        <h1>大學部</h1></li>
+                        <h1 class="text-orange">大學部</h1></li>
                     <li><a href="#under-1"><img src="{{ asset('docs/img/sign.png') }}" alt="註冊"></a></li>
                     <li><a href="#under-2"><img src="{{ asset('docs/img/firstweek.png') }}" alt="新生週"></a></li>
                     <li><a href="#under-3"><img src="{{ asset('docs/img/course.png') }}" alt="共同課程"></a></li>
@@ -268,7 +268,7 @@ CKEDITOR.replace( 'new_mix', {
             <!-- /.col-xs-8 /#innerRightPage -->
             <div class="col-xs-2 col-fluid scrollspy" id="innerRightSidenav">
                 <ul class="nav side-nav" id="rightNav">
-                    <li><h1>研究所</h1></li>
+                    <li><h1 class="text-orange">研究所</h1></li>
                     <li><a href="#graduate-1"><img src="{{ asset('docs/img/sign.png') }}" alt="註冊"></a></li>
                     <li><a href="#graduate-2"><img src="{{ asset('docs/img/firstweek.png') }}" alt="新生週"></a></li>
                     <li><a href="#graduate-3"><img src="{{ asset('docs/img/course.png') }}" alt="共同課程"></a></li>
