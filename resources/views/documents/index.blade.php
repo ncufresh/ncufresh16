@@ -162,7 +162,7 @@ CKEDITOR.replace( 'new_mix', {
                                                         </form>
                                                     </div>
                                                     <div class="col-xs-6 text-left">
-                                                        <form action="{{ url('/doc/under/'.$u->id) }}" method="POST">
+                                                        <form action="{{ url('/doc/under/'.$u->id) }}" method="POST" onsubmit="return confirm('確定要刪除 {{ $u->title }} 嗎？');">
                                                             {!! csrf_field() !!}
                                                             {!! method_field('DELETE') !!}
                                                             <button type="submit" class="btn btn-danger btn-lg" id="delete-document-{{ $u->id }}">刪除</button>
@@ -227,7 +227,7 @@ CKEDITOR.replace( 'new_mix', {
                                                         </form>
                                                     </div>
                                                     <div class="col-xs-6 text-left">
-                                                        <form action="{{ url('/doc/graduate/'.$g->id) }}" method="POST">
+                                                        <form action="{{ url('/doc/graduate/'.$g->id) }}" method="POST" onsubmit="return confirm('確定要刪除 {{ $g->title }} 嗎？');">
                                                             {!! csrf_field() !!}
                                                             {!! method_field('DELETE') !!}
                                                             <button type="submit" class="btn btn-danger btn-lg" id="delete-document-{{ $g->id }}">刪除</button>
@@ -366,7 +366,7 @@ CKEDITOR.replace( 'new_mix', {
                                         </form>
                                     </div>
                                     <div class="col-xs-6 text-left">
-                                         <form action="{{ url('/doc/mix/'.$m->id) }}" method="POST">
+                                         <form action="{{ url('/doc/mix/'.$m->id) }}" method="POST" onsubmit="return confirm('確定要刪除 {{ $m->title }} 嗎？');">
                                             {!! csrf_field() !!}
                                             {!! method_field('DELETE') !!}
                                             <button type="submit" class="btn btn-danger btn-lg" id="delete-mix-{{ $m->id }}">刪除</button>
