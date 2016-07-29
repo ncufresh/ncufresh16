@@ -181,7 +181,7 @@ Route::delete('/Q&A/{Q}', 'QandAController@destroy');
 //************************************************************
 Route::get('/personal/viewOther', 'PersonalController@viewOther');
 Route::get('/personal/{id}', 'PersonalController@index');
-// Route::resource('/personal', 'PersonalController');
+Route::get('/personal/viewOther/search','PersonalController@search');
 Route::post('/personal/updateBackground', 'PersonalController@updateBackground');
 //************************************************************
 

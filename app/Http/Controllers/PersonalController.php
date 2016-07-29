@@ -17,7 +17,7 @@ class PersonalController extends Controller
     }
      public function viewOther()
     {
-    	$users = User::get();
+    	$users = User::paginate(20);
         return view('personal.viewOther',compact('users'));
     }
     public function updateBackground(Request $request){
@@ -49,5 +49,10 @@ class PersonalController extends Controller
             $user->save();
         }
         return back();
+    }
+    public function search(Request $test){
+
+        $user = User::where('name','like', '%'.$test->key.'%')->get();
+        return $user;
     }
 }
