@@ -60,7 +60,7 @@ CKEDITOR.replace( 'new_gra', {
                 <!-- /右邊研究所導覽列 -->
                 <!-- 顯示綜合畫面的按鈕 -->
                 <div class="little-button">
-                    <a href="#bottomPage" class="btn btn-circle">
+                    <a href="#bottomScreen" class="btn btn-circle">
                         <i class="fa fa-angle-double-down fa-3x"></i>
                         <div class="ripple-container"></div>
                     </a>
@@ -74,9 +74,9 @@ CKEDITOR.replace( 'new_gra', {
     <!-- /.jumbotron -->
     <!-- /上方兩個按鈕畫面 -->
     <!-- #leftScreen 大學部畫面 -->
-    <div class="container-fluid" id="leftScreen">
+    <div class="container-fluid text-center" id="leftScreen">
         <div class="row">
-            <div class="col-xs-2 col-fluid scrollspy text-center" id="innerLeftSidenav">
+            <div class="col-xs-2 col-fluid scrollspy" id="innerLeftSidenav">
                 <ul class="nav side-nav" id="leftNav">
                     <li>
                         <h1>大學部</h1></li>
@@ -172,7 +172,7 @@ CKEDITOR.replace( 'new_gra', {
     </div>
     <!-- /#leftScreen /大學部畫面 -->
     <!-- #rightScreen 研究所畫面 -->
-    <div class="container-fluid" id="rightScreen">
+    <div class="container-fluid text-center" id="rightScreen">
         <div class="row">
             <?php $mainCount = 0; ?>
             {{-- 產生三個研究所主要項目 --}}
@@ -224,7 +224,7 @@ CKEDITOR.replace( 'new_gra', {
                 <!-- /#graduate-{{ $mainCount }} -->
             @endforeach
             <!-- /.col-xs-8 /#innerRightPage -->
-            <div class="col-xs-2 col-fluid scrollspy text-center" id="innerRightSidenav">
+            <div class="col-xs-2 col-fluid scrollspy" id="innerRightSidenav">
                 <ul class="nav side-nav" id="rightNav">
                     <li><h1>研究所</h1></li>
                     <li><a href="#graduate-1"><img src="{{ asset('docs/img/sign.png') }}" alt="註冊"></a></li>
@@ -266,13 +266,21 @@ CKEDITOR.replace( 'new_gra', {
         <!-- /.row -->
     </div>
     <!-- /#rightScreen /研究所畫面 -->
-    <section class="mixed" id="bottomPage">
-        <div class="container" id="bottomScreen">
+    <section class="mixed" id="bottomScreen">
+        <div class="container">
             <div class="row">
                 <h2>大學部 X 研究所</h2>
             </div>
             <div class="row">
                 <div class="col-xs-4 round-col text-center">
+                    <div class="dropdown">
+                        <a class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example<span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">HTML</a></li>
+                            <li><a href="#">CSS</a></li>
+                            <li><a href="#">JavaScript</a></li>
+                        </ul>
+                    </div>
                     <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
                 </div>
                 <div class="col-xs-4 round-col text-center">
