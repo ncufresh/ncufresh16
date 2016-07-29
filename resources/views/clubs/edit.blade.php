@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-
+@section('title', '系所社團')
 	@section('js')
 	<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
 	<script type="text/javascript">

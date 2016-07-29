@@ -1,4 +1,5 @@
 @extends('layouts.layout')
+@section('title', '系所社團')
 @section('content')
 	<br><br><br><br>	
 	
@@ -6,8 +7,9 @@
 		<a href="{{ url('/') }}">首頁</a>><a href="{{ url('/groups') }}">系所社團</a>><a href="{{ url('/groups/departments') }}">系所</a>
 		
 	</div>
+	@can('management')
 	<a href="{{ url('/groups/departments/create') }}">新增</a>
-	
+	@endcan
 
 	<div>
 		<a href="{{ url('/groups/departments/1') }}">
@@ -59,5 +61,5 @@
 	</div>
 	
 
-	
+
 @endsection

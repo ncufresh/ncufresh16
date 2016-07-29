@@ -11,11 +11,34 @@ use Illuminate\Routing\Controller;
 // 後台
 //************************************************************
 Route::group( ['middleware' => 'admin'], function () {
-    Route::get('/test', function () { return '管理員才可以進的路由都放這 包含新增之類的 不用急著丟'; });
+    Route::get('/test', function () { return 'just for test'; });
+    /*****************後台統整連結******************/
+    Route::get('/admin', function(){
+        return view('admin');
+    });
     /*****************Q&A******************/
     Route::get('/Q&A/admin/', 'QandAController@indexAdmin');
     Route::get('/Q&A/admin/{Q}', 'QandAController@edit');
     Route::patch('/Q&A/content/{Q}', 'QandAController@update');
+    /*****************公告******************/
+    Route::get('/ann', 'AnnouncementController@index');
+    Route::post('/ann', 'AnnouncementController@store');
+    Route::get('/ann/{ann}', 'AnnouncementController@show');
+    /*****************系所社團******************/
+    Route::post('/groups/clubs', 'ClubController@store');
+  	Route::get('/groups/clubs/create', 'ClubController@create');
+  	Route::get('/groups/clubs/{id}/edit', 'ClubController@edit');
+  	Route::patch('/groups/clubs/{clubs_kind}', 'ClubController@update');
+  	Route::post('/groups/departments', 'DepartmentController@store');
+  	Route::get('/groups/departments/create', 'DepartmentController@create');
+  	Route::get('/groups/departments/{id}/edit', 'DepartmentController@edit');
+  	Route::patch('/groups/departments/{departments_kind}', 'DepartmentController@update');
+});
+//************************************************************
+
+// 神域
+//************************************************************
+Route::group( ['middleware' => 'god'], function () {
 });
 //************************************************************
 
@@ -33,16 +56,6 @@ Route::post('/user/update', 'UserController@update');
 // 首頁
 //************************************************************
 Route::get('/', 'HomeController@index');
-Route::get('/admin', function(){
-    return view('admin');
-});
-//************************************************************
-
-// 公告
-//************************************************************
-Route::get('/ann', 'AnnouncementController@index');
-Route::post('/ann', 'AnnouncementController@store');
-Route::get('/ann/{ann}', 'AnnouncementController@show');
 //************************************************************
 
 // 新生必讀
@@ -101,6 +114,8 @@ Route::get('/campus/newObj/createObj/{bid?}','CampusController@getObj');
 Route::put('/campus/newObj/createObj/updateObj/{bid?}','CampusController@updateObj');
 //刪除地圖物件
 Route::delete('/campus/newObj/createObj/{bid?}','CampusController@dropObj');
+//主頁 查詢建築物資料
+Route::get('/campus/guide/getBuild/{bid?}','CampusController@getIndexBuilding');
 
 
 
@@ -116,19 +131,11 @@ Route::get('groups', function () {
 });
 #社團
 Route::get('/groups/clubs', 'ClubController@index');
-Route::post('/groups/clubs', 'ClubController@store');
-Route::get('/groups/clubs/create', 'ClubController@create');
 Route::get('/groups/clubs/{clubs_kind}', 'ClubController@show');
-Route::get('/groups/clubs/{id}/edit', 'ClubController@edit');
-Route::patch('/groups/clubs/{clubs_kind}', 'ClubController@update');
 Route::delete('/groups/clubs/{id}/{key}', 'ClubController@destroy');
 #系所
 Route::get('/groups/departments', 'DepartmentController@index');
-Route::post('/groups/departments', 'DepartmentController@store');
-Route::get('/groups/departments/create', 'DepartmentController@create');
 Route::get('/groups/departments/{departments_kind}', 'DepartmentController@show');
-Route::get('/groups/departments/{id}/edit', 'DepartmentController@edit');
-Route::patch('/groups/departments/{departments_kind}', 'DepartmentController@update');
 // #各社團
 // Route::get('/groups/clubs/{clubs_id}/create', 'AllclubController@create');
 // Route::get('/groups/clubs/{clubs_id}', 'AllclubController@index');
@@ -173,6 +180,7 @@ Route::delete('/Q&A/{Q}', 'QandAController@destroy');
 // 個人專區
 //************************************************************
 Route::resource('/personal', 'PersonalController');
+Route::post('/personal/updateBackground', 'UserController@updateBackground');
 //************************************************************
 
 
@@ -197,5 +205,10 @@ Route::get('/videos/{videos}', 'videoController@show');
 //************************************************************
 Route::get('/life','LifeController@getTitle');
 Route::get('/life/{topic}/{content}','LifeController@getContent');
+Route::post('/life', 'LifeController@addTitle');
+Route::post('/life/{topic}/{content}/add', 'LifeController@addMore');
+Route::patch('/life/{topic}/{content}/update','LifeController@update');
+Route::delete('/life/{id}', 'LifeController@deleteTitle');
+Route::delete('/life/{id}/{more_id}', 'LifeController@deleteMore');
 
 //************************************************************

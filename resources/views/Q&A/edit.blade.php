@@ -1,9 +1,26 @@
 @extends('layouts.layout')
 @section('title','編輯疑問|Q&A')
+@section('js')
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript">
+CKEDITOR.replace( 'response', {
+    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+});
+CKEDITOR.replace( 'content', {
+    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+});
+</script>
+@stop
 @section('content')
 <div class="container">
 @include('Q&A.Q&Alayouts')
-    <div class="col-md-7">
+    <div class="col-md-8">
        <form role="form" action="{{action('QandAController@update',$Q->id)}}" method="post">
         {{ csrf_field() }}{{ method_field('PATCH') }}
             <div class="form-group">
@@ -29,7 +46,7 @@
 
             <div class="form-group label-floating">
               <label class="control-label">回復</label>
-              <textarea name="response" class="form-control" rows="5">{{$Q->response}}</textarea>
+              <textarea name="response" class="form-control" rows="5">{!!$Q->response!!}</textarea>
               <span class="help-block">TESTTTT</span>
             </div>
             

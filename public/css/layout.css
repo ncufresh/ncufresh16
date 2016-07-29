@@ -144,7 +144,7 @@ ul.nav > li.mydropdown:hover {
   letter-spacing: 4px; /* 字的間距 */
   opacity:0.9;
 
-  background-color: #20d4bb; /* #00bfa5 */
+  background-color: #212121;/*#20d4bb #00bfa5 */
   color: #ffffff;
 }
 .navbar.navbar-ncufresh .navbar-form .form-group input.form-control::-moz-placeholder,

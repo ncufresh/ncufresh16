@@ -16,7 +16,7 @@ class CheckRoleGod
     public function handle($request, Closure $next)
     {
         if ($request->user() === null) {
-            return response("沒登入別亂踹", 401);
+            return redirect('/login');
         }
         if ( !($request->user()->is('god')) ) {
             return response("只有神進得去", 401);

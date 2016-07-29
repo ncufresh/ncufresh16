@@ -1,4 +1,5 @@
 @extends('layouts.layout')
+@section('title', '系所社團')
 @section('content')
 
 
@@ -40,8 +41,8 @@
 
 
 		<div>
-			<input type="text" name="clubs_summary">
 			<label>社團簡介</label>
+			<textarea type="text" name="clubs_summary"></textarea>
 		</div>
 
 		<div>
@@ -66,6 +67,15 @@
 	</form>
 
 	@section('js')
+	<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+	<script type="text/javascript">
+	CKEDITOR.replace( 'clubs_summary', {
+	    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+	    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+	    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+	    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+	});
+	</script>
 	<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
 	<script type="text/javascript">
 	$('#lfm').filemanager('image');

@@ -1,12 +1,24 @@
 @extends('layouts.layout')
 @section('title','Q&A')
+@section('css')
+<style type="text/css">
+
+  
+  .panel.hot>.panel-heading {
+    background-color: #FF4400;
+}
+.panel.gernal>.panel-heading {
+    background-color: #FFA600;
+}
+</style>
+@stop
 @section('content')
 <div class="container">
 @include('Q&A.Q&Alayouts')
-  <div class="col-md-7">
+  <div class="col-md-8">
 
-  <div class="panel panel-danger">
-        <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/bulb2.png') }}" width="5%" height="5%"> <strong>熱門問題</strong></h1></div>
+  <div class="panel hot">
+        <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/bulb2.png') }}" width="5%" height="5%"><b> 熱門問題</b></h1></div>
         <div class="panel-body">
            <table class="table table-striped table-hover">
             <thead><tr><th>排行</th><th>分類</th><th>日期</th><th>標題</th><th>點閱率</th></tr></thead>
@@ -25,8 +37,8 @@
           </table>
         </div>
       </div>
-          <div class="panel panel-success">
-        <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/fruit.png') }}" width="5%" height="5%">{{$titles}}</h1></div>
+          <div class="panel gernal">
+        <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/fruit.png') }}" width="5%" height="5%"><b> {{$titles}}</b></h1></div>
         <div class="panel-body">
           <table class="table table-striped table-hover">
             <thead><tr><th>分類</th><th>日期</th><th>標題</th><th>點閱率</th></tr></thead>

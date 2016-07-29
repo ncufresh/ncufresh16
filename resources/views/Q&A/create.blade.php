@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
 @include('Q&A.Q&Alayouts')
-    <div class="col-md-7">
+    <div class="col-md-8">
        <form action="{{action('QandAController@store')}}" method="post">
         {{ csrf_field() }}
             <div class="form-group">
