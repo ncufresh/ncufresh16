@@ -134,7 +134,7 @@ CKEDITOR.replace( 'textArea', {
         <button class="btn-default btn-block" data-toggle="modal" data-target="#myModal">相片導覽</button>
 
         @foreach ($more as $more)
-        <a class="" target="_blank" href="{{ asset($more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
+        <a class="" target="_blank" href="{{ url('http://'.$more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
         
        
     @can('management')
@@ -143,9 +143,9 @@ CKEDITOR.replace( 'textArea', {
              {{ csrf_field() }}
              {{ method_field('PATCH') }}
              <input type="hidden" name="more_id" value="{{$more->id}}">
-              <input type="text" name="location" value="{{$more->location}}">
-            <input type="text" name="link" value="{{$more->link}}">
-              <button class="material-icons">edit</button>
+              <input class="form-control type="text" name="location" value="{{$more->location}}">
+            <input class="form-control type="text" name="link" value="{{$more->link}}">
+              <button type="submit" class="material-icons">done</button>
          </form>    
         <!-- 刪除紐 -->
         <form action="{{ url('life/'.$content->id.'/deleteDetail') }}" method="POST">
@@ -161,8 +161,8 @@ CKEDITOR.replace( 'textArea', {
         <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/add' }}" method="POST">
             {{ csrf_field() }}
             <input type="hidden" name="life_id" value="{{$content->id}}">
-            <input type="text" name="location">
-            <input type="text" name="link" >
+            <input class="form-control type="text" name="location" placeholder="在這裡輸入連結名稱">
+            <input class="form-control type="text" name="link" placeholder="在這裡輸入連結網址">
             <button type="submit">新增</button>
         </form>
    @endcan     
@@ -277,7 +277,7 @@ CKEDITOR.replace( 'textArea', {
             <button class="material-icons"><a id="themePicChooser" data-input="thumbnail" data-preview="holder">add_a_photo</a></button>
             <!--  主題圖片路徑 -->
             <input id="thumbnail" class="form-control" type="hidden" name="filepath">
-            <button class="material-icons">edit</button>
+            <!-- <button class="material-icons">edit</button> -->
             <button type="submit" class="material-icons">done</button>
 
             <!-- <div id="showArea" class="collapse"> -->

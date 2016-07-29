@@ -15,70 +15,70 @@ class LivesTableSeeder extends Seeder
         // roles
         $lives = [
             [
-                'topic'          => '食',
+                'topic'          => 'food',
                 'title'          => '女14舍地下商場',
                 'content'        => 'waiting to fill',
             ],
 
             [
-                'topic'          => '食',
+                'topic'          => 'food',
                 'title'          => '學生餐廳(九餐)',
                 'content'        => 'waiting to fill',
             ],
 
             [
-                'topic'          => '食',
+                'topic'          => 'food',
                 'title'          => '松苑餐廳',
                 'content'        => 'waiting to fill',
             ],
 
              [
-                'topic'          => '食',
+                'topic'          => 'food',
                 'title'          => '松果餐廳',
                 'content'        => 'waiting to fill',
             ],
 
              [
-                'topic'          => '食',
+                'topic'          => 'food',
                 'title'          => '小木屋鬆餅',
                 'content'        => 'waiting to fill',
             ],
 
 
              [
-                'topic'          => '食',
+                'topic'          => 'food',
                 'title'          => '後門',
                 'content'        => 'waiting to fill',
             ],
 
             [
-                'topic'          => '住',
+                'topic'          => 'housing',
                 'title'          => '女一舍',
                 'content'        => 'waiting to fill',
             ],
 
             [
-                'topic'           => '住',
+                'topic'           => 'housing',
                 'title'          => '女四舍',
                 'content'         => 'waiting to fill',
             ],
              [
-                'topic'           => '住',
+                'topic'           => 'housing',
                 'title'          => '男三舍',
                 'content'         => 'waiting to fill',
             ],
             [
-                'topic'           => '住',
+                'topic'           => 'housing',
                 'title'          => '男七舍',
                 'content'         => 'waiting to fill',
             ],
              [
-                'topic'           => '住',
+                'topic'           => 'housing',
                 'title'          => '男九舍',
                 'content'         => 'waiting to fill',
             ],
             [
-                'topic'           => '住',
+                'topic'           => 'housing',
                 'title'          => '男十一舍',
                 'content'         => 'waiting to fill',
             ],

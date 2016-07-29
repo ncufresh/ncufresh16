@@ -95,10 +95,14 @@ class LifeController extends Controller
 
     	if($request->more_id){
     		Life_link::where('id', $request->more_id)->update(['location' => $request->location, 'link' => $request->link]);
+    		return redirect('/life/'.$topic.'/'.$content->id);
     	} 
 
     	// 內頁更新(除了more以外的)
-    	$content->content = $request->content;
+    	if($request->content){
+    		$content->content = $request->content;
+    	}
+    	
       	if($request->filepath){
     		$content->image = $request->filepath;
     	} 	
