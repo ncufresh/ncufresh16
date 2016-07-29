@@ -4,8 +4,6 @@ $(document).ready(function() {
     // fadeIn() animation
     $("body").fadeIn("slow");
 
-    $(".jumbotron").css("padding-top", $("nav").height());
-
     // 讓上方畫面的內容垂直置中
     $("#outerLeftSidebar, #outerRightSidebar").css({
         "padding-top": ($(".jumbotron").height() - $("#outerLeftSidebar").height()) / 2
@@ -100,8 +98,6 @@ $(document).ready(function() {
 
     // 調整視窗大小時
     $(window).resize(function() {
-        $(".jumbotron").css("padding-top", $("nav").height() + $("nav").height());
-
         // 讓上方畫面的內容垂直置中
         $("#outerLeftSidebar, #outerRightSidebar").css({
             "padding-top": ($(".jumbotron").height() - $("#outerLeftSidebar").height()) / 2
