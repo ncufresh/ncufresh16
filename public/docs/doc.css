@@ -16,6 +16,11 @@ img {
     padding-right: 0;
 }
 
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 
 /*--- @override layout.css ---*/
 
