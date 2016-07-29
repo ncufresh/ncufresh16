@@ -5,11 +5,11 @@
 @section('css')
 <style>
 body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
-main { background-image:url('../img/home/spring.png'); }
+main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 
 	.dropdown:hover .dropdown-menu {
 	    display: block;
-	    margin-top: 0; // remove the gap so it doesn't close
+	    margin-top: 0; /*// remove the gap so it doesn't close*/
 	 }
 	 
 	 li{
@@ -99,7 +99,7 @@ main { background-image:url('../img/home/spring.png'); }
 @section('js')
 <script type="text/javascript">
 	$(document).ready(function(){
-		 $(".container").fadeIn(1300);
+		 $(".container").fadeIn(1000);
 	    $(".puzzle").click(function(){
 	       	var form = document.getElementById("form_name");
 	        var clicks = $(this).data('clicks');
@@ -151,6 +151,16 @@ main { background-image:url('../img/home/spring.png'); }
 	    });
 	    
 	});
+
+$(".newTitle").keypress(function (event) {
+    if (event.which === 13)
+    {
+        $(".submit-title").click();
+    }
+});
+
+
+
 </script>
 
 
@@ -174,7 +184,33 @@ main { background-image:url('../img/home/spring.png'); }
 		       		<ul class="collapse menu" id="foodMenu">
 						@foreach ($food as $food)
 						<li><img src="{{ asset('img/life/knife.png')  }}"> <a href="{{action('LifeController@getContent',['food', $food->id])}}">{{ $food->title }}</a></li>
+						
+					<!--title更改鈕 -->
+						<form action="{{ url('life/'.$food->topic.'/'.$food->id).'/update' }}" method="POST">
+						     {{ csrf_field() }}
+						     {{ method_field('PATCH') }}
+						<input type="text" name="title" value="{{ $food->title }}">
+						<button class="material-icons">edit</button>
+						<button type="submit" class="material-icons">done</button>
+						</form>	
+
+						<!-- title刪除紐 -->
+						<form action="{{ url('life/'.$food->id) }}" method="POST">
+							{!! csrf_field() !!}
+	        				{!! method_field('DELETE') !!}
+	       					<button type="submit" class="material-icons">delete_forever</button>
+	       				</form>
 						@endforeach
+
+						<li><img src="{{ asset('img/life/knife.png')  }}">
+							<form action="{{ url('life') }}" method="POST">
+						    {{ csrf_field() }}
+						    <input type="text" name="title">
+						    <input type="hidden" name="topic" value="food">
+						    <button class="submit-title" type="submit">新增</button>
+							</form>
+						</li>
+
 					</ul>	
 					
 

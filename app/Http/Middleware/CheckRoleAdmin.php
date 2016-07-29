@@ -16,10 +16,10 @@ class CheckRoleAdmin
     public function handle($request, Closure $next)
     {
         if ($request->user() === null) {
-            return response("沒登入別亂踹", 401);
+            return redirect('/login');
         }
         if ( !($request->user()->is('admin') || $request->user()->is('god')) ) {
-            return response("管理員專區,走開!", 401);
+            abort(401);
         }
         return $next($request);
     }

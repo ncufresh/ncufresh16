@@ -100,7 +100,7 @@
   
   .affix-bottom {
     position: absolute;
-    width: 98%;
+    width: 98.5%;
   }
 
   footer {
@@ -124,6 +124,11 @@
 
 @section('js')
 <script>
+  // 在 body 添加 data-target=".scrollspy"，讓 Bootstrap scrollspy 正常運作
+  $(document).ready(function(){
+    $("body").attr("data-target", ".scrollspy");
+  });
+  // Bootstrap affix effect
   $('#nav').affix({
     offset: {
       top: $('#nav').offset().top - 100,
@@ -139,7 +144,7 @@
     <div class="row">
       <div class="col-md-3 scrollspy">
         <ul id="nav" class="nav side-nav hidden-xs hidden-sm" data-spy="affix">
-          <li><h1 class="center">大學部　<small><a href="{{ url('/doc/graduate') }}">研究所</a></small></h1></li>
+          <li><h1 class="center">大學部　<small><a href="{{ url('/docs/graduate') }}">研究所</a></small></h1></li>
           {{-- 顯示大學部的新生必讀資料 --}}
           @foreach ($mainUnders as $unders)
             <li><a href="#main-{{ ++$count[0] }}">大學部主條目 {{ $count[0] }}</a>
@@ -151,7 +156,6 @@
             </ul>
             </li>
           @endforeach
-
         </ul>
       </div>
       <div class="col-md-6">
@@ -205,7 +209,7 @@
 
   <!-- <div class="row">
       {{-- 顯示大學部的新生必讀資料 --}}
-      <h1>大學部　<small><a href="{{ url('/doc/graduate') }}">研究所</a></small></h1>
+      <h1>大學部　<small><a href="{{ url('/docs/graduate') }}">研究所</a></small></h1>
       <ul>
           <?php $count = 0; ?>
           @foreach ($mainUnders as $unders)
@@ -215,10 +219,10 @@
                       <li>{{ $u->title }}</li>
                       <ul>
                           <li>{{ $u->content }}</li>
-                          <form action="{{ url('/doc/under/'.$u->id.'/edit') }}" method="GET">
+                          <form action="{{ url('/docs/under/'.$u->id.'/edit') }}" method="GET">
                               <button type="submit" id="edit-under-{{ $u->id }}">編輯</button>
                           </form>
-                          <form action="{{ url('/doc/under/'.$u->id) }}" method="POST">
+                          <form action="{{ url('/docs/under/'.$u->id) }}" method="POST">
                               {!! csrf_field() !!}
                               {!! method_field('DELETE') !!}
                           <button type="submit" id="delete-document-{{ $u->id }}">刪除</button>
@@ -232,10 +236,9 @@
   {{-- 新增大學部的新生必讀資料 --}}
   <div class="container-fulid" id="add">
     <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6 center">
+      <div class="col-md-12 center">
         <h1>新增內容</h1>
-        <form action="{{ url('/doc/under') }}" method="POST">
+        <form action="{{ url('/docs/under') }}" method="POST">
           {{ csrf_field() }}
           <p>標題</p>
           <p><input type="text" name="title" id="title" required></p>
@@ -248,9 +251,8 @@
         <!-- 留白給 footer -->
         <br><br><br><br><br><br><br><br>
       </div>
-      <div class="col-md-3"></div>
-    </div>
-  </div>
-</div>
+    </div><!-- /row -->
+  </div><!-- /container-fulid -->
+</div><!-- /wrapper -->
 
 @endsection

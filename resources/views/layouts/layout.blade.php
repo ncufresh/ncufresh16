@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <title>@yield('title')</title>
+    <title>@yield('title', '我就說不是改我了!!')</title>
     {{-- mete區 --}}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

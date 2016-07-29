@@ -4,7 +4,7 @@
 @section('content')
 <div class="container">
 @include('Q&A.Q&Alayouts')
-  <div class="col-md-7">
+  <div class="col-md-8">
     <table class="table table-hover">
         <thead><tr><th>分類</th><th>日期</th><th>標題</th><th>點閱率</th></tr></thead>
         <tbody>

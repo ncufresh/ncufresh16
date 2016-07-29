@@ -12,12 +12,12 @@ class CreateMapObjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('MapObjects', function (Blueprint $table) {
+        Schema::create('mapobjects', function (Blueprint $table) {
             $table->increments('id');            
             $table->integer('Building_id');
-            $table->integer('Xcoordinate');
-            $table->integer('Ycoordinate');
-            $table->integer('objWidth');
+            $table->float('Xcoordinate');
+            $table->float('Ycoordinate');
+            $table->float('objWidth');
             $table->string('objImg');
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateMapObjectsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('MapObjects');
+        Schema::drop('mapobjects');
     }
 }

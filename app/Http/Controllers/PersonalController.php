@@ -13,4 +13,8 @@ class PersonalController extends Controller
         
         return view('personal.index');
     }
+     public function create()
+    {   
+        return view('personal.create');
+    }
 }

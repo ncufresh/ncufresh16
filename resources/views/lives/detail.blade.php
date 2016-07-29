@@ -4,7 +4,8 @@
 
 @section('css')
 <style>
-body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(197,121,002,.8) 100%); }
+body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
+main { background-image:url('../../img/home/spring.png'); }
 
 button{
    border: 3px solid black;
@@ -85,11 +86,30 @@ button{
 @stop
 
 @section('js')
+
+<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
+
   <script type="text/javascript">
+  $('#lfm').filemanager('image');
    $(document).ready(function(){
-        $(".container").fadeIn(1300);
+        $(".container").fadeIn(1000);
+          // CKEDITOR.instances['textArea'].setData($("#textArea").val());
 });
+
   </script>
+
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript">
+
+CKEDITOR.replace( 'textArea', {
+    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+});
+
+</script>
+
 
 @stop
 
@@ -113,10 +133,38 @@ button{
         <button class="btn-default btn-block" data-toggle="modal" data-target="#myModal">相片導覽</button>
 
         @foreach ($more as $more)
-        <a target="_blank" href="{{ asset($more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
+        <a class="" target="_blank" href="{{ asset($more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
+        
+       <!--  修改鈕 -->
+         <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/update' }}" method="POST">
+             {{ csrf_field() }}
+             {{ method_field('PATCH') }}
+             <input type="hidden" name="more_id" value="{{$more->id}}">
+              <input type="text" name="location" value="{{$more->location}}">
+            <input type="text" name="link" value="{{$more->link}}">
+              <button class="material-icons">edit</button>
+         </form>    
+        <!-- 刪除紐 -->
+        <form action="{{ url('life/'.$content->id.'/'.$more->id) }}" method="POST">
+          {!! csrf_field() !!}
+              {!! method_field('DELETE') !!}
+              <button type="submit" class="material-icons">delete_forever</button>
+        </form>
         @endforeach
+
+        <!-- 新增鈕 -->
+        <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/add' }}" method="POST">
+            {{ csrf_field() }}
+            <input type="hidden" name="life_id" value="{{$content->id}}">
+            <input type="text" name="location">
+            <input type="text" name="link" >
+            <button type="submit">新增</button>
+        </form>
+        
       </ul>
+
     </div>  
+
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -133,8 +181,7 @@ button{
               @endfor
 
             </ol>
-
-            <!-- Wrapper for slides -->
+           <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
              <div class="item active">
               <img src="{{ asset($image[0]->filename) }}" alt="Chania" width="460" height="345">
@@ -144,6 +191,7 @@ button{
               </div>
             </div>
 
+          
             @for ($i = 1; $i < $num_of_pics; $i++)
             <div class="item">
              <img src="{{ asset($image[$i]->filename) }}" alt="Chania" width="460" height="345">
@@ -174,22 +222,58 @@ button{
 </div>
   </div>
 
+
   <div class="col-md-8" id="rightPart">
 <div class="row">
     <div class="col-md-10 modal-content" id="contentModal">
+     <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/update' }}" method="POST">
+     {{ csrf_field() }}
+     {{ method_field('PATCH') }}
       <div class="modal-header">
-        <a href=".." type="button" class="close">×</a>
+     <!--    <button class="material-icons" data-toggle="collapse" data-target="#showArea">edit</button> -->
+     
+        <button class="material-icons"><a id="lfm" data-input="thumbnail" data-preview="holder">add_a_photo</a></button>
+        <button class="material-icons">edit</button>
+        <button type="submit" class="material-icons">done</button>
+        <a href=".." class="material-icons close">clear</a> 
+        
       </div>
 
-      <div class="modal-body">
-        <p>{{$content->content}}</p>
-      </div>
+        <div class="modal-body">
 
+          <!-- <div id="showArea" class="collapse"> -->
+          <textarea type="text" name="content" id="textArea" >{{$content->content}}</textarea>
+       
+         <!--  </div>  -->
+
+        <p>{!!$content->content!!}</p>
+      </div>
+     <!--  主題圖片路徑 -->
+       <input id="thumbnail" class="form-control" type="hidden" name="filepath">
+</form>
     </div>
     </div>
   </div>
+
+<!-- <div class="input-group">
+  <span class="input-group-btn">
+    <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+      <i class="material-icons">add_a_photo</i>
+    </a>
+  </span>
+  
+  
+
+</div> -->
+<img id="holder" style="margin-top:15px;max-height:100px;">
+      
+     
+
+
+
 </div>
 </div>
 
 
 @endsection
+

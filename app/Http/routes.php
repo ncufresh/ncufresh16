@@ -11,20 +11,34 @@ use Illuminate\Routing\Controller;
 // 後台
 //************************************************************
 Route::group( ['middleware' => 'admin'], function () {
-    Route::get('/test', function () { return '管理員才可以進的路由都放這 包含新增之類的 不用急著丟'; });
+    Route::get('/test', function () { return 'just for test'; });
+    /*****************後台統整連結******************/
+    Route::get('/admin', function(){
+        return view('admin');
+    });
     /*****************Q&A******************/
     Route::get('/Q&A/admin/', 'QandAController@indexAdmin');
     Route::get('/Q&A/admin/{Q}', 'QandAController@edit');
     Route::patch('/Q&A/content/{Q}', 'QandAController@update');
+    /*****************公告******************/
+    Route::get('/ann', 'AnnouncementController@index');
+    Route::post('/ann', 'AnnouncementController@store');
+    Route::get('/ann/{ann}', 'AnnouncementController@show');
     /*****************系所社團******************/
     Route::post('/groups/clubs', 'ClubController@store');
-	Route::get('/groups/clubs/create', 'ClubController@create');
-	Route::get('/groups/clubs/{id}/edit', 'ClubController@edit');
-	Route::patch('/groups/clubs/{clubs_kind}', 'ClubController@update');
-	Route::post('/groups/departments', 'DepartmentController@store');
-	Route::get('/groups/departments/create', 'DepartmentController@create');
-	Route::get('/groups/departments/{id}/edit', 'DepartmentController@edit');
-	Route::patch('/groups/departments/{departments_kind}', 'DepartmentController@update');
+  	Route::get('/groups/clubs/create', 'ClubController@create');
+  	Route::get('/groups/clubs/{id}/edit', 'ClubController@edit');
+  	Route::patch('/groups/clubs/{clubs_kind}', 'ClubController@update');
+  	Route::post('/groups/departments', 'DepartmentController@store');
+  	Route::get('/groups/departments/create', 'DepartmentController@create');
+  	Route::get('/groups/departments/{id}/edit', 'DepartmentController@edit');
+  	Route::patch('/groups/departments/{departments_kind}', 'DepartmentController@update');
+});
+//************************************************************
+
+// 神域
+//************************************************************
+Route::group( ['middleware' => 'god'], function () {
 });
 //************************************************************
 
@@ -42,32 +56,30 @@ Route::post('/user/update', 'UserController@update');
 // 首頁
 //************************************************************
 Route::get('/', 'HomeController@index');
-Route::get('/admin', function(){
-    return view('admin');
-});
-//************************************************************
-
-// 公告
-//************************************************************
-Route::get('/ann', 'AnnouncementController@index');
-Route::post('/ann', 'AnnouncementController@store');
-Route::get('/ann/{ann}', 'AnnouncementController@show');
 //************************************************************
 
 // 新生必讀
 //************************************************************
-# 大學部
-Route::get('/doc/under', 'DocumentController@underIndex');
-Route::post('/doc/under', 'DocumentController@underStore');
-Route::delete('/doc/under/{under}', 'DocumentController@underDestroy');
-Route::get('/doc/under/{under}/edit','DocumentController@underEdit');
-Route::patch('/doc/under/{under}', 'DocumentController@underUpdate');
-# 研究所
-Route::get('/doc/graduate', 'DocumentController@graduateIndex');
-Route::post('/doc/graduate', 'DocumentController@graduateStore');
-Route::delete('/doc/graduate/{graduate}', 'DocumentController@graduateDestroy');
-Route::get('/doc/graduate/{graduate}/edit','DocumentController@graduateEdit');
-Route::patch('/doc/graduate/{graduate}', 'DocumentController@graduateUpdate');
+Route::group(['prefix' => 'doc'], function () {
+    Route::get('/', 'DocumentController@index');
+    # 大學部
+    Route::group(['prefix' => 'under'], function () {
+    	Route::get('/', 'DocumentController@underIndex');
+		Route::post('/', 'DocumentController@underStore');
+		Route::delete('/{under}', 'DocumentController@underDestroy');
+		Route::get('/{under}/edit','DocumentController@underEdit');
+		Route::patch('/{under}', 'DocumentController@underUpdate');
+    });
+	# 研究所
+	Route::group(['prefix' => 'graduate'], function () {
+		Route::get('/', 'DocumentController@graduateIndex');
+		Route::post('/', 'DocumentController@graduateStore');
+		Route::delete('/{graduate}', 'DocumentController@graduateDestroy');
+		Route::get('/{graduate}/edit','DocumentController@graduateEdit');
+		Route::patch('/{graduate}', 'DocumentController@graduateUpdate');
+    });
+});
+
 //************************************************************
 
 // 校園導覽
@@ -102,6 +114,8 @@ Route::get('/campus/newObj/createObj/{bid?}','CampusController@getObj');
 Route::put('/campus/newObj/createObj/updateObj/{bid?}','CampusController@updateObj');
 //刪除地圖物件
 Route::delete('/campus/newObj/createObj/{bid?}','CampusController@dropObj');
+//主頁 查詢建築物資料
+Route::get('/campus/guide/getBuild/{bid?}','CampusController@getIndexBuilding');
 
 
 
@@ -167,6 +181,7 @@ Route::delete('/Q&A/{Q}', 'QandAController@destroy');
 // 個人專區
 //************************************************************
 Route::resource('/personal', 'PersonalController');
+Route::post('/personal/updateBackground', 'UserController@updateBackground');
 //************************************************************
 
 
@@ -191,5 +206,10 @@ Route::get('/videos/{videos}', 'videoController@show');
 //************************************************************
 Route::get('/life','LifeController@getTitle');
 Route::get('/life/{topic}/{content}','LifeController@getContent');
+Route::post('/life', 'LifeController@addTitle');
+Route::post('/life/{topic}/{content}/add', 'LifeController@addMore');
+Route::patch('/life/{topic}/{content}/update','LifeController@update');
+Route::delete('/life/{id}', 'LifeController@deleteTitle');
+Route::delete('/life/{id}/{more_id}', 'LifeController@deleteMore');
 
 //************************************************************

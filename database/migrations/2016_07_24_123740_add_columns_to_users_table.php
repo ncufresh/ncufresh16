@@ -16,7 +16,9 @@ class AddColumnsToUsersTable extends Migration
             $table->string('student_id');
             $table->string('unit');
             $table->string('avatar')->default('default.png');
+            $table->string('background')->default('default.png');
             $table->text('intro');
+
         });
     }
 

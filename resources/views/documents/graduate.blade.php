@@ -1,4 +1,4 @@
-  @extends('layouts.layout')
+@extends('layouts.layout')
 
 @section('title', '新生必讀 - 研究所')
 
@@ -125,6 +125,9 @@
 
 @section('js')
 <script>
+  $(document).ready(function(){
+    $("body").attr("data-target", ".scrollspy");
+  });
   $('#nav').affix({
     offset: {
       top: 0,
@@ -136,7 +139,7 @@
 
 @section('content')
 <div class="wrapper">
-  <div class="container-fulid">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-md-3"></div>
       <div class="col-md-6">
@@ -153,12 +156,13 @@
             <button type="button" class="btn btn-primary">Learn More</button>
           </section>
           @endforeach
+        </section>
         @endforeach
 
       </div><!-- /col-md-6 -->
       <div class="col-md-3 scrollspy">
         <ul id="nav" class="nav side-nav hidden-xs hidden-sm" data-spy="affix">
-          <li><h1 class="center"><small><a href="{{ url('/doc/under') }}">大學部</a></small>　研究所</h1></li>
+          <li><h1 class="center"><small><a href="{{ url('/docs/under') }}">大學部</a></small>　研究所</h1></li>
           {{-- 顯示大學部的新生必讀資料 --}}
           @foreach ($mainGraduates as $graduates)
             <li><a href="#main-{{ ++$count[0] }}">大學部主條目 {{ $count[0] }}</a>
@@ -210,7 +214,7 @@
 <!-- <div class="container notosanstc">
     <div class="row">
         {{-- 顯示研究所的新生必讀資料 --}}
-        <h1><small><a href="{{ url('/doc/under') }}">大學部</a></small>　研究所</h1>
+        <h1><small><a href="{{ url('/docs/under') }}">大學部</a></small>　研究所</h1>
         <ul>
             <?php $count = 0; ?>
             @foreach ($mainGraduates as $graduates)
@@ -220,10 +224,10 @@
                         <li>{{ $g->title }}</li>
                         <ul>
                             <li>{{ $g->content }}</li>
-                            <form action="{{ url('/doc/graduate/'.$g->id.'/edit') }}" method="GET">
+                            <form action="{{ url('/docs/graduate/'.$g->id.'/edit') }}" method="GET">
                                 <button type="submit" id="edit-document-{{ $g->id }}">編輯</button>
                             </form>
-                            <form action="{{ url('/doc/graduate/'.$g->id) }}" method="POST">
+                            <form action="{{ url('/docs/graduate/'.$g->id) }}" method="POST">
                                 {!! csrf_field() !!}
                                 {!! method_field('DELETE') !!}
                                 <button type="submit" id="delete-document-{{ $g->id }}">刪除</button>
@@ -237,10 +241,9 @@
   {{-- 新增研究所的新生必讀資料 --}}
   <div class="container-fulid" id="add">
     <div class="row">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-6 center">
+      <div class="col-sm-12 center">
         <h1>新增內容</h1>
-        <form action="{{ url('/doc/graduate') }}" method="POST">
+        <form action="{{ url('/docs/graduate') }}" method="POST">
           {{ csrf_field() }}
           <p>標題</p>
           <p><input type="textbox" name="title"></p>
@@ -252,8 +255,7 @@
         </form>
         <!-- 留白給 footer -->
         <br><br><br><br><br><br><br><br>
-      </div><!-- /col-sm-6 -->
-      <div class="col-sm-3"></div>
+      </div>
     </div><!-- /row -->
   </div><!-- /container-fulid -->
 </div><!-- /wrapper -->

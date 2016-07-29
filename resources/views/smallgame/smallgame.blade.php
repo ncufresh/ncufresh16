@@ -2,23 +2,254 @@
 @section('title','小遊戲')
   @section('css')
     <style>
+
+
+    .background{
+        top:3%;
+        left:0%;
+        width: 100%;
+        height:100%;
+        z-index: -1;
+        opacity:0.4;
+        position:fixed; 
+      }
+
+      .title{
+        font-size:40px;
+
+      }
+      .scores{
+        font-size: 30px;
+      }
+
+      #totleBoard{
+
+        background-color: rgba(242, 242, 242,0.7);
+        border-radius: 20px;
+        margin: 0px auto;
+        margin-top: 5%;
+        margin-left:8%;
+        
+        padding: 10px;
+
+        height:400px;
+        width: 40%;
+
+        display:table; 
+              float: left;
+
+              text-align:center;
+          
+      }
+      #personalBoard{
+
+        background-color: rgba(242, 242, 242,0.7);
+        border-radius: 20px;
+        margin: 0px auto;
+        margin-top: 5%;
+        margin-left:5%; 
+        
+        padding: 10px;
+
+        height:400px;
+        width: 40%;
+
+        display:table; 
+              float: left;
+
+              text-align:center;
+      }
+      #goback{
+        margin: 0px auto;
+        margin-top: 5%;
+        margin-left:30px; 
+
+        height:50px;
+        width:50px;
+
+      }
+      #leaderboard{
+        display:none;
+      }
+      #backToGame{
+        margin-left:46%;
+      }
+
+
+
+
+
+
       *{ 
         padding: 0; margin: 0; 
       }
-      canvas{ 
+      #myCanvas{ 
         background: #eee; display: block; margin: 0 auto; 
         margin-top:5%;
+
+
       }
+      button{
+
+        margin-top:5%;
+      }
+
+
+
     </style>
     @endsection
 @section('content')
+    <div id="leaderboard">
+
+      <img class="background" src="/img/game/BG_sky.jpg">
+      <div class="container" id="totleBoard">
+        <!--  這裡可以參考laravel ajax教學的結構 改為table，名次用排序演算法算出後再附上，不要用列表  -->
+
+        <p class="title">總得分排行</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>名次</th>
+                          <th>username</th>
+                          <th>score</th>
+            </tr>
+          </thead>
+          <tbody id="tasks-list" name="tasks-list">
+            <?php $number=1; ?>
+            @foreach($total_scores as $total_score)
+              <tr>
+              <?php if($number>10){break;}  ?>
+              <th>{{$number}}</th>
+              <?php $number+=1; ?>
+                  <th>{{$total_score->name}}</th>
+                  <th>{{$total_score->score}}</th>
+              </tr>
+            @endforeach
+            
+          </tbody>
+        </table>
+
+
+
+      </div>
+
+      <div class="container" id="personalBoard" >
+        <p class="title">個人得分排行</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>名次</th>
+                  <th>username</th>
+                  <th>score</th>
+            </tr>
+          </thead>
+          <tbody id="tasks-list" name="tasks-list">
+            <?php $number=1; ?>
+            @foreach($personal_scores as $personal_score)
+              <tr>
+              <?php if($number>10){break;}  ?>
+              <th>{{$number}}</th>
+              <?php $number+=1; ?>
+                  <th>{{$personal_score->name}}</th>
+                  <th>{{$personal_score->score}}</th>
+              </tr>
+            @endforeach
+<!-- 可以從資料庫提取資料，現在要進行對分數的排序，只顯示十組，若分數不到十組，則顯示全部 -->
+            
+            
+            
+          </tbody>
+        </table>
+      </div>
+      <a  onclick="display()" id="backToGame"  href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-circle-arrow-left"></span> 回到遊戲</a>
+    </div>
+
+
+<!-- /////////////////////////////////////////////////////  以上是排行榜  /////////////////////////////////////////////////////  -->
       <canvas id="myCanvas" width="1000" height="500"></canvas>
+
+      <audio id="bgm" loop="loop"><source src="/img/game/bgm.mp3" type="audio/mpeg"></audio>
+      <audio id="game_4" loop="loop"><source src="/img/game/Game_4.mp3" type="audio/mpeg"></audio>
+      <audio id="jump"><source src="/img/game/jump.mp3" type="audio/mpeg"></audio>
+      <audio id="Blow1"><source src="/img/game/Blow1.mp3" type="audio/mpeg"></audio>
+      <audio id="gameover"><source src="/img/game/gameover.mp3" type="audio/mpeg"></audio>
+     
+
 @endsection
 @section('js')
 <script>
+/////////the leaderboard page and the game page exchange
+function hide(){
+  document.getElementById("myCanvas").style.display="none";
+  document.getElementById("leaderboard").style.display="block";
+  
+}
+function display(){
+
+  document.getElementById("myCanvas").style.display="block"; 
+  document.getElementById("leaderboard").style.display="none";
+
+  
+}
+/////////////
+
+
+
+
+var bgm_music = document.getElementById("bgm");
+var jump_music = document.getElementById("jump");
+var gameover_music = document.getElementById("gameover");
+var blow_music =document.getElementById("Blow1");
+var game_4_music=document.getElementById("game_4");
+bgm_music.play();
+//////////////音樂
+
+
+
+/////////////////
+var score_records=[];
+
+$(document).ready(function(){
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')//csrf token
+    }
+  });
+  var url = "/getScores";
+  var a=2;
+
+  $.get(url, function (data) {//retrieve data from database
+    //success data
+    console.log(data);
+    score_records=data;//若要從資料庫提取複數列的資料，則以陣列表示，真是佛心來的
+  }) 
+  //create new task / update existing task
+  //傳送資料開始
+});
+
+function test(){
+  console.log("Hello console");//
+  console.log(score_records[0].name);//
+}
+setTimeout("test()",3000);
+
+
+
+
+/////////////////get the score
+
+
+
+
+
+
+
+
+
+//////////////////get the question
 var questions=[];//題目
 var questions_temp=[];//題目亂序化
-//////////////////get the question
+
 $(document).ready(function(){
   $.ajaxSetup({
     headers: {
@@ -326,7 +557,8 @@ function mouseDownHandler(event){
     }
     else if(event.clientX>(rect.left+637) && event.clientX<(rect.left+637+133) &&   
       event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
-      location.assign("/leaderboard");
+      //location.assign("/leaderboard");
+      hide();
     }
   }
   else if(gameState===README){
@@ -522,6 +754,9 @@ function player_animation(width, height,images, x, y, type) {//主角constructor
                     if(character_heart>0){
                       delete heart[character_heart-1];
                     }
+
+                    blow_music.play();//打擊音效
+
                     character_heart--;
                     character_heart_bool=true;
                     reboot_heart_bool();//讓角色有無敵時間
@@ -650,6 +885,8 @@ function choose(){
     id_question = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;  
     //抽出問題end*/
 
+    jump_music.play();
+
     id_question++;
 
 
@@ -668,6 +905,7 @@ function choose(){
       if(character_heart>0){
         delete heart[character_heart-1];
       }
+      blow_music.play();//打擊音效
       character_heart--;
       character_heart_bool=true;
       reboot_heart_bool();
@@ -685,27 +923,27 @@ function reboot_rightanswer(){//讓角色有無敵時間
 function draw_MENU(){
   context.clearRect(0, 0, canvas.width, canvas.height);
   gameStateManager[0][gameState_menu_state].draw();
-  show(msg);
+  //show(msg);
 }
 function draw_README(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[README].draw();
-    show(msg);
+    //show(msg);
 }
 function draw_GAME_1(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_1].draw();
-    show(msg);
+    //show(msg);
 }
 function draw_GAME_2(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_2].draw();
-    show(msg);
+   // show(msg);
 }
 function draw_GAME_3(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_3].draw();
-    show(msg);
+    //show(msg);
 }
 
 function draw_GAME_4(){
@@ -738,10 +976,11 @@ function draw_GAME_4(){
       //upload the scores 
       //傳送資料開始
       var upload=true;
+      var username="{{ Auth::user()->name }}";
       if(upload){//因為資料會重複傳送(不知道原因)，為了解決此問題，而多設一到匣門
        $(document).ready(function(){
           var formData = {
-                name: "aaa",
+                name:username ,
                 score: score,
             };
 
@@ -782,14 +1021,18 @@ function draw_GAME_4(){
     else{
       getScore();//若沒死亡，則持續得分  
     }
-    show(msg);
+    //show(msg);
 }
 function drawGameOver(){
+
   context.clearRect(0, 0, canvas.width, canvas.height);
   gameStateManager[5][gameState_over_state].draw();
-  show(msg);
+  //show(msg);
 }
 
+
+//讓gameover_music只播放一次
+var gameover_music_bool=true;
 
 function draw(){
   ////////////////////////gameState manager////////////////////////
@@ -811,10 +1054,22 @@ function draw(){
   else if(gameState===GAME_4){//開始遊戲!
     //game play!!
     draw_GAME_4();
+    bgm_music.pause();
 
+    game_4_music.play();
+
+    
 
   }
   else if(gameState===GAMEOVER){
+    game_4_music.pause();
+
+    //讓gameover_music只播放一次
+    if(gameover_music_bool){
+      gameover_music.play();  
+      gameover_music_bool=false;
+    }
+    
     drawGameOver();
   }
   ////////////////////////gameState manager////////////////////////
@@ -846,3 +1101,5 @@ draw();
 */
 </script>
 @endsection
+<!-- (2)小遊戲讓手機使用者也能玩  ,  (1)美化分數欄位 ，  (3)寫好seed -->
+<!-- **問旭為什麼我的圖片沒有傳上去  -->
