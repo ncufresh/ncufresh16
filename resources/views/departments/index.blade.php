@@ -17,6 +17,8 @@
 }
 body{
 	background-image: url({{asset('img/group/BG1.jpg')}});
+	background-repeat: no-repeat;
+    background-size:cover;
 }
 </style>
 <div class="container">

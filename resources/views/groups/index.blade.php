@@ -15,6 +15,8 @@
 }
 body{
 	background-image: url({{asset('img/group/BG1.jpg')}});
+	background-repeat: no-repeat;
+    background-size:cover;
 }
 .text{
 	font-size: 1.4cm;

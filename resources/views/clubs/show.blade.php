@@ -1,6 +1,13 @@
 @extends('layouts.layout')
 @section('title', '系所社團')
 @section('content')
+<style type="text/css">
+body{
+	background-image: url({{asset('img/group/BG1.jpg')}});
+	background-repeat: no-repeat;
+    background-size:cover;
+}
+</style>
 <div class="container">
 	<ol class="breadcrumb">
 		<li><a href="/">首頁</a></li>

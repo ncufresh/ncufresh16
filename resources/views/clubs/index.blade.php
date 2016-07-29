@@ -4,6 +4,8 @@
 <style type="text/css">
 body{
 	background-image: url({{asset('img/group/BG1.jpg')}});
+	background-repeat: no-repeat;
+    background-size:cover;
 }
 .img{
 	width: 90%;
