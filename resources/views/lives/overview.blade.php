@@ -190,7 +190,7 @@ $(".newTitle").keypress(function (event) {
 						     {{ csrf_field() }}
 						     {{ method_field('PATCH') }}
 						<input type="text" name="title" value="{{ $food->title }}">
-						<button class="material-icons">edit</button>
+						<!-- <button class="material-icons">edit</button> -->
 						<button type="submit" class="material-icons">done</button>
 						</form>	
 

@@ -206,7 +206,7 @@ Route::get('/videos/{videos}', 'videoController@show');
 Route::get('/life','LifeController@getTitle');
 Route::get('/life/{topic}/{content}','LifeController@getContent');
 Route::post('/life', 'LifeController@addTitle');
-Route::post('/life/{topic}/{content}/add', 'LifeController@addMore');
+Route::post('/life/{topic}/{content}/add', 'LifeController@addDetail');
 Route::patch('/life/{topic}/{content}/update','LifeController@update');
 Route::delete('/life/{id}', 'LifeController@deleteTitle');
 Route::delete('/life/{id}/{more_id}', 'LifeController@deleteMore');

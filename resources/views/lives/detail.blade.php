@@ -90,7 +90,8 @@ button{
 <script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
 
   <script type="text/javascript">
-  $('#lfm').filemanager('image');
+  $('#PicChooser').filemanager('image');
+  $('#themePicChooser').filemanager('image');
    $(document).ready(function(){
         $(".container").fadeIn(1000);
           // CKEDITOR.instances['textArea'].setData($("#textArea").val());
@@ -180,6 +181,16 @@ CKEDITOR.replace( 'textArea', {
               <li data-target="#myCarousel" data-slide-to="{{$i}}" ></li>
               @endfor
 
+              <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/add' }}" method="POST">
+                {{ csrf_field() }}
+                  <button class="material-icons"><a id="PicChooser" data-input="pics" data-preview="hold">add_circle</a></button>
+                  <img id="hold" style="margin-top:15px;max-height:100px;">
+                <input id="pics" class="form-control" type="hidden" name="filename"> 
+                <input type="hidden" name="life_id" value="{{$content->id}}">
+                 <button type="submit" class="material-icons">done</button>
+
+              </form> 
+
             </ol>
            <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
@@ -232,7 +243,9 @@ CKEDITOR.replace( 'textArea', {
       <div class="modal-header">
      <!--    <button class="material-icons" data-toggle="collapse" data-target="#showArea">edit</button> -->
      
-        <button class="material-icons"><a id="lfm" data-input="thumbnail" data-preview="holder">add_a_photo</a></button>
+        <button class="material-icons"><a id="themePicChooser" data-input="thumbnail" data-preview="holder">add_a_photo</a></button>
+        <!--  主題圖片路徑 -->
+        <input id="thumbnail" class="form-control" type="hidden" name="filepath">
         <button class="material-icons">edit</button>
         <button type="submit" class="material-icons">done</button>
         <a href=".." class="material-icons close">clear</a> 
@@ -248,8 +261,7 @@ CKEDITOR.replace( 'textArea', {
 
         <p>{!!$content->content!!}</p>
       </div>
-     <!--  主題圖片路徑 -->
-       <input id="thumbnail" class="form-control" type="hidden" name="filepath">
+     
 </form>
     </div>
     </div>

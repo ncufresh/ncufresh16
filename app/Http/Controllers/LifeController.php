@@ -61,14 +61,23 @@ class LifeController extends Controller
 	    return redirect('../life');
 	}
 
-	public function addMore(Request $request, $topic ,$content)
+	public function addDetail(Request $request, $topic ,$content)
 	{
-	    $life_link = new Life_link;
-	    $life_link->life_id = $request->life_id;
-	    $life_link->location = $request->location;
-	    $life_link->link = $request->link;
-	    $life_link->save();
+	    
+	    if($request->location){
+		    $life_link = new Life_link;
+		    $life_link->life_id = $request->life_id;
+		    $life_link->location = $request->location;
+		    $life_link->link = $request->link;
+		    $life_link->save();
+ 		}
+ 		if($request->filename){
+ 			$life_image = new Life_image;
+ 			$life_image->life_id = $request->life_id;
+ 			$life_image->filename = $request->filename;
+ 			$life_image->save();
 
+ 		}
 	    return redirect('/life/'.$topic.'/'.$content);
 	}
 
