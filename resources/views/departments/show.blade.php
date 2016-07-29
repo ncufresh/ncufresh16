@@ -2,6 +2,11 @@
 @section('title', '系所社團')
 @section('content')
 <div class="container">
+	<ol class="breadcrumb">
+		<li><a href="/">首頁</a></li>
+		<li><a href="{{ url('/groups') }}">系所社團</a></li>
+		<li><a href="{{ url('/groups/departments') }}">系所</a></li>
+	</ol>
 <!-- 權限 -->
 @can('management')		
 	<a href="{{ url('/groups/departments/create') }}" class="btn btn-success btn-raised" role="button">新增</a>
@@ -12,11 +17,21 @@
 	<div class="col-sm-6" style="margin-top: 0.5rem; margin-bottom: 1rem;">
 	
 		<!-- json_decode變陣列 -->
-		<?php $photo1 = json_decode($department->departments_photo_1); ?>
-		<?php $photo2 = json_decode($department->departments_photo_2); ?>
-		<?php $photo3 = json_decode($department->departments_photo_3); ?>
-		<?php $photo4 = json_decode($department->departments_photo_4); ?>
-		<?php $photo5 = json_decode($department->departments_photo_5); ?>
+		<?php if ($department->departments_photo_1 != null) {
+			$photo1 = json_decode($department->departments_photo_1);
+		} ?>
+		<?php if ($department->departments_photo_2 != null) {
+			$photo2 = json_decode($department->departments_photo_2);
+		} ?>
+		<?php if ($department->departments_photo_3 != null) {
+			$photo3 = json_decode($department->departments_photo_3);
+		} ?>
+		<?php if ($department->departments_photo_4 != null) {
+			$photo4 = json_decode($department->departments_photo_4);
+		} ?>
+		<?php if ($department->departments_photo_5 != null) {
+			$photo5 = json_decode($department->departments_photo_5);
+		} ?>
 	<div class="card">
 		@can('management')	
 		<a href="{{ url('/groups/departments/'.$department->id.'/edit') }}" class="btn btn-warning btn-raised btn-sm" role="button">編輯</a>
@@ -58,6 +73,7 @@
 					      <h3>系所介紹</h3>
 					      <p>{!!$department->departments_summary!!}</p>
 					      <!-- 幻燈片1 -->
+					      @if($photo1 != null)
 					      	<div id="myCarousel1{{$department->id}}" class="carousel slide" data-ride="carousel">
 				  			    <!-- Indicators -->
 							    <ol class="carousel-indicators">
@@ -95,12 +111,14 @@
 									<span class="sr-only">Next</span>
 								</a>
 							</div>
+							@endif
 							<!-- 幻燈片1 -->
 					    </div>
 					    <div id="menu1{{$department->id}}" class="tab-pane fade">
 					      <h3>系學會</h3>
 					      <p>{!!$department->departments_association!!}</p>
 					      <!-- 幻燈片2 -->
+					      @if($photo2 != null)
 					      <div id="myCarousel2{{$department->id}}" class="carousel slide" data-ride="carousel">
 				  			    <!-- Indicators -->
 							    <ol class="carousel-indicators">
@@ -138,12 +156,14 @@
 									<span class="sr-only">Next</span>
 								</a>
 							</div>
+							@endif
 					      	<!-- 幻燈片2 -->
 					    </div>
 					    <div id="menu2{{$department->id}}" class="tab-pane fade">
 					      <h3>系上活動</h3>
 					      <p>{!!$department->departments_activity!!}</p>
 					      <!-- 幻燈片3 -->
+					      @if($photo3 != null)
 					      <div id="myCarousel3{{$department->id}}" class="carousel slide" data-ride="carousel">
 				  			    <!-- Indicators -->
 							    <ol class="carousel-indicators">
@@ -181,12 +201,14 @@
 									<span class="sr-only">Next</span>
 								</a>
 							</div>
+							@endif
 					      	<!-- 幻燈片3 -->
 					    </div>
 					    <div id="menu3{{$department->id}}" class="tab-pane fade">
 					      <h3>系隊</h3>
 					      <p>{!!$department->departments_sport!!}</p>
 					      <!-- 幻燈片4 -->
+					      @if($photo4 != null)
 					      <div id="myCarousel4{{$department->id}}" class="carousel slide" data-ride="carousel">
 				  			    <!-- Indicators -->
 							    <ol class="carousel-indicators">
@@ -224,12 +246,14 @@
 									<span class="sr-only">Next</span>
 								</a>
 							</div>
+							@endif
 					      	<!-- 幻燈片4 -->
 					    </div>
 					    <div id="menu4{{$department->id}}" class="tab-pane fade">
 					      <h3>系上課程</h3>
 					      <p>{!!$department->departments_course!!}</p>
 					      <!-- 幻燈片5 -->
+					      @if($photo5 != null)
 					      <div id="myCarousel5{{$department->id}}" class="carousel slide" data-ride="carousel">
 				  			    <!-- Indicators -->
 							    <ol class="carousel-indicators">
@@ -267,6 +291,7 @@
 									<span class="sr-only">Next</span>
 								</a>
 							</div>
+							@endif
 					      	<!-- 幻燈片5 -->
 					    </div>
 					  </div>

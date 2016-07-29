@@ -2,6 +2,11 @@
 @section('title', '系所社團')
 @section('content')
 <div class="container">
+	<ol class="breadcrumb">
+		<li><a href="/">首頁</a></li>
+		<li><a href="{{ url('/groups') }}">系所社團</a></li>
+		<li><a href="{{ url('/groups/clubs') }}">社團</a></li>
+	</ol>
 <!-- 權限 -->
 @can('management')	
 	<a href="{{ url('/groups/clubs/create') }}" class="btn btn-success btn-raised" role="button">新增</a>
@@ -12,7 +17,9 @@
 	<div class="col-sm-6" style="margin-top: 0.5rem; margin-bottom: 1rem;">
 	
 		<!-- json_decode變陣列 -->
-		<?php $photo = json_decode($club->clubs_photo); ?>
+		<?php if ($club->clubs_photo != null) {
+			$photo = json_decode($club->clubs_photo);
+		} ?>
 	<div class="card">	
 		@can('management')
 		<a href="{{ url('/groups/clubs/'.$club->id.'/edit') }}" class="btn btn-warning btn-raised btn-sm" role="button">編輯</a>
@@ -44,11 +51,12 @@
 		          <p>{!!$club->clubs_activity!!}</p>
 		          <p>{!!$club->clubs_join!!}</p>
 		        
-
+		        @if($photo != null)
 		        <div id="myCarousel{{$club->id}}" class="carousel slide" data-ride="carousel">
 				    
 					    <!-- Indicators -->
 					    <ol class="carousel-indicators">
+
 					    @foreach ($photo as $key => $p)
 						    @if($key == 0)
 								<li data-target="#myCarousel{{$club->id}}" data-slide-to="{{$key}}" class="active"></li>
@@ -83,6 +91,7 @@
 						<span class="sr-only">Next</span>
 					</a>
 				</div>
+				@endif
 				</div>
 			    <div class="modal-footer">
 		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

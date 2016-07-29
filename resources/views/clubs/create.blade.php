@@ -51,8 +51,9 @@
 				<textarea type="text" name="clubs_join"></textarea>
 			</div>
 
-			<input class="btn btn-warning btn-raised" id="button" type="button" value="Add photo" />
-	 		<div id="test"></div>
+			<div id="test">
+				<input class="btn btn-warning btn-raised" id="button" type="button" value="Add photo" />
+	 		</div>
 				
 			
 			<th colspan="2">

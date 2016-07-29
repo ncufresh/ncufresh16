@@ -88,7 +88,10 @@
 
 		<!-- 修改幻燈片 -->
 		<!-- json_decode變陣列 -->
-		<?php $photo = json_decode($clubs->clubs_photo); ?>
+		<?php if ($clubs->clubs_photo != null) {
+			$photo = json_decode($clubs->clubs_photo); 
+		}?>
+	@if($photo != null)
 		@foreach ($photo as $key => $p)
 		<div class="input-group">
 			
@@ -132,11 +135,31 @@
 			</script>
 		@endif
 		@endforeach
+	@else
+	<script src="{{ asset('include/jquery/jquery-1.12.4.js') }}"></script>
+	<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var r = 1;
+		$('#button').click(function(){
+			$('#test').append('<div class="input-group"><span class="input-group-btn"><a id="lfm'+r+ 
+				'" data-input="thumbnail'+r+
+				'" data-preview="holder'+r+
+				'" class="btn btn-primary"><i class="fa fa-picture-o"></i> Choose</a></span><input id="thumbnail'+r+
+				'" class="form-control" type="text" name="clubs_photo[]"></input></div><img id="holder'+r+
+				'" style="margin-top:15px;max-height:100px;">');
+					$('#lfm' + r ).filemanager('image');
+			r++;
+
+		});
+
+	});
+	</script>
+	@endif
 		<div id="test">
 			<input class="btn btn-warning btn-raised" id="button" type="button" value="Add photo" />
 	 	</div>
 		
-
 		<th colspan="2">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
             <input class="btn btn-primary btn-raised" type="submit" value="submit">
