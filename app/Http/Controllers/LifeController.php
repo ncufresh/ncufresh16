@@ -30,17 +30,20 @@ class LifeController extends Controller
 	    $image = Life_image::where('life_id',$content->id)->get();
 	   	$num_of_pics = count($image);
 	   	$more = Life_link::where('life_id',$content->id)->get();
-	 	// if($image->isEmpty()==TRUE){
-	 	// 	$image = new Life_image;
-	 	// 	$image->life_id = $content->id;
-	 	// 	$image->filename="../image/club.jpg";
-	 	// 	$image->imagesTitle="food";
-	 	// 	$image->imagesContent="I'm food!";
-	 	// 	// $image = collect(["1",'life_id' = $content->id,"..\/image\/club.jpg","food","I'm food!","null","null"]);
-	 	// 	// $image = collect([["id"=>"1", "life_id"=>$content->id,"filename"=>"../image/club.jpg","imagesTitle"=>"food","imagesContent"=>"I'm food!","created_at"=>null,"updated_at"=>null]]);
-	 	// 	$num_of_pics = 1;
-	  //   }
-	   	// return $image;
+
+	   	// 如果第一次創建title, 創造default iamge資料
+	 	if($image->isEmpty()==TRUE){
+	 		$image = new Life_image;
+	 		$image->life_id = $content->id;
+	 		$image->filename="../img/life/default.png";
+	 		$image->save();
+
+	 		//重新讀取
+	 		$image = Life_image::where('life_id',$content->id)->get();
+		   	$num_of_pics = count($image);
+		   	$more = Life_link::where('life_id',$content->id)->get();
+	    }
+
 	   	return view('lives.detail', [
 	   		'content' => $content,
 	   		 'image' => $image,

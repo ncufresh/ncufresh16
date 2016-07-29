@@ -184,7 +184,7 @@ $(".newTitle").keypress(function (event) {
 		       		<ul class="collapse menu" id="foodMenu">
 						@foreach ($food as $food)
 						<li><img src="{{ asset('img/life/knife.png')  }}"> <a href="{{action('LifeController@getContent',['food', $food->id])}}">{{ $food->title }}</a></li>
-						
+					@can('management') 
 					<!--title更改鈕 -->
 						<form action="{{ url('life/'.$food->topic.'/'.$food->id).'/update' }}" method="POST">
 						     {{ csrf_field() }}
@@ -200,9 +200,11 @@ $(".newTitle").keypress(function (event) {
 	        				{!! method_field('DELETE') !!}
 	       					<button type="submit" class="material-icons">delete_forever</button>
 	       				</form>
+	       			@endcan
 						@endforeach
 
-						<li><img src="{{ asset('img/life/knife.png')  }}">
+					@can('management') 
+						<li>
 							<form action="{{ url('life') }}" method="POST">
 						    {{ csrf_field() }}
 						    <input type="text" name="title">
@@ -210,7 +212,7 @@ $(".newTitle").keypress(function (event) {
 						    <button class="submit-title" type="submit">新增</button>
 							</form>
 						</li>
-
+					@endcan
 					</ul>	
 					
 
