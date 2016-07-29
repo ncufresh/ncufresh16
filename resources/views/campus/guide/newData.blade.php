@@ -10,7 +10,7 @@ $amount = 1;
 
 <style>
     body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
-    main { background-image:url('../img/home/spring.png'); }
+    main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 
     .imgg{
         text-align: center;
@@ -28,7 +28,7 @@ $amount = 1;
 </style>
 <div class="container">
     <h1>建築物資料</h1>
-    <button id="btn-back" name="btn-back" class="btn btn-primary"  onclick="location.href ='{{url('/campus/guide')}}'">回前頁</button>
+    <button id="btn-back" name="btn-back" class="btn btn-primary"  onclick="location.href ='{{url('/campus/')}}'">回前頁</button>
     <button id="btn-add" name="btn-add" class="btn btn-primary">新增建築物</button>
     <!--Model For Building-->
     <meta name="_token" content="{!! csrf_token() !!}" />
@@ -42,6 +42,7 @@ $amount = 1;
                 <div class="modal-body">
 
                     <form id="frmBuildings" name="frmBuildings" class="form-horizontal" novalidate="" action="POST" enctype="multipart/form-data" files="true">
+                         {{ csrf_field() }}
                         <div class="form-group error">
                             <label for="inputCate" class="col-sm-3 control-label">建築物類別</label>
                             <div class="col-sm-9">
@@ -136,9 +137,11 @@ $amount = 1;
 
                         </div>
                         <div class="modal-footer">
+                             <sub>一次只能上傳一張圖片</sub>
                             <form action="#" enctype="multipart/form-data" id="frmImgs" name="frmImgs" files="true" novalidate="">
-                                <label class="control-label">Select File</label>
-
+                                 {{ csrf_field() }}
+                                <label class="control-label">選擇檔案</label>
+                               
                                 <div class="input-group">
                                     <label class="input-group-btn">
                                         <span class="btn btn-primary">
@@ -148,7 +151,7 @@ $amount = 1;
                                     <input type="text" class="form-control" class="imgInputBox" readonly>                               
                                 </div>
                                 <br>
-                                <button type="submit" class="btn btn-default newImg" value="">Submit</button>
+                                <button type="submit" class="btn btn-default newImg" value="">送出</button>
                             </form>
                         </div>
                     </div>
@@ -387,8 +390,8 @@ $amount = 1;
             var building = '<tr id="' + data.id + '"><th></th><th>' + data.buildingName + '</th><th>' + cate[data.building_id] +
                     '</th><th><button class="btn btn-warning btn-xs btn-detail" value="' + data.id +
                     '" data-toggle="modal" data-target="#Exp' + data.id +
-                    '">瀏覽</button></th><th><button class="btn btn-warning btn-xs btn-detail watchImg" value="' + data.id + '">watch</button></th><th><button class="btn btn-warning btn-xs btn-detail open-modal" value="' + data.id + '">Edit</button>' +
-                    '<button class="btn btn-danger btn-xs btn-delete delete-building" value="' + data.id + '">Delete</button></th></tr>';
+                    '">瀏覽</button></th><th><button class="btn btn-warning btn-xs btn-detail watchImg" value="' + data.id + '">瀏覽</button></th><th><button class="btn btn-warning btn-xs btn-detail open-modal" value="' + data.id + '">編輯</button>' +
+                    '<button class="btn btn-danger btn-xs btn-delete delete-building" value="' + data.id + '">刪除</button></th></tr>';
             var newExpMod = '<div id="Exp' + data.id + '" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">' + data.buildingName + ' 簡介</h4></div><div class="modal-body">' + data.buildingExplain + '</div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>'
                     if (state == "add") { //if user added a new record
             $('#buildings-list').append(building);
