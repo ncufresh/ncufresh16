@@ -26,11 +26,11 @@ footer {
 
 /*--- 自定義 ---*/
 
-.round-col {
-    border: 2px solid black;
-    border-radius: 5px;
+.dropdown-menu-custom {
+    top: 10%;
+    left: auto;
+    right: 0;
 }
-
 
 /* 浮動按鈕 */
 

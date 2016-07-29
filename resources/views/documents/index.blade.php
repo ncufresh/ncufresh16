@@ -5,9 +5,12 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('docs/doc.css') }}">
 <style>
+
+
 body {
-    background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(197,121,002,.8) 100%);
+    background: rgba(197,121,002,.4);
     background-image: url("{{ asset('docs/img/fal.png') }}");
+    background-image: url("{{ asset('docs/img/fal.png') }}"), linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(197,121,002,.8) 100%); /* W3C */
 }
 </style>
 @stop
@@ -128,7 +131,7 @@ CKEDITOR.replace( 'new_gra', {
                         <?php $subCount = 0; ?>
                         {{-- 產生大學部主要項目裡的細部項目 --}}
                         @foreach ($unders as $u)
-                            <div class="col-md-4 round-col">
+                            <div class="col-md-4">
                                 <h3>{{ $u->title }}</h3>
                                 <p>
                                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-{{ $u->id }}">Open Modal {{ $u->id }}</button>
@@ -184,7 +187,7 @@ CKEDITOR.replace( 'new_gra', {
                         <?php $subCount = 0; ?>
                         {{-- 產生研究所主要項目裡的細部項目 --}}
                         @foreach ($graduates as $g)
-                            <div class="col-md-4 round-col">
+                            <div class="col-md-4" style="background-color: rgba(255, 255, 255, {{ (++$subCount * (0.125)) }});">
                                 <h3>{{ $g->title }}</h3>
                                 <p>
                                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-{{ $g->id }}">Open Modal {{ $g->id }}</button>
@@ -272,30 +275,32 @@ CKEDITOR.replace( 'new_gra', {
                 <h2>大學部 X 研究所</h2>
             </div>
             <div class="row">
-                <div class="col-xs-4 round-col text-center">
+                <div class="col-xs-4 text-center">
                     <div class="dropdown">
-                        <a class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example<span class="caret"></span></a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#">HTML</a></li>
-                            <li><a href="#">CSS</a></li>
-                            <li><a href="#">JavaScript</a></li>
+                        <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+                            <img src="{{ asset('docs/kirby.png') }}" alt="Dropdown">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-custom">
+                            <li><a href="">HTML</a></li>
+                            <li><a href="">CSS</a></li>
+                            <li><a href="">JavaScript</a></li>
                         </ul>
                     </div>
+                    <p></p>
+                </div>
+                <div class="col-xs-4 text-center">
                     <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
                 </div>
-                <div class="col-xs-4 round-col text-center">
+                <div class="col-xs-4 text-center">
                     <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
                 </div>
-                <div class="col-xs-4 round-col text-center">
+                <div class="col-xs-4 text-center">
                     <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
                 </div>
-                <div class="col-xs-4 round-col text-center">
+                <div class="col-xs-4 text-center">
                     <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
                 </div>
-                <div class="col-xs-4 round-col text-center">
-                    <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
-                </div>
-                <div class="col-xs-4 round-col text-center">
+                <div class="col-xs-4 text-center">
                     <p><img src="{{ asset('docs/kirby.png') }}" alt="kirby"></p>
                 </div>
             </div>   
