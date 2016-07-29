@@ -129,7 +129,7 @@ footer {
     display: none;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
     .btn-circle-container {
         border-radius: 100%;
         margin: 0 auto;
