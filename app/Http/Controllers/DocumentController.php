@@ -12,21 +12,21 @@ class DocumentController extends Controller
     public function index(){
         // 先比對是否為大學部的資料、再分別對應到三個主要類別
         for($i=0;$i<3;$i++){
-            $mainUnders[$i] = Document::where('position_of_screen',1)
+            $mainUnders[$i] = Document::where('position_of_screen',1) // 1 代表大學部
                                       ->where('position_of_main',''.($i+1))
                                       ->get();
         }  
 
-        // 先比對是否為研究所的資料、再分別對應到三個主要類別
-        for($i=0;$i<3;$i++){
-            $mainGraduates[$i] = Document::where('position_of_screen',2)
+        // 先比對是否為研究所的資料、再分別對應到兩個主要類別
+        for($i=0;$i<2;$i++){
+            $mainGraduates[$i] = Document::where('position_of_screen',2) // 2 代表研究所
                                          ->where('position_of_main',''.($i+1))
                                          ->get();
         }
 
-        // 先比對是否為共同的資料、再分別對應到六個主要類別
-        for($i=0;$i<6;$i++){
-            $mainMixs[$i] = Document::where('position_of_screen',3)
+        // 先比對是否為共同的資料、再分別對應到三個主要類別
+        for($i=0;$i<3;$i++){
+            $mainMixs[$i] = Document::where('position_of_screen',3) // 3 代表共同
                                          ->where('position_of_main',''.($i+1))
                                          ->get();
         }
