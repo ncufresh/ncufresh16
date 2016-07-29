@@ -7,7 +7,7 @@ class Document extends Model {
     protected $fillable = [
 		'title',
 		'content',
-		'is_graduate',
+		'position_of_screen',
 		'position_of_main'
 	];
 }

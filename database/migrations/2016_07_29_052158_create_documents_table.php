@@ -16,8 +16,8 @@ class CreateDocumentsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('content');
-            $table->boolean('is_graduate');
-            $table->integer('position_of_main');
+            $table->tinyInteger('position_of_screen');
+            $table->tinyInteger('position_of_main');
             $table->timestamps();
         });
     }
