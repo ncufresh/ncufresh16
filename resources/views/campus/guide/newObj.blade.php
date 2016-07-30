@@ -145,7 +145,7 @@
                     <lable for="prewiew" class="col-sm-3 control-label">預覽</lable><br>
 
                     <div class="map">
-                        <img src='/img/campus/dontdel/background.png' id="map" width="100%" >    
+                        <img src='/img/campus/dontdel/background.png' id="map" width="100%"  >    
                         <span>
                             <img src="" class="mapObj" id='objSample' alt="no found" >
                         </span>
