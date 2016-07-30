@@ -161,7 +161,7 @@ class CampusController extends Controller {
 
     public function dropBuilding($bid) {
 
-        $imgsNeedDel = DB::table('buildingimgs')->where('BuildingId', $bid)->get();
+        $imgsNeedDel = DB::table('Buildingimgs')->where('BuildingId', $bid)->get();
 
         foreach ($imgsNeedDel as $imgNeedDel) {
             $path = 'img/campus/';
@@ -170,7 +170,7 @@ class CampusController extends Controller {
         }
 
 
-        DB::table('buildingimgs')->where('BuildingId', $bid)->delete();
+        DB::table('Buildingimgs')->where('BuildingId', $bid)->delete();
 
 
         $building = Building::destroy($bid);
@@ -178,7 +178,7 @@ class CampusController extends Controller {
     }
 
     public function getBuildingImg($imgid) {
-        $img = DB::table('buildingimgs')->where('BuildingId', '=', $imgid)->get();
+        $img = DB::table('Buildingimgs')->where('BuildingId', '=', $imgid)->get();
         return response()->json($img);
     }
 
@@ -209,7 +209,7 @@ class CampusController extends Controller {
     }
 
     public function dropBuildingImg($bid) {
-        $img = DB::table('buildingimgs')->where('id', '=', $bid)->first();
+        $img = DB::table('Buildingimgs')->where('id', '=', $bid)->first();
         $path = 'img/campus/';
         $filename = $img->imgUrl;
 
@@ -337,7 +337,7 @@ class CampusController extends Controller {
                 ->join('Buildings', 'mapobjects.Building_id', '=', 'Buildings.id')
                 ->where('mapobjects.Building_id',$bid)
                 ->first();
-        $buildimgs = DB::table('buildingimgs')
+        $buildimgs = DB::table('Buildingimgs')
                 ->where('BuildingId',$bid)
                 ->get();
 //        return $buildimgs;
