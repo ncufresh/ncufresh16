@@ -23,9 +23,10 @@ class PersonalController extends Controller
     }
     public function chat()
     {
-        $Chats = Chat::select('users.*')
-                        ->join('users', 'chats.id', '=', 'users.id')
-                        ->orderBy('created_at', 'desc')->get();
+        $Chats = Chat::join('users', 'chats.user_id', '=', 'users.id')
+                        ->select('avatar','content','name','chats.created_at')
+                        ->orderBy('created_at', 'desc')
+                        ->get();
                   
         return view('personal.chat',compact('Chats'));
     }
@@ -61,7 +62,7 @@ class PersonalController extends Controller
     }
     public function postChat(Request $request){
         $chat = new Chat();
-        $chat->name = Auth::user()->name;
+        $chat->user_id = Auth::user()->id;
         $chat->content = $request->content;
         $chat->save();
         return back();
