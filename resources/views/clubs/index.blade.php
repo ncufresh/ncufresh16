@@ -1,11 +1,22 @@
 @extends('layouts.layout')
 @section('title', '系所社團')
 @section('content')
+@section('js')
+<script type="text/javascript">
+
+	$(document).ready(function(){
+    	$(".container").fadeIn(1000);
+    });
+</script>
+@stop
 <style type="text/css">
 body{
 	background-image: url({{asset('img/group/BG1.jpg')}});
 	background-repeat: no-repeat;
     background-size:cover;
+}
+.container{
+    display: none;
 }
 .img{
 	width: 90%;

@@ -1,11 +1,26 @@
 @extends('layouts.layout')
 @section('title', '系所社團')
 @section('content')
+@section('js')
+<script type="text/javascript">
+
+	$(document).ready(function(){
+    	$(".container").fadeIn(1000);
+    });
+</script>
+@stop
 <style type="text/css">
 body{
 	background-image: url({{asset('img/group/BG1.jpg')}});
 	background-repeat: no-repeat;
     background-size:cover;
+    color: #333;
+}
+.container{
+    display: none;
+}
+.nav-pills{
+	border-bottom: 1px solid #ddd;
 }
 </style>
 <div class="container">
@@ -13,15 +28,41 @@ body{
 		<li><a href="/">首頁</a></li>
 		<li><a href="{{ url('/groups') }}">系所社團</a></li>
 		<li><a href="{{ url('/groups/departments') }}">系所</a></li>
+		@foreach ($departments as $department)
+			@if($department->departments_kind == 1)
+			<li><a href="{{ url('/groups/departments/1') }}">文學院</a></li>
+			@break	
+			@elseif($department->departments_kind == 2)
+			<li><a href="{{ url('/groups/departments/2') }}">理學院</a></li>
+			@break
+			@elseif($department->departments_kind == 3)
+			<li><a href="{{ url('/groups/departments/3') }}">工學院</a></li>
+			@break
+			@elseif($department->departments_kind == 4)
+			<li><a href="{{ url('/groups/departments/4') }}">管理學院</a></li>
+			@break
+			@elseif($department->departments_kind == 5)
+			<li><a href="{{ url('/groups/departments/5') }}">資訊電機學院</a></li>
+			@break
+			@elseif($department->departments_kind == 6)
+			<li><a href="{{ url('/groups/departments/6') }}">地球科學學院</a></li>
+			@break
+			@elseif($department->departments_kind == 7)
+			<li><a href="{{ url('/groups/departments/7') }}">客家學院</a></li>
+			@break
+			@else
+			<li><a href="{{ url('/groups/departments/8') }}">生醫理工學院</a></li>
+			@break
+			@endif
+		@endforeach
 	</ol>
 <!-- 權限 -->
 @can('management')		
 	<a href="{{ url('/groups/departments/create') }}" class="btn btn-success btn-raised" role="button">新增</a>
 @endcan
 <div class="row">
-	<div class="card-group">
 	@foreach ($departments as $department)
-	<div class="col-sm-6" style="margin-top: 0.5rem; margin-bottom: 1rem;">
+	<div class="col-sm-4">
 	
 		<!-- json_decode變陣列 -->
 		<?php if ($department->departments_photo_1 != null) {
@@ -39,7 +80,6 @@ body{
 		<?php if ($department->departments_photo_5 != null) {
 			$photo5 = json_decode($department->departments_photo_5);
 		} ?>
-	<div class="card">
 		@can('management')	
 		<a href="{{ url('/groups/departments/'.$department->id.'/edit') }}" class="btn btn-warning btn-raised btn-sm" role="button">編輯</a>
 		<form class="form" method="post" action="{{ URL::action('DepartmentController@destroy',$department->id) }}">
@@ -47,14 +87,12 @@ body{
             <input type="hidden" name="_method" value="delete" />
             <input type="submit" value="刪除" class="btn btn-danger btn-raised btn-sm" onclick="return confirm('是否確定刪除?')"/>
         </form>
-        
 		@endcan	  
 		  <!-- Trigger the modal with a button -->
 		  <!-- 要{{$department->id}} 才不會只顯示第一筆資料 -->
-		  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal{{$department->id}}"><h4 class="card-title">{{$department->departments_intro}}</h4><img class="card-img-top" src="{{$department->departments_file}}"></button>
+		  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal{{$department->id}}"><img class="img" src="{{$department->departments_file}}"></button>
 	</div>
-	</div>
-
+	
 		  <!-- Modal -->
 		  <!-- 要{{$department->id}} 才不會只顯示第一筆資料 -->
 		  <div class="modal fade" id="myModal{{$department->id}}" role="dialog">
@@ -67,7 +105,7 @@ body{
 		        <div class="modal-body" style="padding-top: 20px;">
 		          
 					  <h2 class="modal-title">{{$department->departments_intro}}</h2>
-					  <ul class="nav nav-tabs">
+					  <ul class="nav nav-pills ">
 					    <li class="active"><a data-toggle="tab" href="#home{{$department->id}}">系所介紹</a></li>
 					    <li><a data-toggle="tab" href="#menu1{{$department->id}}">系學會</a></li>
 					    <li><a data-toggle="tab" href="#menu2{{$department->id}}">系上活動</a></li>
@@ -318,5 +356,4 @@ body{
 	@endforeach
 </div>
 </div>
-
 @endsection

@@ -1,7 +1,18 @@
 @extends('layouts.layout')
 @section('title', '系所社團')
 @section('content')
+@section('js')
+<script type="text/javascript">
+
+	$(document).ready(function(){
+    	$(".container").fadeIn(1000);
+    });
+</script>
+@stop
 <style type="text/css">
+.container{
+    display: none;
+}
 .col-sm-3{
 	margin-top: 0.5rem; 
 }
