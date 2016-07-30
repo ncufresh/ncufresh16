@@ -42,7 +42,7 @@ Route::group( ['middleware' => 'god'], function () {
 });
 //************************************************************
 
-// 註冊,登入
+// 註冊,登入,修改資料
 //************************************************************
 Route::get('login', 'Auth\AuthController@showLoginForm');
 Route::post('login', 'Auth\AuthController@login');
@@ -51,6 +51,8 @@ Route::get('register', 'Auth\AuthController@showRegistrationForm');
 Route::post('register', 'Auth\AuthController@register');
 Route::get('/user/edit', 'UserController@edit');
 Route::post('/user/update', 'UserController@update');
+Route::get('/portal/login', 'SocialAccountController@redirect');
+Route::get('/portal/callback', 'SocialAccountController@callback');
 //************************************************************
 
 // 首頁

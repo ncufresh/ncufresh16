@@ -16,6 +16,7 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 }
 #profile > .row > .col-md-8 {
     box-shadow: 0 0 10px #999;
+    background-color: rgba(255,255,255,0.9);
 }
 </style>
 @stop
@@ -36,7 +37,7 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <br><h2>{{ $user->name }}的個人資料</h2>
-            <h5 class="text-muted">帳號 {{$user->email=='' ? $user->student_id : 'E-Mail : '. $user->email }}</h5>
+            <h5 class="text-muted">E-Mail: {{$user->email}}</h5>
             <img class="avatar" src="{{url('/')}}/upload/avatars/{{ $user->avatar }}">
             <form class="form-horizontal" enctype="multipart/form-data" action="{{ url('/user/update') }}" method="POST">
                 {{ csrf_field() }}
@@ -48,7 +49,7 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                    <label class="col-md-2 control-label" for="name">更新名字(1~10)</label>
+                    <label class="col-md-2 control-label" for="name">更新暱稱(1~10)</label>
                     <div class="col-md-10">
                         <input class="form-control" name="name" id="name" value="{{ $user->name }}" type="text" maxlength="10">
                         @if ($errors->has('name'))
@@ -80,18 +81,27 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
     </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <br><h3>中大Portal資料</h3>
+            <br>
+            <h3>中大Portal資料
+                <a href="http://www.cc.ncu.edu.tw/account/freshman/" class="btn btn-success" target="_blank">新生帳號啟動說明</a>
+            </h3>
             <h5 class="text-muted">無法修改,使用portal登入方可取得資料 (ps.玩遊戲會有時數唷)</h5>
+            {{-- <div class="form-group">
+                <label class="col-md-2 control-label" for="rname">真實姓名</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="rname" type="text" value="{{ $user->real_name }}" disabled="">
+                </div>
+            </div> --}}
             <div class="form-group">
                 <label class="col-md-2 control-label" for="stid">學號</label>
                 <div class="col-md-10">
-                    <input class="form-control" id="stid" type="text" placeholder="{{ $user->student_id }}" disabled="">
+                    <input class="form-control" id="stid" type="text" value="{{ $user->student_id }}" disabled="">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label" for="unit">系所</label>
                 <div class="col-md-10">
-                    <input class="form-control" id="unit" type="text" placeholder="{{ $user->student_id }}" disabled="">
+                    <input class="form-control" id="unit" type="text" value="{{ $user->unit }}" disabled="">
                 </div>
             </div>
         </div>
