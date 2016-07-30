@@ -31,7 +31,7 @@
 
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
-                                <h4>提醒：email無法使用cc.ncu.edu.tw結尾, 請使用Portal帳號登入</h4>
+                                <h4>提醒：email無法使用@cc.ncu.edu.tw結尾, 請使用Portal帳號登入</h4>
                                 <h5><a href="{{ url('login') }}">回登入頁使用Portal帳號登入</a></h5>
                             </div>
                         </div>
