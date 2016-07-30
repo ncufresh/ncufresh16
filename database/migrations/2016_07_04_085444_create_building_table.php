@@ -12,7 +12,7 @@ class CreateBuildingTable extends Migration
      */
     public function up()
     {
-        Schema::create('Buildings', function (Blueprint $table) {
+        Schema::create('buildings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('buildingName');
             $table->integer('building_id')->index();
