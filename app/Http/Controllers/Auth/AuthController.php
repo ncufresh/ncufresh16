@@ -49,9 +49,15 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'name' => 'required|max:10',
+            'email' => 'required|email|max:255|unique:users|regex:/^((?!(.*)cc\.ncu\.edu\.tw$).)*$/i',
             'password' => 'required|min:6|confirmed',
+        ],
+        [
+            'name.max' => '名字最多十個字元',
+            'email.regex' => '您不能使用@cc.ncu.edu.tw當結尾 請回登入頁使用Portal帳號登入',
+            'password.min' => '密碼至少六個字元',
+            'password.confirmed' => '您的密碼輸入的不一樣, 請再輸入一次'
         ]);
     }
 
