@@ -191,10 +191,12 @@ Route::delete('/Q&A/{Q}', 'QandAController@destroy');
 
 // 個人專區
 //************************************************************
+Route::get('/personal/chat', 'PersonalController@chat');
 Route::get('/personal/viewOther', 'PersonalController@viewOther');
 Route::get('/personal/{id}', 'PersonalController@index');
 Route::get('/personal/viewOther/search','PersonalController@search');
 Route::post('/personal/updateBackground', 'PersonalController@updateBackground');
+Route::post('/personal/chat', 'PersonalController@postChat');
 //************************************************************
 
 

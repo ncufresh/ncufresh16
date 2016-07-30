@@ -26,7 +26,7 @@ input[type=text] {
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
-   /* background-image: url('searchicon.png');*/
+    background-image: url('../img/personal/search.png');
     background-position: 10px 10px;
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
@@ -37,15 +37,16 @@ input[type=text] {
 input[type=text]:focus {
     width: 100%;
 }
+.jump{
+	display: none;  
+}
 </style>
 @stop
 @section('content')
 <div class="container">
-
-
-
 <div class="row">
-	<input id="search" type="text" name="search" placeholder="Search(全名)..輸入完請按Enter">
+	<input id="search" type="text" name="search" placeholder="Search..輸入完請按Enter">
+	<a class="btn btn-raised btn-info" href="{{action('PersonalController@chat')}}">留言哈拉</a>
 </div><br>
 <div class="row">
 	<div class="panel panel-success">
@@ -58,10 +59,6 @@ input[type=text]:focus {
 <div class="row">
 		@foreach($users as  $row)
 		<style type="text/css">
-
-		.jump{  /* 因為繼續閱讀是個超連結，要用a來定義 */
-			display: none;  /* 平常設定不要顯示 */
-		}
 		#a{{$row->id}}:hover .jump{
 		display: block;  /* 當滑鼠移至該篇文章時，設定以block顯示，可設定超連結以一個區塊顯示 */
 		width: auto;  /* 設定長與寬 */
@@ -83,10 +80,9 @@ input[type=text]:focus {
 				    
 			  	</div>		
 			</div>
-				<div class="jumbotron jump"><img class="img profile img-thumbnail" style="background-image: url({{asset('upload/avatars/'.$row->avatar)}});" src=""><a  href="{{action('PersonalController@index',$row->id)}}" class="btn btn-primary btn-raised">看大圖</a></div>
+				<div class="jumbotron jump"><img class="img profile img-thumbnail" style="background-image: url({{asset('upload/avatars/'.$row->avatar)}});"><a  href="{{action('PersonalController@index',$row->id)}}" class="btn btn-primary btn-raised">看大圖</a></div>
 		</section>
 		</div>
-
 
 		@endforeach
 </div>
@@ -107,20 +103,16 @@ input[type=text]:focus {
 		    		
 			    	$('.panel').addClass('panel-danger');
 					$('.panel').removeClass('panel-success');
-					$('.panel-heading').text("在試一次~(有沒有打錯字?)");
+					$('.panel-heading').text("沒有\""+keyy+"\"的相關搜尋喔~(有沒有打錯字?)");
 				}else{
 					$('.panel').addClass('panel-success');
 					$('.panel').removeClass('panel-danger');
 					$('.panel-heading').text("搜尋到囉~");
 		    		for (var i=0;i<data.length;i++){
-		    			str = "<span class='result'><style type='text/css'>.jump{ display: none;}#a"+data[i].id+":hover .jump{display: block;width: auto;height: auto;position: absolute; top: -20px;left: 50px;z-index: 100;}</style><div class='col-sm-3'><section id='a"+data[i].id+"'><div class='card'><img class='img card-img-top' style='background-image: url(\"../upload/background/"+data[i].background+"\");'><div class='card-block'><h4 class='card-title'>"+data[i].name+"</h4><p class='card-text' style='height:20px;'>"+data[i].intro+"</p></div></div><div class='jumbotron jump'><img class='img profile img-thumbnail' style='background-image: url(\"../upload/avatars/"+data[i].avatar+"\");'><a  href='/personal/"+data[i].id+"' class='btn btn-primary btn-raised'>看大圖</a></div></section></div></span>";
+		    			str = "<span class='result'><style type='text/css'>.jump{ display: none;}#a"+data[i].id+":hover .jump{display: block;width: auto;height: auto;position: absolute; top: -20px;left: 50px;z-index: 100;}</style><div class='col-sm-3'><section id='a"+data[i].id+"'><div class='card'><img class='img card-img-top' style='background-image: url(\"../upload/background/"+data[i].background+"\");'><div class='card-block'><h4 class='card-title'>"+data[i].name+"</h4><p class='card-text' style='height:20px;'>"+data[i].intro.substring(0, 10)+"</p></div></div><div class='jumbotron jump'><img class='img profile img-thumbnail' style='background-image: url(\"../upload/avatars/"+data[i].avatar+"\");'><a  href='/personal/"+data[i].id+"' class='btn btn-primary btn-raised'>看大圖</a></div></section></div></span>";
 			    	$("#show").append(str);
 
 		    	}
-
-
-
-
 			    	
 			    }
 			});

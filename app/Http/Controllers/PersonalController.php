@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Chat;
 use App\Http\Requests;
 use Auth;
 use Image;
@@ -17,8 +18,17 @@ class PersonalController extends Controller
     }
      public function viewOther()
     {
-    	$users = User::paginate(20);
+    	$users = User::paginate(16);
         return view('personal.viewOther',compact('users'));
+    }
+    public function chat()
+    {
+        $Chats = Chat::join('users', 'chats.user_id', '=', 'users.id')
+                        ->select('avatar','content','name','chats.created_at')
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+                  
+        return view('personal.chat',compact('Chats'));
     }
     public function updateBackground(Request $request){
         if($request->hasFile('background')){
@@ -50,9 +60,16 @@ class PersonalController extends Controller
         }
         return back();
     }
+    public function postChat(Request $request){
+        $chat = new Chat();
+        $chat->user_id = Auth::user()->id;
+        $chat->content = $request->content;
+        $chat->save();
+        return back();
+    }
     public function search(Request $test){
-
-        $user = User::where('name','like', '%'.$test->key.'%')->get();
+        if(!empty($test->key))
+            $user = User::where('name','like', '%'.$test->key.'%')->get();
         return $user;
     }
 }
