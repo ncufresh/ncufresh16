@@ -1,6 +1,14 @@
 @extends('layouts.layout')
 @section('title', '系所社團')
 @section('content')
+@section('js')
+<script type="text/javascript">
+
+	$(document).ready(function(){
+    	$(".container").fadeIn(1000);
+    });
+</script>
+@stop
 <style type="text/css">
 .col-sm-5{
 	margin-top: 0.5rem; 
@@ -9,6 +17,9 @@
 .img{
 	width: 80%;
     height: auto;
+}
+.container{
+    display: none;
 }
 .left{
 	margin-left: 130px;

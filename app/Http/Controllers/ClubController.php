@@ -67,7 +67,7 @@ class ClubController extends Controller
     	$club->clubs_join = $request->clubs_join;
     	$club->clubs_photo = json_encode($request->clubs_photo);//字串
     	$club->save();
-    	return redirect('/groups/clubs');
+    	return redirect('/groups/clubs/'.$club->clubs_kind);
 
     	
     	
@@ -109,7 +109,7 @@ class ClubController extends Controller
     	$clubs->clubs_join = $request->clubs_join;
     	$clubs->clubs_photo = json_encode($request->clubs_photo);
     	$clubs->save();
-        return redirect('/groups/clubs');
+        return redirect('/groups/clubs/'.$clubs->clubs_kind);
 	}
 
 	// public function upload()

@@ -1,11 +1,22 @@
 @extends('layouts.layout')
 @section('title', '系所社團')
 @section('content')
+@section('js')
+<script type="text/javascript">
+
+	$(document).ready(function(){
+    	$(".container").fadeIn(1000);
+    });
+</script>
+@stop
 <style type="text/css">
 body{
 	background-image: url({{asset('img/group/BG1.jpg')}});
 	background-repeat: no-repeat;
     background-size:cover;
+}
+.container{
+    display: none;
 }
 </style>
 <div class="container">
@@ -13,21 +24,34 @@ body{
 		<li><a href="/">首頁</a></li>
 		<li><a href="{{ url('/groups') }}">系所社團</a></li>
 		<li><a href="{{ url('/groups/clubs') }}">社團</a></li>
+		@foreach ($clubs as $club)
+			@if($club->clubs_kind == 1)
+			<li><a href="{{ url('/groups/clubs/1') }}">學術性</a></li>
+			@break	
+			@elseif($club->clubs_kind == 2)
+			<li><a href="{{ url('/groups/clubs/2') }}">康樂性</a></li>
+			@break
+			@elseif($club->clubs_kind == 3)
+			<li><a href="{{ url('/groups/clubs/3') }}">聯誼性</a></li>
+			@break
+			@else
+			<li><a href="{{ url('/groups/clubs/4') }}">服務性</a></li>
+			@break
+			@endif
+		@endforeach
 	</ol>
 <!-- 權限 -->
 @can('management')	
 	<a href="{{ url('/groups/clubs/create') }}" class="btn btn-success btn-raised" role="button">新增</a>
 @endcan
 <div class="row">
-	<div class="card-group">
 	@foreach ($clubs as $club)
-	<div class="col-sm-6" style="margin-top: 0.5rem; margin-bottom: 1rem;">
+	<div class="col-sm-4" style="margin-top: 0.5rem; margin-bottom: 1rem;">
 	
 		<!-- json_decode變陣列 -->
 		<?php if ($club->clubs_photo != null) {
 			$photo = json_decode($club->clubs_photo);
-		} ?>
-	<div class="card">	
+		} ?>	
 		@can('management')
 		<a href="{{ url('/groups/clubs/'.$club->id.'/edit') }}" class="btn btn-warning btn-raised btn-sm" role="button">編輯</a>
 		<form class="form" method="post" action="{{ URL::action('ClubController@destroy',$club->id) }}">
@@ -40,8 +64,8 @@ body{
 		  
 		  <!-- Trigger the modal with a button -->
 		  <!-- 要{{$club->id}} 才不會只顯示第一筆資料 -->
-		  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal{{$club->id}}"><h4 class="card-title">{{$club->clubs_intro}}</h4><img class="card-img-top" src="{{$club->clubs_file}}"></button>
-	</div>	
+		  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal{{$club->id}}"><img class="card-img-top" src="{{$club->clubs_file}}"></button>
+
 	</div>
 		  <!-- Modal -->
 		  <!-- 要{{$club->id}} 才不會只顯示第一筆資料 -->
@@ -106,9 +130,6 @@ body{
 			</div>
 		    </div>
 		</div>
-</div>
-
-
 @endforeach
 </div>
 </div>
