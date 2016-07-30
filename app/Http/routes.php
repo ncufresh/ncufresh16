@@ -36,6 +36,10 @@ Route::group( ['middleware' => 'admin'], function () {
   	Route::get('/groups/departments/create', 'DepartmentController@create');
   	Route::get('/groups/departments/{id}/edit', 'DepartmentController@edit');
   	Route::patch('/groups/departments/{departments_kind}', 'DepartmentController@update');
+    /*****************個人專區******************/
+    Route::post('/personal/chat/admin', 'PersonalController@postAttention');
+    Route::post('/personal/chat/admin/{id}', 'PersonalController@destroy');
+
 });
 //************************************************************
 
