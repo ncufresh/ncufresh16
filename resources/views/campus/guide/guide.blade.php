@@ -156,7 +156,7 @@
             </span>
             @endforeach
             <?php
-            if (count($mapDatas) > 1) {
+            if (count($mapDatas) > 0) {
                 ?>
                 <input type="hidden" value="{{$mapDatas[count($mapDatas)-1]->id}}" id="buildNum">
                 <?php
