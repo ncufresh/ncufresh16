@@ -42,7 +42,7 @@ Route::group( ['middleware' => 'god'], function () {
 });
 //************************************************************
 
-// 註冊,登入
+// 註冊,登入,修改資料
 //************************************************************
 Route::get('login', 'Auth\AuthController@showLoginForm');
 Route::post('login', 'Auth\AuthController@login');
@@ -51,6 +51,8 @@ Route::get('register', 'Auth\AuthController@showRegistrationForm');
 Route::post('register', 'Auth\AuthController@register');
 Route::get('/user/edit', 'UserController@edit');
 Route::post('/user/update', 'UserController@update');
+Route::get('/portal/login', 'SocialAccountController@redirect');
+Route::get('/portal/callback', 'SocialAccountController@callback');
 //************************************************************
 
 // 首頁
@@ -61,10 +63,10 @@ Route::get('/', 'HomeController@index');
 // 新生必讀
 //************************************************************
 Route::group(['prefix' => 'doc'], function () {
+	# 主頁面
     Route::get('/', 'DocumentController@index');
     # 大學部
     Route::group(['prefix' => 'under'], function () {
-    	Route::get('/', 'DocumentController@underIndex');
 		Route::post('/', 'DocumentController@underStore');
 		Route::delete('/{under}', 'DocumentController@underDestroy');
 		Route::get('/{under}/edit','DocumentController@underEdit');
@@ -72,11 +74,17 @@ Route::group(['prefix' => 'doc'], function () {
     });
 	# 研究所
 	Route::group(['prefix' => 'graduate'], function () {
-		Route::get('/', 'DocumentController@graduateIndex');
 		Route::post('/', 'DocumentController@graduateStore');
 		Route::delete('/{graduate}', 'DocumentController@graduateDestroy');
 		Route::get('/{graduate}/edit','DocumentController@graduateEdit');
 		Route::patch('/{graduate}', 'DocumentController@graduateUpdate');
+    });
+    # 綜合
+    Route::group(['prefix' => 'mix'], function () {
+		Route::post('/', 'DocumentController@mixStore');
+		Route::delete('/{mix}', 'DocumentController@mixDestroy');
+		Route::get('/{mix}/edit','DocumentController@mixEdit');
+		Route::patch('/{mix}', 'DocumentController@mixUpdate');
     });
 });
 
@@ -84,38 +92,41 @@ Route::group(['prefix' => 'doc'], function () {
 
 // 校園導覽
 //************************************************************
-Route::get('/campus','CampusController@index');
-Route::get('/campus/guide','CampusController@guide');
-//導向建築物
-Route::get('/campus/newData','CampusController@newData');
-//oldfunction
-Route::get('/campus/create','CampusController@createData');
-//新增建築物
-Route::post('/campus/newData/Building','CampusController@createBuilding');
-//編輯建築物 查詢建築資料
-Route::get('/campus/newData/Building/{bid?}','CampusController@getBuilding');
-//編輯建築物 更新建築物資料
-Route::put('/campus/newData/Building/edit/{bid?}','CampusController@putBuilding');
-//刪除資料
-Route::delete('/campus/newData/Building/{bid?}', 'CampusController@dropBuilding');
-//編輯圖片 查詢圖片資料
-Route::get('/campus/newData/Building/img/{imgid?}', 'CampusController@getBuildingImg');
-//新增圖片(資料型態FromData只能用post)
-Route::post('/campus/newData/Building/newImg/{bid?}', 'CampusController@newBuildingImg');
-//刪除圖片
-Route::delete('/campus/newData/Building/delImg/{bid?}', 'CampusController@dropBuildingImg');
-//導向地圖物件
-Route::get('/campus/newObj','CampusController@newObj');
-//新增地圖物件
-Route::post('/campus/newObj/createObj','CampusController@createObj');
-//查詢地圖物件
-Route::get('/campus/newObj/createObj/{bid?}','CampusController@getObj');
-//更新地圖物件
-Route::put('/campus/newObj/createObj/updateObj/{bid?}','CampusController@updateObj');
-//刪除地圖物件
-Route::delete('/campus/newObj/createObj/{bid?}','CampusController@dropObj');
-//主頁 查詢建築物資料
-Route::get('/campus/guide/getBuild/{bid?}','CampusController@getIndexBuilding');
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/campus','CampusController@index');
+    Route::get('/campus/guide','CampusController@guide');
+    //導向建築物
+    Route::get('/campus/newData','CampusController@newData');
+    //oldfunction
+    Route::get('/campus/create','CampusController@createData');
+    //新增建築物
+    Route::post('/campus/newData/Building','CampusController@createBuilding');
+    //編輯建築物 查詢建築資料
+    Route::get('/campus/newData/Building/{bid?}','CampusController@getBuilding');
+    //編輯建築物 更新建築物資料
+    Route::put('/campus/newData/Building/edit/{bid?}','CampusController@putBuilding');
+    //刪除資料
+    Route::delete('/campus/newData/Building/{bid?}', 'CampusController@dropBuilding');
+    //編輯圖片 查詢圖片資料
+    Route::get('/campus/newData/Building/img/{imgid?}', 'CampusController@getBuildingImg');
+    //新增圖片(資料型態FromData只能用post)
+    Route::post('/campus/newData/Building/newImg/{bid?}', 'CampusController@newBuildingImg');
+    //刪除圖片
+    Route::delete('/campus/newData/Building/delImg/{bid?}', 'CampusController@dropBuildingImg');
+    //導向地圖物件
+    Route::get('/campus/newObj','CampusController@newObj');
+    //新增地圖物件
+    Route::post('/campus/newObj/createObj','CampusController@createObj');
+    //查詢地圖物件
+    Route::get('/campus/newObj/createObj/{bid?}','CampusController@getObj');
+    //更新地圖物件
+    Route::put('/campus/newObj/createObj/updateObj/{bid?}','CampusController@updateObj');
+    //刪除地圖物件
+    Route::delete('/campus/newObj/createObj/{bid?}','CampusController@dropObj');
+    //主頁 查詢建築物資料
+    Route::get('/campus/guide/getBuild/{bid?}','CampusController@getIndexBuilding');
+
+});
 
 
 
@@ -132,10 +143,11 @@ Route::get('groups', function () {
 #社團
 Route::get('/groups/clubs', 'ClubController@index');
 Route::get('/groups/clubs/{clubs_kind}', 'ClubController@show');
-Route::delete('/groups/clubs/{id}/{key}', 'ClubController@destroy');
+Route::delete('/groups/clubs/{id}', 'ClubController@destroy');
 #系所
 Route::get('/groups/departments', 'DepartmentController@index');
 Route::get('/groups/departments/{departments_kind}', 'DepartmentController@show');
+Route::delete('/groups/departments/{id}', 'DepartmentController@destroy');
 // #各社團
 // Route::get('/groups/clubs/{clubs_id}/create', 'AllclubController@create');
 // Route::get('/groups/clubs/{clubs_id}', 'AllclubController@index');
@@ -179,8 +191,12 @@ Route::delete('/Q&A/{Q}', 'QandAController@destroy');
 
 // 個人專區
 //************************************************************
-Route::resource('/personal', 'PersonalController');
-Route::post('/personal/updateBackground', 'UserController@updateBackground');
+Route::get('/personal/chat', 'PersonalController@chat');
+Route::get('/personal/viewOther', 'PersonalController@viewOther');
+Route::get('/personal/{id}', 'PersonalController@index');
+Route::get('/personal/viewOther/search','PersonalController@search');
+Route::post('/personal/updateBackground', 'PersonalController@updateBackground');
+Route::post('/personal/chat', 'PersonalController@postChat');
 //************************************************************
 
 
@@ -205,10 +221,13 @@ Route::get('/videos/{videos}', 'videoController@show');
 //************************************************************
 Route::get('/life','LifeController@getTitle');
 Route::get('/life/{topic}/{content}','LifeController@getContent');
-Route::post('/life', 'LifeController@addTitle');
-Route::post('/life/{topic}/{content}/add', 'LifeController@addMore');
-Route::patch('/life/{topic}/{content}/update','LifeController@update');
-Route::delete('/life/{id}', 'LifeController@deleteTitle');
-Route::delete('/life/{id}/{more_id}', 'LifeController@deleteMore');
+Route::group( ['middleware' => 'admin'], function () {
+    Route::post('/life', 'LifeController@addTitle');
+	Route::post('/life/{topic}/{content}/add', 'LifeController@addDetail');
+	Route::patch('/life/{topic}/{content}/update','LifeController@update');
+	Route::delete('/life/{id}', 'LifeController@deleteTitle');
+	Route::delete('/life/{id}/deleteDetail', 'LifeController@deleteDetail');
+});
+
 
 //************************************************************

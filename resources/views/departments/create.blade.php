@@ -2,15 +2,14 @@
 @section('title', '系所社團')
 @section('content')
 
-
+<div class="container">
 	<form action="{{ URL::action('DepartmentController@store') }}" method="post">
 	{{csrf_field()}}
-		<br><br><br><br><br><br><br><br>
-		<div>
-			
+		<div class="content">
+			<div class="form-group">	
 			<label>選擇類別</label>
 				<div>
-					<select name="departments_kind">
+					<select class="selectpicker" data-live-search="true" name="departments_kind">
 						<option value="1">文學院</option>
 						<option value="2">理學院</option>
 						<option value="3">工學院</option>
@@ -23,12 +22,15 @@
 				</div>
 				
 		</div>
-		<div>
-			<input type="text" name="departments_intro">
-			<label>系所名稱</label>
+
+		<div class="form-group">
+			<label for="usr">系所名稱</label>
+			<input type="text" class="form-control" id="usr" name="departments_intro">
 		</div>
- 		
-		<!-- 系所封面照 -->		
+		 		
+		<!-- 系所封面照 -->	
+		<div class="form-group">
+		<label>系所封面照</label>	
 		<div class="input-group">
 			<span class="input-group-btn">
 		    <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
@@ -40,53 +42,65 @@
        		</input>
 		</div>
 		<img id="holder" style="margin-top:15px;max-height:100px;">
+		</div>
 
-
-
-
-		<div>
-			<input type="text" name="departments_summary">
+		<div class="form-group">
 			<label>系所介紹</label>
-			<input id="button1" type="button" value="Add photo" />
- 			<div id="test1"></div>
+			<textarea type="text" name="departments_summary"></textarea>
+			<div id="test1">
+				<input id="button1" class="btn btn-warning btn-raised" type="button" value="Add photo" />
+ 			</div>
 		</div>
 
-		<div>
-			<input type="text" name="departments_association">
+		<div class="form-group">
 			<label>系學會</label>
-			<input id="button2" type="button" value="Add photo" />
- 			<div id="test2"></div>
-		</div>
-
-		<div>
-			<input type="text" name="departments_activity">
-			<label>系上活動</label>
-			<input id="button3" type="button" value="Add photo" />
- 			<div id="test3"></div>
-		</div>
-
-		<div>
-			<input type="text" name="departments_sport">
-			<label>系隊</label>
-			<input id="button4" type="button" value="Add photo" />
- 			<div id="test4"></div>
-		</div>
-
-		<div>
-			<input type="text" name="departments_course">
-			<label>系上課程</label>
-			<input id="button5" type="button" value="Add photo" />
- 			<div id="test5"></div>
+			<textarea type="text" name="departments_association"></textarea>
+			<div id="test2">
+				<input id="button2" class="btn btn-warning btn-raised" type="button" value="Add photo" />
+ 			</div>
 		</div>
 		
+		<div class="form-group">
+			<label>系上活動</label>
+			<textarea type="text" name="departments_activity"></textarea>
+			<div id="test3">
+				<input id="button3" class="btn btn-warning btn-raised" type="button" value="Add photo" />
+ 			</div>
+		</div>
+
+		<div class="form-group">
+			<label>系隊</label>
+			<textarea type="text" name="departments_sport"></textarea>
+			<div id="test4">
+				<input id="button4" class="btn btn-warning btn-raised" type="button" value="Add photo" />
+ 			</div>
+		</div>
+
+		<div class="form-group">
+			<label>系上課程</label>
+			<textarea type="text" name="departments_course"></textarea>
+			<div id="test5">
+				<input id="button5" class="btn btn-warning btn-raised" type="button" value="Add photo" />
+ 			</div>
+		</div>
+
 		<th colspan="2">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-            <input type="submit" value="submit">
+            <input type="submit" value="submit" class="btn btn-primary btn-raised" >
         </th>
-	
-	</form>
+    </div>
+</div>
+</form>
 
 	@section('js')
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+	<script type="text/javascript">
+	    $('.selectpicker').selectpicker({
+	    	style: 'btn-primary',
+  			size: 8
+	    });
+	</script>
 	<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
 	<script type="text/javascript">
 	$('#lfm').filemanager('image');
@@ -167,6 +181,39 @@
 
 	});
 
+	</script>
+	<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+	<script type="text/javascript">
+	CKEDITOR.replace( 'departments_summary', {
+	    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+	    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+	    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+	    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+	});
+	CKEDITOR.replace( 'departments_association', {
+	    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+	    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+	    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+	    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+	});
+	CKEDITOR.replace( 'departments_activity', {
+	    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+	    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+	    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+	    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+	});
+	CKEDITOR.replace( 'departments_sport', {
+	    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+	    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+	    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+	    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+	});
+	CKEDITOR.replace( 'departments_course', {
+	    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+	    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+	    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+	    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+	});
 	</script>
 	@stop
 

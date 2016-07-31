@@ -1,15 +1,13 @@
 $(document).ready(function() {
-    // 根據視窗調整按鈕大小、參考值還需要調整!!!
-
     // fadeIn() animation
     $("body").fadeIn("slow");
 
-    $(".jumbotron").css("padding-top", $("nav").height());
+    // 高度為螢幕高度
+    $("#topScreen, #midScreen").css("height", $(window).innerHeight());
 
-    // 讓上方畫面的內容垂直置中
-    $("#outerLeftSidebar, #outerRightSidebar").css({
-        "padding-top": ($(".jumbotron").height() - $("#outerLeftSidebar").height()) / 2
-    });
+    // 垂直置中
+    $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
+    
 
     // 點下 "開啟大學部畫面" 或 "開啟研究所畫面" 的圖片時
     $("p a[href='#under-1'], p a[href='#graduate-1']").on('click', function(event) {
@@ -20,9 +18,11 @@ $(document).ready(function() {
         if (hash === "#under-1") {
             $("#leftScreen").fadeIn("fast");
             $("#rightScreen").hide();
+            $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
         } else {
             $("#leftScreen").hide();
             $("#rightScreen").fadeIn("fast");
+            $("#innerRightSidenav").css("padding-top", ($(window).innerHeight() - $("#innerRightSidenav").height()) / 2);
         }
         // Using jQuery's animate() method to add smooth page scroll
         $('html, body').animate({
@@ -100,20 +100,19 @@ $(document).ready(function() {
 
     // 調整視窗大小時
     $(window).resize(function() {
-        $(".jumbotron").css("padding-top", $("nav").height() + $("nav").height());
 
-        // 讓上方畫面的內容垂直置中
-        $("#outerLeftSidebar, #outerRightSidebar").css({
-            "padding-top": ($(".jumbotron").height() - $("#outerLeftSidebar").height()) / 2
-        });
     });
 
     // 
-    $(".little-button").click(function() {
+    $("a[href='#midScreen'], a[href='#bottomScreen']").on('click', function(event) {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+        // Store hash
+        var hash = this.hash;
         // Using jQuery's animate() method to add smooth page scroll
         // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
         $('html, body').animate({
-            scrollTop: $("#bottomScreen").offset().top - $("nav").height()
+            scrollTop: $(hash).offset().top - $("nav").height()
         }, "slow");
     });
 
@@ -124,5 +123,4 @@ $(document).ready(function() {
         $(".test3").text();
         $(".test4").text();
     }
-    // test();
 });

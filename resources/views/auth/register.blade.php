@@ -29,6 +29,13 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <h4>提醒：email無法使用@cc.ncu.edu.tw結尾, 請使用Portal帳號登入</h4>
+                                <h5><a href="{{ url('login') }}">回登入頁使用Portal帳號登入</a></h5>
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-2 control-label">Name</label>
 

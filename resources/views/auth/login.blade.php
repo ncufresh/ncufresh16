@@ -22,9 +22,18 @@
 
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
-                                <a href="{{ url('/register') }}" class="btn btn-success btn-lg btn-block btn-raised">
+                                <h4>校內使用者登入 <a href="http://www.cc.ncu.edu.tw/account/freshman/" class="btn btn-success" target="_blank">新生帳號啟動說明</a></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <a href="{{ url('/portal/login') }}" class="btn btn-success btn-lg btn-block btn-raised">
                                     <i class="fa fa-mortar-board"></i> 校內Portal登入
                                 </a>
+                                {{-- <div class="alert alert-dismissible alert-danger">
+                                  <button type="button" class="close" data-dismiss="alert">×</button>
+                                  <h3>因太多使用者而超出學校規定的流量限制, Portal登入壞掉了, 請等待管理員維修</h3>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="row">

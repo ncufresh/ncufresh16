@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use DB;
 use Illuminate\Support\Facades\Storage;
 use App\Buildingcategory;
@@ -17,8 +16,13 @@ use App\mapobject;
 class CampusController extends Controller {
 
     public function index() {
-
+        $mapobjects = DB::table('mapobjects')
+                ->select('mapobjects.*', 'Buildings.*', 'mapobjects.id as objId')
+                ->join('Buildings', 'mapobjects.Building_id', '=', 'Buildings.id')
+                ->get();
+//        return $mapobjects;
         return view('campus.index', [
+            'mapobjects' => $mapobjects,
         ]);
     }
 
@@ -28,12 +32,10 @@ class CampusController extends Controller {
                 ->select('mapobjects.*', 'Buildings.*', 'mapobjects.id as objId')
                 ->join('Buildings', 'mapobjects.Building_id', '=', 'Buildings.id')
                 ->get();
-        $buildimgs = Buildingimg::all();
 //        return $mapDatas;
         return view('campus.guide.guide', [
             'building' => $building,
             'mapDatas' => $mapDatas,
-            'buildimgs' => $buildimgs,
         ]);
     }
 
@@ -159,7 +161,7 @@ class CampusController extends Controller {
 
     public function dropBuilding($bid) {
 
-        $imgsNeedDel = DB::table('buildingimgs')->where('BuildingId', $bid)->get();
+        $imgsNeedDel = DB::table('BuildingImgs')->where('BuildingId', $bid)->get();
 
         foreach ($imgsNeedDel as $imgNeedDel) {
             $path = 'img/campus/';
@@ -168,7 +170,7 @@ class CampusController extends Controller {
         }
 
 
-        DB::table('buildingimgs')->where('BuildingId', $bid)->delete();
+        DB::table('BuildingImgs')->where('BuildingId', $bid)->delete();
 
 
         $building = Building::destroy($bid);
@@ -176,7 +178,7 @@ class CampusController extends Controller {
     }
 
     public function getBuildingImg($imgid) {
-        $img = DB::table('buildingimgs')->where('BuildingId', '=', $imgid)->get();
+        $img = DB::table('BuildingImgs')->where('BuildingId', '=', $imgid)->get();
         return response()->json($img);
     }
 
@@ -207,7 +209,7 @@ class CampusController extends Controller {
     }
 
     public function dropBuildingImg($bid) {
-        $img = DB::table('buildingimgs')->where('id', '=', $bid)->first();
+        $img = DB::table('BuildingImgs')->where('id', '=', $bid)->first();
         $path = 'img/campus/';
         $filename = $img->imgUrl;
 
@@ -335,7 +337,7 @@ class CampusController extends Controller {
                 ->join('Buildings', 'mapobjects.Building_id', '=', 'Buildings.id')
                 ->where('mapobjects.Building_id',$bid)
                 ->first();
-        $buildimgs = DB::table('buildingimgs')
+        $buildimgs = DB::table('BuildingImgs')
                 ->where('BuildingId',$bid)
                 ->get();
 //        return $buildimgs;

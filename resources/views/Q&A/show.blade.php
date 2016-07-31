@@ -30,7 +30,7 @@ CKEDITOR.replace( 'response', {
           <div class="panel panel-primary">
               <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/Q.png') }}" width="10%" height="10%"><b> :{{ $Q->topic }}</b></h1></div>
               <div class="panel-body">
-              <h3><b>{{$Q->content}}</b></h3><h4><p>
+              <h3><b>{!!$Q->content!!}</b></h3><h4><p>
                
               </div>
           </div>

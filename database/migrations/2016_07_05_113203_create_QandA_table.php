@@ -16,8 +16,8 @@ class CreateQandATable extends Migration
             $table->increments('id');
             $table->string('classify');
             $table->string('topic');
-            $table->string('content');
-            $table->string('response');
+            $table->text('content');
+            $table->text('response');
             $table->integer('asked_id');
             $table->integer('click_count');
 

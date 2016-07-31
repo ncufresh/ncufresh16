@@ -12,7 +12,7 @@ class CreateBuildingTable extends Migration
      */
     public function up()
     {
-        Schema::create('buildings', function (Blueprint $table) {
+        Schema::create('Buildings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('buildingName');
             $table->integer('building_id')->index();
@@ -28,6 +28,6 @@ class CreateBuildingTable extends Migration
      */
     public function down()
     {
-        Schema::drop('buildings');
+        Schema::drop('Buildings');
     }
 }

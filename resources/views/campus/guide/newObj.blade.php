@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 <style>
     body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
-    main { background-image:url('../img/home/spring.png'); }
+    main { background-image:url("{{asset('img/layout/spring.png')}}"); }
     
     .imgg{
         width: 40%;
@@ -43,6 +43,7 @@
                 <div class="modal-body">
 
                     <form id="mapObjfrm" name="mapObjfrm" class="form-horizontal" novalidate="" action="POST" enctype="multipart/form-data" files="true">
+                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="inputCate" class="col-sm-3 control-label">建築物名稱</label>
                             <div class="col-sm-9">
@@ -112,6 +113,7 @@
                 <div class="modal-body">
 
                     <form id="editObjfrm" name="editObjfrm" class="form-horizontal" novalidate="" action="POST" >
+                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="inputX座標" class="col-sm-3 control-label">建築物X座標</label>
                             <div class="col-sm-9">
@@ -143,7 +145,7 @@
                     <lable for="prewiew" class="col-sm-3 control-label">預覽</lable><br>
 
                     <div class="map">
-                        <img src='/img/campus/dontdel/background.png' id="map" width="95%" >    
+                        <img src='/img/campus/dontdel/background.png' id="map" width="100%"  >    
                         <span>
                             <img src="" class="mapObj" id='objSample' alt="no found" >
                         </span>
@@ -211,7 +213,7 @@
                     var relX = imgOffset.left - parentOffset.left;
                     var X = Math.round(1000000 * (relX / $('#map').width())) / 10000;
                     var relY = imgOffset.top - parentOffset.top;
-                    var Y = Math.round(1000000 * (relY / $('#map').height())) / 10000 - 1.1;
+                    var Y = Math.round(1000000 * (relY / $('#map').height())) / 10000;
                     console.log("relX:" + relX);
                     console.log("width" + $('#map').width());
                     console.log("X:" + X);

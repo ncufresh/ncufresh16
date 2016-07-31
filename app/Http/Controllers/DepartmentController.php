@@ -41,11 +41,14 @@ class DepartmentController extends Controller
     	$department->departments_photo_4 = json_encode($request->departments_photo_4);
     	$department->departments_photo_5 = json_encode($request->departments_photo_5);
     	$department->save();
-    	return redirect('/groups/departments');
+    	return redirect('/groups/departments/'.$department->departments_kind);
 	}
 
-	public function destroy(Request $request, Message $message)
-	{
+	public function destroy($id)
+	{ 
+        $departments = Department::find($id);
+        $departments->delete();
+        return redirect('/groups/departments');
     	
 	}
 
@@ -78,6 +81,6 @@ class DepartmentController extends Controller
         $departments->departments_photo_4 = json_encode($request->departments_photo_4);
         $departments->departments_photo_5 = json_encode($request->departments_photo_5);
     	$departments->save();
-    	return redirect('/groups/departments');
+    	return redirect('/groups/departments/'.$departments->departments_kind);
 	}
 }

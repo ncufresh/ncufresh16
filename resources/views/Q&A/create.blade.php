@@ -1,6 +1,16 @@
 @extends('layouts.layout')
 @section('title','提出疑問|Q&A')
-
+@section('js')
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript">
+  CKEDITOR.replace( 'content', {
+    filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
+    filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+    filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
+    filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+});
+</script>
+@stop
 
 @section('content')
 <div class="container">
@@ -22,12 +32,9 @@
               <label class="control-label" for="focusedInput1">標題</label>
               <input class="form-control" name="topic" type="text">
             </div>
-
-             <div class="form-group label-floating">
-              <label class="control-label">詳細描述</label>
-              <textarea name="content" class="form-control" rows="5"></textarea>
-              <span class="help-block">TESTTTT</span>
-            </div>
+            <label class="control-label">詳細描述</label>
+              <textarea name="content" class="form-control" rows="5">可以描述詳細一點喔</textarea>
+            
             
             <button type="submit" class="col-md-3 btn btn-info btn-raised">Submit</button>
           </form>
