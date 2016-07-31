@@ -77,7 +77,7 @@ class ClubController extends Controller
 	{
     	$clubs = Club::find($id);
         $clubs->delete();
-        return redirect('/groups/clubs');
+        return redirect('/groups/clubs/'.$clubs->clubs_kind);
         
 	}
 

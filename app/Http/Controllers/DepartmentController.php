@@ -48,7 +48,7 @@ class DepartmentController extends Controller
 	{ 
         $departments = Department::find($id);
         $departments->delete();
-        return redirect('/groups/departments');
+        return redirect('/groups/departments/'.$departments->departments_kind);
     	
 	}
 
