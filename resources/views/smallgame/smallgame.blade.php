@@ -405,6 +405,8 @@ var hurt_deviation_height;//讓角色比較不容易受傷，讓傷害偵測變�
 
 
 var score=0;//分數，以企畫的角度，等於秒數
+
+
 var score_bool=false;
 
 
@@ -791,7 +793,7 @@ function draw_score_onTheCanvas(){//in the state game_4
     context.fillStyle = "#FFFFFF";
     context.textAlign = "left";
     context.textBaseline = "bottom";
-    context.fillText("分數:"+score, 0, 60);
+    context.fillText("分數:"+score , 0, 60);
 }
 function draw_score_onTheCanvas_gameover(){//in the state game_4
   //繪製分數
