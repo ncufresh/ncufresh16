@@ -53,11 +53,11 @@
         <h2>目前是這三張,會照順序播</h2>
     </div>
     <div class="col-md-8 col-md-offset-2">
-        <img class="img-responsive" src="{{asset('upload/home_bg/background1.jpg')}}" alt="" />
+        <img class="img-responsive" src="{{asset('img/home/background1.jpg')}}"/>
         <br>
-        <img class="img-responsive" src="{{asset('upload/home_bg/background2.jpg')}}" alt="" />
+        <img class="img-responsive" src="{{asset('img/home/background2.jpg')}}"/>
         <br>
-        <img class="img-responsive" src="{{asset('upload/home_bg/background3.jpg')}}" alt="" />
+        <img class="img-responsive" src="{{asset('img/home/background3.jpg')}}"/>
     </div>
 </div>
 </div>

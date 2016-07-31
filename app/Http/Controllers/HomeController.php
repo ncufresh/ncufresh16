@@ -71,7 +71,7 @@ class HomeController extends Controller
         $img = \Image::make($file); // read img form file
 
         // 刪舊,存新
-        $filepath = public_path('upload/home_bg/background'.$i.'.jpg');
+        $filepath = public_path('img/home/background'.$i.'.jpg');
         \File::delete($filepath);
         $img->save($filepath);
     }
