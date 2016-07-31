@@ -32,7 +32,7 @@ body{
 }
 
 .row{
-	margin-left: 60px;
+	margin-left: 70px;
 }
 </style>
 	<div class="container">
@@ -62,13 +62,13 @@ body{
 			</select>
 			<div class="row">
 				<a href="{{ url('/groups/departments') }}">
-					<div class="col-sm-6 col-xs-12">
+					<div class="col-sm-6 col-xs-12 col-md-6 col-lg-6">
 						<img class="img" src="{{ asset('img/group/dep.png') }}">
 							<h1 class="text" style="font-size: 1.4cm">系所</h1>
 					</div>
 				</a>
 				<a href="{{ url('/groups/clubs') }}">
-					<div class="col-sm-6 col-xs-12">
+					<div class="col-sm-6 col-xs-12 col-md-6 col-lg-6">
 						<img class="img" src="{{ asset('img/group/club.png') }}">
 							<h1 class="text" style="font-size: 1.4cm">社團</h1>
 					</div>

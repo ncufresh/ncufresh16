@@ -32,6 +32,18 @@ body{
 	margin-top: 0.5rem; 
 	margin-bottom: 1rem;
 }
+.modal-content{
+	background-image: url({{asset('img/group/BG1.jpg')}});
+	background-repeat: no-repeat;
+    background-size:cover;
+    color: #333;
+}
+.modal-title{
+	margin-bottom: 25px;
+}
+h3{
+	text-align:center;
+}
 </style>
 <div class="container">
 	<ol class="breadcrumb">
@@ -79,7 +91,7 @@ body{
 @endcan
 <div class="row">
 	@foreach ($clubs as $club)
-	<div class="col-sm-4 col-xs-12">
+	<div class="col-sm-4 col-xs-12 col-md-3 col-lg-3">
 	
 		<!-- json_decode變陣列 -->
 		<?php if ($club->clubs_photo != null) {

@@ -23,8 +23,24 @@ body{
     background-size:cover;
     color: #333;
 }
+.modal-content{
+	background-image: url({{asset('img/group/BG1.jpg')}});
+	background-repeat: no-repeat;
+    background-size:cover;
+    color: #333;
+}
 .nav-pills{
 	border-bottom: 1px solid #ddd;
+}
+.img{
+	width: 90%;
+    height: auto;
+}
+.modal-title{
+	margin-bottom: 25px;
+}
+h3{
+	text-align:center;
 }
 </style>
 <div class="container">
@@ -85,7 +101,7 @@ body{
 @endcan
 <div class="row">
 	@foreach ($departments as $department)
-	<div class="col-sm-4 col-xs-12">
+	<div class="col-sm-4 col-xs-12 col-md-3 col-lg-3">
 	
 		<!-- json_decode變陣列 -->
 		<?php if ($department->departments_photo_1 != null) {
@@ -131,9 +147,9 @@ body{
 					  <ul class="nav nav-pills ">
 					    <li class="active"><a data-toggle="tab" href="#home{{$department->id}}">系所介紹</a></li>
 					    <li><a data-toggle="tab" href="#menu1{{$department->id}}">系學會</a></li>
-					    <li><a data-toggle="tab" href="#menu2{{$department->id}}">系上活動</a></li>
+					    <li><a data-toggle="tab" href="#menu2{{$department->id}}">系所活動</a></li>
 					    <li><a data-toggle="tab" href="#menu3{{$department->id}}">系隊</a></li>
-					    <li><a data-toggle="tab" href="#menu4{{$department->id}}">系上課程</a></li>
+					    <li><a data-toggle="tab" href="#menu4{{$department->id}}">系所課程</a></li>
 					  </ul>
 
 					  <div class="tab-content">
@@ -228,7 +244,7 @@ body{
 					      	<!-- 幻燈片2 -->
 					    </div>
 					    <div id="menu2{{$department->id}}" class="tab-pane fade">
-					      <h3>系上活動</h3>
+					      <h3>系所活動</h3>
 					      <p>{!!$department->departments_activity!!}</p>
 					      <!-- 幻燈片3 -->
 					      @if($photo3 != null)
@@ -318,7 +334,7 @@ body{
 					      	<!-- 幻燈片4 -->
 					    </div>
 					    <div id="menu4{{$department->id}}" class="tab-pane fade">
-					      <h3>系上課程</h3>
+					      <h3>系所課程</h3>
 					      <p>{!!$department->departments_course!!}</p>
 					      <!-- 幻燈片5 -->
 					      @if($photo5 != null)
