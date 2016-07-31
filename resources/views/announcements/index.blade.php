@@ -53,7 +53,10 @@ $(document).ready(function(){
 @section('content')
 
 <div class="container">
-
+<div class="jumbotron">
+    <h2>公告</h2>
+    <p>統整所有可以使用後台的地方</p>
+</div>
 <!-- 新增公告 -->
 <div class="row">
     <a href="#create" class="btn btn-raised btn-danger" data-toggle="collapse" ><i class="fa fa-plus" aria-hidden="true"></i> 新增公告</a>
@@ -91,7 +94,7 @@ $(document).ready(function(){
 
 <!-- 顯示所有公告 -->
 <div class="row">
-    <h3>公告</h3>
+    <h3>所有公告</h3>
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover ">
             <thead>
