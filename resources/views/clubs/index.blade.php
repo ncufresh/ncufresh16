@@ -28,7 +28,7 @@ body{
     height: auto;
 }
 .col-sm-3{
-	margin-top: 8rem;
+	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 }
 .row{

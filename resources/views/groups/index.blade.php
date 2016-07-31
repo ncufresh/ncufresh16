@@ -18,12 +18,8 @@
 	</script>
 @stop
 <style type="text/css">
-.col-sm-5{
-	margin-top: 0.5rem; 
-	margin-bottom: 1rem;"
-}
 .img{
-	width: 80%;
+	width: 70%;
     height: auto;
 }
 .container{
@@ -34,8 +30,9 @@ body{
 	background-repeat: no-repeat;
     background-size:cover;
 }
-.left{
-	margin-left: 130px;
+
+.row{
+	margin-left: 60px;
 }
 </style>
 	<div class="container">
@@ -65,14 +62,14 @@ body{
 			</select>
 			<div class="row">
 				<a href="{{ url('/groups/departments') }}">
-					<div class="col-sm-5 left">
-						<img class="img" src="{{ asset('img/group/dep.png') }}" width="304" height="304">
+					<div class="col-sm-6 col-xs-12">
+						<img class="img" src="{{ asset('img/group/dep.png') }}">
 							<h1 class="text" style="font-size: 1.4cm">系所</h1>
 					</div>
 				</a>
 				<a href="{{ url('/groups/clubs') }}">
-					<div class="col-sm-5">
-						<img class="img" src="{{ asset('img/group/club.png') }}" width="304" height="304">
+					<div class="col-sm-6 col-xs-12">
+						<img class="img" src="{{ asset('img/group/club.png') }}">
 							<h1 class="text" style="font-size: 1.4cm">社團</h1>
 					</div>
 				</a>

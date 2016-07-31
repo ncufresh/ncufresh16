@@ -24,6 +24,14 @@ body{
 	background-repeat: no-repeat;
     background-size:cover;
 }
+.col-sm-4{
+	margin-top: 0.5rem; 
+	margin-bottom: 1rem;
+}
+.col-xs-12{
+	margin-top: 0.5rem; 
+	margin-bottom: 1rem;
+}
 </style>
 <div class="container">
 	<ol class="breadcrumb">
@@ -71,7 +79,7 @@ body{
 @endcan
 <div class="row">
 	@foreach ($clubs as $club)
-	<div class="col-sm-4" style="margin-top: 0.5rem; margin-bottom: 1rem;">
+	<div class="col-sm-4 col-xs-12">
 	
 		<!-- json_decode變陣列 -->
 		<?php if ($club->clubs_photo != null) {

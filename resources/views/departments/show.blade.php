@@ -85,7 +85,7 @@ body{
 @endcan
 <div class="row">
 	@foreach ($departments as $department)
-	<div class="col-sm-4">
+	<div class="col-sm-4 col-xs-12">
 	
 		<!-- json_decode變陣列 -->
 		<?php if ($department->departments_photo_1 != null) {
