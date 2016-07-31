@@ -28,6 +28,19 @@
                 上面有個紅色的按鈕可以新增公告
             </div>
         </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a href="{{ url('/home/background') }}">
+                        變更首頁背景 <i class="fa fa-link fa-lg fa-flip-horizontal"></i>
+                    </a>
+                </h3>
+            </div>
+            <div class="panel-body">
+                請壓成JPG,小於1MB(1024KB)<br>
+                改副檔名,並不是"轉檔",不會真的改變檔案格式,請使用專業軟體
+            </div>
+        </div>
         <div class="panel panel-danger">
             <div class="panel-heading">
                 <h3 class="panel-title">

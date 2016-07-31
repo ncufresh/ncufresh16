@@ -14,8 +14,11 @@ Route::group( ['middleware' => 'admin'], function () {
     Route::get('/test', function () { return 'just for test'; });
     /*****************後台統整連結******************/
     Route::get('/admin', function(){
-        return view('admin');
+        return view('dashboard.admin');
     });
+    /*****************首頁背景******************/
+    Route::get('/home/background', 'HomeController@change_bg');
+    Route::post('/home/background', 'HomeController@update_bg');
     /*****************Q&A******************/
     Route::get('/Q&A/admin/', 'QandAController@indexAdmin');
     Route::get('/Q&A/admin/{Q}', 'QandAController@edit');

@@ -22,9 +22,9 @@ $("document").ready(function () {
 $("#logo .intro-text").fadeIn(1000); // 入場動畫
 // 換生活照
 $("#logo").backstretch([
-    "{{asset('img/home/background1.jpg')}}"
-  , "{{asset('img/home/background2.jpg')}}"
-  , "{{asset('img/home/background3.jpg')}}"
+    "{{asset('upload/home_bg/background1.jpg')}}"
+  , "{{asset('upload/home_bg/background2.jpg')}}"
+  , "{{asset('upload/home_bg/background3.jpg')}}"
 ], {duration: 3000, fade: 1250});
 
 // 隨機季節
