@@ -55,7 +55,7 @@ $(document).ready(function(){
 <div class="container">
 <div class="jumbotron">
     <h2>公告</h2>
-    <p>統整所有可以使用後台的地方</p>
+    <p>公告可以放圖片還有超連結檔案</p>
 </div>
 <!-- 新增公告 -->
 <div class="row">

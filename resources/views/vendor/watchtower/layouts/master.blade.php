@@ -62,6 +62,7 @@
 	                <span class="icon-bar"></span>
 	            </button>
 	            <a class="navbar-brand" href="{{ url('/') }}">新生知訊網</a>
+							<a class="navbar-brand" href="{{ url('/admin') }}">回後台管理</a>
 							<a class="navbar-brand" href="{{ route( config('watchtower.route.as').'index') }}">{{ $title }}</a>
 	        </div>
 

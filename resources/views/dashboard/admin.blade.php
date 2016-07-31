@@ -41,6 +41,19 @@
                 改副檔名,並不是"轉檔",不會真的改變檔案格式,請使用專業軟體
             </div>
         </div>
+
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a href="{{ route('watchtower.user.index') }}">
+                        使用者列表 <i class="fa fa-link fa-lg fa-flip-horizontal"></i>
+                    </a>
+                </h3>
+            </div>
+            <div class="panel-body">
+                會列出所有使用者
+            </div>
+        </div>
         <div class="panel panel-danger">
             <div class="panel-heading">
                 <h3 class="panel-title">
