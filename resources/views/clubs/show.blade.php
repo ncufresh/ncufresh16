@@ -39,10 +39,13 @@ body{
     color: #333;
 }
 .modal-title{
-	margin-bottom: 25px;
+	text-align:center;
 }
 h3{
 	text-align:center;
+}
+.modal-body{
+	padding-top: 10px;
 }
 </style>
 <div class="container">
@@ -120,7 +123,7 @@ h3{
 		    <div class="modal-content">
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		          <h2>{{$club->clubs_intro}}</h2>
+		          <h2 class="modal-title">{{$club->clubs_intro}}</h2>
 		        </div>
 		        <div class="modal-body">
 		          <p>{!!$club->clubs_summary!!}</p>
