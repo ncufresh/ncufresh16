@@ -226,26 +226,7 @@ $(document).ready(function(){
   //create new task / update existing task
   //傳送資料開始
 });
-
-function test(){
-  console.log("Hello console");//
-  console.log(score_records[0].name);//
-}
-setTimeout("test()",3000);
-
-
-
-
 /////////////////get the score
-
-
-
-
-
-
-
-
-
 //////////////////get the question
 var questions=[];//題目
 var questions_temp=[];//題目亂序化
@@ -397,7 +378,7 @@ var worms=[];//the worms objects
 var worms_height=50;
 var worms_width=36;
 for(var i=0 ; i<5 ; i++){
-  wormXs.push(i*700);
+  wormXs.push(i*1700);
 }
 for(var i=0 ; i<5 ; i++){
   worms.push(new component(worms_width,worms_height,"/img/game/worm.png",wormXs[i],500-20-worms_height,"image"));//20為地板高度，可視情況調整
@@ -839,7 +820,7 @@ function draw_theWorms_onTheCanvas(){//in the state game_4
       worms[i].draw();
       worms[i].x-=runSpeed;//蟲蟲移動的速度
       if(worms[i].x<=0){
-          worms[i].x=3500;
+          worms[i].x=8500;
       }
     }
 }
@@ -1093,7 +1074,7 @@ function draw(){
 //背景執行
 function addRunSpeed(){
   if(gameState===GAME_4){
-    runSpeed+=0.8;
+    runSpeed+=1.2;
     fallSpeed+=0.2;
     jumpStart-=2.5;
   }
@@ -1102,7 +1083,7 @@ function addRunSpeed(){
 
 //背景執行
 setInterval(character_state_control,50);//動畫楨數控制
-setInterval(addRunSpeed,5000);//每過五秒跑速加快
+setInterval(addRunSpeed,9000);//每過五秒跑速加快
 //fallSpeed
 //maxFallSpeed
 draw();
