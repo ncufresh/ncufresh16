@@ -27,6 +27,9 @@ Route::group( ['middleware' => 'admin'], function () {
     Route::get('/ann', 'AnnouncementController@index');
     Route::post('/ann', 'AnnouncementController@store');
     Route::get('/ann/{ann}', 'AnnouncementController@show');
+    Route::delete('/ann/{ann}', 'AnnouncementController@destroy');
+    Route::get('/ann/{ann}/edit', 'AnnouncementController@edit');
+    Route::patch('/ann/{ann}', 'AnnouncementController@update');
     /*****************系所社團******************/
     Route::post('/groups/clubs', 'ClubController@store');
   	Route::get('/groups/clubs/create', 'ClubController@create');

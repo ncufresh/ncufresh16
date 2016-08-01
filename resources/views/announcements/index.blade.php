@@ -5,6 +5,7 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('include/pickdate/themes/classic.css') }}" media="screen" title="no title" charset="utf-8">
 <link rel="stylesheet" href="{{ asset('include/pickdate/themes/classic.date.css') }}" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="{{ asset('include/jquery/jquery-confirm/jquery-confirm.min.css') }}" media="screen" title="no title" charset="utf-8">
 <style>
 /* table連結會有手指 */
 .href-table-row{
@@ -17,6 +18,7 @@
 <script src="{{ asset('include/pickdate/picker.js') }}" charset="utf-8"></script>
 <script src="{{ asset('include/pickdate/picker.date.js') }}" charset="utf-8"></script>
 <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('include/jquery/jquery-confirm/jquery-confirm.min.js') }}"></script>
 <script type="text/javascript">
 $(document).ready(function(){
     // 初始化選日期工具
@@ -45,6 +47,27 @@ $(document).ready(function(){
     // table row的超連結 //用modal的話不需要,show頁面才要
     $(".href-table-row").click(function() {
         window.document.location = $(this).data("href");
+    });
+
+    // delete button
+    var id;
+    $('.delete-ann').click(function(){
+        id = $(this).val();
+    }).confirm({
+        title: '危險!',
+        content: '您確定要刪除這則公告嗎?',
+        confirm: function(){
+            $.ajax({
+                url: "ann/"+id,
+                data: {
+                   _method: 'DELETE'
+                },
+                type: "POST",
+                success: function() {
+                    location.reload();
+                }
+            });
+        },
     });
 });
 </script>
@@ -132,8 +155,16 @@ $(document).ready(function(){
                                 {!! $ann->content !!}
                             </div>
                             <div class="modal-footer">
+                                {{-- edit page --}}
+                                <a href="{{ url('ann/'.$ann->id.'/edit') }}" class="btn btn-primary">
+                                  <i class="fa fa-pencil-square-o"></i> 編輯
+                                </a>
+                                {{-- delete ajax --}}
+                                <button type="submit" class="btn btn-danger delete-ann" value="{{$ann->id}}">
+                                    <i class="fa fa-btn fa-trash"></i> 刪除
+                                </button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">
-                                    <span class="glyphicon glyphicon-remove"></span> Close
+                                    <span class="glyphicon glyphicon-remove"></span> 關閉
                                 </button>
                             </div>
                         </div>
