@@ -1,6 +1,68 @@
-div>p>a>img {
-    width: 35vw;
+/* middle button */
+
+.btn-custom {
+    font-size: 3vw;
+    width: 100%;
+    margin: 0;
+    text-align: center;
 }
+
+.btn-wrapper {
+    position: relative;
+}
+
+.btn-mouseenter {
+    color: rgba(102, 76, 0, 1);
+    position: absolute;
+    width: 100%;
+    border-radius: 3px;
+    background-color: rgba(255, 150, 0, 0.5);
+}
+
+.btn-cover-bottom {
+    color: rgba(102, 76, 0, 1);
+    position: absolute;
+    width: 100%;
+    border-radius: 3px;
+    background-color: rgba(102, 76, 0, 1);
+}
+
+.btn-mouseleave {
+    color: rgba(102, 76, 0, 1);
+    position: absolute;
+    width: 100%;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 0, 0.5);
+    display: none;
+}
+
+.btn-txt {
+    color: rgba(102, 76, 0, 1);
+}
+
+.col-md-4 {
+    padding: 30px;
+}
+
+
+/* top image setting */
+
+img#openLeft,
+img#openRight {
+    width: 25vw;
+    padding-top: 2vw;
+}
+
+img#openLeft {
+    padding-right: 2vw;
+}
+
+img#openRight {
+    padding-left: 2vw;
+}
+
+
+/* side navbar image setting */
 
 .side-nav>li>a>img {
     width: 20vw;
@@ -8,16 +70,6 @@ div>p>a>img {
 
 .side-nav>li>a {
     margin: 20px 0;
-}
-
-img.img {
-    width: 15vw;
-}
-
-.col-md-4 {
-    padding: 0 10px;
-    height: 17vw;
-    /*background-color: rgba(255, 255, 255, 0.25);*/
 }
 
 @media (min-width: 768px) {
@@ -34,6 +86,10 @@ img.img {
 
 
 /*--- @override bootstrap.css ---*/
+
+.dropdown-menu {
+    font-size: 19px;
+}
 
 .navbar {
     margin-bottom: 0;
@@ -56,11 +112,13 @@ footer {
     height: 0;
 }
 
+
 /* 底部畫面 margin-bottom */
 
 #bottomScreen {
     margin-bottom: 100px;
 }
+
 
 /* 側邊導覽列的顏色 */
 
@@ -72,16 +130,24 @@ footer {
 .inner-page-title {
     text-align: center;
     font-size: 4vw;
-    margin-bottom: 10rem;
 }
 
 
 /* 綜合畫面下拉式選單的位置 */
 
 .dropdown-menu-custom {
-    top: 10%;
-    left: auto;
+    top: -1%;
+    left: 0;
     right: 0;
+    background-color: rgba(255, 255, 0, 1);
+}
+
+.dropdown-menu-custom>li {
+    border-bottom: rgba(0, 0, 0, 0.2) solid 1px;
+}
+
+.dropdown-menu-custom>li:last-child {
+    border-bottom: 0;
 }
 
 
@@ -103,7 +169,7 @@ footer {
 .little-button {
     position: absolute;
     left: 0;
-    bottom: 5%;
+    bottom: 3%;
     width: 100%;
     text-align: center;
 }
@@ -240,51 +306,10 @@ h2 {
     margin-bottom: 0;
     /* @override bootstrap.css */
     padding: 0;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-section:last-child {
-    border-bottom: none;
+    background-color: transparent;
 }
 
 .side-nav>li>a {
     padding: 0;
 }
 
-.side-nav a {
-    color: black;
-}
-
-.side-nav li a:hover,
-.side-nav li a:focus {
-    /*background: #86c5da;*/
-}
-
-.side-nav .active {
-    font-weight: bold;
-}
-
-.side-nav .side-nav {
-    display: none;
-}
-
-.side-nav .active .side-nav {
-    display: block;
-}
-
-.side-nav .side-nav a {
-    font-weight: normal;
-    font-size: .85em;
-}
-
-.side-nav .side-nav span {
-    margin: 0 5px 0 2px;
-}
-
-.side-nav .side-nav .active a,
-.side-nav .side-nav .active:hover a,
-.side-nav .side-nav .active:focus a {
-    font-weight: bold;
-    padding-left: 30px;
-    border-left: 5px solid black;
-}

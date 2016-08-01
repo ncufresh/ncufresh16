@@ -4,18 +4,33 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('docs/doc.css') }}">
+<link rel="stylesheet" href="{{ asset('docs/jquery.scrollbar.css') }}">
 <style>
+/* background setting */
 body {
     background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(197,121,002,.8) 100%);
 }
 main {
     background-image: url("{{ asset('docs/img/fal.png') }}");
 }
-
+#wrapper1 ::-webkit-scrollbar {
+    width: 0.25em;
+    background-color: #F5F5F5;
+}
+#wrapper1 ::-webkit-scrollbar-track {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+#wrapper1 ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #616161;
+}
 </style>
 @stop
 
 @section('js')
+<script src="{{ asset('docs/jquery.scrollbar.js') }}"></script>
 <script src="{{ asset('docs/doc.js') }}"></script>
 <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript">
@@ -38,6 +53,30 @@ CKEDITOR.replace( 'new_mix', {
     filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
 });
 </script>
+<script>
+    $(document).ready(function() {
+        $(".btn-custom").css({
+            "height": $(".btn-custom").width(),
+            "line-height": $(".btn-custom").width() + "px",
+            "padding": 0
+        });
+
+        $(".btn-wrapper").mouseenter(function(){
+            $(this).find(".btn-mouseenter").stop().fadeOut("fast");
+            $(this).find(".btn-mouseleave").stop().fadeIn("fast");
+        });
+
+        $(".btn-wrapper").mouseleave(function(){
+            $(this).find(".btn-mouseleave").stop().fadeOut("fast");
+            $(this).find(".btn-mouseenter").stop().fadeIn("fast");
+        });
+    });
+</script>
+<script>
+jQuery(document).ready(function(){
+    jQuery('.scrollbar-macosx').scrollbar();
+});
+</script>
 @stop
 
 @section('content')
@@ -49,36 +88,21 @@ CKEDITOR.replace( 'new_mix', {
             <div class="row little-button-container">
                 <!-- 左邊大學部導覽列 -->
                 <div class="col-xs-6 text-right" id="outerLeftSidebar">
-                    <p><a href="#under-1"><img src="{{ asset('docs/img/col.png') }}" alt="kirby" id="openLeft"></a></p>
-                    <p class="test1"></p>
-                    <p class="test2"></p>
-                    <p class="test3"></p>
-                    <p class="test4"></p>
+                    <div class="img-wrapper">
+                        <a href="#under-1">
+                            <img src="{{ asset('docs/img/col.png') }}" alt="大學部" id="openLeft">
+                        </a>
+                    </div>
                 </div>
                 <!-- /左邊大學部導覽列 -->
                 <!-- 右邊研究所導覽列 -->
                 <div class="col-xs-6 text-left" id="outerRightSidebar">
-                    <p>
-                        <a href="#graduate-1"><img src="{{ asset('docs/img/gra.png') }}" alt="kirby" id="openRight"></a>
-                    </p>
-                    <p class="test1"></p>
-                    <p class="test2"></p>
-                    <p class="test3"></p>
-                    <p class="test4"></p>
-                </div>
-                <!-- /右邊研究所導覽列 -->
-                <!-- 顯示綜合畫面的按鈕 -->
-                <!-- <div class="little-button">
-                    <div class="btn-circle-container">
-                        <div class="btn-circle-outline">
-                            <a href="#midScreen" class="btn btn-circle">
-                                <i class="fa fa-angle-double-down fa-3x"></i>
-                                <div class="ripple-container"></div>
-                            </a>
-                        </div>
+                    <div class="img-wrapper">
+                        <a href="#graduate-1">
+                            <img src="{{ asset('docs/img/gra.png') }}" alt="研究所" id="openRight">
+                        </a>
                     </div>
-                </div> -->
-                <!-- /顯示綜合畫面的按鈕 -->
+                </div>
             </div>
             <!-- /.row -->
         </div>
@@ -99,37 +123,51 @@ CKEDITOR.replace( 'new_mix', {
                         <li><a href="#under-2"><img src="{{ asset('docs/img/firstweek.png') }}" alt="新生週"></a></li>
                         <li><a href="#under-3"><img src="{{ asset('docs/img/course.png') }}" alt="共同課程"></a></li>
                     </ul>
-                    <!-- 新增大學部資料 -->
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-new-under">新增</button>
+                    {{-- 新增大學部資料 --}}
+                    <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-under">新增</button>
                     <!-- Modal -->
                     <div id="modal-new-under" class="modal fade text-left" role="dialog">
                         <div class="modal-dialog modal-lg">
                             <!-- Modal content-->
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h1 class="modal-title">大學部 - 新增內容</h1>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{ url('/doc/under') }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <h3>標題</h3>
-                                         <p><input name="title" type="text" class="form-control" placeholder="Title" required></p>
+                                <form action="{{ url('/doc/under') }}" method="POST">
+                                {{ csrf_field() }}
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h1 class="modal-title">大學部 - 新增內容</h1>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label" for="focusedInput1">標題</label>
+                                            <input name="title" class="form-control input-lg" id="focusedInput1" type="text" required>
+                                        </div>
                                         <h3>內文</h3>
                                         <textarea name="content" id="new_under" required></textarea>
-                                        <h3>隸屬於哪個主項目</h3>
-                                        <p><input type="number" name="position_of_main" min="1" max="3" step="1" value="1" required></p>
-                                        <p>
-                                            <button type="submit" class="btn btn-primary">新增</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
-                                        </p>
-                                    </form>
-                                </div>
+                                        <div class="form-group">
+                                            <label for="select" class="col-xs-4 control-label" style="font-size: 20px;">隸屬於哪個主項目</label>
+                                            <div class="col-xs-8">
+                                                <select id="select" class="form-control" name="position_of_main">
+                                                    <option value="1">大學部 - 註冊</option>
+                                                    <option value="2">大學部 - 新生週</option>
+                                                    <option value="3">大學部 - 共同課程</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="col-xs-6 text-right">
+                                                <button type="submit" class="btn btn-raised btn-success">新增</button>
+                                            </div>
+                                            <div class="col-xs-6 text-left">
+                                                <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                     <!-- /Modal -->
-                    <!-- /新增大學部資料 -->
+                    {{-- /新增大學部資料 --}}
                 </div>
                 <!-- /#innerLeftSidenav-->
                 <?php $mainCount = 0; 
@@ -148,10 +186,13 @@ CKEDITOR.replace( 'new_mix', {
                             {{-- 產生大學部主要項目裡的細部項目 --}}
                             @foreach ($unders as $u)
                                 <div class="col-md-4">
-                                    <h3>{{ $u->title }}</h3>
-                                    <p>
-                                        <a type="button" data-toggle="modal" data-target="#modal-{{ $u->id }}"><img src="{{ asset('docs/img/course/1.png') }}" class="img" alt=""></a>
-                                    </p>
+                                    <!-- btn -->
+                                    <div class="btn-wrapper">
+                                        <a class="btn btn-custom" type="button" data-toggle="modal" data-target="#modal-{{ $u->id }}">
+                                            <div class="btn-mouseenter">{{ $u->title }}</div>
+                                            <div class="btn-mouseleave">{{ $u->title }}</div>
+                                        </a>
+                                    </div>
                                     <!-- Modal -->
                                     <div id="modal-{{ $u->id }}" class="modal fade text-left" role="dialog">
                                         <div class="modal-dialog modal-lg">
@@ -187,7 +228,6 @@ CKEDITOR.replace( 'new_mix', {
                                         </div>
                                     </div>
                                     <!-- /Modal -->
-                                    
                                 </div>
                             @endforeach
                             </div>
@@ -229,10 +269,12 @@ CKEDITOR.replace( 'new_mix', {
                             {{-- 產生研究所主要項目裡的細部項目 --}}
                             @foreach ($graduates as $g)
                                 <div class="col-md-4">
-                                    <h3>{{ $g->title }}</h3>
-                                    <p>
-                                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-{{ $g->id }}">Open Modal {{ $g->id }}</button>
-                                    </p>
+                                    <div class="btn-wrapper">
+                                        <a class="btn btn-custom" type="button" data-toggle="modal" data-target="#modal-{{ $g->id }}">
+                                            <div class="btn-mouseenter">{{ $g->title }}</div>
+                                            <div class="btn-mouseleave">{{ $g->title }}</div>
+                                        </a>
+                                    </div>
                                     <!-- Modal -->
                                     <div id="modal-{{ $g->id }}" class="modal fade  text-left" role="dialog">
                                         <div class="modal-dialog modal-lg">
@@ -282,31 +324,45 @@ CKEDITOR.replace( 'new_mix', {
                         <li><a href="#graduate-1"><img src="{{ asset('docs/img/sign.png') }}" alt="註冊"></a></li>
                         <li><a href="#graduate-2"><img src="{{ asset('docs/img/firstweek.png') }}" alt="新生週"></a></li>
                     </ul>
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-new-graduate">新增</button>
+                    {{-- 新增研究所資料 --}}
+                    <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-graduate">新增</button>
                     <!-- Modal -->
                     <div id="modal-new-graduate" class="modal fade text-left" role="dialog">
                         <div class="modal-dialog modal-lg">
                             <!-- Modal content-->
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h1 class="modal-title">研究所 - 新增內容</h1>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{ url('/doc/graduate') }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <p>標題</p>
-                                        <p><input type="textbox" name="title" required></p>
-                                        <p>內文</p>
-                                        <p><textarea name="content" id="new_gra" required></textarea></p>
-                                        <p>隸屬於哪個主項目</p>
-                                        <p><input type="number" name="position_of_main" min="1" max="2" step="1" value="1" required></p>
-                                        <p>
-                                            <button type="submit" class="btn btn-primary">新增</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
-                                        </p>
-                                    </form> 
-                                </div>
+                                <form action="{{ url('/doc/graduate') }}" method="POST">
+                                {{ csrf_field() }}
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h1 class="modal-title">研究所 - 新增內容</h1>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label" for="focusedInput1">標題</label>
+                                            <input name="title" class="form-control input-lg" id="focusedInput1" type="text" required>
+                                        </div>
+                                        <h3>內文</h3>
+                                        <textarea name="content" id="new_gra" required></textarea>
+                                        <div class="form-group">
+                                            <label for="select" class="col-xs-4 control-label" style="font-size: 20px;">隸屬於哪個主項目</label>
+                                            <div class="col-xs-8">
+                                                <select id="select" class="form-control" name="position_of_main">
+                                                    <option value="1">研究所 - 註冊</option>
+                                                    <option value="2">研究所 - 新生週</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="col-xs-6 text-right">
+                                                <button type="submit" class="btn btn-raised btn-success">新增</button>
+                                            </div>
+                                            <div class="col-xs-6 text-left">
+                                                <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -340,44 +396,68 @@ CKEDITOR.replace( 'new_mix', {
                 </div>
             </div>
             <div class="row">
-                <!-- 新增共同資料 -->
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-new-mix">新增</button>
+                {{-- 新增共同資料 --}}
+                <div class="col-xs-12 text-center">
+                    <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-mix">新增</button>
+                </div>
                 <!-- Modal -->
                 <div id="modal-new-mix" class="modal fade text-left" role="dialog">
                     <div class="modal-dialog modal-lg">
                         <!-- Modal content-->
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h1 class="modal-title">共同 - 新增內容</h1>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ url('/doc/mix') }}" method="POST">
-                                    {{ csrf_field() }}
-                                    <p>標題</p>
-                                    <p><input type="textbox" name="title" required></p>
-                                    <p>內文</p>
-                                    <p><textarea name="content" id="new_mix" required></textarea></p>
-                                    <p>隸屬於哪個主項目</p>
-                                    <p><input type="number" name="position_of_main" min="1" max="3" step="1" value="1" required></p>
-                                    <p>
-                                        <button type="submit" class="btn btn-primary">新增</button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
-                                    </p>
-                                </form>
-                            </div>
+                            <form action="{{ url('/doc/mix') }}" method="POST">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h1 class="modal-title">共同 - 新增內容</h1>
+                                </div>
+                                <div class="modal-body">
+                                    <fieldset>
+                                        {{ csrf_field() }}
+                                        <div class="form-group label-floating">
+                                            <label class="control-label" for="focusedInput1">標題</label>
+                                            <input name="title" class="form-control input-lg" id="focusedInput1" type="text" required>
+                                        </div>
+                                        <h3>內文</h3>
+                                        <p><textarea name="content" id="new_mix" required></textarea></p>
+                                        <div class="form-group">
+                                            <label for="select" class="col-xs-4 control-label" style="font-size: 20px;">隸屬於哪個主項目</label>
+                                            <div class="col-xs-8">
+                                                <select id="select" class="form-control" name="position_of_main">
+                                                    <option value="1">第 1 個主項目</option>
+                                                    <option value="2">第 2 個主項目</option>
+                                                    <option value="3">第 3 個主項目</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="col-xs-6 text-right">
+                                        <button type="submit" class="btn btn-raised btn-success">新增</button>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
                 <!-- /Modal -->
-                <!-- /新增共同資料 -->
+                {{-- /新增共同資料 --}}
             </div>
             <div class="row">
+            <?php $mainCount = 0; ?>
             @foreach ($mainMixs as $mixs)
                 <div class="col-sm-4 text-center">
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" type="button" data-toggle="dropdown">
-                            <img src="{{ asset('docs/kirby.png') }}" alt="Dropdown">
+                    <div class="btn-wrapper dropdown scrollbar-macosx" style="overflow: auto;" id="wrapper{{ ++$mainCount }}">
+                        <a class="btn btn-custom dropdown-toggle" type="button" data-toggle="dropdown">
+                            <div class="btn-mouseenter">
+                                <div class="btn-txt">主標題 {{ $mainCount }}</div>
+                            </div>
+                            <div class="btn-mouseleave">
+                                <div class="btn-txt">主標題 {{ $mainCount }}</div>
+                            </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-custom">
                         @foreach($mixs as $m)
