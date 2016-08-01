@@ -47,9 +47,8 @@ h3{
 .modal-body{
 	padding-top: 10px;
 }
-.select{
-	margin-top: -20px;
-	float: right;
+.breadcrumb{
+	margin-bottom: 5px;
 }
 .open{
 	max-height: 500px !important;
@@ -75,6 +74,7 @@ h3{
 			@break
 			@endif
 		@endforeach
+	</ol>
 	<div class="select">
 	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 	<select class="selectpicker" data-live-search="true" onChange="window.location.href=this.value" title="我想找OO社/系..." data-width="fit">
@@ -94,7 +94,7 @@ h3{
 		  		<option data-tokens="客家學院 客家語文暨社會科學學系 法律與政府研究所" data-subtext="客家系 法律與政府研究所" value="/groups/departments/7">客家學院</option>
 		  		<option data-tokens="生醫理工學院 生命科學系 生醫科學與工程學系 認知神經科學研究所" data-subtext="生科系 生醫系..." value="/groups/departments/8">生醫理工學院</option>
 			</optgroup>
-			</select></div></ol>
+			</select></div>
 <!-- 權限 -->
 @can('management')	
 	<a href="{{ url('/groups/clubs/create') }}" class="btn btn-success btn-raised" role="button">新增</a>

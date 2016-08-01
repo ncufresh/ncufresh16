@@ -31,15 +31,14 @@ body{
     background-size:cover;
 }
 
-.row{
+.box{
 	margin-left: 70px;
-}
-.select{
-	float:right;
-	margin-top: -20px;
 }
 .open{
 	max-height: 500px !important;
+}
+.breadcrumb{
+	margin-bottom: 5px;
 }
 </style>
 	<div class="container">
@@ -47,9 +46,10 @@ body{
 			<ol class="breadcrumb">
 				<li><a href="/">首頁</a></li>
 				<li><a href="{{ url('/groups') }}">系所社團</a></li>
+			</ol>
 			<div class="select">
 			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-			<select class="selectpicker" data-live-search="true" onChange="window.location.href=this.value" title="我想找OO社/系..." data-width="fit" data-size="7">
+			<select class="selectpicker" data-live-search="true" onChange="window.location.href=this.value" title="我想找OO社/系..." data-width="fit">
 			<optgroup label="社團">
 				<option data-tokens="學術性 手語社 如來實證社 弦樂團 青年領袖社 動畫社 演辯社 酷兒文化研究社 模擬聯合國社 禪學社 攝影社 ERP顧問研習社 中智社 天文社 布袋戲研究社 松林詩社 法輪功社 美術社 馬術社 聖經真理研究社 福智青年社 網路開源社 機車研究社 證券研究社 覺聲佛學社" data-subtext="手語社 模聯社 天文社..." value="/groups/clubs/1">學術性</option>
 		  		<option data-tokens="康樂性 滑板社 火舞藝術研究社 足球社 跆拳道社 國樂社 網球社 管樂社 熱門舞蹈社 鋼琴社 魔術社 松濤電台 太極社 合氣道社 吉他社 羽球社 中央大學松濤壘球聯盟 松韻口琴社 柔道社 國術社 國際標準舞蹈社 現代舞蹈社 圍棋社 登山社 街頭地板舞蹈社 象棋社 劍道社 熱門音樂社 雜技社 競技拉拉社 籃球聯盟社" data-subtext="熱舞社 熱音社 吉他社..." value="/groups/clubs/2">康樂性</option>
@@ -68,8 +68,7 @@ body{
 			</optgroup>
 			</select>
 			</div>
-			</ol>
-			<div class="row">
+			<div class="row box">
 				<a href="{{ url('/groups/departments') }}">
 					<div class="col-sm-6 col-xs-12 col-md-6 col-lg-6">
 						<img class="img" src="{{ asset('img/group/dep.png') }}">

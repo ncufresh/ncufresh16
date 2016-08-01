@@ -47,12 +47,11 @@ body{
 h3{
 	text-align:center;
 }
-.select{
-	margin-top: -20px;
-	float: right;
-}
 .open{
 	max-height: 500px !important;
+}
+.breadcrumb{
+	margin-bottom: 5px;
 }
 </style>
 <div class="container">
@@ -86,7 +85,7 @@ h3{
 			<li><a href="{{ url('/groups/departments/8') }}">生醫理工學院</a></li>
 			@break
 			@endif
-		@endforeach
+		@endforeach</ol>
 	<div class="select">
 	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 	<select class="selectpicker" data-live-search="true" onChange="window.location.href=this.value" title="我想找OO社/系..." data-width="fit">
@@ -107,7 +106,7 @@ h3{
 		  		<option data-tokens="生醫理工學院 生命科學系 生醫科學與工程學系 認知神經科學研究所" data-subtext="生科系 生醫系..." value="/groups/departments/8">生醫理工學院</option>
 			</optgroup>
 			</select></div>
-</ol>
+
 <!-- 權限 -->
 @can('management')		
 	<a href="{{ url('/groups/departments/create') }}" class="btn btn-success btn-raised" role="button">新增</a>

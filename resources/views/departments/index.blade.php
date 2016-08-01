@@ -33,15 +33,15 @@ body{
 	background-repeat: no-repeat;
     background-size:cover;
 }
-.row{
+.box{
 	margin-left: 10px;
 }
-.select{
-	margin-top: -20px;
-	float: right;
-}
+
 .open{
 	max-height: 500px !important;
+}
+.breadcrumb{
+	margin-bottom: 5px;
 }
 </style>
 <div class="container">
@@ -50,6 +50,7 @@ body{
 		<li><a href="/">首頁</a></li>
 		<li><a href="{{ url('/groups') }}">系所社團</a></li>
 		<li><a href="{{ url('/groups/departments') }}">系所</a></li>
+	</ol>
 	<div class="select">	
 	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 	<select class="selectpicker" data-live-search="true" onChange="window.location.href=this.value" title="我想找OO社/系..." data-width="fit">
@@ -69,11 +70,11 @@ body{
 		  		<option data-tokens="客家學院 客家語文暨社會科學學系 法律與政府研究所" data-subtext="客家系 法律與政府研究所" value="/groups/departments/7">客家學院</option>
 		  		<option data-tokens="生醫理工學院 生命科學系 生醫科學與工程學系 認知神經科學研究所" data-subtext="生科系 生醫系..." value="/groups/departments/8">生醫理工學院</option>
 			</optgroup>
-			</select></div></ol>
+			</select></div>
 	@can('management')
 	<a href="{{ url('/groups/departments/create') }}" class="btn btn-success btn-raised" role="button">新增</a>
 	@endcan
-	<div class="row">
+	<div class="row box">
 			<a href="{{ url('/groups/departments/1') }}">
 				<div class="col-sm-3 col-xs-12 col-md-3 col-lg-3 down">	
 					<img class="img" src="{{ asset('img/group/lan.png')  }}">
