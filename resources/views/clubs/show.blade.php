@@ -33,7 +33,7 @@ body{
 	margin-bottom: 1rem;
 }
 .modal-content{
-	background-image: url({{asset('img/group/BG1.jpg')}});
+	background-image: url({{asset('img/group/BG2.jpg')}});
 	background-repeat: no-repeat;
     background-size:cover;
     color: #333;
@@ -47,6 +47,11 @@ h3{
 .modal-body{
 	padding-top: 10px;
 }
+.select{
+	margin-top: -20px;
+	float: right;
+}
+
 </style>
 <div class="container">
 	<ol class="breadcrumb">
@@ -68,7 +73,7 @@ h3{
 			@break
 			@endif
 		@endforeach
-	</ol>
+	<div class="select">
 	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 	<select class="selectpicker" data-live-search="true" onChange="window.location.href=this.value" title="我想找OO社/系...">
 	<optgroup label="社團">
@@ -87,7 +92,7 @@ h3{
   		<option data-tokens="客家學院 客家語文暨社會科學學系 法律與政府研究所" value="/groups/departments/7">客家學院</option>
   		<option data-tokens="生醫理工學院 生命科學系 生醫科學與工程學系 認知神經科學研究所" value="/groups/departments/8">生醫理工學院</option>
 	</optgroup>
-	</select>
+	</select></div></ol>
 <!-- 權限 -->
 @can('management')	
 	<a href="{{ url('/groups/clubs/create') }}" class="btn btn-success btn-raised" role="button">新增</a>
@@ -118,7 +123,7 @@ h3{
 		  <!-- Modal -->
 		  <!-- 要{{$club->id}} 才不會只顯示第一筆資料 -->
 		  <div class="modal fade" id="myModal{{$club->id}}" role="dialog">
-		    <div class="modal-dialog">
+		    <div class="modal-dialog modal-lg">
 		      <!-- Modal content-->
 		    <div class="modal-content">
 		        <div class="modal-header">

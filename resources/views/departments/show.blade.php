@@ -24,23 +24,32 @@ body{
     color: #333;
 }
 .modal-content{
-	background-image: url({{asset('img/group/BG1.jpg')}});
+	background-image: url({{asset('img/group/BG2.jpg')}});
 	background-repeat: no-repeat;
     background-size:cover;
     color: #333;
-}
-.nav-pills{
-	border-bottom: 1px solid #ddd;
 }
 .img{
 	width: 90%;
     height: auto;
 }
 .modal-title{
-	margin-bottom: 25px;
+	margin-bottom: 0px;
+	text-align:center;
+}
+.col-sm-3{
+	margin-top: 20px;
+
+}
+.col-xs-3{
+	margin-top: 20px;
 }
 h3{
 	text-align:center;
+}
+.select{
+	margin-top: -20px;
+	float: right;
 }
 </style>
 <div class="container">
@@ -75,7 +84,7 @@ h3{
 			@break
 			@endif
 		@endforeach
-	</ol>
+	<div class="select">
 	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 	<select class="selectpicker" data-live-search="true" onChange="window.location.href=this.value" title="我想找OO社/系...">
 	<optgroup label="社團">
@@ -94,7 +103,8 @@ h3{
   		<option data-tokens="客家學院 客家語文暨社會科學學系 法律與政府研究所" value="/groups/departments/7">客家學院</option>
   		<option data-tokens="生醫理工學院 生命科學系 生醫科學與工程學系 認知神經科學研究所" value="/groups/departments/8">生醫理工學院</option>
 	</optgroup>
-	</select>
+	</select></div>
+</ol>
 <!-- 權限 -->
 @can('management')		
 	<a href="{{ url('/groups/departments/create') }}" class="btn btn-success btn-raised" role="button">新增</a>
@@ -135,23 +145,26 @@ h3{
 		  <!-- Modal -->
 		  <!-- 要{{$department->id}} 才不會只顯示第一筆資料 -->
 		  <div class="modal fade" id="myModal{{$department->id}}" role="dialog">
-		    <div class="modal-dialog">
+		    <div class="modal-dialog  modal-lg">
 		      <!-- Modal content-->
 		    <div class="modal-content">
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        </div>
-		        <div class="modal-body" style="padding-top: 20px;">
+		        <div class="modal-body" style="padding-top: 10px;">
 		          
 					  <h2 class="modal-title">{{$department->departments_intro}}</h2>
-					  <ul class="nav nav-pills ">
+					  <div class="row">
+					  <div class="col-sm-3	col-xs-3">
+					  <ul class="nav nav-pills nav-stacked">
 					    <li class="active"><a data-toggle="tab" href="#home{{$department->id}}">系所介紹</a></li>
 					    <li><a data-toggle="tab" href="#menu1{{$department->id}}">系學會</a></li>
 					    <li><a data-toggle="tab" href="#menu2{{$department->id}}">系所活動</a></li>
 					    <li><a data-toggle="tab" href="#menu3{{$department->id}}">系隊</a></li>
 					    <li><a data-toggle="tab" href="#menu4{{$department->id}}">系所課程</a></li>
 					  </ul>
-
+					  </div>
+					  <div class="col-sm-9	col-xs-9">
 					  <div class="tab-content">
 					    <div id="home{{$department->id}}" class="tab-pane fade in active">
 					      <h3>系所介紹</h3>
@@ -379,12 +392,9 @@ h3{
 					      	<!-- 幻燈片5 -->
 					    </div>
 					  </div>
-				  
-
+				  	</div>
+		        </div>	
 		        </div>
-
-		        
-		        
 		        <div class="modal-footer">
 		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		        </div>

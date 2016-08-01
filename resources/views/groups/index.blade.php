@@ -34,13 +34,17 @@ body{
 .row{
 	margin-left: 70px;
 }
+.select{
+	float:right;
+	margin-top: -20px;
+}
 </style>
 	<div class="container">
 		<div class="content">
 			<ol class="breadcrumb">
 				<li><a href="/">首頁</a></li>
 				<li><a href="{{ url('/groups') }}">系所社團</a></li>
-			</ol>
+			<div class="select">
 			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 			<select class="selectpicker" data-live-search="true" onChange="window.location.href=this.value" title="我想找OO社/系...">
 			<optgroup label="社團">
@@ -60,6 +64,8 @@ body{
 		  		<option data-tokens="生醫理工學院" value="/groups/departments/8">生醫理工學院</option>
 			</optgroup>
 			</select>
+			</div>
+			</ol>
 			<div class="row">
 				<a href="{{ url('/groups/departments') }}">
 					<div class="col-sm-6 col-xs-12 col-md-6 col-lg-6">
