@@ -14,12 +14,6 @@ img.img {
     width: 15vw;
 }
 
-.col-md-4 {
-    padding: 0 10px;
-    height: 17vw;
-    /*background-color: rgba(255, 255, 255, 0.25);*/
-}
-
 @media (min-width: 768px) {
     .side-nav>li>a>img {
         width: 23vw;
@@ -72,15 +66,15 @@ footer {
 .inner-page-title {
     text-align: center;
     font-size: 4vw;
-    margin-bottom: 10rem;
 }
 
 
 /* 綜合畫面下拉式選單的位置 */
 
 .dropdown-menu-custom {
-    top: 10%;
-    left: auto;
+    top: -1%;
+    bottom: 0;
+    left: 0;
     right: 0;
 }
 
@@ -103,7 +97,7 @@ footer {
 .little-button {
     position: absolute;
     left: 0;
-    bottom: 5%;
+    bottom: 3%;
     width: 100%;
     text-align: center;
 }

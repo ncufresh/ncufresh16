@@ -13,6 +13,56 @@ main {
 }
 
 </style>
+<style>
+    .btn-custom {
+        color: white;
+        font-size: 3vw;
+        width: 100%;
+        margin: 0;
+        text-align: center;
+        background-color: rgba(255, 150, 0, 0.5);
+    }
+
+    .btn-wrapper {
+        color: rgba(102, 76, 0, 1);
+        position: relative;
+    }
+    
+    .btn-mouseenter {
+        color: rgba(102, 76, 0, 1);
+        position: absolute;
+        width: 100%;
+        border-radius: 3px;
+        background-color: rgba(255, 150, 0, 0.5);
+    }
+
+    .btn-cover-bottom {
+        color: rgba(102, 76, 0, 1);
+        position: absolute;
+        width: 100%;
+        border-radius: 3px;
+        background-color: rgba(102, 76, 0, 1);
+    }
+
+    .btn-mouseleave {
+        color: rgba(102, 76, 0, 1);
+        position: absolute;
+        width: 100%;
+        border-radius: 3px;
+        background-color: rgba(255, 255, 0, 0.5);
+        display: none;
+    }
+    
+    .col-md-4 {
+        padding: 30px;
+    }
+    
+    a {
+        padding: 0;
+    }
+
+
+    </style>
 @stop
 
 @section('js')
@@ -38,6 +88,25 @@ CKEDITOR.replace( 'new_mix', {
     filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
 });
 </script>
+<script>
+    $(document).ready(function() {
+        $(".btn-custom").css({
+            "height": $(".btn-custom").width(),
+            "line-height": $(".btn-custom").width() + "px",
+            "padding": 0
+        });
+
+        $(".btn-wrapper").mouseenter(function(){
+            $(this).find(".btn-mouseenter").fadeOut("fast");
+            $(this).find(".btn-mouseleave").fadeIn("fast");
+        });
+
+        $(".btn-wrapper").mouseleave(function(){
+            $(this).find(".btn-mouseleave").fadeOut("fast");
+            $(this).find(".btn-mouseenter").fadeIn("fast");
+        });
+    });
+    </script>
 @stop
 
 @section('content')
@@ -148,10 +217,13 @@ CKEDITOR.replace( 'new_mix', {
                             {{-- 產生大學部主要項目裡的細部項目 --}}
                             @foreach ($unders as $u)
                                 <div class="col-md-4">
-                                    <h3>{{ $u->title }}</h3>
-                                    <p>
-                                        <a type="button" data-toggle="modal" data-target="#modal-{{ $u->id }}"><img src="{{ asset('docs/img/course/1.png') }}" class="img" alt=""></a>
-                                    </p>
+                                    <!-- btn -->
+                                    <div class="btn-wrapper">
+                                        <a class="btn btn-custom" type="button" data-toggle="modal" data-target="#modal-{{ $u->id }}">
+                                            <div class="btn-mouseenter">{{ $u->title }}</div>
+                                            <div class="btn-mouseleave">{{ $u->title }}</div>
+                                        </a>
+                                    </div>
                                     <!-- Modal -->
                                     <div id="modal-{{ $u->id }}" class="modal fade text-left" role="dialog">
                                         <div class="modal-dialog modal-lg">
@@ -187,7 +259,6 @@ CKEDITOR.replace( 'new_mix', {
                                         </div>
                                     </div>
                                     <!-- /Modal -->
-                                    
                                 </div>
                             @endforeach
                             </div>
@@ -229,10 +300,12 @@ CKEDITOR.replace( 'new_mix', {
                             {{-- 產生研究所主要項目裡的細部項目 --}}
                             @foreach ($graduates as $g)
                                 <div class="col-md-4">
-                                    <h3>{{ $g->title }}</h3>
-                                    <p>
-                                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-{{ $g->id }}">Open Modal {{ $g->id }}</button>
-                                    </p>
+                                    <div class="btn-wrapper">
+                                        <a class="btn btn-raised btn-warning btn-custom" type="button" data-toggle="modal" data-target="#modal-{{ $g->id }}">
+                                            <div class="btn-mouseenter">{{ $g->title }}</div>
+                                            <div class="btn-mouseleave">{{ $g->title }}</div>
+                                        </a>
+                                    </div>
                                     <!-- Modal -->
                                     <div id="modal-{{ $g->id }}" class="modal fade  text-left" role="dialog">
                                         <div class="modal-dialog modal-lg">
@@ -373,11 +446,13 @@ CKEDITOR.replace( 'new_mix', {
                 <!-- /新增共同資料 -->
             </div>
             <div class="row">
+            <?php $mainCount = 0; ?>
             @foreach ($mainMixs as $mixs)
                 <div class="col-sm-4 text-center">
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" type="button" data-toggle="dropdown">
-                            <img src="{{ asset('docs/kirby.png') }}" alt="Dropdown">
+                    <div class="btn-wrapper dropdown" style="overflow: auto;">
+                        <a class="btn btn-custom dropdown-toggle" type="button" data-toggle="dropdown">
+                            <div class="btn-mouseenter">主標題 {{ ++$mainCount }}</div>
+                            <div class="btn-mouseleave">主標題 {{ $mainCount }}</div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-custom">
                         @foreach($mixs as $m)
