@@ -24,7 +24,7 @@ class PersonalController extends Controller
     public function chat()
     {
         $Chats = Chat::join('users', 'chats.user_id', '=', 'users.id')
-                        ->select('avatar','content','name','chats.created_at')
+                        ->select('users.unit','chats.id','avatar','content','name','chats.created_at','attention')
                         ->orderBy('created_at', 'desc')
                         ->get();
                   
@@ -64,8 +64,21 @@ class PersonalController extends Controller
         $chat = new Chat();
         $chat->user_id = Auth::user()->id;
         $chat->content = $request->content;
+        $chat->attention = 0;
         $chat->save();
         return back();
+    }
+    public function postAttention(Request $request){
+        $chat = new Chat();
+        $chat->user_id = Auth::user()->id;
+        $chat->content = $request->content;
+        $chat->attention = 1;
+        $chat->save();
+        return back();
+    }
+    public function destroy(Chat $id){
+        $id->delete();
+        return ;
     }
     public function search(Request $test){
         if(!empty($test->key))
