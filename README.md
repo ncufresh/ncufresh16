@@ -32,19 +32,20 @@ PHP:
 [smarch/watchtower(v1.1.5.3)](https://github.com/SmarchSoftware/watchtower)  
 [unisharp/laravel-ckeditor(v4.5.7)](https://github.com/UniSharp/laravel-ckeditor)  
 [intervention/image(v2.3.7)](https://github.com/Intervention/image)  
-[unisharp/laravel-filemanager(v1.5.2)](https://github.com/UniSharp/laravel-filemanager)
+[unisharp/laravel-filemanager(v1.5.2)](https://github.com/UniSharp/laravel-filemanager)  
 [guzzlehttp/guzzle(v6.2.1)](https://github.com/guzzle/guzzle)  
 [kozz/laravel-guzzle-provider(v6.0)](https://github.com/urakozz/laravel-guzzle)  
 [jenssegers/agent(v2.3.3)](https://github.com/jenssegers/agent)
 
 其他:  
 [Bootstrap-3.3.6](http://getbootstrap.com)  
-[bootstrap-material-design-0.5.10](https://github.com/FezVrasta/bootstrap-material-design)  
+[bootstrap-material-design-0.5.10](https://github.com/FezVrasta/bootstrap-material-design)
 [Font Awesome-4.6.3](http://fontawesome.io)  
 [jQuery-1.12.4](http://api.jquery.com)  
 [pickadate.js-3.5.6](http://amsul.ca/pickadate.js/date/)  
-[jquery-backstretch-2.0.4](https://github.com/srobbin/jquery-backstretch)  
+[jQuery-backstretch-2.0.4](https://github.com/srobbin/jquery-backstretch)  
 [jQuery-iziModal-v1.2.0](http://izimodal.marcelodolce.com)  
+[jQuery-confirm-v2.5.1](https://github.com/craftpip/jquery-confirm)
 
 
 ## 部署
