@@ -29,6 +29,8 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
+            // add by hsu
+            \App\Http\Middleware\CheckUserBrowser::class,
         ],
 
         'api' => [
@@ -49,7 +51,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-
+        // add by hsu
         'admin' => \App\Http\Middleware\CheckRoleAdmin::class,
         'god' => \App\Http\Middleware\CheckRoleGod::class,
     ];

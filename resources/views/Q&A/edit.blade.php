@@ -35,19 +35,17 @@ CKEDITOR.replace( 'content', {
             <div class="form-group label-floating">
               <label class="control-label" for="focusedInput1">標題</label>
               <input class="form-control" name="topic" type="text" value="{{$Q->topic}}">
+              <span class="help-block">TESTTTT</span>
             </div>
 
-             <div class="form-group label-floating">
-              <label class="control-label">想要問的問題</label>
+            <label class="control-label">想要問的問題</label>
+             <div class="form-group label-floating"> 
               <textarea name="content" class="form-control" rows="5">{{$Q->content}}</textarea>
-              <span class="help-block">TESTTTT</span>
             </div>
-
-
+            
+            <label class="control-label">回復</label>
             <div class="form-group label-floating">
-              <label class="control-label">回復</label>
               <textarea name="response" class="form-control" rows="5">{!!$Q->response!!}</textarea>
-              <span class="help-block">TESTTTT</span>
             </div>
             
             <button type="submit" class="col-md-4 col-md-offset-4 btn btn-info btn-raised">Submit</button>

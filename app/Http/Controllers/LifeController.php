@@ -30,17 +30,20 @@ class LifeController extends Controller
 	    $image = Life_image::where('life_id',$content->id)->get();
 	   	$num_of_pics = count($image);
 	   	$more = Life_link::where('life_id',$content->id)->get();
-	 	// if($image->isEmpty()==TRUE){
-	 	// 	$image = new Life_image;
-	 	// 	$image->life_id = $content->id;
-	 	// 	$image->filename="../image/club.jpg";
-	 	// 	$image->imagesTitle="food";
-	 	// 	$image->imagesContent="I'm food!";
-	 	// 	// $image = collect(["1",'life_id' = $content->id,"..\/image\/club.jpg","food","I'm food!","null","null"]);
-	 	// 	// $image = collect([["id"=>"1", "life_id"=>$content->id,"filename"=>"../image/club.jpg","imagesTitle"=>"food","imagesContent"=>"I'm food!","created_at"=>null,"updated_at"=>null]]);
-	 	// 	$num_of_pics = 1;
-	  //   }
-	   	// return $image;
+
+	   	// 如果第一次創建title, 創造default iamge資料
+	 	if($image->isEmpty()==TRUE){
+	 		$image = new Life_image;
+	 		$image->life_id = $content->id;
+	 		$image->filename="../img/life/default.png";
+	 		$image->save();
+
+	 		//重新讀取
+	 		$image = Life_image::where('life_id',$content->id)->get();
+		   	$num_of_pics = count($image);
+		   	$more = Life_link::where('life_id',$content->id)->get();
+	    }
+
 	   	return view('lives.detail', [
 	   		'content' => $content,
 	   		 'image' => $image,
@@ -61,14 +64,23 @@ class LifeController extends Controller
 	    return redirect('../life');
 	}
 
-	public function addMore(Request $request, $topic ,$content)
+	public function addDetail(Request $request, $topic ,$content)
 	{
-	    $life_link = new Life_link;
-	    $life_link->life_id = $request->life_id;
-	    $life_link->location = $request->location;
-	    $life_link->link = $request->link;
-	    $life_link->save();
+	    
+	    if($request->location){
+		    $life_link = new Life_link;
+		    $life_link->life_id = $request->life_id;
+		    $life_link->location = $request->location;
+		    $life_link->link = $request->link;
+		    $life_link->save();
+ 		}
+ 		if($request->filename){
+ 			$life_image = new Life_image;
+ 			$life_image->life_id = $request->life_id;
+ 			$life_image->filename = $request->filename;
+ 			$life_image->save();
 
+ 		}
 	    return redirect('/life/'.$topic.'/'.$content);
 	}
 
@@ -83,10 +95,14 @@ class LifeController extends Controller
 
     	if($request->more_id){
     		Life_link::where('id', $request->more_id)->update(['location' => $request->location, 'link' => $request->link]);
+    		return redirect('/life/'.$topic.'/'.$content->id);
     	} 
 
     	// 內頁更新(除了more以外的)
-    	$content->content = $request->content;
+    	if($request->content){
+    		$content->content = $request->content;
+    	}
+    	
       	if($request->filepath){
     		$content->image = $request->filepath;
     	} 	
@@ -109,8 +125,15 @@ class LifeController extends Controller
 		 return redirect('life');
 	}
 
-	public function deleteMore(Life $id, Life_link $more_id){
-		$more_id->delete();
+	public function deleteDetail(Request $request, Life $id){
+		 
+		if($request->linkId){
+			Life_link::where('id', $request->linkId)->delete();
+		}
+		if($request->imgId){
+			Life_image::where('id', $request->imgId)->delete();
+		}
+		
 		 return redirect('/life/'.$id->topic.'/'.$id->id);
 	}
 

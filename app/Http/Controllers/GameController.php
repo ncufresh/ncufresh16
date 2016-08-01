@@ -11,13 +11,16 @@ use App\Record_score;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use DB;
+use Auth;
 
 class GameController extends Controller
 {
     public function index(){
          $personal_scores=Record_score::all();
          $total_scores=Record_score::all();
-         $personal_scores = DB::table('record_scores')->where('name', 'admin')->orderBy('score','DESC')->get();//拿到名字為admin的分數(原始個人分數)
+         $username=Auth::user()->name;
+         $personal_scores = DB::table('record_scores')->where('name', $username)->orderBy('score','DESC')->get();//拿到名字為admin的分數(原始個人分數)
+         ////////////////bug
          $total_scores=DB::table('record_scores')->orderBy('score','DESC')->get();//拿到原始全部的分數
          /*
          */

@@ -19,7 +19,7 @@ class CheckRoleAdmin
             return redirect('/login');
         }
         if ( !($request->user()->is('admin') || $request->user()->is('god')) ) {
-            abort(401);
+            return response()->view('errors.permission');
         }
         return $next($request);
     }

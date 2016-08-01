@@ -5,6 +5,12 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('include/izimodal/css/iziModal.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{{-- 入場動畫 --}}
+<style media="screen">
+#logo .intro-text {
+  display: none;
+}
+</style>
 @stop
 
 @section('js')
@@ -13,7 +19,7 @@
 <script src="{{ asset('js/home.js') }}"></script>
 <script type="text/javascript">
 $("document").ready(function () {
-
+$("#logo .intro-text").fadeIn(1000); // 入場動畫
 // 換生活照
 $("#logo").backstretch([
     "{{asset('img/home/background1.jpg')}}"

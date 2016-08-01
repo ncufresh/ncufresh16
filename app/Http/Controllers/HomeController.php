@@ -37,4 +37,42 @@ class HomeController extends Controller
             'anns' => $anns,
         ]);
     }
+
+    public function change_bg()
+    {
+        return view('dashboard.background');
+    }
+    public function update_bg(Request $request)
+    {
+        $this->validate($request, [
+            'bg1' => 'max:1024|mimes:jpeg',
+            'bg2' => 'max:1024|mimes:jpeg',
+            'bg3' => 'max:1024|mimes:jpeg'
+        ],
+        [
+            'max' => ':attribute 的大小請小於1MB(1024KB)',
+            'mimes' => ':attribute 請使用JPG檔'
+        ]);
+
+        if($request->hasFile('bg1')){
+            $this->save_bg($request,'1');
+        }
+        if($request->hasFile('bg2')){
+            $this->save_bg($request,'2');
+        }
+        if($request->hasFile('bg3')){
+            $this->save_bg($request,'3');
+        }
+        return back();
+    }
+    public function save_bg(Request $request,$i)
+    {
+        $file = $request->file('bg'.$i);
+        $img = \Image::make($file); // read img form file
+
+        // 刪舊,存新
+        $filepath = public_path('img/home/background'.$i.'.jpg');
+        \File::delete($filepath);
+        $img->save($filepath);
+    }
 }

@@ -5,7 +5,7 @@
 @section('css')
 <style>
 body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
-main { background-image:url('../../img/home/spring.png'); }
+main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 
 button{
    border: 3px solid black;
@@ -90,7 +90,8 @@ button{
 <script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
 
   <script type="text/javascript">
-  $('#lfm').filemanager('image');
+  $('#PicChooser').filemanager('image');
+  $('#themePicChooser').filemanager('image');
    $(document).ready(function(){
         $(".container").fadeIn(1000);
           // CKEDITOR.instances['textArea'].setData($("#textArea").val());
@@ -125,7 +126,7 @@ CKEDITOR.replace( 'textArea', {
     </div>
 
     <div class="col-md-offset-3 col-md-9" id="more">   
-      <img src="{{ asset('img/life/detail/more.png')  }}" href="javascript:void(0)" class="btn img-rounded " data-toggle="collapse" data-target="#linkMenu">
+      <img src="{{ asset('img/life/more.png')  }}" href="javascript:void(0)" class="btn img-rounded " data-toggle="collapse" data-target="#linkMenu">
       <!--  <a href="javascript:void(0)" class="btn btn-info btn-fab  dropdown-toggle-right" data-toggle="collapse" data-target="#linkMenu"><i class="material-icons">grade</i></a> -->
 
       <ul class="collapse" id="linkMenu" role="group" >
@@ -133,34 +134,38 @@ CKEDITOR.replace( 'textArea', {
         <button class="btn-default btn-block" data-toggle="modal" data-target="#myModal">相片導覽</button>
 
         @foreach ($more as $more)
-        <a class="" target="_blank" href="{{ asset($more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
+        <a class="" target="_blank" href="{{ url('http://'.$more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
         
+       
+    @can('management')
        <!--  修改鈕 -->
          <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/update' }}" method="POST">
              {{ csrf_field() }}
              {{ method_field('PATCH') }}
              <input type="hidden" name="more_id" value="{{$more->id}}">
-              <input type="text" name="location" value="{{$more->location}}">
-            <input type="text" name="link" value="{{$more->link}}">
-              <button class="material-icons">edit</button>
+              <input class="form-control type="text" name="location" value="{{$more->location}}">
+            <input class="form-control type="text" name="link" value="{{$more->link}}">
+              <button type="submit" class="material-icons">done</button>
          </form>    
         <!-- 刪除紐 -->
-        <form action="{{ url('life/'.$content->id.'/'.$more->id) }}" method="POST">
+        <form action="{{ url('life/'.$content->id.'/deleteDetail') }}" method="POST">
           {!! csrf_field() !!}
               {!! method_field('DELETE') !!}
+              <input type="hidden" name="linkId" value="{{$more->id}}">
               <button type="submit" class="material-icons">delete_forever</button>
         </form>
+   @endcan 
         @endforeach
-
+    @can('management')
         <!-- 新增鈕 -->
         <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/add' }}" method="POST">
             {{ csrf_field() }}
             <input type="hidden" name="life_id" value="{{$content->id}}">
-            <input type="text" name="location">
-            <input type="text" name="link" >
+            <input class="form-control type="text" name="location" placeholder="在這裡輸入連結名稱">
+            <input class="form-control type="text" name="link" placeholder="在這裡輸入連結網址">
             <button type="submit">新增</button>
         </form>
-        
+   @endcan     
       </ul>
 
     </div>  
@@ -179,6 +184,18 @@ CKEDITOR.replace( 'textArea', {
               @for ($i = 0; $i < $num_of_pics; $i++)
               <li data-target="#myCarousel" data-slide-to="{{$i}}" ></li>
               @endfor
+        @can('management')
+          <!--新增相片導覽的照片 -->
+              <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/add' }}" method="POST">
+                {{ csrf_field() }}
+                  <button class="material-icons"><a id="PicChooser" data-input="pics" data-preview="hold">add_circle</a></button>
+                  <img id="hold" style="margin-top:15px;max-height:100px;">
+                <input id="pics" class="form-control" type="hidden" name="filename"> 
+                <input type="hidden" name="life_id" value="{{$content->id}}">
+                 <button type="submit" class="material-icons">done</button>
+
+              </form> 
+         @endcan    
 
             </ol>
            <!-- Wrapper for slides -->
@@ -186,8 +203,18 @@ CKEDITOR.replace( 'textArea', {
              <div class="item active">
               <img src="{{ asset($image[0]->filename) }}" alt="Chania" width="460" height="345">
               <div class="carousel-caption">
+ @can('management')
+                <!--  刪除相片導覽的照片 -->
+                <form action="{{ url('life/'.$content->id.'/deleteDetail') }}" method="POST">
+              {!! csrf_field() !!}
+              {!! method_field('DELETE') !!}
+              <input type="hidden" name="imgId" value="{{$image[0]->id}}">
+              <button type="submit" class="material-icons">delete_forever</button>
+            </form>
+@endcan   
                 <h3>{{ $image[0]->imagesTitle}}</h3>
                 <p>{{ $image[0]->imagesContent}}</p>
+
               </div>
             </div>
 
@@ -196,7 +223,15 @@ CKEDITOR.replace( 'textArea', {
             <div class="item">
              <img src="{{ asset($image[$i]->filename) }}" alt="Chania" width="460" height="345">
              <div class="carousel-caption">
-
+@can('management')
+              <!--  刪除相片導覽的照片 -->
+                <form action="{{ url('life/'.$content->id.'/deleteDetail') }}" method="POST">
+              {!! csrf_field() !!}
+              {!! method_field('DELETE') !!}
+              <input type="hidden" name="imgId" value="{{$image[$i]->id}}">
+              <button type="submit" class="material-icons">delete_forever</button>
+            </form>
+@endcan
               <h3>{{ $image[$i]->imagesTitle}}</h3>
               <p>{{ $image[$i]->imagesContent}}</p>
 
@@ -226,32 +261,33 @@ CKEDITOR.replace( 'textArea', {
   <div class="col-md-8" id="rightPart">
 <div class="row">
     <div class="col-md-10 modal-content" id="contentModal">
-     <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/update' }}" method="POST">
-     {{ csrf_field() }}
-     {{ method_field('PATCH') }}
-      <div class="modal-header">
-     <!--    <button class="material-icons" data-toggle="collapse" data-target="#showArea">edit</button> -->
-     
-        <button class="material-icons"><a id="lfm" data-input="thumbnail" data-preview="holder">add_a_photo</a></button>
-        <button class="material-icons">edit</button>
-        <button type="submit" class="material-icons">done</button>
-        <a href=".." class="material-icons close">clear</a> 
-        
-      </div>
+
+        <div class="modal-header">
+       <!--    <button class="material-icons" data-toggle="collapse" data-target="#showArea">edit</button> -->
+          <a href=".." class="material-icons close">clear</a> 
+          
+        </div>
 
         <div class="modal-body">
-
-          <!-- <div id="showArea" class="collapse"> -->
-          <textarea type="text" name="content" id="textArea" >{{$content->content}}</textarea>
-       
-         <!--  </div>  -->
-
         <p>{!!$content->content!!}</p>
+@can('management')  
+        <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/update' }}" method="POST">
+            {{ csrf_field() }}
+            {{ method_field('PATCH') }}
+            <button class="material-icons"><a id="themePicChooser" data-input="thumbnail" data-preview="holder">add_a_photo</a></button>
+            <!--  主題圖片路徑 -->
+            <input id="thumbnail" class="form-control" type="hidden" name="filepath">
+            <!-- <button class="material-icons">edit</button> -->
+            <button type="submit" class="material-icons">done</button>
+
+            <!-- <div id="showArea" class="collapse"> -->
+            <textarea type="text" name="content" id="textArea" >{{$content->content}}</textarea>
+        </form>
+@endcan
+        </div>
+     
+
       </div>
-     <!--  主題圖片路徑 -->
-       <input id="thumbnail" class="form-control" type="hidden" name="filepath">
-</form>
-    </div>
     </div>
   </div>
 
