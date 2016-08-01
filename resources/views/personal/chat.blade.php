@@ -26,10 +26,8 @@
 	font-size: 100%;
 }
 .profile{
-	/*width: 3vw;
-	height :4vh;*/
-  width: 70px;
-  height: 70px;
+	width: 5vw;
+	height :5vw;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 }
@@ -106,7 +104,7 @@
     </div>
   </div>
 </div>
-
+@can('management')
  <!-- Modal -->
   <div class="modal fade" id="attention" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -136,6 +134,7 @@
     </div>
   </div>
 </div>
+@endcan
 
 @endsection
 @section('js')
