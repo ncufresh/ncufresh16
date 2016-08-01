@@ -3,14 +3,15 @@ $(document).ready(function() {
     $("body").fadeIn("slow");
 
     // 高度為螢幕高度
-    $("#topScreen, #midScreen").css("height", $(window).innerHeight());
+    $("#outerLeftSidebar, #outerRightSidebar, #midScreen").css("height", $(window).innerHeight());
 
     // 垂直置中
     $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
-    
+    $(".img-wrapper").css("padding-top", ($(window).innerHeight() - $(".img-wrapper").height()) / 2);
+
 
     // 點下 "開啟大學部畫面" 或 "開啟研究所畫面" 的圖片時
-    $("p a[href='#under-1'], p a[href='#graduate-1']").on('click', function(event) {
+    $("div a[href='#under-1'], div a[href='#graduate-1']").on('click', function(event) {
         // Prevent default anchor click behavior
         event.preventDefault();
         // Store hash
@@ -120,11 +121,17 @@ $(document).ready(function() {
         $(".test4").text();
     }
 
-    $("div p a img").mouseenter(function () {
-        $(this).css("width", "40vw");
+    $(".img-wrapper").mouseenter(function() {
+        $(this).find("img").stop().animate({
+            "width": "27vw",
+            "padding-top": "0"
+        }, "fast");
     });
 
-    $("div p a img").mouseleave(function () {
-        $(this).css("width", "35vw");
+    $(".img-wrapper").mouseleave(function() {
+        $(this).find("img").stop().animate({
+            "width": "25vw",
+            "padding-top": "2vw"
+        }, "fast");
     });
 });
