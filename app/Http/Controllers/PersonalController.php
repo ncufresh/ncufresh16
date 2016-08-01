@@ -24,7 +24,7 @@ class PersonalController extends Controller
     public function chat()
     {
         $Chats = Chat::join('users', 'chats.user_id', '=', 'users.id')
-                        ->select('chats.id','avatar','content','name','chats.created_at','attention')
+                        ->select('users.unit','chats.id','avatar','content','name','chats.created_at','attention')
                         ->orderBy('created_at', 'desc')
                         ->get();
                   

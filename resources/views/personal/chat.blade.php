@@ -53,7 +53,7 @@
   <div class="tt">
 		<img class="img-circle profile" style="background-image: url({{asset('upload/avatars/'.$row->avatar)}});">
 		<b>{{$row->name}}</b>
-		<span class="label"><b>ch XX系</b></span>
+		<span class="label"><b>ch {{ $row->unit }}</b></span>
 	  <b>: {{$row->content}}<span class="time">{{$row->created_at}}</span> </b>
     @can('management')
     <button class="btn btn-danger submit" data-id="{{$row->id}}"><i class="fa fa-trash fa-lg"></i> 刪除</button>
