@@ -4,6 +4,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('docs/doc.css') }}">
+<link rel="stylesheet" href="{{ asset('docs/jquery.scrollbar.css') }}">
 <style>
 /* background setting */
 body {
@@ -12,11 +13,24 @@ body {
 main {
     background-image: url("{{ asset('docs/img/fal.png') }}");
 }
-
+#wrapper1 ::-webkit-scrollbar {
+    width: 0.25em;
+    background-color: #F5F5F5;
+}
+#wrapper1 ::-webkit-scrollbar-track {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+#wrapper1 ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #616161;
+}
 </style>
 @stop
 
 @section('js')
+<script src="{{ asset('docs/jquery.scrollbar.js') }}"></script>
 <script src="{{ asset('docs/doc.js') }}"></script>
 <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript">
@@ -57,7 +71,12 @@ CKEDITOR.replace( 'new_mix', {
             $(this).find(".btn-mouseenter").stop().fadeIn("fast");
         });
     });
-    </script>
+</script>
+<script>
+jQuery(document).ready(function(){
+    jQuery('.scrollbar-macosx').scrollbar();
+});
+</script>
 @stop
 
 @section('content')
@@ -431,7 +450,7 @@ CKEDITOR.replace( 'new_mix', {
             <?php $mainCount = 0; ?>
             @foreach ($mainMixs as $mixs)
                 <div class="col-sm-4 text-center">
-                    <div class="btn-wrapper dropdown" style="overflow: auto;" id="wrapper{{ ++$mainCount }}">
+                    <div class="btn-wrapper dropdown scrollbar-macosx" style="overflow: auto;" id="wrapper{{ ++$mainCount }}">
                         <a class="btn btn-custom dropdown-toggle" type="button" data-toggle="dropdown">
                             <div class="btn-mouseenter">
                                 <div class="btn-txt">主標題 {{ $mainCount }}</div>
