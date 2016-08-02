@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    // remove inline style of table, tr, td
+    $("table, tr, td").removeAttr("style");
+
     // fadeIn() animation
     $("body").fadeIn("slow");
 
