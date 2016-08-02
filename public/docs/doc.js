@@ -1,13 +1,23 @@
 $(document).ready(function() {
+    // remove inline style of table, tr, td
+    $("div.modal-body").find("table, tr, td").removeAttr("style");
+
+    // 讓圖片自適應大小
+    $("div.modal-body").find("img").addClass("img-responsive").removeAttr("style");
+
     // fadeIn() animation
     $("body").fadeIn("slow");
 
-    // 高度為螢幕高度
-    $("#outerLeftSidebar, #outerRightSidebar, #midScreen").css("height", $(window).innerHeight());
-
     // 垂直置中
     $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
+    $("#innerLeftPage-1").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-1").height()) / 2);
+    $("#innerLeftPage-2").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-2").height()) / 2);
+    $("#innerLeftPage-3").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-3").height()) / 2);
+    $("#innerRightSidenav").css("padding-top", ($(window).innerHeight() - $("#innerRightSidenav").height()) / 2);
+    $("#innerRightPage-1").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-1").height()) / 2);
+    $("#innerRightPage-2").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-2").height()) / 2);
     $(".img-wrapper").css("padding-top", ($(window).innerHeight() - $(".img-wrapper").height()) / 2);
+
 
 
     // 點下 "開啟大學部畫面" 或 "開啟研究所畫面" 的圖片時
@@ -24,15 +34,31 @@ $(document).ready(function() {
             $("#leftScreen").hide();
             $("#rightScreen").fadeIn("fast");
             $("#innerRightSidenav").css("padding-top", ($(window).innerHeight() - $("#innerRightSidenav").height()) / 2);
+            $("#innerRightPage-1").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-1").height()) / 2);
+            $("#innerRightPage-2").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-2").height()) / 2);
         }
         // Using jQuery's animate() method to add smooth page scroll
-        $('html, body').animate({
+        $('html, body').stop().animate({
             scrollTop: $(hash).offset().top - $("nav").height()
-        }, "slow");
+        }, "slow", function() {
+            window.location.hash = hash;
+        });
+    });
+
+    // 滑鼠進入方形按鈕的特效
+    $(".btn-wrapper").mouseenter(function() {
+        $(this).find(".btn-mouseenter").stop().fadeOut("fast");
+        $(this).find(".btn-mouseleave").stop().fadeIn("fast");
+    });
+
+    // 滑鼠離開方形按鈕的特效
+    $(".btn-wrapper").mouseleave(function() {
+        $(this).find(".btn-mouseleave").stop().fadeOut("fast");
+        $(this).find(".btn-mouseenter").stop().fadeIn("fast");
     });
 
     // 切換研究所的三個主項目畫面
-    $("li a[href='#graduate-1'], li a[href='#graduate-2'], li a[href='#graduate-3']").on('click', function(event) {
+    $("li a[href='#graduate-1'], li a[href='#graduate-2']").on('click', function(event) {
         // Prevent default anchor click behavior
         event.preventDefault();
         // Store hash
@@ -56,7 +82,7 @@ $(document).ready(function() {
         }
 
         // Using jQuery's animate() method to add smooth page scroll
-        $('html, body').animate({
+        $('html, body').stop().animate({
             scrollTop: $(hash).offset().top - $("nav").height()
         }, "slow", function() {
             window.location.hash = hash;
@@ -88,7 +114,7 @@ $(document).ready(function() {
         }
 
         // Using jQuery's animate() method to add smooth page scroll
-        $('html, body').animate({
+        $('html, body').stop().animate({
             scrollTop: $("#leftScreen").offset().top - $("nav").height()
         }, "slow", function() {
             window.location.hash = hash;
@@ -97,7 +123,15 @@ $(document).ready(function() {
 
     // 調整視窗大小時
     $(window).resize(function() {
-
+        // 垂直置中
+        $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
+        $("#innerLeftPage-1").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-1").height()) / 2);
+        $("#innerLeftPage-2").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-2").height()) / 2);
+        $("#innerLeftPage-3").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-3").height()) / 2);
+        $("#innerRightSidenav").css("padding-top", ($(window).innerHeight() - $("#innerRightSidenav").height()) / 2);
+        $("#innerRightPage-1").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-1").height()) / 2);
+        $("#innerRightPage-2").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-2").height()) / 2);
+        $(".img-wrapper").css("padding-top", ($(window).innerHeight() - $(".img-wrapper").height()) / 2);
     });
 
     // 
@@ -108,18 +142,10 @@ $(document).ready(function() {
         var hash = this.hash;
         // Using jQuery's animate() method to add smooth page scroll
         // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-        $('html, body').animate({
+        $('html, body').stop().animate({
             scrollTop: $(hash).offset().top - $("nav").height()
         }, "slow");
     });
-
-    // testing
-    function test() {
-        $(".test1").text();
-        $(".test2").text();
-        $(".test3").text();
-        $(".test4").text();
-    }
 
     $(".img-wrapper").mouseenter(function() {
         $(this).find("img").stop().animate({

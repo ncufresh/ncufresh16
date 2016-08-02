@@ -35,8 +35,19 @@ CKEDITOR.replace( 'content', {
                     <label for="select" class="col-xs-4 control-label" style="font-size: 20px;">隸屬於哪個主項目</label>
                     <div class="col-xs-8">
                         <select id="select" class="form-control" name="position_of_main">
-                            <option value="1">註冊</option>
-                            <option value="2">新生週</option>
+                            @if( $under->position_of_main == 1 )
+                            <option value="1" selected>大學部 - 註冊</option>
+                            <option value="2">大學部 - 新生週</option>
+                            <option value="3">大學部 - 共同課程</option>
+                            @elseif( $under->position_of_main == 2 )
+                            <option value="1">大學部 - 註冊</option>
+                            <option value="2" selected>大學部 - 新生週</option>
+                            <option value="3">大學部 - 共同課程</option>
+                            @else
+                            <option value="1">大學部 - 註冊</option>
+                            <option value="2">大學部 - 新生週</option>
+                            <option value="3" selected>大學部 - 共同課程</option>
+                            @endif
                         </select>
                     </div>
                 </div>
