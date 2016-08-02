@@ -1,8 +1,8 @@
 $(document).ready(function() {
     // remove inline style of table, tr, td
-    $("table, tr, td").removeAttr("style");
+    $("div.modal-body").find("table, tr, td").removeAttr("style");
 
-    // 讓圖片
+    // 讓圖片自適應大小
     $("div.modal-body").find("img").addClass("img-responsive").removeAttr("style");
 
     // fadeIn() animation
