@@ -41,25 +41,6 @@ CKEDITOR.replace( 'new_mix', {
 });
 </script>
 <script>
-    $(document).ready(function() {
-        $(".btn-custom").css({
-            "height": $(".btn-custom").width(),
-            "line-height": $(".btn-custom").width() + "px",
-            "padding": 0
-        });
-
-        $(".btn-wrapper").mouseenter(function(){
-            $(this).find(".btn-mouseenter").stop().fadeOut("fast");
-            $(this).find(".btn-mouseleave").stop().fadeIn("fast");
-        });
-
-        $(".btn-wrapper").mouseleave(function(){
-            $(this).find(".btn-mouseleave").stop().fadeOut("fast");
-            $(this).find(".btn-mouseenter").stop().fadeIn("fast");
-        });
-    });
-</script>
-<script>
 $(document).ready(function(){
     $('.scrollbar-macosx').scrollbar();
 });
@@ -111,7 +92,7 @@ $(document).ready(function(){
                         <li><a href="#under-3"><img src="{{ asset('docs/img/course.png') }}" alt="共同課程"></a></li>
                     </ul>
                     {{-- 新增大學部資料 --}}
-                    <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-under">新增</button>
+                    <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-under" style="z-index: 3;">新增</button>
                     <!-- Modal -->
                     <div id="modal-new-under" class="modal fade text-left" role="dialog">
                         <div class="modal-dialog modal-lg">
@@ -312,7 +293,7 @@ $(document).ready(function(){
                         <li><a href="#graduate-2"><img src="{{ asset('docs/img/firstweek.png') }}" alt="新生週"></a></li>
                     </ul>
                     {{-- 新增研究所資料 --}}
-                    <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-graduate">新增</button>
+                    <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-graduate" style="z-index: 3;">新增</button>
                     <!-- Modal -->
                     <div id="modal-new-graduate" class="modal fade text-left" role="dialog">
                         <div class="modal-dialog modal-lg">
@@ -385,7 +366,7 @@ $(document).ready(function(){
             <div class="row">
                 {{-- 新增共同資料 --}}
                 <div class="col-xs-12 text-center">
-                    <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-mix">新增</button>
+                    <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-mix" style="z-index: 3;">新增</button>
                 </div>
                 <!-- Modal -->
                 <div id="modal-new-mix" class="modal fade text-left" role="dialog">

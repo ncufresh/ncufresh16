@@ -30,6 +30,25 @@ $(document).ready(function() {
         });
     });
 
+    // 設定方形按鈕大小
+    $(".btn-custom").css({
+        "height": $(".btn-custom").width(),
+        "line-height": $(".btn-custom").width() + "px",
+        "padding": 0
+    });
+
+    // 滑鼠進入方形按鈕的特效
+    $(".btn-wrapper").mouseenter(function() {
+        $(this).find(".btn-mouseenter").stop().fadeOut("fast");
+        $(this).find(".btn-mouseleave").stop().fadeIn("fast");
+    });
+
+    // 滑鼠離開方形按鈕的特效
+    $(".btn-wrapper").mouseleave(function() {
+        $(this).find(".btn-mouseleave").stop().fadeOut("fast");
+        $(this).find(".btn-mouseenter").stop().fadeIn("fast");
+    });
+
     // 切換研究所的三個主項目畫面
     $("li a[href='#graduate-1'], li a[href='#graduate-2']").on('click', function(event) {
         // Prevent default anchor click behavior
@@ -96,7 +115,16 @@ $(document).ready(function() {
 
     // 調整視窗大小時
     $(window).resize(function() {
+        // 垂直置中
+        $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
+        $(".img-wrapper").css("padding-top", ($(window).innerHeight() - $(".img-wrapper").height()) / 2);
 
+        // 設定方形按鈕大小
+        $(".btn-custom").css({
+            "height": $(this).width(),
+            "line-height": $(this).width() + "px",
+            "padding": 0
+        });
     });
 
     // 
