@@ -53,6 +53,10 @@ h3{
 .open{
 	max-height: 500px !important;
 }
+.carousel-inner > .item > img{
+    min-width:100%;
+  	height:auto;
+}
 </style>
 <div class="container">
 	<ol class="breadcrumb">
