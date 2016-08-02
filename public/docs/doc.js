@@ -4,7 +4,14 @@ $(document).ready(function() {
 
     // 垂直置中
     $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
+    $("#innerLeftPage-1").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-1").height()) / 2);
+    $("#innerLeftPage-2").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-2").height()) / 2);
+    $("#innerLeftPage-3").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-3").height()) / 2);
+    $("#innerRightSidenav").css("padding-top", ($(window).innerHeight() - $("#innerRightSidenav").height()) / 2);
+    $("#innerRightPage-1").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-1").height()) / 2);
+    $("#innerRightPage-2").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-2").height()) / 2);
     $(".img-wrapper").css("padding-top", ($(window).innerHeight() - $(".img-wrapper").height()) / 2);
+
 
 
     // 點下 "開啟大學部畫面" 或 "開啟研究所畫面" 的圖片時
@@ -110,6 +117,12 @@ $(document).ready(function() {
     $(window).resize(function() {
         // 垂直置中
         $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
+        $("#innerLeftPage-1").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-1").height()) / 2);
+        $("#innerLeftPage-2").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-2").height()) / 2);
+        $("#innerLeftPage-3").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-3").height()) / 2);
+        $("#innerRightSidenav").css("padding-top", ($(window).innerHeight() - $("#innerRightSidenav").height()) / 2);
+        $("#innerRightPage-1").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-1").height()) / 2);
+        $("#innerRightPage-2").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-2").height()) / 2);
         $(".img-wrapper").css("padding-top", ($(window).innerHeight() - $(".img-wrapper").height()) / 2);
     });
 
