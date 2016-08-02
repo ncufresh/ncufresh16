@@ -1,3 +1,13 @@
+/* height */
+
+#outerLeftSidebar,
+#outerRightSidebar,
+#leftScreen,
+#rightScreen {
+    min-height: 100vh;
+}
+
+
 /* middle button */
 
 .btn-custom {
@@ -312,4 +322,3 @@ h2 {
 .side-nav>li>a {
     padding: 0;
 }
-
