@@ -1,9 +1,22 @@
+/* height */
+
+#outerLeftSidebar,
+#outerRightSidebar,
+#leftScreen,
+#rightScreen {
+    min-height: 100vh;
+}
+
+
 /* middle button */
 
 .btn-custom {
     font-size: 3vw;
     width: 100%;
+    height: 16.5vmax;
+    line-height: 16.5vmax;
     margin: 0;
+    padding: 0;
     text-align: center;
 }
 
@@ -40,8 +53,20 @@
     color: rgba(102, 76, 0, 1);
 }
 
-.col-md-4 {
-    padding: 30px;
+.col-xs-4 {
+    padding: 5px;
+}
+
+@media (min-width: 768px) {
+    .col-xs-4 {
+        padding: 15px;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-xs-4 {
+        padding: 30px;
+    }
 }
 
 
@@ -169,7 +194,7 @@ footer {
 .little-button {
     position: absolute;
     left: 0;
-    bottom: 3%;
+    bottom: 0;
     width: 100%;
     text-align: center;
 }
@@ -312,4 +337,3 @@ h2 {
 .side-nav>li>a {
     padding: 0;
 }
-

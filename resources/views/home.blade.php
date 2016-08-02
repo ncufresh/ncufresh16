@@ -117,9 +117,10 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
                     <div class="list-group-item">
                         <div class="row-action-primary">
                         @if($ann->is_top)
-                            <i class="material-icons">face</i>
+                            <i class="material-icons">announcement</i>
                         @else
-                            <i class="material-icons">folder</i>
+                            {{-- <i class="material-icons">folder</i> --}}
+                            <i class="fa fa-bullhorn" aria-hidden="true"></i>
                         @endif
                         </div>
                         <div class="row-content">
@@ -218,8 +219,9 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
 				<div class="timeline-content left">
   					<h2>新生必讀</h2>
   					<p>
-              QQ
+              新生一定要知道的事。要如何註冊？住宿該如何申請嗎？學雜費什麼時候要繳？初來乍到，所有需要注意的大小事，都在「新生必讀」！
             </p>
+            <a href="{{url('/doc')}}">前往新生必讀</a>
 				</div>
 		</div>
 		<div class="timeline-item">
@@ -231,8 +233,9 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
   			<div class="timeline-content right">
   					<h2>新生Q&amp;A</h2>
             <p>
-              QQ
+              初來乍到，不熟悉的環境裡，有任何問題就來新生Q&amp;A裡尋找吧！
             </p>
+            <a href="{{url('/Q&A/all')}}">前往新生Q&amp;A</a>
   			</div>
 		</div>
 		<div class="timeline-item">
@@ -244,8 +247,9 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
   			<div class="timeline-content left">
       			<h2>校園導覽</h2>
             <p>
-              QQ
+              怕在校園裡迷路嗎？來看「校園導覽」就對了！不但讓你知道每棟建築物的位置，還有介紹和照片。遇到緊急狀況該往哪走？哪邊有AED？這兒也會告訴你！
             </p>
+            <a href="{{url('/campus')}}">前往校園導覽</a>
   			</div>
 		</div>
     <div class="timeline-item">
@@ -257,8 +261,14 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
   			<div class="timeline-content right">
   					<h2>系所社團</h2>
             <p>
-              QQ
+              想知道自己系上究竟有什麼嗎?
+              {{-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --}}
+              想決定上大學該跑什麼社團嗎?
+              {{-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --}}
+              {{-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --}}
+              系所社團有最齊全的資料供您參考。
             </p>
+            <a href="{{url('/group')}}">前往系所社團</a>
   			</div>
 		</div>
     <div class="timeline-item">
@@ -270,8 +280,9 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
   			<div class="timeline-content left">
       			<h2>中大生活</h2>
             <p>
-              QQ
+              食、行、住、育、樂，「中大生活」提供你在中大生活一定要知道的資訊，想知道有什麼好吃好玩，就趕快點進來看吧！
             </p>
+            <a href="{{url('/life')}}">前往中大生活</a>
   			</div>
 		</div>
     <div class="timeline-item">
@@ -283,8 +294,9 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
   			<div class="timeline-content right">
   					<h2>影音專區</h2>
             <p>
-              QQ
+              沒來過中央大學?沒關係，影音專區讓你待在螢幕前就能了解中央事，看見中央情。
             </p>
+            <a href="{{url('/videos')}}">前往影音專區</a>
   			</div>
 		</div>
     <div class="timeline-item">
@@ -296,8 +308,9 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
   			<div class="timeline-content left">
   					<h2>關於我們</h2>
             <p>
-              QQ
+              一群由熱情的學生所組成，在暑假窩在一起，寫CODE，繪圖，拍攝影片，快點進來認識他們吧~
             </p>
+            <a href="{{url('/')}}">前往關於我們</a>
   			</div>
 		</div>
 </div>
