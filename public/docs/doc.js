@@ -2,6 +2,9 @@ $(document).ready(function() {
     // remove inline style of table, tr, td
     $("table, tr, td").removeAttr("style");
 
+    // 讓圖片
+    $("div.modal-body").find("img").addClass("img-responsive").removeAttr("style");
+
     // fadeIn() animation
     $("body").fadeIn("slow");
 
