@@ -37,6 +37,7 @@ CKEDITOR.replace( 'content', {
                         <select id="select" class="form-control" name="position_of_main">
                             <option value="1">註冊</option>
                             <option value="2">新生週</option>
+                            <option value="3">研究所 - 共同課程</option>
                         </select>
                     </div>
                 </div>
