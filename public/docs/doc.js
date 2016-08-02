@@ -30,13 +30,6 @@ $(document).ready(function() {
         });
     });
 
-    // 設定方形按鈕大小
-    $(".btn-custom").css({
-        "height": $(".btn-custom").width(),
-        "line-height": $(".btn-custom").width() + "px",
-        "padding": 0
-    });
-
     // 滑鼠進入方形按鈕的特效
     $(".btn-wrapper").mouseenter(function() {
         $(this).find(".btn-mouseenter").stop().fadeOut("fast");
@@ -118,13 +111,6 @@ $(document).ready(function() {
         // 垂直置中
         $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
         $(".img-wrapper").css("padding-top", ($(window).innerHeight() - $(".img-wrapper").height()) / 2);
-
-        // 設定方形按鈕大小
-        $(".btn-custom").css({
-            "height": $(this).width(),
-            "line-height": $(this).width() + "px",
-            "padding": 0
-        });
     });
 
     // 

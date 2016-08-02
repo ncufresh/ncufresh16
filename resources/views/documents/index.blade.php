@@ -122,11 +122,13 @@ $(document).ready(function(){
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <div class="col-xs-6 text-right">
-                                                <button type="submit" class="btn btn-raised btn-success">新增</button>
-                                            </div>
-                                            <div class="col-xs-6 text-left">
-                                                <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
+                                            <div class="row">
+                                                <div class="col-xs-6 text-right">
+                                                    <button type="submit" class="btn btn-raised btn-success">新增</button>
+                                                </div>
+                                                <div class="col-xs-6 text-left">
+                                                    <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -153,7 +155,7 @@ $(document).ready(function(){
                             <?php $subCount = 0; ?>
                             {{-- 產生大學部主要項目裡的細部項目 --}}
                             @foreach ($unders as $u)
-                                <div class="col-md-4">
+                                <div class="col-xs-4">
                                     <!-- btn -->
                                     <div class="btn-wrapper">
                                         <a class="btn btn-custom" type="button" data-toggle="modal" data-target="#modal-{{ $u->id }}">
@@ -236,7 +238,7 @@ $(document).ready(function(){
                             <?php $subCount = 0; ?>
                             {{-- 產生研究所主要項目裡的細部項目 --}}
                             @foreach ($graduates as $g)
-                                <div class="col-md-4">
+                                <div class="col-xs-4">
                                     <div class="btn-wrapper">
                                         <a class="btn btn-custom" type="button" data-toggle="modal" data-target="#modal-{{ $g->id }}">
                                             <div class="btn-mouseenter">{{ $g->title }}</div>
@@ -322,11 +324,13 @@ $(document).ready(function(){
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <div class="col-xs-6 text-right">
-                                                <button type="submit" class="btn btn-raised btn-success">新增</button>
-                                            </div>
-                                            <div class="col-xs-6 text-left">
-                                                <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
+                                            <div class="row">
+                                                <div class="col-xs-6 text-right">
+                                                    <button type="submit" class="btn btn-raised btn-success">新增</button>
+                                                </div>
+                                                <div class="col-xs-6 text-left">
+                                                    <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -400,11 +404,13 @@ $(document).ready(function(){
                                     </fieldset>
                                 </div>
                                 <div class="modal-footer">
-                                    <div class="col-xs-6 text-right">
-                                        <button type="submit" class="btn btn-raised btn-success">新增</button>
-                                    </div>
-                                    <div class="col-xs-6 text-left">
-                                        <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
+                                    <div class="row">
+                                        <div class="col-xs-6 text-right">
+                                            <button type="submit" class="btn btn-raised btn-success">新增</button>
+                                        </div>
+                                        <div class="col-xs-6 text-left">
+                                            <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
