@@ -13,19 +13,6 @@ body {
 main {
     background-image: url("{{ asset('docs/img/fal.png') }}");
 }
-#wrapper1 ::-webkit-scrollbar {
-    width: 0.25em;
-    background-color: #F5F5F5;
-}
-#wrapper1 ::-webkit-scrollbar-track {
-    border-radius: 5px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    background-color: #F5F5F5;
-}
-#wrapper1 ::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: #616161;
-}
 </style>
 @stop
 
@@ -73,8 +60,8 @@ CKEDITOR.replace( 'new_mix', {
     });
 </script>
 <script>
-jQuery(document).ready(function(){
-    jQuery('.scrollbar-macosx').scrollbar();
+$(document).ready(function(){
+    $('.scrollbar-macosx').scrollbar();
 });
 </script>
 @stop

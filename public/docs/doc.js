@@ -2,9 +2,6 @@ $(document).ready(function() {
     // fadeIn() animation
     $("body").fadeIn("slow");
 
-    // 高度為螢幕高度
-    $("#outerLeftSidebar, #outerRightSidebar, #midScreen").css("height", $(window).innerHeight());
-
     // 垂直置中
     $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
     $(".img-wrapper").css("padding-top", ($(window).innerHeight() - $(".img-wrapper").height()) / 2);
@@ -26,13 +23,15 @@ $(document).ready(function() {
             $("#innerRightSidenav").css("padding-top", ($(window).innerHeight() - $("#innerRightSidenav").height()) / 2);
         }
         // Using jQuery's animate() method to add smooth page scroll
-        $('html, body').animate({
+        $('html, body').stop().animate({
             scrollTop: $(hash).offset().top - $("nav").height()
-        }, "slow");
+        }, "slow", function() {
+            window.location.hash = hash;
+        });
     });
 
     // 切換研究所的三個主項目畫面
-    $("li a[href='#graduate-1'], li a[href='#graduate-2'], li a[href='#graduate-3']").on('click', function(event) {
+    $("li a[href='#graduate-1'], li a[href='#graduate-2']").on('click', function(event) {
         // Prevent default anchor click behavior
         event.preventDefault();
         // Store hash
@@ -56,7 +55,7 @@ $(document).ready(function() {
         }
 
         // Using jQuery's animate() method to add smooth page scroll
-        $('html, body').animate({
+        $('html, body').stop().animate({
             scrollTop: $(hash).offset().top - $("nav").height()
         }, "slow", function() {
             window.location.hash = hash;
@@ -88,7 +87,7 @@ $(document).ready(function() {
         }
 
         // Using jQuery's animate() method to add smooth page scroll
-        $('html, body').animate({
+        $('html, body').stop().animate({
             scrollTop: $("#leftScreen").offset().top - $("nav").height()
         }, "slow", function() {
             window.location.hash = hash;
@@ -108,18 +107,10 @@ $(document).ready(function() {
         var hash = this.hash;
         // Using jQuery's animate() method to add smooth page scroll
         // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-        $('html, body').animate({
+        $('html, body').stop().animate({
             scrollTop: $(hash).offset().top - $("nav").height()
         }, "slow");
     });
-
-    // testing
-    function test() {
-        $(".test1").text();
-        $(".test2").text();
-        $(".test3").text();
-        $(".test4").text();
-    }
 
     $(".img-wrapper").mouseenter(function() {
         $(this).find("img").stop().animate({
