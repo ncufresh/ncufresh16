@@ -102,7 +102,7 @@ $(document).ready(function(){
         <!-- #leftScreen 大學部畫面 -->
         <div class="container-fluid text-center" id="leftScreen">
             <div class="row">
-                <div class="col-md-2 col-xs-3 col-fluid scrollspy" id="innerLeftSidenav">
+                <div class="col-md-2 col-xs-3 col-fluid" id="innerLeftSidenav">
                     <ul class="nav side-nav" id="leftNav">
                         <li>
                             <h1 class="side-nav-title">大學部</h1></li>
@@ -305,7 +305,7 @@ $(document).ready(function(){
                     <!-- /#graduate-{{ $mainCount }} -->
                 @endforeach
                 <!-- /.col-xs-8 /#innerRightPage -->
-                <div class="col-md-2 col-xs-3 col-fluid scrollspy" id="innerRightSidenav">
+                <div class="col-md-2 col-xs-3 col-fluid" id="innerRightSidenav">
                     <ul class="nav side-nav" id="rightNav">
                         <li><h1 class="side-nav-title">研究所</h1></li>
                         <li><a href="#graduate-1"><img src="{{ asset('docs/img/sign.png') }}" alt="註冊"></a></li>
