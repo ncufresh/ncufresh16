@@ -34,6 +34,8 @@ $(document).ready(function() {
             $("#leftScreen").hide();
             $("#rightScreen").fadeIn("fast");
             $("#innerRightSidenav").css("padding-top", ($(window).innerHeight() - $("#innerRightSidenav").height()) / 2);
+            $("#innerRightPage-1").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-1").height()) / 2);
+            $("#innerRightPage-2").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-2").height()) / 2);
         }
         // Using jQuery's animate() method to add smooth page scroll
         $('html, body').stop().animate({

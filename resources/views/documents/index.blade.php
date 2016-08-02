@@ -421,16 +421,17 @@ $(document).ready(function(){
                 {{-- /新增共同資料 --}}
             </div>
             <div class="row">
-            <?php $mainCount = 0; ?>
+            <?php $mainCount = 0;
+                  $mainTitles = array("學習", "生活", "輔導"); ?>
             @foreach ($mainMixs as $mixs)
                 <div class="col-sm-4 text-center">
                     <div class="btn-wrapper dropdown scrollbar-macosx" style="overflow: auto;" id="wrapper{{ ++$mainCount }}">
                         <a class="btn btn-custom dropdown-toggle" type="button" data-toggle="dropdown">
                             <div class="btn-mouseenter">
-                                <div class="btn-txt">主標題 {{ $mainCount }}</div>
+                                <div class="btn-txt">{{ $mainTitles[ --$mainCount ] }}</div>
                             </div>
                             <div class="btn-mouseleave">
-                                <div class="btn-txt">主標題 {{ $mainCount }}</div>
+                                <div class="btn-txt">{{ $mainTitles[ $mainCount++ ] }}</div>
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-custom">
