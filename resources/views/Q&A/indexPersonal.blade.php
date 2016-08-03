@@ -12,7 +12,7 @@
           <tr onclick="document.location = '{{action('QandAController@show',$Q->id)}}' ;" >
             <td>{{ $Q->classify }}</td>
             <td><?php echo substr($Q->created_at,5,5) ?></td>
-            <td>{{ $Q->content }}</td>
+            <td>{{ $Q->topic }}</td>
             <td>{{ $Q->click_count }}</td>
             <td>
               @if(empty($Q->response))
