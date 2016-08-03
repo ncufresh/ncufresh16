@@ -25,7 +25,7 @@
             
             <div class="form-group label-floating">
               <label class="control-label" for="focusedInput1">標題</label>
-              <input class="form-control" name="topic" type="text">
+              <input class="form-control" name="topic" type="text" required>
             </div>
             <div class="form-group label-floating">
               <label class="control-label">詳細描述</label>

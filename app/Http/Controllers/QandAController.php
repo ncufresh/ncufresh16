@@ -73,12 +73,17 @@ class QandAController extends Controller
     */
     public function store(Request $request)
     {
-    	$Q = new QandA;
-        $Q->asked_id = Auth::user()->id;
-        $Q->topic = $request->topic;
-	    $Q->content = nl2br($request->content);    //
-	    $Q->classify = $request->classify;
-	    $Q->save();
+        if(!empty($request->topic)) {
+            $Q = new QandA;
+            $Q->asked_id = Auth::user()->id;
+            $Q->topic = $request->topic;
+            $Q->content = nl2br($request->content);
+            $Q->content = strip_tags($Q->content,"<br>");
+            $Q->classify = $request->classify;
+            $Q->save();
+        } else {
+            echo "<script>window.alert('標題必填!');location.href='/Q&A/create';</script>";
+        }
         return redirect(url('/Q&A/all'));
     }
     /*
