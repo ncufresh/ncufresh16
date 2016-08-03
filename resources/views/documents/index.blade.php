@@ -39,8 +39,9 @@ CKEDITOR.replace( 'new_mix', {
     filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
     filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
 });
-// 更換 scrollbar 的樣式
+
 $(document).ready(function(){
+    // 更換 scrollbar 的樣式
     $('.scrollbar-macosx').scrollbar();
 });
 </script>
@@ -56,9 +57,12 @@ $(document).ready(function(){
                 <!-- 左邊大學部導覽列 -->
                 <div class="col-xs-6 text-right" id="outerLeftSidebar">
                     <div class="img-wrapper">
-                        <a href="#under-1">
-                            <img src="{{ asset('docs/img/col.png') }}" alt="大學部" id="openLeft">
-                        </a>
+                        <p>
+                            <a href="#under-1">
+                                <img src="{{ asset('docs/img/col.png') }}" alt="大學部" id="openLeft">
+                            </a>
+                        </p>
+                        <p id="test"></p>
                     </div>
                 </div>
                 <!-- /左邊大學部導覽列 -->
@@ -394,9 +398,9 @@ $(document).ready(function(){
                                             <label for="select" class="col-xs-4 control-label" style="font-size: 20px;">隸屬於哪個主項目</label>
                                             <div class="col-xs-8">
                                                 <select id="select" class="form-control" name="position_of_main">
-                                                    <option value="1">第 1 個主項目</option>
-                                                    <option value="2">第 2 個主項目</option>
-                                                    <option value="3">第 3 個主項目</option>
+                                                    <option value="1">共同項目 - 學習</option>
+                                                    <option value="2">共同項目 - 生活</option>
+                                                    <option value="3">共同項目 - 輔導</option>
                                                 </select>
                                             </div>
                                         </div>
