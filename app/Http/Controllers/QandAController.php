@@ -81,10 +81,12 @@ class QandAController extends Controller
             $Q->content = strip_tags($Q->content,"<br>");
             $Q->classify = $request->classify;
             $Q->save();
+            return redirect(url('/Q&A/all'));
         } else {
             echo "<script>window.alert('標題必填!');location.href='/Q&A/create';</script>";
+            return;
         }
-        return redirect(url('/Q&A/all'));
+        
     }
     /*
         更新問題
