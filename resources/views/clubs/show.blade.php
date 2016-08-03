@@ -44,6 +44,10 @@ body{
 h3{
 	text-align:center;
 }
+.img{
+	width: 100%;
+    height: auto;
+}
 .modal-body{
 	padding-top: 10px;
 }
@@ -123,7 +127,7 @@ h3{
 		  
 		  <!-- Trigger the modal with a button -->
 		  <!-- 要{{$club->id}} 才不會只顯示第一筆資料 -->
-		  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal{{$club->id}}"><img class="card-img-top" src="{{$club->clubs_file}}"></button>
+		  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal{{$club->id}}"><img class="img" src="{{$club->clubs_file}}"><h2 class="title">{{$club->clubs_intro}}</h2></button>
 
 	</div>
 		  <!-- Modal -->
