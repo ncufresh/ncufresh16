@@ -241,5 +241,11 @@ Route::group( ['middleware' => 'admin'], function () {
 	Route::delete('/life/{id}/deleteDetail', 'LifeController@deleteDetail');
 });
 
+// 關於我們
+//************************************************************
+Route::get('/about', function () {
+    return view('us/about');
+});
+
 
 //************************************************************
