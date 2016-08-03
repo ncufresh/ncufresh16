@@ -41,8 +41,8 @@ body {
 
   <section class="menu menu--off">
     <div><img src="{{asset('upload/avatars/'.$user->avatar)}}" class="img-circle" alt="Cinque Terre" height="300px" width="300px"></div>
-    <div> <h1>{{ Auth::user()->name }}</h1></div>
-    <div><h2>XX系</h2></div>
+    <div> <h1>{{ $user->name }}</h1></div>
+    <div><h2>{{$user->units}}</h2></div>
   </section>
 </section>
      
