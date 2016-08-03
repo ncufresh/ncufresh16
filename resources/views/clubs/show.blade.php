@@ -40,6 +40,7 @@ body{
 }
 .modal-title{
 	text-align:center;
+	margin-bottom: 20px;
 }
 h3{
 	text-align:center;
