@@ -1,9 +1,12 @@
 $(document).ready(function() {
-    // remove inline style of table, tr, td
-    $("div.modal-body").find("table, tr, td").removeAttr("style");
+    // remove inline style of table, th, tr, td
+    $("div.modal-body").find("table, th, tr, td").removeAttr("style");
 
     // 讓圖片自適應大小
     $("div.modal-body").find("img").addClass("img-responsive").removeAttr("style");
+
+    // 設定智慧財產權的圖片最大寬度
+    $("img[alt='智慧財產權']").css("max-height",600);
 
     // fadeIn() animation
     $("body").fadeIn("slow");
@@ -17,8 +20,6 @@ $(document).ready(function() {
     $("#innerRightPage-1").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-1").height()) / 2);
     $("#innerRightPage-2").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-2").height()) / 2);
     $(".img-wrapper").css("padding-top", ($(window).innerHeight() - $(".img-wrapper").height()) / 2);
-
-
 
     // 點下 "開啟大學部畫面" 或 "開啟研究所畫面" 的圖片時
     $("div a[href='#under-1'], div a[href='#graduate-1']").on('click', function(event) {
