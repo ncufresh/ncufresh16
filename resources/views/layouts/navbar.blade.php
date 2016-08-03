@@ -37,6 +37,9 @@
                     </ul>
                 </li>
                 @endcan
+                @if(Agent::is('iPhone')==false)
+                  <li><a href="#" class="trigger-iframe">行事曆</a></li>
+                @endif
                 <li><a href="{{ url('/doc') }}">新生必讀</a></li>
                 <li><a href="{{ url('/Q&A/all') }}">新生Q&amp;A</a></li>
                 <li><a href="{{ url('/campus') }}">校園導覽</a></li>
@@ -54,6 +57,7 @@
                             <li><a href="{{action('PersonalController@index',Auth::user()->id)}}"><i class="fa fa-users"></i>個人專區</a></li>
                             <li><a href="{{ url('/smallgame') }}"><i class="fa fa-gamepad"></i>小遊戲</a></li>
                             <li><a href="{{ url('/user/edit') }}"><i class="fa fa-user"></i>修改資料</a></li>
+                            <li><a href="{{ url('/personal/chat') }}"><i class="fa fa-comments"></i>閒聊哈拉</a></li>
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out"></i>登出</a></li>
                         </ul>
                     </li>
@@ -62,3 +66,7 @@
         </div>
     </div>
 </nav>
+{{-- 可悲的iphone --}}
+@if(Agent::is('iPhone')==false)
+<div id="gcalendar"></div>
+@endif
