@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', '編輯研究生資料')
+@section('title', '編輯新生必讀大學部資料')
 
 @section('css')
 @stop
@@ -24,16 +24,36 @@ CKEDITOR.replace( 'content', {
             <form action="{{ url('doc/under/'.$under->id) }}" method="POST">
             	{{ csrf_field() }}
             	{{ method_field('PATCH') }}
-            	<h1>標題</h1>
-                <p><input type="text" name="title" value="{{ $under->title }}"></p>
+                <h1  style="padding-bottom: 5vh;">編輯新生必讀大學部資料</h1>
+            	<div class="form-group label-floating">
+                    <label class="control-label" for="focusedInput1">標題</label>
+                    <input name="title" class="form-control input-lg" id="focusedInput1" type="text" value="{{ $under->title }}" required>
+                </div>
                 <h1>內文</h1>
-                <p><textarea name="content" id="content">{{ $under->content }}</textarea></p>
-                <h1>隸屬於哪個主項目</h1>
-                <p>
-                	<input type="number" name="position_of_main" value="{{ $under->position_of_main }}"
-                		   min="1" max="3" step="1" value="1" required>
-                </p>
-                <p><button type="submit">更新</button></p>
+                <textarea name="content" id="content">{{ $under->content }}</textarea>
+                <div class="form-group">
+                    <label for="select" class="col-xs-4 control-label" style="font-size: 20px;">隸屬於哪個主項目</label>
+                    <div class="col-xs-8">
+                        <select id="select" class="form-control" name="position_of_main">
+                            @if( $under->position_of_main == 1 )
+                            <option value="1" selected>大學部 - 註冊</option>
+                            <option value="2">大學部 - 新生週</option>
+                            <option value="3">大學部 - 共同課程</option>
+                            @elseif( $under->position_of_main == 2 )
+                            <option value="1">大學部 - 註冊</option>
+                            <option value="2" selected>大學部 - 新生週</option>
+                            <option value="3">大學部 - 共同課程</option>
+                            @else
+                            <option value="1">大學部 - 註冊</option>
+                            <option value="2">大學部 - 新生週</option>
+                            <option value="3" selected>大學部 - 共同課程</option>
+                            @endif
+                        </select>
+                    </div>
+                </div>
+                <div style="padding-top: 10vh;">
+                    <p><button class="btn btn-raised btn-success" type="submit">更新</button></p>
+                </div>
             </form>
         </div>
     </div>

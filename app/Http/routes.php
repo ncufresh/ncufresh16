@@ -14,8 +14,11 @@ Route::group( ['middleware' => 'admin'], function () {
     Route::get('/test', function () { return 'just for test'; });
     /*****************後台統整連結******************/
     Route::get('/admin', function(){
-        return view('admin');
+        return view('dashboard.admin');
     });
+    /*****************首頁背景******************/
+    Route::get('/home/background', 'HomeController@change_bg');
+    Route::post('/home/background', 'HomeController@update_bg');
     /*****************Q&A******************/
     Route::get('/Q&A/admin/', 'QandAController@indexAdmin');
     Route::get('/Q&A/admin/{Q}', 'QandAController@edit');
@@ -24,6 +27,9 @@ Route::group( ['middleware' => 'admin'], function () {
     Route::get('/ann', 'AnnouncementController@index');
     Route::post('/ann', 'AnnouncementController@store');
     Route::get('/ann/{ann}', 'AnnouncementController@show');
+    Route::delete('/ann/{ann}', 'AnnouncementController@destroy');
+    Route::get('/ann/{ann}/edit', 'AnnouncementController@edit');
+    Route::patch('/ann/{ann}', 'AnnouncementController@update');
     /*****************系所社團******************/
     Route::post('/groups/clubs', 'ClubController@store');
   	Route::get('/groups/clubs/create', 'ClubController@create');
@@ -33,6 +39,10 @@ Route::group( ['middleware' => 'admin'], function () {
   	Route::get('/groups/departments/create', 'DepartmentController@create');
   	Route::get('/groups/departments/{id}/edit', 'DepartmentController@edit');
   	Route::patch('/groups/departments/{departments_kind}', 'DepartmentController@update');
+    /*****************個人專區******************/
+    Route::post('/personal/chat/admin', 'PersonalController@postAttention');
+    Route::post('/personal/chat/admin/{id}', 'PersonalController@destroy');
+
 });
 //************************************************************
 

@@ -164,6 +164,7 @@ return [
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Kozz\Laravel\Providers\Guzzle::class, // for oauth
+        Jenssegers\Agent\AgentServiceProvider::class, // for user agent
 
     ],
 
@@ -218,6 +219,7 @@ return [
         //'Watchtower'=> Smarch\Watchtower\WatchtowerFacade::class, // not required, but available
         'Image' => Intervention\Image\Facades\Image::class,
         'Guzzle' => Kozz\Laravel\Facades\Guzzle::class, // for ouath
+        'Agent' => Jenssegers\Agent\Facades\Agent::class, // for user agent
     ],
 
 ];

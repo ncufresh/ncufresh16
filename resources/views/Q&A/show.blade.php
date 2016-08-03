@@ -94,7 +94,7 @@ CKEDITOR.replace( 'response', {
             {{ method_field('DELETE') }}
         <button type="submit" class="btn btn-danger"><i class="fa fa-trash fa-lg"></i> 刪除</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">否</button>
-                        </form>
+        </form>
           
         </div>
       </div>

@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', '編輯大學部資料')
+@section('title', '編輯新生必讀研究所資料')
 
 @section('css')
 @stop
@@ -24,16 +24,30 @@ CKEDITOR.replace( 'content', {
             <form action="{{ url('doc/graduate/'.$graduate->id) }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('PATCH') }}
-                <h1>標題</h1>
-                <p><input type="text" name="title" value="{{ $graduate->title }}"></p>
-                <h1>內文</h1>
-                <p><textarea name="content" id="content">{{ $graduate->content }}</textarea></p>
-                <h1>隸屬於哪個主項目</h1>
-                <p>
-                    <input type="number" name="position_of_main" value="{{ $graduate->position_of_main }}"
-                           min="1" max="3" step="1" value="1" required>
-                </p>
-                <p><button type="submit">更新</button></p>
+                <h1  style="padding-bottom: 5vh;">編輯新生必讀研究所資料</h1>
+                <div class="form-group label-floating">
+                    <label class="control-label" for="focusedInput1">標題</label>
+                    <input name="title" class="form-control input-lg" id="focusedInput1" type="text" value="{{ $graduate->title }}" required>
+                </div>
+                <h3>內文</h3>
+                <textarea name="content" id="content">{{ $graduate->content }}</textarea>
+                <div class="form-group">
+                    <label for="select" class="col-xs-2 control-label" style="font-size: 20px;">隸屬於哪個主項目</label>
+                    <div class="col-xs-10">
+                        <select id="select" class="form-control" name="position_of_main">
+                            @if( $graduate->position_of_main == 1)
+                            <option value="1" selected>研究所 - 註冊</option>
+                            <option value="2">研究所 - 新生週</option>
+                            @else
+                            <option value="1">研究所 - 註冊</option>
+                            <option value="2" selected>研究所 - 新生週</option>
+                            @endif
+                        </select>
+                    </div>
+                </div>
+                <div style="padding-top: 10vh;">
+                    <p><button class="btn btn-raised btn-success" type="submit">更新</button></p>
+                </div>
             </form>
         </div>
     </div>

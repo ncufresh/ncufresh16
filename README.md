@@ -4,28 +4,24 @@
 ## 文件
 
 [雲端硬碟共用資料](https://drive.google.com/folderview?id=0B_ADZePg5JqlU0I3QmFGNk56aDA&usp=drive_web#grid)  
-[去年的網站](http://lovenery.me/old/)
 
 [Laravel Cheet Sheet](http://cheats.jesse-obrien.ca)  
 [英文官方 Laravel 5.2](https://laravel.com/docs/5.2)  
 [中文官方 Laravel 5.2](https://laravel.tw/docs/5.2)
 
+[挑顏色好用](http://materializecss.com/color.html)  
 [Bootstrap英文](http://getbootstrap.com)  
 [Bootstrap中文(3.3.1)](https://kkbruce.tw/bs3/)  
 [Bootstrap:w3schools](http://www.w3schools.com/bootstrap/default.asp)  
-
-[Button製作大師(with bootstrap)](http://www.plugolabs.com/twitter-bootstrap-button-generator-3/)  
-[Button製作大師(with font-awesome)](http://www.plugolabs.com/twitter-bootstrap-button-generator-with-awesome-font/)  
-[挑顏色好用](http://materializecss.com/color.html)  
-
+[jQuery:w3schools](http://www.w3schools.com/jquery/)  
+[Button製作(with font-awesome)](http://www.plugolabs.com/twitter-bootstrap-button-generator-with-awesome-font/)  
 [Bootstrap Material範例集](http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html)  
 
 可用小圖案:  
 [Google Material Icon(縮放用css)](https://design.google.com/icons/)  
 [Font Awesome](http://fontawesome.io/icons/)  
-[Bootstrap](http://getbootstrap.com/components/#glyphicons)
+[Bootstrap](http://getbootstrap.com/components/#glyphicons)  
 
-[jQuery:w3schools](http://www.w3schools.com/jquery/)  
 
 ## 使用套件&版本
 
@@ -36,16 +32,21 @@ PHP:
 [smarch/watchtower(v1.1.5.3)](https://github.com/SmarchSoftware/watchtower)  
 [unisharp/laravel-ckeditor(v4.5.7)](https://github.com/UniSharp/laravel-ckeditor)  
 [intervention/image(v2.3.7)](https://github.com/Intervention/image)  
-[unisharp/laravel-filemanager(v1.5.2)](https://github.com/UniSharp/laravel-filemanager)
+[unisharp/laravel-filemanager(v1.5.2)](https://github.com/UniSharp/laravel-filemanager)  
+[guzzlehttp/guzzle(v6.2.1)](https://github.com/guzzle/guzzle)  
+[kozz/laravel-guzzle-provider(v6.0)](https://github.com/urakozz/laravel-guzzle)  
+[jenssegers/agent(v2.3.3)](https://github.com/jenssegers/agent)
 
 其他:  
 [Bootstrap-3.3.6](http://getbootstrap.com)  
-[bootstrap-material-design-0.5.10](https://github.com/FezVrasta/bootstrap-material-design)  
+[bootstrap-material-design-0.5.10](https://github.com/FezVrasta/bootstrap-material-design)
 [Font Awesome-4.6.3](http://fontawesome.io)  
 [jQuery-1.12.4](http://api.jquery.com)  
 [pickadate.js-3.5.6](http://amsul.ca/pickadate.js/date/)  
-[jquery-backstretch-2.0.4](https://github.com/srobbin/jquery-backstretch)  
+[jQuery-backstretch-2.0.4](https://github.com/srobbin/jquery-backstretch)  
 [jQuery-iziModal-v1.2.0](http://izimodal.marcelodolce.com)  
+[jQuery-confirm-v2.5.1](https://github.com/craftpip/jquery-confirm)
+
 
 ## 部署
 
@@ -86,6 +87,17 @@ $.ajax({
 css, js, 圖片, 檔案 用asset help function  
 ```
 <img src="{{ asset('img/example') }}">
+```
+
+
+## 手機版偵測懶人包
+```
+use Jenssegers\Agent\Agent;
+或
+use Agent;
+...
+Agent::isMobile(); // return true or false
+Agent::isTablet(); // return true or false
 ```
 
 
@@ -183,6 +195,7 @@ Modal字首大寫、單數
 資料表字首小寫、複數  
 Controller字首大寫  
 View的檔案名稱及資料夾名稱應全小寫  
+
 
 ## 後台middleware
 `config/lfm.php`  

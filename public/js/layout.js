@@ -3,8 +3,12 @@ $(document).ready(function(){
     // 使用所有的material js
     $.material.init();
 
-    // footer到top的tooltip
-    $('[data-toggle="tooltip"]').tooltip();
+    // ajax csrf-token
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     // 平滑 自定義的連結跟footer的連結
     $("a[href='#about'], a[href='#news'], a[href='#app-layout']").on('click', function(event) {
@@ -24,4 +28,5 @@ $(document).ready(function(){
                 });
         } // End if
     });
+
 })
