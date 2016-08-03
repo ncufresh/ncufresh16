@@ -7,6 +7,7 @@ use App\Http\Requests;
 use Guzzle;
 use App\User;
 use App\SocialAccount;
+use Auth;
 
 class SocialAccountController extends Controller
 {
@@ -51,7 +52,7 @@ class SocialAccountController extends Controller
 
         // get(or create) user and login it
         $user = $this->createOrGetUser($request);
-        auth()->login($user);
+        Auth::login($user, true);
 
         return redirect('/');
     }

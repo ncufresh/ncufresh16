@@ -13,19 +13,6 @@ body {
 main {
     background-image: url("{{ asset('docs/img/fal.png') }}");
 }
-#wrapper1 ::-webkit-scrollbar {
-    width: 0.25em;
-    background-color: #F5F5F5;
-}
-#wrapper1 ::-webkit-scrollbar-track {
-    border-radius: 5px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    background-color: #F5F5F5;
-}
-#wrapper1 ::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: #616161;
-}
 </style>
 @stop
 
@@ -54,27 +41,8 @@ CKEDITOR.replace( 'new_mix', {
 });
 </script>
 <script>
-    $(document).ready(function() {
-        $(".btn-custom").css({
-            "height": $(".btn-custom").width(),
-            "line-height": $(".btn-custom").width() + "px",
-            "padding": 0
-        });
-
-        $(".btn-wrapper").mouseenter(function(){
-            $(this).find(".btn-mouseenter").stop().fadeOut("fast");
-            $(this).find(".btn-mouseleave").stop().fadeIn("fast");
-        });
-
-        $(".btn-wrapper").mouseleave(function(){
-            $(this).find(".btn-mouseleave").stop().fadeOut("fast");
-            $(this).find(".btn-mouseenter").stop().fadeIn("fast");
-        });
-    });
-</script>
-<script>
-jQuery(document).ready(function(){
-    jQuery('.scrollbar-macosx').scrollbar();
+$(document).ready(function(){
+    $('.scrollbar-macosx').scrollbar();
 });
 </script>
 @stop
@@ -115,7 +83,7 @@ jQuery(document).ready(function(){
         <!-- #leftScreen 大學部畫面 -->
         <div class="container-fluid text-center" id="leftScreen">
             <div class="row">
-                <div class="col-md-2 col-xs-3 col-fluid scrollspy" id="innerLeftSidenav">
+                <div class="col-md-2 col-xs-3 col-fluid" id="innerLeftSidenav">
                     <ul class="nav side-nav" id="leftNav">
                         <li>
                             <h1 class="side-nav-title">大學部</h1></li>
@@ -124,7 +92,7 @@ jQuery(document).ready(function(){
                         <li><a href="#under-3"><img src="{{ asset('docs/img/course.png') }}" alt="共同課程"></a></li>
                     </ul>
                     {{-- 新增大學部資料 --}}
-                    <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-under">新增</button>
+                    <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-under" style="z-index: 3;">新增</button>
                     <!-- Modal -->
                     <div id="modal-new-under" class="modal fade text-left" role="dialog">
                         <div class="modal-dialog modal-lg">
@@ -154,11 +122,13 @@ jQuery(document).ready(function(){
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <div class="col-xs-6 text-right">
-                                                <button type="submit" class="btn btn-raised btn-success">新增</button>
-                                            </div>
-                                            <div class="col-xs-6 text-left">
-                                                <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
+                                            <div class="row">
+                                                <div class="col-xs-6 text-right">
+                                                    <button type="submit" class="btn btn-raised btn-success">新增</button>
+                                                </div>
+                                                <div class="col-xs-6 text-left">
+                                                    <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -185,7 +155,7 @@ jQuery(document).ready(function(){
                             <?php $subCount = 0; ?>
                             {{-- 產生大學部主要項目裡的細部項目 --}}
                             @foreach ($unders as $u)
-                                <div class="col-md-4">
+                                <div class="col-xs-4">
                                     <!-- btn -->
                                     <div class="btn-wrapper">
                                         <a class="btn btn-custom" type="button" data-toggle="modal" data-target="#modal-{{ $u->id }}">
@@ -268,7 +238,7 @@ jQuery(document).ready(function(){
                             <?php $subCount = 0; ?>
                             {{-- 產生研究所主要項目裡的細部項目 --}}
                             @foreach ($graduates as $g)
-                                <div class="col-md-4">
+                                <div class="col-xs-4">
                                     <div class="btn-wrapper">
                                         <a class="btn btn-custom" type="button" data-toggle="modal" data-target="#modal-{{ $g->id }}">
                                             <div class="btn-mouseenter">{{ $g->title }}</div>
@@ -318,14 +288,14 @@ jQuery(document).ready(function(){
                     <!-- /#graduate-{{ $mainCount }} -->
                 @endforeach
                 <!-- /.col-xs-8 /#innerRightPage -->
-                <div class="col-md-2 col-xs-3 col-fluid scrollspy" id="innerRightSidenav">
+                <div class="col-md-2 col-xs-3 col-fluid" id="innerRightSidenav">
                     <ul class="nav side-nav" id="rightNav">
                         <li><h1 class="side-nav-title">研究所</h1></li>
                         <li><a href="#graduate-1"><img src="{{ asset('docs/img/sign.png') }}" alt="註冊"></a></li>
                         <li><a href="#graduate-2"><img src="{{ asset('docs/img/firstweek.png') }}" alt="新生週"></a></li>
                     </ul>
                     {{-- 新增研究所資料 --}}
-                    <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-graduate">新增</button>
+                    <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-graduate" style="z-index: 3;">新增</button>
                     <!-- Modal -->
                     <div id="modal-new-graduate" class="modal fade text-left" role="dialog">
                         <div class="modal-dialog modal-lg">
@@ -354,11 +324,13 @@ jQuery(document).ready(function(){
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <div class="col-xs-6 text-right">
-                                                <button type="submit" class="btn btn-raised btn-success">新增</button>
-                                            </div>
-                                            <div class="col-xs-6 text-left">
-                                                <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
+                                            <div class="row">
+                                                <div class="col-xs-6 text-right">
+                                                    <button type="submit" class="btn btn-raised btn-success">新增</button>
+                                                </div>
+                                                <div class="col-xs-6 text-left">
+                                                    <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -398,7 +370,7 @@ jQuery(document).ready(function(){
             <div class="row">
                 {{-- 新增共同資料 --}}
                 <div class="col-xs-12 text-center">
-                    <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-mix">新增</button>
+                    <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-mix" style="z-index: 3;">新增</button>
                 </div>
                 <!-- Modal -->
                 <div id="modal-new-mix" class="modal fade text-left" role="dialog">
@@ -432,11 +404,13 @@ jQuery(document).ready(function(){
                                     </fieldset>
                                 </div>
                                 <div class="modal-footer">
-                                    <div class="col-xs-6 text-right">
-                                        <button type="submit" class="btn btn-raised btn-success">新增</button>
-                                    </div>
-                                    <div class="col-xs-6 text-left">
-                                        <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
+                                    <div class="row">
+                                        <div class="col-xs-6 text-right">
+                                            <button type="submit" class="btn btn-raised btn-success">新增</button>
+                                        </div>
+                                        <div class="col-xs-6 text-left">
+                                            <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -447,16 +421,17 @@ jQuery(document).ready(function(){
                 {{-- /新增共同資料 --}}
             </div>
             <div class="row">
-            <?php $mainCount = 0; ?>
+            <?php $mainCount = 0;
+                  $mainTitles = array("學習", "生活", "輔導"); ?>
             @foreach ($mainMixs as $mixs)
                 <div class="col-sm-4 text-center">
                     <div class="btn-wrapper dropdown scrollbar-macosx" style="overflow: auto;" id="wrapper{{ ++$mainCount }}">
                         <a class="btn btn-custom dropdown-toggle" type="button" data-toggle="dropdown">
                             <div class="btn-mouseenter">
-                                <div class="btn-txt">主標題 {{ $mainCount }}</div>
+                                <div class="btn-txt">{{ $mainTitles[ --$mainCount ] }}</div>
                             </div>
                             <div class="btn-mouseleave">
-                                <div class="btn-txt">主標題 {{ $mainCount }}</div>
+                                <div class="btn-txt">{{ $mainTitles[ $mainCount++ ] }}</div>
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-custom">
