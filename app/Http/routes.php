@@ -173,6 +173,7 @@ Route::delete('/groups/departments/{id}', 'DepartmentController@destroy');
 // 小遊戲
 //************************************************************
 Route::get('smallgame','GameController@index');//引導到遊戲頁面
+Route::get('smallgame_mobile','GameController@test_mobile');//手機頁面，測試用
 Route::get('leaderboard','GameController@leaderboard');//引導到排行榜頁面
 Route::get('/smallgame_get/{id}','GameController@get_question');//取得問題
 Route::get('/getScores','GameController@getScores');//取得分數

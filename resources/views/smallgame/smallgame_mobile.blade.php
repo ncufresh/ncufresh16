@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title','小遊戲')
+@section('title','小遊戲_mobile')
   @section('css')
     <style>
 
@@ -74,21 +74,19 @@
       #backToGame{
         margin-left:46%;
       }
-
-
-
-
-
-
       *{ 
         padding: 0; margin: 0; 
       }
       #myCanvas{ 
         background: #eee; display: block; margin: 0 auto; 
-        margin-top:5%;
-
-
+        margin-top:10%;
+        width:540px;
+        height:320px;
       }
+      #word_under_canvas{
+        text-align: center;
+      }
+
       button{
 
         margin-top:5%;
@@ -166,7 +164,10 @@
 
 
 <!-- /////////////////////////////////////////////////////  以上是排行榜  /////////////////////////////////////////////////////  -->
+    <div>
       <canvas id="myCanvas" width="1000" height="500"></canvas>
+      <p id="word_under_canvas">請橫置手機，獲得最佳遊戲體驗</br>please use landscape mode</p>
+    </div>
 
       <audio id="bgm" loop="loop"><source src="/img/game/bgm.mp3" type="audio/mpeg"></audio>
       <audio id="game_4" loop="loop"><source src="/img/game/Game_4.mp3" type="audio/mpeg"></audio>
@@ -495,16 +496,16 @@ function mouseMoveHandler(event) {//不用實作，只要按鍵按下，就會�
 
    msg = "Mouse position: " + (event.clientX) + "," + (event.clientY) + ";canvas position:" + (event.clientX-rect.left) +","+(event.clientY-rect.top)+";heart"+character_heart+";"+score;
    if(gameState===MENU){
-     if(event.clientX>(rect.left+254) && event.clientX<(rect.left+254+133) &&     //new start button
-        event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
+     if(event.clientX>(rect.left+136) && event.clientX<(rect.left+136+71) &&     //new start button
+        event.clientY>(rect.top+159) &&  event.clientY<(rect.top+159+46)){
         gameState_menu_state=1;
       }
-      else if(event.clientX>(rect.left+436) && event.clientX<(rect.left+436+133) &&   
-      event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
+      else if(event.clientX>(rect.left+239) && event.clientX<(rect.left+239+71) &&   
+      event.clientY>(rect.top+159) &&  event.clientY<(rect.top+159+46)){
         gameState_menu_state=2;
       }
-      else if(event.clientX>(rect.left+637) && event.clientX<(rect.left+637+133) &&   
-      event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
+      else if(event.clientX>(rect.left+346) && event.clientX<(rect.left+346+54) &&   
+      event.clientY>(rect.top+159) &&  event.clientY<(rect.top+159+46)){
         gameState_menu_state=3;
       }
       else{
@@ -512,8 +513,8 @@ function mouseMoveHandler(event) {//不用實作，只要按鍵按下，就會�
       }
     }
     else if(gameState===GAMEOVER){
-      if(event.clientX>(rect.left+441) && event.clientX<(rect.left+441+148) &&     //new start button
-        event.clientY>(rect.top+275) &&  event.clientY<(rect.top+275+43)){
+      if(event.clientX>(rect.left+240) && event.clientX<(rect.left+240+76) &&     //new start button
+        event.clientY>(rect.top+181) &&  event.clientY<(rect.top+181+28)){
         gameState_over_state=1;
       }
       else{
@@ -530,59 +531,59 @@ function mouseDownHandler(event){
 /////////the action of every listener
   //偵測按鈕的位置，該怎麼隨著gamestate改變而更動?
   if(gameState===MENU){
-    if(event.clientX>(rect.left+254) && event.clientX<(rect.left+254+133) &&     //new start button
-        event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
+    if(event.clientX>(rect.left+136) && event.clientX<(rect.left+136+71) &&     //new start button
+        event.clientY>(rect.top+159) &&  event.clientY<(rect.top+159+46)){
       gameState++;
     }
-    else if(event.clientX>(rect.left+436) && event.clientX<(rect.left+436+133) &&   
-      event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
+    else if(event.clientX>(rect.left+239) && event.clientX<(rect.left+239+71) &&   
+      event.clientY>(rect.top+159) &&  event.clientY<(rect.top+159+46)){
       gameState=GAME_1;
     }
-    else if(event.clientX>(rect.left+637) && event.clientX<(rect.left+637+133) &&   
-      event.clientY>(rect.top+248) &&  event.clientY<(rect.top+248+77)){
+    else if(event.clientX>(rect.left+346) && event.clientX<(rect.left+346+54) &&   
+      event.clientY>(rect.top+159) &&  event.clientY<(rect.top+159+46)){
       //location.assign("/leaderboard");
       hide();
     }
   }
   else if(gameState===README){
-    if(event.clientX>(rect.left+736) && event.clientX<(rect.left+736+100) &&   
-    event.clientY>(rect.top+424) &&  event.clientY<(rect.top+424+27)){
+    if(event.clientX>(rect.left+396) && event.clientX<(rect.left+396+51) &&   
+    event.clientY>(rect.top+270) &&  event.clientY<(rect.top+270+19)){
       gameState=0;
     }
   }
   else if(gameState===GAME_1){
-    if(event.clientX>(rect.left+722) && event.clientX<(rect.left+722+58) &&   //arrow to game_2
-    event.clientY>(rect.top+282) &&  event.clientY<(rect.top+282+31)){
+    if(event.clientX>(rect.left+387) && event.clientX<(rect.left+387+33) &&   //arrow to game_2
+    event.clientY>(rect.top+185) &&  event.clientY<(rect.top+185+21)){
       gameState=GAME_2;
     }
-    else if(event.clientX>(rect.left+731) && event.clientX<(rect.left+731+54) &&   
-    event.clientY>(rect.top+117) &&  event.clientY<(rect.top+117+31)){//skip
+    else if(event.clientX>(rect.left+394) && event.clientX<(rect.left+394+29) &&   
+    event.clientY>(rect.top+81) &&  event.clientY<(rect.top+81+19)){//skip
       gameState=GAME_4;
     }
   }
   else if(gameState===GAME_2){
-    if(event.clientX>(rect.left+722) && event.clientX<(rect.left+722+58) &&   //arrow to game_3
-    event.clientY>(rect.top+282) &&  event.clientY<(rect.top+282+31)){
+    if(event.clientX>(rect.left+387) && event.clientX<(rect.left+387+33) &&   //arrow to game_2
+    event.clientY>(rect.top+185) &&  event.clientY<(rect.top+185+21)){
       gameState=GAME_3;
     }
-    else if(event.clientX>(rect.left+731) && event.clientX<(rect.left+731+54) &&   //skip
-    event.clientY>(rect.top+117) &&  event.clientY<(rect.top+117+31)){
+    else if(event.clientX>(rect.left+394) && event.clientX<(rect.left+394+29) &&   
+    event.clientY>(rect.top+81) &&  event.clientY<(rect.top+81+19)){
       gameState=GAME_4;
     }
   }
   else if(gameState===GAME_3){
-    if(event.clientX>(rect.left+623) && event.clientX<(rect.left+623+156) &&   //arrow to game_4
-    event.clientY>(rect.top+277) &&  event.clientY<(rect.top+277+40)){
+    if(event.clientX>(rect.left+338) && event.clientX<(rect.left+338+80) &&   //arrow to game_4
+    event.clientY>(rect.top+182) &&  event.clientY<(rect.top+182+25)){
       gameState=GAME_4;
     }
-    else if(event.clientX>(rect.left+214) && event.clientX<(rect.left+214+113) &&   //arrow to Readme
-    event.clientY>(rect.top+336) &&  event.clientY<(rect.top+336+28)){
+    else if(event.clientX>(rect.left+116) && event.clientX<(rect.left+116+60) &&   //arrow to Readme
+    event.clientY>(rect.top+221) &&  event.clientY<(rect.top+221+18)){
       gameState=README;
     }
   }
   else if(gameState===GAMEOVER){
-    if(event.clientX>(rect.left+441) && event.clientX<(rect.left+441+148) &&     //new start button
-        event.clientY>(rect.top+275) &&  event.clientY<(rect.top+275+43)){
+    if(event.clientX>(rect.left+240) && event.clientX<(rect.left+240+76) &&     //new start button
+        event.clientY>(rect.top+181) &&  event.clientY<(rect.top+181+28)){
       document.location.reload();
     }
   }
@@ -914,27 +915,27 @@ function reboot_rightanswer(){//讓角色有無敵時間
 function draw_MENU(){
   context.clearRect(0, 0, canvas.width, canvas.height);
   gameStateManager[0][gameState_menu_state].draw();
-  //show(msg);
+  show(msg);
 }
 function draw_README(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[README].draw();
-    //show(msg);
+    show(msg);
 }
 function draw_GAME_1(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_1].draw();
-    //show(msg);
+    show(msg);
 }
 function draw_GAME_2(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_2].draw();
-    //show(msg);
+    show(msg);
 }
 function draw_GAME_3(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     gameStateManager[GAME_3].draw();
-    //show(msg);
+    show(msg);
 }
 
 function draw_GAME_4(){
@@ -1016,7 +1017,7 @@ function draw_GAME_4(){
     else{
       getScore();//若沒死亡，則持續得分  
     }
-    //show(msg);
+    show(msg);
 }
 function drawGameOver(){
 
@@ -1024,7 +1025,7 @@ function drawGameOver(){
 
   gameStateManager[5][gameState_over_state].draw();
   draw_score_onTheCanvas_gameover();
-  //show(msg);
+  show(msg);
 }
 
 
