@@ -76,8 +76,7 @@ class QandAController extends Controller
     	$Q = new QandA;
         $Q->asked_id = Auth::user()->id;
         $Q->topic = $request->topic;
-	    //$Q->content = nl2br($request->content);    //
-        $Q->content = $request->content;    //
+	    $Q->content = nl2br($request->content);    //
 	    $Q->classify = $request->classify;
 	    $Q->save();
         return redirect(url('/Q&A/all'));
