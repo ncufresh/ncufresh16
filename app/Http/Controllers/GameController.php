@@ -13,6 +13,8 @@ use Illuminate\Routing\Controller;
 use DB;
 use Auth;
 
+use Agent;
+
 class GameController extends Controller
 {
     public function index(){
@@ -24,6 +26,9 @@ class GameController extends Controller
          $total_scores=DB::table('record_scores')->orderBy('score','DESC')->get();//拿到原始全部的分數
          /*
          */
+        if(Agent::isMobile()){
+            return view('smallgame.smallgame_mobile',array('personal_scores'=>$personal_scores,'total_scores'=>$total_scores));
+        }
     	return view('smallgame.smallgame',array('personal_scores'=>$personal_scores,'total_scores'=>$total_scores));
     }
     public function leaderboard(){
