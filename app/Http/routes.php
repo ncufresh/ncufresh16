@@ -63,6 +63,7 @@ Route::get('/user/edit', 'UserController@edit');
 Route::post('/user/update', 'UserController@update');
 Route::get('/portal/login', 'SocialAccountController@redirect');
 Route::get('/portal/callback', 'SocialAccountController@callback');
+Route::get('/portal/flush', 'SocialAccountController@session_flush');
 //************************************************************
 
 // 首頁
