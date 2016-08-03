@@ -39,8 +39,7 @@ CKEDITOR.replace( 'new_mix', {
     filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
     filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
 });
-</script>
-<script>
+// 更換 scrollbar 的樣式
 $(document).ready(function(){
     $('.scrollbar-macosx').scrollbar();
 });
