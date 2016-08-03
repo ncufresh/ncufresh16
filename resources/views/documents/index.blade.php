@@ -179,20 +179,20 @@ $(document).ready(function(){
                                                     <div class="row">
                                                         <div class="col-xs-6 text-right">
                                                             <form action="{{ url('/doc/under/'.$u->id.'/edit') }}" method="GET">
-                                                                <button type="submit" class="btn btn-success btn-lg" id="edit-under-{{ $u->id }}">編輯</button>
+                                                                <button type="submit" class="btn btn-raised btn-success btn-lg" id="edit-under-{{ $u->id }}">編輯</button>
                                                             </form>
                                                         </div>
                                                         <div class="col-xs-6 text-left">
                                                             <form action="{{ url('/doc/under/'.$u->id) }}" method="POST" onsubmit="return confirm('確定要刪除 {{ $u->title }} 嗎？');">
                                                                 {!! csrf_field() !!}
                                                                 {!! method_field('DELETE') !!}
-                                                                <button type="submit" class="btn btn-danger btn-lg" id="delete-document-{{ $u->id }}">刪除</button>
+                                                                <button type="submit" class="btn btn-raised btn-danger btn-lg" id="delete-document-{{ $u->id }}">刪除</button>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                                                    <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -261,20 +261,20 @@ $(document).ready(function(){
                                                     <div class="row">
                                                         <div class="col-xs-6 text-right">
                                                             <form action="{{ url('/doc/graduate/'.$g->id.'/edit') }}" method="GET">
-                                                                <button type="submit" class="btn btn-success btn-lg" id="edit-graduate-{{ $g->id }}">編輯</button>
+                                                                <button type="submit" class="btn btn-raised btn-success btn-lg" id="edit-graduate-{{ $g->id }}">編輯</button>
                                                             </form>
                                                         </div>
                                                         <div class="col-xs-6 text-left">
                                                             <form action="{{ url('/doc/graduate/'.$g->id) }}" method="POST" onsubmit="return confirm('確定要刪除 {{ $g->title }} 嗎？');">
                                                                 {!! csrf_field() !!}
                                                                 {!! method_field('DELETE') !!}
-                                                                <button type="submit" class="btn btn-danger btn-lg" id="delete-document-{{ $g->id }}">刪除</button>
+                                                                <button type="submit" class="btn btn-raised btn-danger btn-lg" id="delete-document-{{ $g->id }}">刪除</button>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                                                    <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -460,20 +460,20 @@ $(document).ready(function(){
                                 <div class="row">
                                     <div class="col-xs-6 text-right">
                                         <form action="{{ url('/doc/mix/'.$m->id.'/edit') }}" method="GET">
-                                            <button type="submit" class="btn btn-success btn-lg" id="edit-mix-{{ $m->id }}">編輯</button>
+                                            <button type="submit" class="btn btn-raised btn-success btn-lg" id="edit-mix-{{ $m->id }}">編輯</button>
                                         </form>
                                     </div>
                                     <div class="col-xs-6 text-left">
                                          <form action="{{ url('/doc/mix/'.$m->id) }}" method="POST" onsubmit="return confirm('確定要刪除 {{ $m->title }} 嗎？');">
                                             {!! csrf_field() !!}
                                             {!! method_field('DELETE') !!}
-                                            <button type="submit" class="btn btn-danger btn-lg" id="delete-mix-{{ $m->id }}">刪除</button>
+                                            <button type="submit" class="btn btn-raised btn-danger btn-lg" id="delete-mix-{{ $m->id }}">刪除</button>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                                <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
                             </div>
                         </div>
                     </div>
