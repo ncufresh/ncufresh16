@@ -18,7 +18,7 @@ class PersonalController extends Controller
     }
      public function viewOther()
     {
-    	$users = User::paginate(16);
+    	$users = User::orderBy('created_at', 'desc')->paginate(16);
         return view('personal.viewOther',compact('users'));
     }
     public function chat()
