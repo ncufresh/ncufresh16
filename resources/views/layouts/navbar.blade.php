@@ -37,6 +37,9 @@
                     </ul>
                 </li>
                 @endcan
+                @if(Agent::is('iPhone')==false)
+                  <li><a href="#" class="trigger-iframe">行事曆</a></li>
+                @endif
                 <li><a href="{{ url('/doc') }}">新生必讀</a></li>
                 <li><a href="{{ url('/Q&A/all') }}">新生Q&amp;A</a></li>
                 <li><a href="{{ url('/campus') }}">校園導覽</a></li>
@@ -62,3 +65,7 @@
         </div>
     </div>
 </nav>
+{{-- 可悲的iphone --}}
+@if(Agent::is('iPhone')==false)
+<div id="gcalendar"></div>
+@endif

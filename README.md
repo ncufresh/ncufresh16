@@ -44,7 +44,7 @@ PHP:
 [jQuery-1.12.4](http://api.jquery.com)  
 [pickadate.js-3.5.6](http://amsul.ca/pickadate.js/date/)  
 [jQuery-backstretch-2.0.4](https://github.com/srobbin/jquery-backstretch)  
-[jQuery-iziModal-v1.2.0](http://izimodal.marcelodolce.com)  
+[jQuery-iziModal-v1.3.0](http://izimodal.marcelodolce.com)  
 [jQuery-confirm-v2.5.1](https://github.com/craftpip/jquery-confirm)
 
 
