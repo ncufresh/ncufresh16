@@ -464,6 +464,7 @@ context = canvas.getContext('2d');
    //加入事件偵聽
 canvas.addEventListener('mousemove', mouseMoveHandler, false);
 canvas.addEventListener('mousedown', mouseDownHandler, false);
+
 document.addEventListener("keydown", keyDownHandler, false); //add keylistener
 document.addEventListener("keyup", keyUpHandler, false);
 
@@ -581,6 +582,22 @@ function mouseDownHandler(event){
       gameState=README;
     }
   }
+  else if(gameState===GAME_4){
+    if(event.clientX>(rect.left+92) && event.clientX<(rect.left+92+157) &&   //leftPressed  &&  answer=1
+    event.clientY>(rect.top+83) &&  event.clientY<(rect.top+83+41)){
+            leftPressed = true;
+            YourAnswer=1;
+            after_click_mouse();
+    }
+    else if(event.clientX>(rect.left+285) && event.clientX<(rect.left+285+157) &&   //rightPressed  &&  answer=2
+    event.clientY>(rect.top+83) &&  event.clientY<(rect.top+83+41)){
+            
+            rightPressed = true;
+            YourAnswer=2;
+            after_click_mouse();
+
+    }
+  }
   else if(gameState===GAMEOVER){
     if(event.clientX>(rect.left+240) && event.clientX<(rect.left+240+76) &&     //new start button
         event.clientY>(rect.top+181) &&  event.clientY<(rect.top+181+28)){
@@ -588,6 +605,12 @@ function mouseDownHandler(event){
     }
   }
 }
+function after_click_mouse(){
+  setTimeout("YourAnswer=0",300);
+  setTimeout("rightPressed=false",300);
+  setTimeout("leftPressed=fasle",300);
+}
+
 
 ////按鈕物件的constructor  
 function btn_1(x,y,width,height) {
