@@ -41,7 +41,7 @@ CKEDITOR.replace( 'response', {
                   @if (!empty($Q->response))
                   <h4>{!!$Q->response!!}</h4>
                   @else
-                  <h3>很抱歉目前尚無回答，請在稍等一會</h3>
+                  <h3>很抱歉目前尚無回答，請再稍等一會</h3>
                   @endif
                   </p></h4>
               </div>

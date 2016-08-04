@@ -30,8 +30,8 @@ tr{
               <tr class="danger" onclick="document.location = '{{action('QandAController@show',$Top5[$i]->id)}}' ;">
                 <td>{{ $i+1 }}</td>
                 <td>{{ $Top5[$i]->classify }}</td>
-                <td><?php echo substr($Top5[$i]->created_at,5,5) ?></td>
-                <td>{{ $Top5[$i]->topic }}</td>
+                <td class="col-md-1">{{substr($Top5[$i]->created_at,5,5)}}</td>
+                <td>{{$Top5[$i]->topic}}</td>
                 <td>{{ $Top5[$i]->click_count }}</td>
                 <td></td>
               </tr>
@@ -49,8 +49,8 @@ tr{
             @foreach ($QandAs as $Q)
               <tr onclick="document.location = '{{action('QandAController@show',$Q->id)}}' ;">
                 <td>{{ $Q->classify }}</td>
-                <td><?php echo substr($Q->created_at,5,5) ?></td>
-                <td>{{ $Q->topic }}</td>
+                <td class="col-md-1">{{ substr($Q->created_at,5,5)}}</td>
+                <td>{{$Q->topic}}</td>
                 <td>{{ $Q->click_count }}</td>
                 <td></td>
               </tr>

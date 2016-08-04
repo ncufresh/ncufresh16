@@ -17,14 +17,14 @@
         @foreach ($QandAs as $Q)
           <tr onclick="document.location = '{{action('QandAController@show',$Q->id)}}' ;" >
             <td>{{ $Q->classify }}</td>
-            <td><?php echo substr($Q->created_at,5,5) ?></td>
+            <td class="col-md-1">{{substr($Q->created_at,5,5)}}</td>
             <td>{{ $Q->topic }}</td>
             <td>{{ $Q->click_count }}</td>
             <td>
               @if(empty($Q->response))
                 尚未回覆
               @else
-                已回復
+                已回覆
               @endif
             </td>
           </tr>
