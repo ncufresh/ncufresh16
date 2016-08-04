@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Building extends Model
 {
-    protected $fillable = array('building_id', 'buildingName', 'buildingExplain');
+    protected $fillable = array('building_id', 'buildingName', 'buildingExplain','SOS','AED');
     protected $table = "Buildings";
 }

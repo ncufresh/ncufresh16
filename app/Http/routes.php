@@ -103,9 +103,10 @@ Route::group(['prefix' => 'doc'], function () {
 
 // 校園導覽
 //************************************************************
-Route::group(['middleware' => ['web']], function () {
+//Route::group(['middleware' => ['web']], function () {
     Route::get('/campus','CampusController@index');
     Route::get('/campus/guide','CampusController@guide');
+    Route::get('/campus/help','CampusController@help');
     //導向建築物
     Route::get('/campus/newData','CampusController@newData');
     //oldfunction
@@ -137,7 +138,7 @@ Route::group(['middleware' => ['web']], function () {
     //主頁 查詢建築物資料
     Route::get('/campus/guide/getBuild/{bid?}','CampusController@getIndexBuilding');
 
-});
+//});
 
 
 
