@@ -7,6 +7,9 @@
 body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
 main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 
+	.container{
+
+	}
 	.dropdown:hover .dropdown-menu {
 	    display: block;
 	    margin-top: 0; /*// remove the gap so it doesn't close*/
@@ -14,7 +17,7 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 	 
 	 .menu li{
 	 	 list-style: none;
-	 	 font-size: 24px;
+	 	 font-size: 2em;
 	 	
 	 }
 
@@ -33,9 +36,9 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 	 
 
 	#groundFrame{
-		min-height: 650px;
+		min-height: 650px;	
 		position: relative;
-		background-image: url(img/life/sun.png);
+		background-image: url({{asset('img/life/sun.png')}});
 	 	background-repeat:no-repeat;
 	 	background-position: center center;
 	
@@ -127,20 +130,20 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 					left:'70%'
 		        });        
 
-		        $(".puzzle").fadeIn(1000);
-		        $("#lifeFrame").fadeIn(1000);
+		        $(".puzzle").fadeIn(500);
+		        $("#lifeFrame").fadeIn(500);
 
 			  } else {
 			     $(this).animate({
-	            	left: '35%',
+	            	left: '40%',
 	            	top: '30%'
 
 		        });
 			 
-			    $(".puzzle").fadeOut(1000);
-			    $("#lifeFrame").fadeOut(1000);
+			    $(".puzzle").not(this).fadeOut(500);
+			    $("#lifeFrame").fadeOut(500);
 			   
-			    $(this).fadeIn(1000);
+			    // $(this).fadeIn(1000);
 
 		       
 		  
@@ -175,11 +178,11 @@ $(".newTitle").keypress(function (event) {
 					<div id="groundFrame">
 							
 					<div id="lifeFrame">
-						<img src="img/life/nculife.png">
+						<img src= "{{asset('img/life/nculife.png')}}">
 					</div>
 					
 		       		<div class="puzzle" id="foodFrame">
-		       		<img class="img-responsive btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#foodMenu" src="{{ asset('img/life/food.png')  }}">
+		       		<img class="img-responsive dropdown-toggle" data-toggle="collapse" data-target="#foodMenu" src="{{ asset('img/life/food.png')  }}">
 		       		</div>
 		       		<ul class="collapse menu" id="foodMenu">
 						@foreach ($food as $food)
@@ -219,7 +222,7 @@ $(".newTitle").keypress(function (event) {
 					
 					<!-- 住 -->
 					<div class="puzzle" id="housingFrame">
-						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#housingMenu" src="{{ asset('img/life/housing.png')  }}">
+						<img class="img-responsive dropdown-toggle" data-toggle="collapse" data-target="#housingMenu" src="{{ asset('img/life/housing.png')  }}">
 					</div>	
 						<ul class="collapse menu" id="housingMenu">
 							@foreach ($housing as $housing)
@@ -260,11 +263,11 @@ $(".newTitle").keypress(function (event) {
 
 					<!-- 行 -->
 					<div class="puzzle" id="transportationFrame">
-						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#transportationMenu" src="{{ asset('img/life/transportation.png')  }}">
+						<img class="img-responsive dropdown-toggle" data-toggle="collapse" data-target="#transportationMenu" src="{{ asset('img/life/transportation.png')  }}">
 					</div>
 						<ul class="collapse menu" id="transportationMenu">
 							@foreach ($transportation as $transportation)
-							<li><img   src="{{ asset('img/life/transportation.png')  }}"> <a href="{{action('LifeController@getContent',['transportation', $transportation->id])}}">{{ $transportation->title }}</a></li>
+							<li><img   src="{{ asset('img/life/foot.png')  }}"> <a href="{{action('LifeController@getContent',['transportation', $transportation->id])}}">{{ $transportation->title }}</a></li>
 					@can('management') 
 					<!--title更改鈕 -->
 						<form action="{{ url('life/'.$transportation->topic.'/'.$transportation->id).'/update' }}" method="POST">
@@ -299,11 +302,11 @@ $(".newTitle").keypress(function (event) {
 					
 					<!-- 育 -->
 					<div class="puzzle" id="educationFrame">
-						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#educationMenu" src="{{ asset('img/life/education.png')  }}">
+						<img class="img-responsive dropdown-toggle" type="button" data-toggle="collapse" data-target="#educationMenu" src="{{ asset('img/life/education.png')  }}">
 					</div>
 						<ul class="collapse menu" id="educationMenu">
-							@foreach ($transportation as $transportation)
-							<li><img  src="{{ asset('img/life/foot.png')  }}"> <a href="{{action('LifeController@getContent',['education', $education->id])}}">{{ $education->title }}</a></li>
+							@foreach ($education as $education)
+							<li><img  src="{{ asset('img/life/pen.png')  }}"> <a href="{{action('LifeController@getContent',['education', $education->id])}}">{{ $education->title }}</a></li>
 						@can('management') 
 					<!--title更改鈕 -->
 						<form action="{{ url('life/'.$education->topic.'/'.$education->id).'/update' }}" method="POST">
@@ -338,11 +341,11 @@ $(".newTitle").keypress(function (event) {
 					
 					<!-- 樂 -->
 					<div class="puzzle" id="entertainmentFrame">
-						<img class="img-responsive btn btn-primary dropdown-toggle" 	 type="button" data-toggle="collapse" data-target="#entertainmentMenu" src="{{ asset('img/life/entertainment.png')  }}">
+						<img class="img-responsive dropdown-toggle" type="button" data-toggle="collapse" data-target="#entertainmentMenu" src="{{ asset('img/life/entertainment.png')  }}">
 					</div>
 						<ul class="collapse menu" id="entertainmentMenu">
-							@foreach ($transportation as $transportation)
-							<li><img  src="{{ asset('img/life/pen.png')  }}"> <a href="{{action('LifeController@getContent',['entertainment', $entertainment->id])}}">{{ $entertainment->title }}</a></li>
+							@foreach ($entertainment as $entertainment)
+							<li><img  src="{{ asset('img/life/mic.png')  }}"> <a href="{{action('LifeController@getContent',['entertainment', $entertainment->id])}}">{{ $entertainment->title }}</a></li>
 						@can('management') 
 					<!--title更改鈕 -->
 						<form action="{{ url('life/'.$entertainment->topic.'/'.$entertainment->id).'/update' }}" method="POST">
