@@ -47,6 +47,12 @@ CKEDITOR.replace( 'content', {
             <div class="form-group label-floating">
               <textarea name="response" class="form-control" rows="5">{!!$Q->response!!}</textarea>
             </div>
+
+            <div class="form-group label-floating">
+              <label class="control-label" for="focusedInput1">點閱率</label>
+              <input class="form-control" name="click" type="text" value="{{$Q->click_count}}">
+              <span class="help-block">有人洗就改掉(只能輸入數字)</span>
+            </div>
             
             <button type="submit" class="col-md-4 col-md-offset-4 btn btn-info btn-raised">Submit</button>
           </form>

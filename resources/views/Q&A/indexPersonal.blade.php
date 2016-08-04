@@ -1,6 +1,12 @@
 @extends('layouts.layout')
 @section('title','發問紀錄|Q&A')
-
+@section('css')
+<style type="text/css">
+  tr{
+     cursor:pointer;
+}
+</style>
+@endsection
 @section('content')
 <div class="container">
 @include('Q&A.Q&Alayouts')

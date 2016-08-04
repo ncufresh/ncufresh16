@@ -10,6 +10,9 @@
 .panel.gernal>.panel-heading {
     background-color: #FFA600;
 }
+tr{
+     cursor:pointer;
+}
 </style>
 @stop
 @section('content')
