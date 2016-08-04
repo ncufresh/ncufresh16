@@ -30,6 +30,15 @@ body {
 *{
   font-family:微軟正黑體;
 }
+@media (max-width: 500px) {
+  .fixed {
+  position: fixed;
+  bottom: 0;
+  left: 70%;
+  width:30%;
+  cursor:pointer;
+}
+}
 
 </style>
 @include('personal.hamburger')
@@ -46,8 +55,8 @@ body {
   </section>
 
   <section class="menu menu--off" style="z-index:20;">
-    <div><img src="{{asset('upload/avatars/'.$user->avatar)}}" class="img-circle" alt="Cinque Terre" height="300px" width="300px"></div>
-    <div> <h1>{{ $user->name }}</h1></div>
+    <div><img src="{{asset('upload/avatars/'.$user->avatar)}}" class="img-circle" alt="Cinque Terre" height="100%" width="100%"></div>
+    <div  height="100%" width="100%"> <h1>{{ $user->name }}</h1></div>
     <div><h2>{{$user->units}}</h2></div>
     <div><h3>{{$user->intro}}</h3></div>
   </section>

@@ -45,7 +45,7 @@ input[type=text]:focus {
 @section('content')
 <div class="container">
 <div class="row">
-	<input id="search" type="text" name="search" placeholder="Search..輸入完請按Enter">
+	<input id="search" type="text" name="search" placeholder="搜尋姓名..輸入完請按Enter">
 </div><br>
 <div class="row">
 	<div class="panel panel-success" style="display:none;">
