@@ -40,7 +40,9 @@ body{
 }
 .modal-title{
 	text-align:center;
-	margin-bottom: 20px;
+}
+.modal-body{
+	padding-top: 0px;
 }
 h3{
 	text-align:center;
@@ -48,9 +50,6 @@ h3{
 .img{
 	width: 100%;
     height: auto;
-}
-.modal-body{
-	padding-top: 10px;
 }
 .breadcrumb{
 	margin-bottom: 5px;
@@ -139,9 +138,9 @@ h3{
 		    <div class="modal-content">
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		          <h2 class="modal-title">{{$club->clubs_intro}}</h2>
+		          <h2 class="modal-title" style="margin-top: 20px">{{$club->clubs_intro}}</h2>
 		        </div>
-		        <div class="modal-body">
+		        <div class="modal-body" style="padding-top: 10px">
 		          <p>{!!$club->clubs_summary!!}</p>
 		          <p>{!!$club->clubs_activity!!}</p>
 		          <p>{!!$club->clubs_join!!}</p>
