@@ -4,12 +4,9 @@
 
 @section('css')
 <style>
-body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
-main { background-image:url("{{asset('img/layout/spring.png')}}"); }
+	body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
+	main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 
-	.container{
-
-	}
 	.dropdown:hover .dropdown-menu {
 	    display: block;
 	    margin-top: 0; /*// remove the gap so it doesn't close*/
@@ -17,7 +14,7 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 	 
 	 .menu li{
 	 	 list-style: none;
-	 	 font-size: 2em;
+	 	 font-size: 1.5em;
 	 	
 	 }
 
@@ -26,11 +23,8 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 	 	height: auto;
 	 }
 
-	
-
 	 .puzzle{
 		position: absolute;
-		width:40%;
 		max-width: 60%;
 	}
 	 
@@ -41,6 +35,7 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 		background-image: url({{asset('img/life/sun.png')}});
 	 	background-repeat:no-repeat;
 	 	background-position: center center;
+
 	
 	}
 
@@ -52,7 +47,7 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 
 	 #foodFrame{
 	  	top:20%;
-		left:0%;
+		left:5%;
 	  
 	 }
 
@@ -76,12 +71,10 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 		left:70%;	
 	 }
 
-	  .menu{
-	 	position:absolute; 
-	 	/*max-width: 4px;*/
+	 .menu{
+	 	position:absolute;
   		top:5%;
   		bottom: 5%;
-  	/*	margin:0px auto;*/
   		left:70%; 
 	 }
 
@@ -90,11 +83,10 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 	    -webkit-transform: scale(2, 3); /* Safari */
 	    transform: scale(1.2, 1.2);
 	 }
-	
 
-.container {
-  display: none;
-}
+	.container {
+	  display: none;
+	}
 </style>
 	
 @stop
@@ -102,15 +94,16 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 @section('js')
 <script type="text/javascript">
 	$(document).ready(function(){
-		 $(".container").fadeIn(1000);
-	    $(".puzzle").click(function(){
+		$(".container").fadeIn(1000);
+	    $(".puzzle").click(function(event){
 	       	var form = document.getElementById("form_name");
 	        var clicks = $(this).data('clicks');
-			  if (clicks) {
+	       	console.log(event.target.nodeName);
+			if (clicks) {
 			     
 		        $("#foodFrame").animate({
 		            top:'20%',
-		            left: '0%'
+		            left: '5%'
 		        });
  				$("#housingFrame").animate({
 		            top:'0%',
@@ -133,7 +126,7 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 		        $(".puzzle").fadeIn(500);
 		        $("#lifeFrame").fadeIn(500);
 
-			  } else {
+			} else {
 			     $(this).animate({
 	            	left: '40%',
 	            	top: '30%'
@@ -142,27 +135,20 @@ main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 			 
 			    $(".puzzle").not(this).fadeOut(500);
 			    $("#lifeFrame").fadeOut(500);
-			   
-			    // $(this).fadeIn(1000);
 
-		       
-		  
 			  }
 			  $(this).data("clicks", !clicks);
-
-	        
+       
 	    });
 	    
 	});
 
-$(".newTitle").keypress(function (event) {
-    if (event.which === 13)
-    {
-        $(".submit-title").click();
-    }
-});
-
-
+	$(".newTitle").keypress(function (event) {
+	    if (event.which === 13)
+	    {
+	        $(".submit-title").click();
+	    }
+	});
 
 </script>
 
@@ -174,6 +160,7 @@ $(".newTitle").keypress(function (event) {
 		
 			
 		<div class="container" >
+			<div class="row">
 					<!-- 背景 -->
 					<div id="groundFrame">
 							
@@ -379,7 +366,7 @@ $(".newTitle").keypress(function (event) {
 					
 
 					</div>
-			
+			</div>
 		</div>
 	
 		
