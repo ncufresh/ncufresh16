@@ -1,3 +1,59 @@
-.about-size {
-	font-size: 24px;
+@media (min-width:441px){
+	/* 一般 */
+	.about-size {
+		font-size: 24px;
+		font-weight: bold;
+	}
+	.introduce {
+		text-align: left;
+	}
+}
+@media (max-width:400px){
+	/* 手機 */
+	.about-size {
+		font-weight: bold;
+	}
+}
+
+.about {
+	width: 80%;
+}
+
+.about-img {
+	width: 100%;
+}
+
+#team {
+	position: relative;
+}
+
+img.introduce {
+	width: 200px;
+}
+
+/* link */
+a, a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover, a:active {
+	text-decoration: none;
+	cursor: pointer;
+	color: #6280a1;
+}
+
+/* plan */
+#img-plan1 {
+	position: absolute;
+	left: 13.5%;
+	top: 34%;
+	width: 8%;
+}
+
+#img-plan2 {
+	position: absolute;
+	left: 26%;
+	top: 33%;
+	width: 8%;
 }

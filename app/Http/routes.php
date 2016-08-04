@@ -246,6 +246,9 @@ Route::group( ['middleware' => 'admin'], function () {
 Route::get('/about', function () {
     return view('us/about');
 });
+Route::get('/about/{team}', function ($team) {
+    return view('us/team')->with(['team'=>$team]);
+});
 
 
 //************************************************************
