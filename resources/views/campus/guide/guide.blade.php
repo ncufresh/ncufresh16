@@ -20,11 +20,11 @@
         position: absolute;
     }    
     .mapobj:hover,.cateBtn:hover{
-        -webkit-transform:scale(1.5); /* Safari and Chrome */
-        -moz-transform:scale(1.5); /* Firefox */
-        -ms-transform:scale(1.5); /* IE 9 */
-        -o-transform:scale(1.5); /* Opera */
-        transform:scale(1.5);
+        -webkit-transform:scale(1.05); /* Safari and Chrome */
+        -moz-transform:scale(1.05); /* Firefox */
+        -ms-transform:scale(1.05); /* IE 9 */
+        -o-transform:scale(1.05); /* Opera */
+        transform:scale(1.05);
     }
     .cateBtn{
 
@@ -195,17 +195,17 @@
     </div>
     <div class="jumbotron back row" style="background-color: #c29b77;">
 
-        <img class="cateBtn" src="/img/campus/dontdel/11.png" alt="行政" id="1" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/22.png" alt="系館" id="2" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/33.png" alt="景點" id="3" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/44.png" alt="運動" id="4" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/55.png" alt="飲食" id="5" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/66.png" alt="住宿" id="6" value="0">
+        <img class="cateBtn" src="/img/campus/dontdel/1.png" alt="行政" id="1" value="0">
+        <img class="cateBtn" src="/img/campus/dontdel/2.png" alt="系館" id="2" value="0">
+        <img class="cateBtn" src="/img/campus/dontdel/3.png" alt="景點" id="3" value="0">
+        <img class="cateBtn" src="/img/campus/dontdel/4.png" alt="運動" id="4" value="0">
+        <img class="cateBtn" src="/img/campus/dontdel/5.png" alt="飲食" id="5" value="0">
+        <img class="cateBtn" src="/img/campus/dontdel/6.png" alt="住宿" id="6" value="0">
 
         <br>
 
         <div class="col-md-12 map" >
-            <img src='/img/campus/dontdel/background3.png' width='100%'>
+            <img src='/img/campus/dontdel/background4.png' width='100%'>
             @foreach($mapDatas as $mapData)
             <span data-toggle='modal' data-target="#modal{{$mapData->id}}">
                 <img src="/img/campus/{{$mapData->objImg}}" class="cate{$mapData->building_id}} mapobj" id='build{{$mapData->id}}' bid='{{$mapData->id}}' alt="no found" value="{{$mapData->building_id}}" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"
