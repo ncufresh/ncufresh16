@@ -90,7 +90,7 @@ img{
 }
 #eat{
     position: absolute;
-    top:15%;
+    top:18%;
     left:64%;
     width: 20vw;
 }
