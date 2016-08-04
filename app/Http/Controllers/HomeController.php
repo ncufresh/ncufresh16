@@ -30,7 +30,7 @@ class HomeController extends Controller
         // 預覽公告內容欄位
         $anns = $anns->each(function ($item, $key) {
             $tmp = strip_tags($item->content); // html tag全移除
-            $item->short_content=substr($tmp, 0, 10); // 只要前五個字
+            $item->short_content=mb_substr($tmp, 0, 10, 'UTF-8'); // 只要前十個字
         });
 
         return view('home', [
