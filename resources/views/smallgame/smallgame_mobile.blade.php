@@ -442,7 +442,7 @@ gameStateManager[0][2]=gameState_menu[2];
 gameStateManager[0][3]=gameState_menu[3];
 ////
 
-gameReadme=new component(1000,500,"/img/game/Rules.jpg",0,0,"image");//說明頁面物件
+gameReadme=new component(1000,500,"/img/game/Rules_mobile.jpg",0,0,"image");//說明頁面物件
 gamePlay_1=new component(1000,500,"/img/game/story_1.jpg",0,0,"image");
 gamePlay_2=new component(1000,500,"/img/game/story_2.jpg",0,0,"image");
 gamePlay_3=new component(1000,500,"/img/game/story_3.jpg",0,0,"image");
