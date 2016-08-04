@@ -46,7 +46,7 @@ tr{
             <td>{{ $i+1 }}</td>
             <td>{{ $Top5[$i]->classify }}</td>
             <td class="col-md-1">{{substr($Top5[$i]->created_at,5,5)}}</td>
-            <td class="col-md-6">{{$Top5[$i]->topic}}</td>
+            <td class="col-md-6">{{mb_substr($Top5[$i]->topic,0,15)}}...</td>
             <td>{{ $Top5[$i]->click_count }}</td>
             <td></td>
           </tr>
@@ -81,7 +81,7 @@ tr{
               <tr onclick="document.location = '{{action('QandAController@show',$Q->id)}}' ;">
                 <td>{{ $Q->classify }}</td>
                 <td class="col-md-1">{{ substr($Q->created_at,5,5)}}</td>
-                <td class="col-md-8">{{$Q->topic}}</td>
+                <td class="col-md-8">{{mb_substr($Q->topic,0,15)}}...</td>
                 <td>{{ $Q->click_count }}</td>
                 <td></td>
               </tr>

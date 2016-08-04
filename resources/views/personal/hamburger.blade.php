@@ -33,7 +33,7 @@
   display: block;
   background: #eee;
   min-height: 300px;
-  height: 70%;
+  height: auto;
   margin-top: 1em;
   transition: all 300ms;
 }
