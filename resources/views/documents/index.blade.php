@@ -39,9 +39,9 @@ CKEDITOR.replace( 'new_mix', {
     filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
     filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
 });
-</script>
-<script>
+
 $(document).ready(function(){
+    // 更換 scrollbar 的樣式
     $('.scrollbar-macosx').scrollbar();
 });
 </script>
@@ -57,9 +57,12 @@ $(document).ready(function(){
                 <!-- 左邊大學部導覽列 -->
                 <div class="col-xs-6 text-right" id="outerLeftSidebar">
                     <div class="img-wrapper">
-                        <a href="#under-1">
-                            <img src="{{ asset('docs/img/col.png') }}" alt="大學部" id="openLeft">
-                        </a>
+                        <p>
+                            <a href="#under-1">
+                                <img src="{{ asset('docs/img/col.png') }}" alt="大學部" id="openLeft">
+                            </a>
+                        </p>
+                        <p id="test"></p>
                     </div>
                 </div>
                 <!-- /左邊大學部導覽列 -->
@@ -179,20 +182,20 @@ $(document).ready(function(){
                                                     <div class="row">
                                                         <div class="col-xs-6 text-right">
                                                             <form action="{{ url('/doc/under/'.$u->id.'/edit') }}" method="GET">
-                                                                <button type="submit" class="btn btn-success btn-lg" id="edit-under-{{ $u->id }}">編輯</button>
+                                                                <button type="submit" class="btn btn-raised btn-success btn-lg" id="edit-under-{{ $u->id }}">編輯</button>
                                                             </form>
                                                         </div>
                                                         <div class="col-xs-6 text-left">
                                                             <form action="{{ url('/doc/under/'.$u->id) }}" method="POST" onsubmit="return confirm('確定要刪除 {{ $u->title }} 嗎？');">
                                                                 {!! csrf_field() !!}
                                                                 {!! method_field('DELETE') !!}
-                                                                <button type="submit" class="btn btn-danger btn-lg" id="delete-document-{{ $u->id }}">刪除</button>
+                                                                <button type="submit" class="btn btn-raised btn-danger btn-lg" id="delete-document-{{ $u->id }}">刪除</button>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                                                    <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -261,20 +264,20 @@ $(document).ready(function(){
                                                     <div class="row">
                                                         <div class="col-xs-6 text-right">
                                                             <form action="{{ url('/doc/graduate/'.$g->id.'/edit') }}" method="GET">
-                                                                <button type="submit" class="btn btn-success btn-lg" id="edit-graduate-{{ $g->id }}">編輯</button>
+                                                                <button type="submit" class="btn btn-raised btn-success btn-lg" id="edit-graduate-{{ $g->id }}">編輯</button>
                                                             </form>
                                                         </div>
                                                         <div class="col-xs-6 text-left">
                                                             <form action="{{ url('/doc/graduate/'.$g->id) }}" method="POST" onsubmit="return confirm('確定要刪除 {{ $g->title }} 嗎？');">
                                                                 {!! csrf_field() !!}
                                                                 {!! method_field('DELETE') !!}
-                                                                <button type="submit" class="btn btn-danger btn-lg" id="delete-document-{{ $g->id }}">刪除</button>
+                                                                <button type="submit" class="btn btn-raised btn-danger btn-lg" id="delete-document-{{ $g->id }}">刪除</button>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                                                    <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -395,9 +398,9 @@ $(document).ready(function(){
                                             <label for="select" class="col-xs-4 control-label" style="font-size: 20px;">隸屬於哪個主項目</label>
                                             <div class="col-xs-8">
                                                 <select id="select" class="form-control" name="position_of_main">
-                                                    <option value="1">第 1 個主項目</option>
-                                                    <option value="2">第 2 個主項目</option>
-                                                    <option value="3">第 3 個主項目</option>
+                                                    <option value="1">共同項目 - 學習</option>
+                                                    <option value="2">共同項目 - 生活</option>
+                                                    <option value="3">共同項目 - 輔導</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -460,20 +463,20 @@ $(document).ready(function(){
                                 <div class="row">
                                     <div class="col-xs-6 text-right">
                                         <form action="{{ url('/doc/mix/'.$m->id.'/edit') }}" method="GET">
-                                            <button type="submit" class="btn btn-success btn-lg" id="edit-mix-{{ $m->id }}">編輯</button>
+                                            <button type="submit" class="btn btn-raised btn-success btn-lg" id="edit-mix-{{ $m->id }}">編輯</button>
                                         </form>
                                     </div>
                                     <div class="col-xs-6 text-left">
                                          <form action="{{ url('/doc/mix/'.$m->id) }}" method="POST" onsubmit="return confirm('確定要刪除 {{ $m->title }} 嗎？');">
                                             {!! csrf_field() !!}
                                             {!! method_field('DELETE') !!}
-                                            <button type="submit" class="btn btn-danger btn-lg" id="delete-mix-{{ $m->id }}">刪除</button>
+                                            <button type="submit" class="btn btn-raised btn-danger btn-lg" id="delete-mix-{{ $m->id }}">刪除</button>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                                <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
                             </div>
                         </div>
                     </div>

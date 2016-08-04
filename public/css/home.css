@@ -245,8 +245,10 @@
 }
 .carousel figure {
   height: 400px;
-  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   position: relative;
+  cursor: pointer;
 }
 .carousel figure::before {
   content: '';

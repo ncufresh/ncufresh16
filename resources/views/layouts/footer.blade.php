@@ -27,7 +27,7 @@
         <h3>社群網站</h3>
         <ul class="list-inline">
             <li><a href="https://www.facebook.com/groups/NCUgroup/" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a></li>
-            <li><a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google"></i></a></li>
+            <li><a href="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=ncufreshweb%40gmail.com&amp;color=%232952A3&amp;src=zh-tw.taiwan%23holiday%40group.v.calendar.google.com&amp;color=%23125A12&amp;ctz=Asia%2FTaipei" class="btn-social btn-outline"><i class="fa fa-fw fa-google"></i></a></li>
             <li><a href="https://www.youtube.com/channel/UCmO3cFtFtdIawfBQpGR8EVA" class="btn-social btn-outline"><i class="fa fa-fw fa-youtube"></i></a></li>
             <li><a href="http://www.ncu.edu.tw/" class="btn-social btn-outline"><i class="fa fa-mortar-board"></i></a></li>
         </ul>

@@ -22,6 +22,13 @@
           <td>{{ $Q->click_count }}</td>
           <td><a href="{{action('QandAController@show',$Q->id)}}"><i class="fa fa-eye" aria-hidden="true">檢視</i></a></td>
           <td><a href="{{action('QandAController@edit',$Q->id)}}"><i class="fa fa-eye" aria-hidden="true">編輯</i></a></td>
+          <td>
+              @if(empty($Q->response))
+                尚未回覆
+              @else
+                已回復
+              @endif
+            </td>
           <td><button type="button" class="btn btn-fab btn-fab-mini" data-toggle="modal" data-target="#myModal{{$Q->id}}"><i class="fa fa-trash fa-lg"></i></button></td>
         </tr>
                                     <!-- Modal -->

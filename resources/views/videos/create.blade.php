@@ -19,12 +19,12 @@
       <label for="videos_kind" class="col-sm-3 control-label" name="videos_kind">選擇影片類別</label>
         <div class="col-sm-9">
           <select name="videos_kind" id="videos_kind" form="videos_kind" class="form-control has-error">
-            <option value="food" selected="">食</option>
-            <option value="live" selected="">住</option>
-            <option value="traffic" selected="">行</option>
-            <option value="edu" selected="">育</option>
-            <option value="fun" selected="">樂</option>
-            <option value="others" selected="">其他</option>
+            <option value="food" selected="" id="1">食</option>
+            <option value="live" selected="" id="2">住</option>
+            <option value="traffic" selected="" id="3">行</option>
+            <option value="edu" selected="" id="4">育</option>
+            <option value="fun" selected="" id="5">樂</option>
+            <option value="others" selected="" id="6">其他</option>
           </select>                                  
         </div>
       </div>

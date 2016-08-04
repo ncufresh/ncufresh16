@@ -63,6 +63,7 @@ Route::get('/user/edit', 'UserController@edit');
 Route::post('/user/update', 'UserController@update');
 Route::get('/portal/login', 'SocialAccountController@redirect');
 Route::get('/portal/callback', 'SocialAccountController@callback');
+Route::get('/portal/flush', 'SocialAccountController@session_flush');
 //************************************************************
 
 // 首頁
@@ -238,6 +239,12 @@ Route::group( ['middleware' => 'admin'], function () {
 	Route::patch('/life/{topic}/{content}/update','LifeController@update');
 	Route::delete('/life/{id}', 'LifeController@deleteTitle');
 	Route::delete('/life/{id}/deleteDetail', 'LifeController@deleteDetail');
+});
+
+// 關於我們
+//************************************************************
+Route::get('/about', function () {
+    return view('us/about');
 });
 
 

@@ -68,6 +68,8 @@
                     <a class="btn" href="http://www.opera.com/zh-tw">下載Opera</a>
                 </div>
                 <div class="box">
+                    <h3>您的瀏覽器：{{ $browser = \Agent::browser() }}</h3>
+                    <h3>版本為：{{ $version = \Agent::version($browser) }}</h3>
                     <a href="https://www.microsoft.com/zh-tw/download/internet-explorer.aspx">下載Internet Explorer(請下載IE10以上之版本)</a>
                     <h2>如果有任何問題， 歡迎向我們反應</h2>
                     <h2>Email: ncufreshweb@gmail.com</h2>
