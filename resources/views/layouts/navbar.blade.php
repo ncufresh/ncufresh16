@@ -10,7 +10,10 @@
             </button>
 
             {{-- 左上角LOGO --}}
-            <a class="navbar-brand" href="{{ url('/') }}">新生知訊網</a>
+            {{-- <a class="navbar-brand" href="{{ url('/') }}">新生知訊網</a> --}}
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <img alt="Brand" src="img/layout/logo.png">
+            </a>
         </div>
 
         {{-- Collapse --}}

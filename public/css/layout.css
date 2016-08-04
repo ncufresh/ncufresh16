@@ -66,8 +66,8 @@ footer .footer-below {
     margin-left:2px; /* 加了比較好看一點 */
 }
 .footer-ul li {
-    line-height:29px; /* 行距 */
-    font-size:13px; /* 超連結大小可以改 */
+    line-height:2em; /* 行距 */
+    font-size:1em; /* 超連結大小可以改 */
 }
 .footer-ul li a {
     text-decoration: none; /* 不要底線 */
@@ -136,6 +136,15 @@ ul.nav > li.mydropdown:hover {
 
 /* navbar */
 /****************************************************/
+/* navbar logo */
+.navbar-brand {
+  padding: 0px !important;
+}
+.navbar-brand > img {
+  height: 100%;
+  padding: 10px 15px 10px 15px;
+  width: auto;
+}
 /* 主要設定區 背景色 白字 */
 .navbar.navbar-ncufresh {
   /*margin-bottom: 0;
