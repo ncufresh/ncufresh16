@@ -9,16 +9,18 @@
         <div class="row">
             <div class="col-xs-4">
                 <ul class="footer-ul">
-                    <li><a href="#">中大首頁</a></li>
-                    <li><a href="#">中大Portal</a></li>
-                    <li><a href="#">LMS</a></li>
+                    <li><a href="#">中央大學首頁</a></li>
+                    <li><a href="#">LMS系統</a></li>
+                    <li><a href="#">Portal入口</a></li>
+                    <li><a href="https://www.facebook.com/groups/NCUgroup/">新生FB社團</a></li>
                 </ul>
             </div>
             <div class="col-xs-8">
                 <ul class="footer-ul">
-                    <li><a href="#">中大首頁</a></li>
-                    <li><a href="#">中大Portal</a></li>
-                    <li><a href="#">LMS</a></li>
+                    <li><a href="http://in.ncu.edu.tw/ncu7221/OSDS/">宿舍服務中心</a></li>
+                    <li><a href="http://service-learning.ncu.edu.tw/">服務學習網</a></li>
+                    <li><a href="https://140.115.184.179/ncuCareYou/login.php">學生意見反應中心</a></li>
+                    <li><a href="https://www.facebook.com/groups/802172676461763/?fref=ts">中央研究生family</a></li>
                 </ul>
             </div>
         </div>

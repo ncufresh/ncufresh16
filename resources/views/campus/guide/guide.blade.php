@@ -10,6 +10,7 @@
         position: relative;
         overflow-y: auto;
         max-height: 5000px;
+        max-width: 1000px;
         padding: 15px;
     }
     .btn{
@@ -65,16 +66,17 @@
     .container1{
         font-size: 24px;
         display: none;
+        width: auto;
     }
     .cateBtn{
         width: 11%;
     }
     .btnEff{
-        -webkit-transform:scale(1.5); /* Safari and Chrome */
-        -moz-transform:scale(1.5); /* Firefox */
-        -ms-transform:scale(1.5); /* IE 9 */
-        -o-transform:scale(1.5); /* Opera */
-        transform:scale(1.5);
+        -webkit-transform:scale(1.1); /* Safari and Chrome */
+        -moz-transform:scale(1.1); /* Firefox */
+        -ms-transform:scale(1.1); /* IE 9 */
+        -o-transform:scale(1.1); /* Opera */
+        transform:scale(1.1);
     }
     .buildEff{
         -webkit-transform:scale(1.2); /* Safari and Chrome */
@@ -90,42 +92,98 @@
         width: 5%
     }
     .faa:hover{
-        -webkit-transform:scale(1.2); /* Safari and Chrome */
-        -moz-transform:scale(1.2); /* Firefox */
-        -ms-transform:scale(1.2); /* IE 9 */
-        -o-transform:scale(1.2); /* Opera */
-        transform:scale(1.2);
+        -webkit-transform:scale(1.1); /* Safari and Chrome */
+        -moz-transform:scale(1.1); /* Firefox */
+        -ms-transform:scale(1.1); /* IE 9 */
+        -o-transform:scale(1.1); /* Opera */
+        transform:scale(1.1);
     }
-    .jumbotron{
-        background-image: url("/img/campus/dontdel/Back3.png");
-        background-repeat:no-repeat;
-        background-size:cover;
-    }
-    .QQ1{
+    
+    
+    /** The Magic **/
+    .btn-breadcrumb .btn:not(:last-child):after 
+    {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 17px solid transparent;
+        border-bottom: 17px solid transparent;
+        border-left: 10px solid white;
         position: absolute;
-        left: 80%;
-        top: 8%;
-        width: 15%
-    }
-    .QQ2{
-        position: absolute;
-        left: 10%;
-        top: 80%;
-        width: 15%
+        top: 50%;
+        margin-top: -17px;
+        left: 100%;
+        z-index: 3;
     }
 
+    .btn-breadcrumb .btn:not(:last-child):before 
+    {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 17px solid transparent;
+        border-bottom: 17px solid transparent;
+        border-left: 10px solid rgb(173, 173, 173);
+        position: absolute;
+        top: 50%;
+        margin-top: -17px;
+        margin-left: 1px;
+        left: 100%;
+        z-index: 3;
+    }
+
+    /** The Spacing **/
+    .btn-breadcrumb .btn 
+    {
+        padding:6px 12px 6px 24px;
+    }
+    .btn-breadcrumb .btn:first-child
+    {
+        padding:6px 6px 6px 10px;
+    }
+    .btn-breadcrumb .btn:last-child
+    {
+        padding:6px 18px 6px 24px;
+    }
+
+    /** Default button **/
+    .btn-breadcrumb .btn.btn-default:not(:last-child):after 
+    {
+        border-left: 10px solid #fff;
+    }
+    .btn-breadcrumb .btn.btn-default:not(:last-child):before
+    {
+        border-left: 10px solid #ccc;
+    }
+    .btn-breadcrumb .btn.btn-default:hover:not(:last-child):after
+    {
+        border-left: 10px solid #ebebeb;
+    }
+    .btn-breadcrumb .btn.btn-default:hover:not(:last-child):before 
+    {
+        border-left: 10px solid #adadad;
+    }
 
 </style>
 
 <script src="{{ asset('include/jquery/jquery-1.12.4.js') }}"></script>
-<div class="container">
-    <!--網頁路徑-->
-    <div>
-        <a href="{{url('/')}}">首頁</a>
-        >
-        <a href="{{url('/campus')}}">校園導覽</a>
-        >
-        <a href="{{url('/campus/guide')}}">校園介紹</a>
+<br>
+<br>
+<div class="container-fluid">
+   
+    <br><br>
+    
+    <!--網頁路徑-->    
+    <div class="row">	
+        <div class="btn-group btn-breadcrumb">
+
+            <a href="{{url('/')}}" class="btn btn-default">首頁</a>
+            <a href="{{url('/campus')}}" class="btn btn-default">校園導覽</a>
+            <a href="{{url('/campus/guide')}}" class="btn btn-default">校園介紹</a>
+
+        </div>
     </div>
     <div class=''>
         <h1>校園介紹</h1>
@@ -135,19 +193,19 @@
 
 
     </div>
-    <div class="jumbotron back row">
+    <div class="jumbotron back row" style="background-color: #c29b77;">
 
-        <img class="cateBtn" src="/img/campus/dontdel/111.png" alt="行政" id="1" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/222.png" alt="系館" id="2" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/333.png" alt="景點" id="3" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/444.png" alt="運動" id="4" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/666.png" alt="飲食" id="5" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/555.png" alt="住宿" id="6" value="0">
+        <img class="cateBtn" src="/img/campus/dontdel/11.png" alt="行政" id="1" value="0">
+        <img class="cateBtn" src="/img/campus/dontdel/22.png" alt="系館" id="2" value="0">
+        <img class="cateBtn" src="/img/campus/dontdel/33.png" alt="景點" id="3" value="0">
+        <img class="cateBtn" src="/img/campus/dontdel/44.png" alt="運動" id="4" value="0">
+        <img class="cateBtn" src="/img/campus/dontdel/55.png" alt="飲食" id="5" value="0">
+        <img class="cateBtn" src="/img/campus/dontdel/66.png" alt="住宿" id="6" value="0">
 
         <br>
 
         <div class="col-md-12 map" >
-            <img src='/img/campus/dontdel/background.png' width='100%'>
+            <img src='/img/campus/dontdel/background3.png' width='100%'>
             @foreach($mapDatas as $mapData)
             <span data-toggle='modal' data-target="#modal{{$mapData->id}}">
                 <img src="/img/campus/{{$mapData->objImg}}" class="cate{$mapData->building_id}} mapobj" id='build{{$mapData->id}}' bid='{{$mapData->id}}' alt="no found" value="{{$mapData->building_id}}" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"
@@ -163,9 +221,7 @@
             }
             ?>
             <img class="faa" src='/img/campus/dontdel/left.png' width='' style="display:none">
-            <img class="QQ1" src='/img/campus/dontdel/Q1.png'>
-            <img class="QQ2" src='/img/campus/dontdel/Q2.png'>
-
+           
         </div>
     </div>
 
@@ -282,6 +338,12 @@
             });
 
         });
+        $('body').on('mouseover', '.mapobj', function () {        
+            $(this).tooltip('show');
+        });
+         $('body').on('mouseout', '.mapobj', function () {        
+            $(this).tooltip('hide');
+        });
         $('body').on('mouseover', '.cateBtn', function () {
             var id = $(this).attr('id');
             for (var i = 1; i <= buildNum; i++) {
@@ -296,9 +358,9 @@
             var id = $(this).attr('id');
             for (var i = 1; i <= buildNum; i++) {
                 if ($("#build" + i).attr('value') == id) {
-                    
+
                     $("#build" + i).tooltip('hide');
-                    
+
                 }
             }
         });
