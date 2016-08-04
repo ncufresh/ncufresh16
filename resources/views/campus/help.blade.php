@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title','校園介紹')
+@section('title','校園防災')
 @section('content')
 
 <style>
@@ -181,26 +181,18 @@
 
             <a href="{{url('/')}}" class="btn btn-default">首頁</a>
             <a href="{{url('/campus')}}" class="btn btn-default">校園導覽</a>
-            <a href="{{url('/campus/guide')}}" class="btn btn-default">校園介紹</a>
+            <a href="{{url('/campus/help')}}" class="btn btn-default">校園防災</a>
 
         </div>
     </div>
     <div class=''>
-        <h1>校園介紹</h1>
-        <button type="button" class="btn btn-primary" onclick="location.href ='{{url('/campus/newObj')}}'">編輯地圖物件</button>
-
-
-
-
+        <h1>校園防災</h1>
     </div>
     <div class="jumbotron back row" style="background-color: #c29b77;">
 
-        <img class="cateBtn" src="/img/campus/dontdel/11.png" alt="行政" id="1" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/22.png" alt="系館" id="2" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/33.png" alt="景點" id="3" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/44.png" alt="運動" id="4" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/55.png" alt="飲食" id="5" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/66.png" alt="住宿" id="6" value="0">
+        <img class="cateBtn" src="/img/campus/dontdel/11.png" alt="SOS" id="1" value="0">
+        <img class="cateBtn" src="/img/campus/dontdel/22.png" alt="AED" id="2" value="0">
+       
 
         <br>
 
@@ -208,7 +200,7 @@
             <img src='/img/campus/dontdel/background3.png' width='100%'>
             @foreach($mapDatas as $mapData)
             <span data-toggle='modal' data-target="#modal{{$mapData->id}}">
-                <img src="/img/campus/{{$mapData->objImg}}" class="cate{$mapData->building_id}} mapobj" id='build{{$mapData->id}}' bid='{{$mapData->id}}' alt="no found" value="{{$mapData->building_id}}" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"
+                <img src="/img/campus/{{$mapData->objImg}}" class="cate{$mapData->building_id}} mapobj" id='build{{$mapData->id}}' SOS="{{$mapData->SOS}}" AED="{{$mapData->AED}}" alt="no found" value="{{$mapData->building_id}}" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"
                      data-toggle='tooltip' data-placement='top' title="{{$mapData->buildingName}}">
 
             </span>
@@ -226,49 +218,7 @@
     </div>
 
 
-    <!--Ajax Introduction Modal -->
-    <div class="modal fade" id="expModal" role="dialog">
-        <div class="modal-dialog modal-lg">
-
-            <!--Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close cloMod" data-dismiss="modal">&times;</button>
-                    <h2 id="buildingTitle" class="modal-title"></h2>
-                </div>
-
-                <div class="modal-body container container1">
-
-                    <div class="objImg">
-                        <img class="objImg-big img-rounded" src="\img\campus\dontdel\click.png" alt="not found" id="bigImg"><br>
-                        <div id='imgBox'>
-
-                        </div>                                      
-                    </div>
-
-                    <br>
-                    <div class="row label-box">
-                        <label for="BuildName" id="objlabel" class="col-md-2 control-label">建築物名稱</label>
-                        <div class="col-md-9" id="objName">                       
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row label-box">
-                        <label for="BuildExplain" id="objlabel" class="col-md-2 control-label">建築物描述</label>
-                        <div class="col-md-9" id="objExp">                       
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default cloMod" data-dismiss="modal">關閉</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-</div>
+    
 
 
 @section('js')
@@ -299,45 +249,7 @@
             back();
             $(this).css('display', 'none');
         });
-        //取得建築物資料 主頁        
-        $('body').on('click', '.mapobj', function () {
-
-            var bid = $(this).attr('bid');
-            var url = "/campus/guide/getBuild/" + bid;
-            $.get(url, function (data) {
-                console.log(data[1].length);
-                var titDiv = "<h2 id='buildingTitle' class='modal-title'>" + data[0].buildingName + "</h2>"
-                $("#buildingTitle").replaceWith(titDiv);
-
-                if (data[1].length != 0) {
-                    $("#bigImg").attr('src', '/img/campus/' + data[1][0].imgUrl);
-                    var imgs = " <div id='imgBox'>";
-                    for (var i = 0; i < data[1].length; i++) {
-                        imgs += "<img class='objImg-sam img-rounded' src='/img/campus/" + data[1][i].imgUrl + "' alt='Not found' id='" + data[1][i].id + "'>";
-                    }
-                    imgs += "</div>";
-                    $("#imgBox").replaceWith(imgs);
-                } else {
-                    var imgs = "<div id='imgBox'></div>";
-                    $("#imgBox").replaceWith(imgs);
-
-                }
-
-
-                var nameDiv = "<div id='objName' class='col-md-9'>" + data[0].buildingName + "</div>";
-                $('#objName').replaceWith(nameDiv);
-                var expDiv = "<div id='objExp' class='col-md-9'>" + data[0].buildingExplain + "</div>";
-                $('#objExp').replaceWith(expDiv);
-
-                $('#expModal').modal('show');
-                for (var i = 1; i <= buildNum; i++) {
-                    $("#build" + i).tooltip('hide');
-
-                }
-
-            });
-
-        });
+        
         $('body').on('mouseover', '.mapobj', function () {        
             $(this).tooltip('show');
         });

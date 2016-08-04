@@ -38,6 +38,16 @@ class CampusController extends Controller {
             'mapDatas' => $mapDatas,
         ]);
     }
+    public function help(){
+        $mapDatas = DB::table('mapobjects')
+                ->select('mapobjects.*', 'Buildings.*', 'mapobjects.id as objId')
+                ->join('Buildings', 'mapobjects.Building_id', '=', 'Buildings.id')
+                ->get();
+//        return $mapDatas;
+        return view('campus.help',[
+            'mapDatas' => $mapDatas,
+        ]);
+    }
 
     public function newData() {
         $category = Buildingcategory::all();
@@ -65,7 +75,9 @@ class CampusController extends Controller {
                     'building_id' => 'required',
                     'buildingName' => 'required',
                     'buildingExplain' => 'required',
-                    'imgUrl' => 'mimes: jpg,jpeg,png,pmb,gif,svg|max:100',
+                    'SOS'=>'required',
+                    'AED'=>'required',
+                    'imgUrl' => 'mimes: jpg,jpeg,png,pmb,gif,svg',
         ));
 
         if ($validator->fails()) {
@@ -90,6 +102,8 @@ class CampusController extends Controller {
             $building->building_id = $request->building_id;
             $building->buildingName = $request->buildingName;
             $building->buildingExplain = $request->buildingExplain;
+            $building->SOS = $request->SOS;
+            $building->AED = $request->AED;
             $building->save();
 
             //將圖片路徑存至圖片資料庫
@@ -119,7 +133,7 @@ class CampusController extends Controller {
                     'building_id' => 'required',
                     'buildingName' => 'required',
                     'buildingExplain' => 'required',
-                    'imgUrl' => 'mimes: jpg,jpeg,png,pmb,gif,svg|max:500',
+                    'imgUrl' => 'mimes: jpg,jpeg,png,pmb,gif,svg',
         ));
 
         if ($validator->fails()) {
