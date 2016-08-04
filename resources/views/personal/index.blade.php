@@ -25,6 +25,9 @@ body {
   bottom: 0;
   left: 0%;
 }
+body {
+    overflow:hidden;
+}
 </style>
 @include('personal.hamburger')
 @stop
