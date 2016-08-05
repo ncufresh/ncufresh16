@@ -160,8 +160,9 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
             <div id="carousel-single" class="carousel slide add-big-bottom" data-ride="carousel">
             		<!-- Indicators -->
             		<ol class="carousel-indicators">
-            			   <li data-target="#carousel-single" data-slide-to="0" class="active"></li>
-                     	<li data-target="#carousel-single" data-slide-to="1" class=""></li>
+                    <li data-target="#carousel-single" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-single" data-slide-to="1" class=""></li>
+                    <li data-target="#carousel-single" data-slide-to="2" class=""></li>
                 </ol>
 
             		<!-- Wrapper for slides -->
