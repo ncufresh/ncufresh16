@@ -26,7 +26,7 @@ $(document).ready(function(){
         onClosing: function(){{
               $('.navbar-ncufresh').css('display','block');
               if ( $(window).width() > 991 ) {
-                  $('#totop').css('display','block');
+                  $('#totop').css('display','inline');
               }
         }},
     });
