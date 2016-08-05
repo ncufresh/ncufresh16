@@ -192,7 +192,6 @@ Route::get('/getOneQuestion/{question_id?}','GameController@getOneQuestion');//�
 
 // 新生Q&A
 //************************************************************
-//Route::resource('/Q&A', 'QandAController');
 Route::post('/Q&A', 'QandAController@store');
 Route::get('/Q&A/search', 'QandAController@search');
 Route::get('/Q&A/create', 'QandAController@create');
