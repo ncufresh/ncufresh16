@@ -87,6 +87,7 @@ Route::get('/user/edit', 'UserController@edit');
 Route::post('/user/update', 'UserController@update');
 Route::get('/portal/login', 'SocialAccountController@redirect');
 Route::get('/portal/callback', 'SocialAccountController@callback');
+Route::get('/portal/flush', 'SocialAccountController@session_flush');
 //************************************************************
 
 // 首頁
@@ -106,9 +107,10 @@ Route::group(['prefix' => 'doc'], function () {
 
 // 校園導覽
 //************************************************************
-Route::group(['middleware' => ['web']], function () {
+//Route::group(['middleware' => ['web']], function () {
     Route::get('/campus','CampusController@index');
     Route::get('/campus/guide','CampusController@guide');
+    Route::get('/campus/help','CampusController@help');
     //導向建築物
     Route::get('/campus/newData','CampusController@newData');
     //oldfunction
@@ -140,7 +142,7 @@ Route::group(['middleware' => ['web']], function () {
     //主頁 查詢建築物資料
     Route::get('/campus/guide/getBuild/{bid?}','CampusController@getIndexBuilding');
 
-});
+//});
 
 
 
@@ -177,6 +179,7 @@ Route::delete('/groups/departments/{id}', 'DepartmentController@destroy');
 // 小遊戲
 //************************************************************
 Route::get('smallgame','GameController@index');//引導到遊戲頁面
+Route::get('smallgame_mobile','GameController@test_mobile');//手機頁面，測試用
 Route::get('leaderboard','GameController@leaderboard');//引導到排行榜頁面
 Route::get('/smallgame_get/{id}','GameController@get_question');//取得問題
 Route::get('/getScores','GameController@getScores');//取得分數
@@ -241,6 +244,12 @@ Route::group( ['middleware' => 'admin'], function () {
 	Route::patch('/life/{topic}/{content}/update','LifeController@update');
 	Route::delete('/life/{id}', 'LifeController@deleteTitle');
 	Route::delete('/life/{id}/deleteDetail', 'LifeController@deleteDetail');
+});
+
+// 關於我們
+//************************************************************
+Route::get('/about', function () {
+    return view('us/about');
 });
 
 

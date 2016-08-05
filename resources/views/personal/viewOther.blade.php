@@ -46,10 +46,9 @@ input[type=text]:focus {
 <div class="container">
 <div class="row">
 	<input id="search" type="text" name="search" placeholder="Search..輸入完請按Enter">
-	<a class="btn btn-raised btn-info" href="{{action('PersonalController@chat')}}">留言哈拉</a>
 </div><br>
 <div class="row">
-	<div class="panel panel-success">
+	<div class="panel panel-success" style="display:none;">
 		<div class="panel-heading">可以搜尋人喔</div>
 		<div  id="show" class="panel-body">
 			<span class="result">可以搜尋人喔</span>
@@ -98,7 +97,7 @@ input[type=text]:focus {
 	    	let keyy = $(this).val();
 		    $.get( "/personal/viewOther/search", { key: keyy }, function( data ) {
 		    	$(".result").remove();
-
+		    	$(".panel").css('display','block');
 		    	if(!data[0]){
 		    		
 			    	$('.panel').addClass('panel-danger');

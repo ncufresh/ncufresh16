@@ -19,6 +19,8 @@
     {{-- Bootstrap Material Design --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('include/bootstrap-material/css/bootstrap-material-design.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('include/bootstrap-material/css/ripples.min.css') }}">
+    {{-- iziModal.min.css --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('include/izimodal/css/iziModal.min.css') }}" media="screen">
 
     {{-- 個人Styles --}}
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
@@ -41,6 +43,7 @@
     <script src="{{ asset('include/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('include/bootstrap-material/js/material.min.js') }}"></script>
     <script src="{{ asset('include/bootstrap-material/js/ripples.min.js') }}"></script>
+    <script src="{{ asset('include/izimodal/js/iziModal.min.js') }}"></script>
     <script src="{{ asset('js/layout.js') }}"></script>
     @yield('js')
 </body>

@@ -30,7 +30,7 @@ CKEDITOR.replace( 'response', {
           <div class="panel panel-primary">
               <div class="panel-heading"><h1><img src="{{ asset('img/Q&A/Q.png') }}" width="10%" height="10%"><b> :{{ $Q->topic }}</b></h1></div>
               <div class="panel-body">
-              <h3><b>{!!$Q->content!!}</b></h3><h4><p>
+              <h3><b>{!! $Q->content !!}</b></h3><p></p>
                
               </div>
           </div>
@@ -41,7 +41,7 @@ CKEDITOR.replace( 'response', {
                   @if (!empty($Q->response))
                   <h4>{!!$Q->response!!}</h4>
                   @else
-                  <h3>很抱歉目前尚無回答，請在稍等一會</h3>
+                  <h3>很抱歉目前尚無回答，請再稍等一會</h3>
                   @endif
                   </p></h4>
               </div>

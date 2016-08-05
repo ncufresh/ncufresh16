@@ -22,7 +22,11 @@
 
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
-                                <h4>校內使用者登入 <a href="http://www.cc.ncu.edu.tw/account/freshman/" class="btn btn-success" target="_blank">新生帳號啟動說明</a></h4>
+                                <h4>
+                                    校內使用者登入&nbsp;&nbsp;&nbsp;
+                                    <a href="http://www.cc.ncu.edu.tw/account/freshman/" class="btn btn-success" target="_blank">新生帳號啟動說明</a>
+                                    <a href="{{ url('/portal/flush') }}" class="btn btn-link">清除暫存資料</a>
+                                </h4>
                             </div>
                         </div>
                         <div class="row">

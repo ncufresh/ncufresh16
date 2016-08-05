@@ -166,8 +166,8 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
 
             		<!-- Wrapper for slides -->
             		<div class="carousel-inner">
-            				<figure class="item preload loaded active" style="background-image: url(http://lorempicsum.com/futurama/750/400/3);">
-              					<figcaption class="carousel-caption">不要</figcaption>
+            				<figure class="item preload loaded active" onclick="javascript:location.href='https://www.facebook.com/IEEE-NCU-Student-Branch-1045673762117443/?fref=ts'" style="background-image: url({{asset('img/home/ieee.jpg')}});">
+              					<figcaption class="carousel-caption">IEEE 中央學生分會</figcaption>
             				</figure>
             				<figure class="item preload loaded" style="background-image: url(http://lorempicsum.com/futurama/750/400/1);">
               					<figcaption class="carousel-caption">中央大學</figcaption>
@@ -300,7 +300,7 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
   			</div>
 		</div>
     <div class="timeline-item">
-        <a href="{{url('/')}}">
+        <a href="{{url('/about')}}">
     				<div class="timeline-icon">
                 <i class="material-icons">bubble_chart</i>
     				</div>
@@ -310,7 +310,7 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
             <p>
               一群由熱情的學生所組成，在暑假窩在一起，寫CODE，繪圖，拍攝影片，快點進來認識他們吧~
             </p>
-            <a href="{{url('/')}}">前往關於我們</a>
+            <a href="{{url('/about')}}">前往關於我們</a>
   			</div>
 		</div>
 </div>
