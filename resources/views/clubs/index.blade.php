@@ -17,6 +17,7 @@
 	    });
 	</script>
 @stop
+@section('css')
 <style type="text/css">
 body{
 	background-image: url({{asset('img/group/BG1.jpg')}});
@@ -46,6 +47,7 @@ body{
 	text-align:center;
 }
 </style>
+@stop
 <div class="container">
 	<ol class="breadcrumb">
 		<li><a href="/">首頁</a></li>

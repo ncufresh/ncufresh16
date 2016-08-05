@@ -17,6 +17,7 @@
 	    });
 	</script>
 @stop
+@section('css')
 <style type="text/css">
 .col-sm-3{
 	margin-top: 0.5rem; 
@@ -48,6 +49,7 @@ body{
 	font-weight: bold;
 }
 </style>
+@stop
 <div class="container">
 	<div class="content">
 	<ol class="breadcrumb">
