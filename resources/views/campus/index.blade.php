@@ -146,38 +146,7 @@
         <a href="{{url('campus/guide')}}"><img class="tit imgg" src="\img\campus\dontdel\map.png" alt="map"></a>
         <a href="{{url('campus/help')}} "><img class="tit imgg" src="\img\campus\dontdel\fire.png" alt="map"></a>
     </div>
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">校園防災</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="map" >
-                        <img src="/img/campus/dontdel/background.png" alt="no found" style="width:100%">
-                        @foreach($mapobjects as $mapobject)
-                        <span>
-                            <img src="/img/campus/{{$mapobject->objImg}}" class="cate{$mapobject->building_id}} imgg mapobj" id='build{{$mapobject->id}}' bid='{{$mapobject->id}}' alt="no found" value="{{$mapobject->building_id}}" style="left: {{$mapobject->Xcoordinate}}%;top: {{$mapobject->Ycoordinate}}%;width: {{$mapobject->objWidth}}%;"
-                                 data-toggle='tooltip' data-placement='top' title="{{$mapobject->buildingName}}">
-                        </span>
-                        @endforeach
-
-                        <img class="faa" src='/img/campus/dontdel/left.png' width='' style="display:none">
-
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    
 </div>
 
 
