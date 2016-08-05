@@ -194,13 +194,13 @@ Route::get('/getOneQuestion/{question_id?}','GameController@getOneQuestion');//�
 //************************************************************
 //Route::resource('/Q&A', 'QandAController');
 Route::post('/Q&A', 'QandAController@store');
+Route::get('/Q&A/search', 'QandAController@search');
 Route::get('/Q&A/create', 'QandAController@create');
 Route::get('/Q&A/personal', 'QandAController@indexPersonal');
 Route::get('/Q&A/{classify}', 'QandAController@index');
 Route::get('/Q&A/content/{Q}', 'QandAController@show');
 Route::delete('/Q&A/{Q}', 'QandAController@destroy');
 //************************************************************
-
 
 // 個人專區
 //************************************************************
