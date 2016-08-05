@@ -61,6 +61,10 @@ h3{
     min-width:100%;
   	height:auto;
 }
+.title{
+	color: black;
+	font-weight: bold;
+}
 </style>
 <div class="container">
 	<ol class="breadcrumb">

@@ -40,6 +40,11 @@ body{
 .open{
 	max-height: 500px !important;
 }
+.title{
+	color: black;
+	font-weight: bold;
+	text-align:center;
+}
 </style>
 <div class="container">
 	<ol class="breadcrumb">

@@ -43,6 +43,10 @@ body{
 .breadcrumb{
 	margin-bottom: 5px;
 }
+.title{
+	color: black;
+	font-weight: bold;
+}
 </style>
 <div class="container">
 	<div class="content">
