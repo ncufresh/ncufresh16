@@ -23,7 +23,7 @@ $amount = 1;
         display: none;
         font-size: 24px;
     }
-    
+
 
 </style>
 <div class="container">
@@ -42,7 +42,7 @@ $amount = 1;
                 <div class="modal-body">
 
                     <form id="frmBuildings" name="frmBuildings" class="form-horizontal" novalidate="" action="POST" enctype="multipart/form-data" files="true">
-                         {{ csrf_field() }}
+                        {{ csrf_field() }}
                         <div class="form-group error">
                             <label for="inputCate" class="col-sm-3 control-label">建築物類別</label>
                             <div class="col-sm-9">
@@ -69,13 +69,25 @@ $amount = 1;
                                 <textarea type="text" class="form-control" id="buildingExplain" name="buildingExplain"></textarea>
                             </div>
                         </div>
-
-                        <!--<div class="form-group fileUpload ">
-                            <label for="inputImgUrl" class="col-sm-3 control-label">圖片</label>
+                        <div class="form-group">
+                            <label for="inputSOS" class="col-sm-3 control-label">附近是否有SOS</label>
                             <div class="col-sm-9">
-                                <input type="file" class="form-group" id="imgUrl" name="imgUrl">
+                                <select name="SOS" id="SOS" form="frmBuildings" class="form-control has-error">
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                </select>                                
                             </div>
-                        </div>-->
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAED" class="col-sm-3 control-label">附近是否有AED</label>
+                            <div class="col-sm-9">
+                                <select name="AED" id="AED" form="frmBuildings" class="form-control has-error">
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                </select>   
+                            </div>
+                        </div>
+
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
                             <input type="hidden" id="bid" name="bid" value="0">
@@ -137,11 +149,11 @@ $amount = 1;
 
                         </div>
                         <div class="modal-footer">
-                             <sub>一次只能上傳一張圖片</sub>
+                            <sub>一次只能上傳一張圖片</sub>
                             <form action="#" enctype="multipart/form-data" id="frmImgs" name="frmImgs" files="true" novalidate="">
-                                 {{ csrf_field() }}
+                                {{ csrf_field() }}
                                 <label class="control-label">選擇檔案</label>
-                               
+
                                 <div class="input-group">
                                     <label class="input-group-btn">
                                         <span class="btn btn-primary">
@@ -314,7 +326,8 @@ $amount = 1;
     console.log(data);
     $('#building_id').val(data.building_id);
     $('#buildingName').val(data.buildingName);
-//    $('#buildingExplain').val(data.buildingExplain);
+    $('#SOS').val(data.SOS);
+    $('#AED').val(data.AED);
     CKEDITOR.instances['buildingExplain'].setData(data.buildingExplain);
     $('#btn-save').val("update");
     $('#myModal').modal('show');
@@ -361,11 +374,13 @@ $amount = 1;
     CKupdate();
     //取得表單資料
     var formData = {
-    buildingName: $('#buildingName').val(),
+            buildingName: $('#buildingName').val(),
             building_id: $('#building_id').val(),
             buildingExplain: $('#buildingExplain').val(),
+            SOS: $('#SOS').val(),
+            AED: $('#AED').val(),
     };
-    console.log(formData);
+//    console.log(formData);
     //used to determine the http verb to use [add=POST], [update=PUT]
     var state = $('#btn-save').val();
     var type = "POST"; //for creating new resource
