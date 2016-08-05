@@ -4,8 +4,8 @@
 		font-size: 24px;
 		font-weight: bold;
 	}
-	.introduce {
-		text-align: left;
+	pre {
+		font-size: 18px;
 	}
 }
 @media (max-width:400px){
@@ -15,10 +15,12 @@
 	}
 }
 
+/* 整個寬度 */
 .about {
 	width: 80%;
 }
 
+/* 團隊介紹 */
 .about-img {
 	width: 100%;
 }
@@ -27,8 +29,31 @@
 	position: relative;
 }
 
+.team-name {
+	width: 80%;
+}
+
+.team-introduce {
+	width: 90%;
+}
+
+/* 個人介紹 */
 img.introduce {
 	width: 200px;
+}
+
+.introduce {
+	text-align: left;
+}
+
+@media (max-width:400px){
+	/* 手機 */
+	.introduce {
+		width: 62%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
 }
 
 /* link */
@@ -56,4 +81,62 @@ a:hover, a:active {
 	left: 26%;
 	top: 33%;
 	width: 8%;
+}
+
+#img-plan3 {
+	position: absolute;
+	left: 40%;
+	top: 34%;
+	width: 9%;
+}
+
+#img-plan4 {
+	position: absolute;
+	left: 59.5%;
+	top: 28%;
+	width: 8%;
+	height: 15%;
+}
+
+#img-plan5 {
+	position: absolute;
+	left: 75%;
+	top: 29.5%;
+	width: 8%;
+	height: 13%;
+}
+
+#img-plan6 {
+	position: absolute;
+	left: 81.5%;
+	top: 13%;
+	width: 10%;
+}
+
+/* 賴子安 */
+
+@media (min-width:992px){
+	/* 一般 */
+	#name-plan6 {
+		position: absolute;
+		left: 93%;
+		top: 11%;
+		color: white;
+	}
+}
+@media (max-width:991px){
+	/* 手機 */
+	#name-plan6 {
+		position: absolute;
+		left: 93%;
+		top: 3%;
+		color: white;
+	}
+	.team-name li {
+		width: 11%;
+	}
+}
+
+#name-plan6:hover {
+	color: #6280a1;
 }
