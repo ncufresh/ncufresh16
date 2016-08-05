@@ -16,14 +16,8 @@ use App\mapobject;
 class CampusController extends Controller {
 
     public function index() {
-        $mapobjects = DB::table('mapobjects')
-                ->select('mapobjects.*', 'Buildings.*', 'mapobjects.id as objId')
-                ->join('Buildings', 'mapobjects.Building_id', '=', 'Buildings.id')
-                ->get();
-//        return $mapobjects;
-        return view('campus.index', [
-            'mapobjects' => $mapobjects,
-        ]);
+        
+        return view('campus.index');
     }
 
     public function guide() {
@@ -155,6 +149,8 @@ class CampusController extends Controller {
             $building->buildingName = $request->buildingName;
             $building->building_id = $request->building_id;
             $building->buildingExplain = $request->buildingExplain;
+            $building->SOS = $request->SOS;
+            $building->AED = $request->AED;
             //$building->imgUrl = $request->imgUrl;
             $building->save();
 

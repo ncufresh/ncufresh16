@@ -20,17 +20,15 @@
         position: absolute;
     }    
     .mapobj:hover,.cateBtn:hover{
-        -webkit-transform:scale(1.5); /* Safari and Chrome */
-        -moz-transform:scale(1.5); /* Firefox */
-        -ms-transform:scale(1.5); /* IE 9 */
-        -o-transform:scale(1.5); /* Opera */
-        transform:scale(1.5);
+        -webkit-transform:scale(1.1); /* Safari and Chrome */
+        -moz-transform:scale(1.1); /* Firefox */
+        -ms-transform:scale(1.1); /* IE 9 */
+        -o-transform:scale(1.1); /* Opera */
+        transform:scale(1.1);
     }
     .cateBtn{
-
         margin-left: 10px;
         margin-right: 10px;
-
     }
     .label-box{
         height: 50px;
@@ -79,11 +77,11 @@
         transform:scale(1.1);
     }
     .buildEff{
-        -webkit-transform:scale(1.2); /* Safari and Chrome */
-        -moz-transform:scale(1.2); /* Firefox */
-        -ms-transform:scale(1.2); /* IE 9 */
-        -o-transform:scale(1.2); /* Opera */
-        transform:scale(1.2);
+        -webkit-transform:scale(1.1); /* Safari and Chrome */
+        -moz-transform:scale(1.1); /* Firefox */
+        -ms-transform:scale(1.1); /* IE 9 */
+        -o-transform:scale(1.1); /* Opera */
+        transform:scale(1.1);
     }
     .faa{
         position: absolute;
@@ -190,17 +188,17 @@
     </div>
     <div class="jumbotron back row" style="background-color: #c29b77;">
 
-        <img class="cateBtn" src="/img/campus/dontdel/11.png" alt="SOS" id="1" value="0">
-        <img class="cateBtn" src="/img/campus/dontdel/22.png" alt="AED" id="2" value="0">
+        <img class="cateBtn SOS" src="/img/campus/dontdel/1.png" alt="SOS" value="0">
+        <img class="cateBtn AED" src="/img/campus/dontdel/2.png" alt="AED" value="0">
        
 
         <br>
 
-        <div class="col-md-12 map" >
-            <img src='/img/campus/dontdel/background3.png' width='100%'>
+        <div class="col-md-12 map">
+            <img src='/img/campus/dontdel/background4.png' width='100%'>
             @foreach($mapDatas as $mapData)
             <span data-toggle='modal' data-target="#modal{{$mapData->id}}">
-                <img src="/img/campus/{{$mapData->objImg}}" class="cate{$mapData->building_id}} mapobj" id='build{{$mapData->id}}' SOS="{{$mapData->SOS}}" AED="{{$mapData->AED}}" alt="no found" value="{{$mapData->building_id}}" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"
+                <img src="/img/campus/{{$mapData->objImg}}" class=" mapobj SOS{{$mapData->SOS}} AED{{$mapData->AED}}" id='build{{$mapData->id}}' alt="no found" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"
                      data-toggle='tooltip' data-placement='top' title="{{$mapData->buildingName}}">
 
             </span>
@@ -225,25 +223,24 @@
 
 <script>
     var selectBtn = 0;
-//    更換圖片
+
     $(document).on('ready', function () {
         $(".container").fadeIn(3000);
-        $('body').on('click', '.objImg-sam', function () {
-            var imgId = $(this).attr('id');
-            var imgSrc = $(this).attr('src');
-            $('#bigImg').attr('src', imgSrc);
+        
+        
+        $('body').on('click', '.SOS', function () {     
+            $('.SOS1').addClass('buildEff').css('display','block').tooltip('show');          
+            $('.SOS0').css('display','none').tooltip('hide');
+            $('.SOS').addClass('btnEff');
+            $('.AED').removeClass('btnEff');
+            $('.faa').css('display','block');
         });
-        $('body').on('click', '.cloMod', function () {
-            var imgId = $(this).val();
-            $('#bigImg' + imgId).attr('src', "/img/campus/dontdel/click.png");
-        });
-        $('body').on('click', '.cateBtn', function () {
-            var id = $(this).attr('id');
-            $(this).attr('value', 1);
-            $('#' + selectBtn).attr('value', 0);
-            btnChange();
-            hide(id);
-            selectBtn = id;
+         $('body').on('click', '.AED', function () {     
+            $('.AED1').addClass('buildEff').css('display','block').tooltip('show');            
+            $('.AED0').css('display','none').tooltip('hide');
+            $('.AED').addClass('btnEff');
+            $('.SOS').removeClass('btnEff');
+            $('.faa').css('display','block');
         });
         $('body').on('click', '.faa', function () {
             back();
@@ -256,68 +253,42 @@
          $('body').on('mouseout', '.mapobj', function () {        
             $(this).tooltip('hide');
         });
-        $('body').on('mouseover', '.cateBtn', function () {
-            var id = $(this).attr('id');
-            for (var i = 1; i <= buildNum; i++) {
-                if ($("#build" + i).attr('value') == id) {
-
-                    $("#build" + i).tooltip('show');
-
-                }
-            }
+        $('body').on('mouseover', '.SOS', function () {                       
+                $(".SOS1").tooltip('show');
+            
         });
-        $('body').on('mouseout', '.cateBtn', function () {
-            var id = $(this).attr('id');
-            for (var i = 1; i <= buildNum; i++) {
-                if ($("#build" + i).attr('value') == id) {
-
-                    $("#build" + i).tooltip('hide');
-
-                }
-            }
+         $('body').on('mouseout', '.SOS', function () {                       
+                $(".SOS1").tooltip('hide');
+            
         });
+        $('body').on('mouseover', '.AED', function () {                       
+                $(".AED1").tooltip('show');
+            
+        });
+        $('body').on('mouseout', '.AED', function () {                       
+                $(".AED1").tooltip('hide');
+            
+        });
+       
+
 
     });
     var buildNum = $('#buildNum').val();
-    //將建築物藏起來
-    function hide(id) {
-
-        for (var i = 1; i <= buildNum; i++) {
-
-            if ($("#build" + i).attr('value') == id) {
-                $("#build" + i).css('display', 'block');
-                $("#build" + i).tooltip('show');
-                $('#build' + i).addClass('buildEff');
-            } else {
-                $("#build" + i).tooltip('hide');
-                $("#build" + i).css('display', 'none');
-                $('#build' + i).removeClass('buildEff');
-            }
-        }
-        $(".faa").css('display', 'block');
-    }
-    //顯示按鈕特效
-    function btnChange() {
-        for (var i = 1; i <= 6; i++) {
-
-            if ($("#" + i).attr('value') == '1') {
-                $("#" + i).addClass("btnEff");
-            } else {
-                $("#" + i).removeClass("btnEff");
-            }
-        }
-    }
+    
+   
     function back() {
-        for (var i = 1; i <= buildNum; i++) {
-            $("#build" + i).css('display', 'block');
-            $('#build' + i).removeClass('buildEff');
-            $("#build" + i).tooltip('hide');
-
-        }
-        for (i = 1; i <= 6; i++) {
-            $('#' + i).attr('value', 0);
-            $("#" + i).removeClass("btnEff");
-        }
+        
+            $(".SOS1").css('display', 'block');
+            $(".SOS0").css('display', 'block');
+            $(".SOS1").removeClass('buildEff');
+            $(".SOS0").removeClass('buildEff');
+            $(".SOS1").tooltip('hide');
+            $(".SOS0").tooltip('hide');
+        
+            $('.SOS').removeClass("btnEff");
+            $('.AED').removeClass("btnEff");
+        
+        
     }
 </script>
 @stop
