@@ -300,7 +300,7 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
   			</div>
 		</div>
     <div class="timeline-item">
-        <a href="{{url('/')}}">
+        <a href="{{url('/about')}}">
     				<div class="timeline-icon">
                 <i class="material-icons">bubble_chart</i>
     				</div>
@@ -310,7 +310,7 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
             <p>
               一群由熱情的學生所組成，在暑假窩在一起，寫CODE，繪圖，拍攝影片，快點進來認識他們吧~
             </p>
-            <a href="{{url('/')}}">前往關於我們</a>
+            <a href="{{url('/about')}}">前往關於我們</a>
   			</div>
 		</div>
 </div>

@@ -17,6 +17,8 @@ class CreateBuildingTable extends Migration
             $table->string('buildingName');
             $table->integer('building_id')->index();
             $table->string('buildingExplain');
+            $table->integer("SOS");
+            $table->integer("AED");
             $table->timestamps();
         });
     }

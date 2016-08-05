@@ -17,16 +17,16 @@
       @foreach ($QandAs as $Q)
         <tr>
           <td>{{ $Q->classify }}</td>
-          <td><?php echo substr($Q->created_at,5,5) ?></td>
+          <td class="col-md-1">{{substr($Q->created_at,5,5)}}</td>
           <td>{{ $Q->topic }}</td>
           <td>{{ $Q->click_count }}</td>
           <td><a href="{{action('QandAController@show',$Q->id)}}"><i class="fa fa-eye" aria-hidden="true">檢視</i></a></td>
-          <td><a href="{{action('QandAController@edit',$Q->id)}}"><i class="fa fa-eye" aria-hidden="true">編輯</i></a></td>
+          <td><a href="{{action('QandAController@edit',$Q->id)}}"><i class="fa fa-pencil" aria-hidden="true">編輯</i></a></td>
           <td>
               @if(empty($Q->response))
                 尚未回覆
               @else
-                已回復
+                已回覆
               @endif
             </td>
           <td><button type="button" class="btn btn-fab btn-fab-mini" data-toggle="modal" data-target="#myModal{{$Q->id}}"><i class="fa fa-trash fa-lg"></i></button></td>

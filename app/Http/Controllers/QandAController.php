@@ -101,6 +101,8 @@ class QandAController extends Controller
             $Q->classify = $request->classify;
         if(!empty($request->response))
             $Q->response = $request->response;
+        if(!empty($request->click))
+            $Q->click_count = $request->click;
         $Q->save();
         return redirect(url('/Q&A/content/'.$Q->id));
     }
