@@ -3,18 +3,18 @@
 @section('content')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $("#guide").mouseenter(function(){
-            $("#guide").css("background-color","#ffff4d");
+    $(document).ready(function () {
+        $("#guide").mouseenter(function () {
+            $("#guide").css("background-color", "#ffff4d");
         });
-        $("#guide").mouseleave(function(){
-            $("#guide").css("background-color","#d9ff66");
+        $("#guide").mouseleave(function () {
+            $("#guide").css("background-color", "#d9ff66");
         });
-        $("#firefight").mouseenter(function(){
-            $("#firefight").css("background-color","#ffff4d");
+        $("#firefight").mouseenter(function () {
+            $("#firefight").css("background-color", "#ffff4d");
         });
-        $("#firefight").mouseleave(function(){
-            $("#firefight").css("background-color","#d9ff66");
+        $("#firefight").mouseleave(function () {
+            $("#firefight").css("background-color", "#d9ff66");
         });
     });
 </script>
@@ -23,7 +23,7 @@
     main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 
     .back{
-       
+
         background-image: url("/img/campus/dontdel/index1.png");
         background-repeat:no-repeat;
         background-size:cover;
@@ -39,10 +39,10 @@
     }
     .container{
         display: none;
-        font-size: 24px;
+
     }
     .imgg:hover{
-         -webkit-transform:scale(1.1); /* Safari and Chrome */
+        -webkit-transform:scale(1.1); /* Safari and Chrome */
         -moz-transform:scale(1.1); /* Firefox */
         -ms-transform:scale(1.1); /* IE 9 */
         -o-transform:scale(1.1); /* Opera */
@@ -58,57 +58,125 @@
         -o-transform:scale(1.25); /* Opera */
         transform:scale(1.25);
     }
-    
+
     .modal-body{
         text-align: center;
-                
+
+    }
+    /** The Magic **/
+    .btn-breadcrumb .btn:not(:last-child):after 
+    {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 17px solid transparent;
+        border-bottom: 17px solid transparent;
+        border-left: 10px solid white;
+        position: absolute;
+        top: 50%;
+        margin-top: -17px;
+        left: 100%;
+        z-index: 3;
+    }
+
+    .btn-breadcrumb .btn:not(:last-child):before 
+    {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 17px solid transparent;
+        border-bottom: 17px solid transparent;
+        border-left: 10px solid rgb(173, 173, 173);
+        position: absolute;
+        top: 50%;
+        margin-top: -17px;
+        margin-left: 1px;
+        left: 100%;
+        z-index: 3;
+    }
+
+    /** The Spacing **/
+    .btn-breadcrumb .btn 
+    {
+        padding:6px 12px 6px 24px;
+    }
+    .btn-breadcrumb .btn:first-child
+    {
+        padding:6px 6px 6px 10px;
+    }
+    .btn-breadcrumb .btn:last-child
+    {
+        padding:6px 18px 6px 24px;
+    }
+
+    /** Default button **/
+    .btn-breadcrumb .btn.btn-default:not(:last-child):after 
+    {
+        border-left: 10px solid #fff;
+    }
+    .btn-breadcrumb .btn.btn-default:not(:last-child):before
+    {
+        border-left: 10px solid #ccc;
+    }
+    .btn-breadcrumb .btn.btn-default:hover:not(:last-child):after
+    {
+        border-left: 10px solid #ebebeb;
+    }
+    .btn-breadcrumb .btn.btn-default:hover:not(:last-child):before 
+    {
+        border-left: 10px solid #adadad;
     }
 </style>
 
 <div class="container">
-    <!--網頁路徑-->
-    <div>
-        <a href="{{url('/')}}">首頁</a>
-        >
-        <a href="{{url('/campus')}}">校園介紹</a>
+    <!--網頁路徑-->    
+    <div class="row">	
+        <div class="btn-group btn-breadcrumb">
+            
+            <a href="{{url('/')}}" class="btn btn-default">首頁</a>
+            <a href="{{url('/campus')}}" class="btn btn-default">校園導覽</a>
+
+        </div>
     </div>
     <button type="button" class="btn btn-primary" onclick="location.href ='{{url('/campus/newData')}}'">編輯建築物</button>
-    
+
     <div class="back row jumbotron">
         <a href="{{url('campus/guide')}}"><img class="tit imgg" src="\img\campus\dontdel\map.png" alt="map"></a>
-        <a href="" data-toggle="modal" data-target="#myModal"><img class="tit imgg" src="\img\campus\dontdel\fire.png" alt="map"></a>
+        <a href="{{url('campus/help')}} "><img class="tit imgg" src="\img\campus\dontdel\fire.png" alt="map"></a>
     </div>
-        <!-- Modal -->
+    <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">校園防災</h4>
-          </div>
-          <div class="modal-body">
-            <div class="map" >
-                <img src="/img/campus/dontdel/background.png" alt="no found" style="width:100%">
-            @foreach($mapobjects as $mapobject)
-            <span>
-                <img src="/img/campus/{{$mapobject->objImg}}" class="cate{$mapobject->building_id}} imgg mapobj" id='build{{$mapobject->id}}' bid='{{$mapobject->id}}' alt="no found" value="{{$mapobject->building_id}}" style="left: {{$mapobject->Xcoordinate}}%;top: {{$mapobject->Ycoordinate}}%;width: {{$mapobject->objWidth}}%;"
-                     data-toggle='tooltip' data-placement='top' title="{{$mapobject->buildingName}}">
-            </span>
-            @endforeach
-            
-            <img class="faa" src='/img/campus/dontdel/left.png' width='' style="display:none">
-            
-           
-        </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
-          </div>
-        </div>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">校園防災</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="map" >
+                        <img src="/img/campus/dontdel/background.png" alt="no found" style="width:100%">
+                        @foreach($mapobjects as $mapobject)
+                        <span>
+                            <img src="/img/campus/{{$mapobject->objImg}}" class="cate{$mapobject->building_id}} imgg mapobj" id='build{{$mapobject->id}}' bid='{{$mapobject->id}}' alt="no found" value="{{$mapobject->building_id}}" style="left: {{$mapobject->Xcoordinate}}%;top: {{$mapobject->Ycoordinate}}%;width: {{$mapobject->objWidth}}%;"
+                                 data-toggle='tooltip' data-placement='top' title="{{$mapobject->buildingName}}">
+                        </span>
+                        @endforeach
 
-      </div>
+                        <img class="faa" src='/img/campus/dontdel/left.png' width='' style="display:none">
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 
@@ -117,13 +185,13 @@
 
 <script>
 
-    $(document).on('ready', function(){
-    $(".container").fadeIn(1000);
-   
+    $(document).on('ready', function () {
+        $(".container").fadeIn(1000);
+
 //   $('.modal-body').css('max-height',$(document).height());
 //   $('.modal-body').css('max-width',$(document).width());
-   $('.modal-body').css('height',$(document).height()-500);
-   $('.modal-dialog').css('width',$(document).width()-500);
+        $('.modal-body').css('height', $(document).height() - 500);
+        $('.modal-dialog').css('width', $(document).width() - 500);
     });
 </script>
 @stop
