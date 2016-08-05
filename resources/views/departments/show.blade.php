@@ -44,6 +44,9 @@ body{
 .col-xs-3{
 	margin-top: 20px;
 }
+pre{
+	white-space: pre-wrap;
+}
 h3{
 	text-align:center;
 }

@@ -43,6 +43,12 @@ body{
 }
 .modal-body{
 	padding-top: 0px;
+
+}
+pre{
+	white-space: pre-wrap;
+	max-height: 400px;
+  	overflow: auto;
 }
 h3{
 	text-align:center;
@@ -145,10 +151,8 @@ h3{
 		          <h2 class="modal-title" style="margin-top: 20px">{{$club->clubs_intro}}</h2>
 		        </div>
 		        <div class="modal-body" style="padding-top: 10px">
-		          <p>{!!$club->clubs_summary!!}</p>
-		          <p>{!!$club->clubs_activity!!}</p>
-		          <p>{!!$club->clubs_join!!}</p>
-		        
+		          <p style=" max-height: 100px">{!!$club->clubs_summary!!}</p>
+		          
 		        @if($photo != null)
 		        <div id="myCarousel{{$club->id}}" class="carousel slide" data-ride="carousel">
 				    
