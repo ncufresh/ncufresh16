@@ -75,7 +75,7 @@ input[type=text]:focus {
 				<img class="img card-img-top" style="background-image: url({{asset('upload/background/'.$row->background)}});">
 				<div class="card-block">
 				    <h4 class="card-title">{{$row->name}}</h4>
-				    <p class="card-text" style="height:20px;"><?php echo mb_substr($row->intro,0,10) ?></p>
+				    <p class="card-text" style="height:20px;">{{mb_substr($row->intro,0,10)}}</p>
 			  	</div>		
 			</div>
 			<div class="jumbotron jump"><img class="img profile img-thumbnail" style="background-image: url({{asset('upload/avatars/'.$row->avatar)}});"><a  href="{{action('PersonalController@index',$row->id)}}" class="btn btn-primary btn-raised">看大圖</a></div>
