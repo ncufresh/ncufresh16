@@ -19,6 +19,8 @@ main {
 @section('js')
 <script src="{{ asset('docs/jquery.scrollbar.js') }}"></script>
 <script src="{{ asset('docs/doc.js') }}"></script>
+
+@can('management')
 <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript">
 CKEDITOR.replace( 'new_under', {
@@ -39,11 +41,26 @@ CKEDITOR.replace( 'new_mix', {
     filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
     filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
 });
-
+</script>
+@endcan
+<script type="text/javascript">
 $(document).ready(function(){
     // 更換 scrollbar 的樣式
     $('.scrollbar-macosx').scrollbar();
 });
+
+// 利用 get 開啟特定 modal
+var strUrl = location.search;
+if (strUrl.indexOf("?") !== -1) {
+    var getSearch = strUrl.split("?");
+    var getString = getSearch[1];
+    if(getString.indexOf("&") === -1){
+        var getAll = getString.split("=");
+        if(getAll[0]==="show"){
+            $("#modal-"+getAll[1]).modal('show');
+        }
+    }
+}
 </script>
 @stop
 
@@ -94,6 +111,7 @@ $(document).ready(function(){
                         <li><a href="#under-2"><img src="{{ asset('docs/img/firstweek.png') }}" alt="新生週"></a></li>
                         <li><a href="#under-3"><img src="{{ asset('docs/img/course.png') }}" alt="共同課程"></a></li>
                     </ul>
+                    @can('management')
                     {{-- 新增大學部資料 --}}
                     <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-under" style="z-index: 3;">新增</button>
                     <!-- Modal -->
@@ -115,21 +133,21 @@ $(document).ready(function(){
                                         <h3>內文</h3>
                                         <textarea name="content" id="new_under" required></textarea>
                                         <div class="form-group">
-                                            <label for="select" class="col-xs-4 control-label" style="font-size: 20px;">隸屬於哪個主項目</label>
-                                            <div class="col-xs-8">
-                                                <select id="select" class="form-control" name="position_of_main">
-                                                    <option value="1">大學部 - 註冊</option>
-                                                    <option value="2">大學部 - 新生週</option>
-                                                    <option value="3">大學部 - 共同課程</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
                                             <div class="row">
-                                                <div class="col-xs-6 text-right">
-                                                    <button type="submit" class="btn btn-raised btn-success">新增</button>
+                                                <label for="select" class="col-xs-4 control-label" style="font-size: 20px; margin: 0 auto; padding:">
+                                                    <p>隸屬於哪個主項目</p>
+                                                </label>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <select id="select" class="form-control" name="position_of_main">
+                                                        <option value="1">大學部 - 註冊</option>
+                                                        <option value="2">大學部 - 新生週</option>
+                                                        <option value="3">大學部 - 共同課程</option>
+                                                    </select>
                                                 </div>
-                                                <div class="col-xs-6 text-left">
+                                                <div class="col-xs-4 text-right">
+                                                    <button type="submit" class="btn btn-raised btn-success">新增</button>
                                                     <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
                                                 </div>
                                             </div>
@@ -141,6 +159,7 @@ $(document).ready(function(){
                     </div>
                     <!-- /Modal -->
                     {{-- /新增大學部資料 --}}
+                    @endcan
                 </div>
                 <!-- /#innerLeftSidenav-->
                 <?php $mainCount = 0; 
@@ -158,7 +177,7 @@ $(document).ready(function(){
                             <?php $subCount = 0; ?>
                             {{-- 產生大學部主要項目裡的細部項目 --}}
                             @foreach ($unders as $u)
-                                <div class="col-xs-4">
+                                <div class="col-xs-4 col-pagging-5px">
                                     <!-- btn -->
                                     <div class="btn-wrapper">
                                         <a class="btn btn-custom" type="button" data-toggle="modal" data-target="#modal-{{ $u->id }}">
@@ -179,6 +198,7 @@ $(document).ready(function(){
                                                     <div class="row">
                                                         <p>{!! $u->content !!}</p>
                                                     </div>
+                                                    @can('management')
                                                     <div class="row">
                                                         <div class="col-xs-6 text-right">
                                                             <form action="{{ url('/doc/under/'.$u->id.'/edit') }}" method="GET">
@@ -193,6 +213,7 @@ $(document).ready(function(){
                                                             </form>
                                                         </div>
                                                     </div>
+                                                    @endcan
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
@@ -241,7 +262,7 @@ $(document).ready(function(){
                             <?php $subCount = 0; ?>
                             {{-- 產生研究所主要項目裡的細部項目 --}}
                             @foreach ($graduates as $g)
-                                <div class="col-xs-4">
+                                <div class="col-xs-4 col-pagging-5px">
                                     <div class="btn-wrapper">
                                         <a class="btn btn-custom" type="button" data-toggle="modal" data-target="#modal-{{ $g->id }}">
                                             <div class="btn-mouseenter">{{ $g->title }}</div>
@@ -261,6 +282,7 @@ $(document).ready(function(){
                                                     <div class="row">
                                                         <p>{!! $g->content !!}</p>  
                                                     </div>
+                                                    @can('management')
                                                     <div class="row">
                                                         <div class="col-xs-6 text-right">
                                                             <form action="{{ url('/doc/graduate/'.$g->id.'/edit') }}" method="GET">
@@ -275,6 +297,7 @@ $(document).ready(function(){
                                                             </form>
                                                         </div>
                                                     </div>
+                                                    @endcan
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
@@ -297,15 +320,17 @@ $(document).ready(function(){
                         <li><a href="#graduate-1"><img src="{{ asset('docs/img/sign.png') }}" alt="註冊"></a></li>
                         <li><a href="#graduate-2"><img src="{{ asset('docs/img/firstweek.png') }}" alt="新生週"></a></li>
                     </ul>
+                    @can('management')
                     {{-- 新增研究所資料 --}}
                     <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-graduate" style="z-index: 3;">新增</button>
                     <!-- Modal -->
                     <div id="modal-new-graduate" class="modal fade text-left" role="dialog">
                         <div class="modal-dialog modal-lg">
                             <!-- Modal content-->
-                            <div class="modal-content">
-                                <form action="{{ url('/doc/graduate') }}" method="POST">
+                            <form action="{{ url('/doc/graduate') }}" method="POST">
                                 {{ csrf_field() }}
+                                <div class="modal-content">
+                                
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h1 class="modal-title">研究所 - 新增內容</h1>
@@ -318,30 +343,31 @@ $(document).ready(function(){
                                         <h3>內文</h3>
                                         <textarea name="content" id="new_gra" required></textarea>
                                         <div class="form-group">
-                                            <label for="select" class="col-xs-4 control-label" style="font-size: 20px;">隸屬於哪個主項目</label>
-                                            <div class="col-xs-8">
-                                                <select id="select" class="form-control" name="position_of_main">
-                                                    <option value="1">研究所 - 註冊</option>
-                                                    <option value="2">研究所 - 新生週</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
                                             <div class="row">
-                                                <div class="col-xs-6 text-right">
-                                                    <button type="submit" class="btn btn-raised btn-success">新增</button>
+                                                <div class="col-xs-12">
+                                                    <label for="select" class="col-xs-4 control-label" style="font-size: 20px;">隸屬於哪個主項目</label>
                                                 </div>
-                                                <div class="col-xs-6 text-left">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <select id="select" class="form-control" name="position_of_main">
+                                                        <option value="1">研究所 - 註冊</option>
+                                                        <option value="2">研究所 - 新生週</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-xs-4 text-right">
+                                                    <button type="submit" class="btn btn-raised btn-success">新增</button>
                                                     <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <!-- /Modal -->
+                    @endcan
                 </div>
                 <!-- /.col-xs-3.col-fluid /#innerRightSidenav -->
                 <!-- 顯示綜合畫面的按鈕 -->
@@ -371,6 +397,7 @@ $(document).ready(function(){
                 </div>
             </div>
             <div class="row">
+                @can('management')
                 {{-- 新增共同資料 --}}
                 <div class="col-xs-12 text-center">
                     <button type="button" class="btn btn-raised btn-warning btn-lg" data-toggle="modal" data-target="#modal-new-mix" style="z-index: 3;">新增</button>
@@ -381,22 +408,26 @@ $(document).ready(function(){
                         <!-- Modal content-->
                         <div class="modal-content">
                             <form action="{{ url('/doc/mix') }}" method="POST">
+                            {{ csrf_field() }}
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     <h1 class="modal-title">共同 - 新增內容</h1>
                                 </div>
                                 <div class="modal-body">
-                                    <fieldset>
-                                        {{ csrf_field() }}
-                                        <div class="form-group label-floating">
-                                            <label class="control-label" for="focusedInput1">標題</label>
-                                            <input name="title" class="form-control input-lg" id="focusedInput1" type="text" required>
-                                        </div>
-                                        <h3>內文</h3>
-                                        <p><textarea name="content" id="new_mix" required></textarea></p>
-                                        <div class="form-group">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label" for="focusedInput1">標題</label>
+                                        <input name="title" class="form-control input-lg" id="focusedInput1" type="text" required>
+                                    </div>
+                                    <h3>內文</h3>
+                                    <p><textarea name="content" id="new_mix" required></textarea></p>
+                                    <div class="row">
+                                        <div class="col-xs-12">
                                             <label for="select" class="col-xs-4 control-label" style="font-size: 20px;">隸屬於哪個主項目</label>
-                                            <div class="col-xs-8">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-8">
+                                            <div class="form-group">
                                                 <select id="select" class="form-control" name="position_of_main">
                                                     <option value="1">共同項目 - 學習</option>
                                                     <option value="2">共同項目 - 生活</option>
@@ -404,14 +435,8 @@ $(document).ready(function(){
                                                 </select>
                                             </div>
                                         </div>
-                                    </fieldset>
-                                </div>
-                                <div class="modal-footer">
-                                    <div class="row">
-                                        <div class="col-xs-6 text-right">
+                                        <div class="col-xs-4 text-right">
                                             <button type="submit" class="btn btn-raised btn-success">新增</button>
-                                        </div>
-                                        <div class="col-xs-6 text-left">
                                             <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>
                                         </div>
                                     </div>
@@ -422,6 +447,7 @@ $(document).ready(function(){
                 </div>
                 <!-- /Modal -->
                 {{-- /新增共同資料 --}}
+                @endcan
             </div>
             <div class="row">
             <?php $mainCount = 0;
@@ -460,6 +486,7 @@ $(document).ready(function(){
                                 <div class="row">
                                     <p>{!! $m->content !!}</p>
                                 </div>
+                                @can('management')
                                 <div class="row">
                                     <div class="col-xs-6 text-right">
                                         <form action="{{ url('/doc/mix/'.$m->id.'/edit') }}" method="GET">
@@ -474,6 +501,7 @@ $(document).ready(function(){
                                         </form>
                                     </div>
                                 </div>
+                                @endcan
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">關閉</button>

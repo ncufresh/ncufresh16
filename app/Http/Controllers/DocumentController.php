@@ -40,6 +40,13 @@ class DocumentController extends Controller
             ]);
     }
 
+    // 顯示單一一筆資料
+    public function show(Document $doc) {
+        return view('documents.show', [
+            'doc' => $doc
+        ]);
+    }
+
     // 大學部
     public function underStore(Request $request){
     	// 新增一筆資料

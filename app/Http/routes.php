@@ -42,6 +42,30 @@ Route::group( ['middleware' => 'admin'], function () {
     /*****************個人專區******************/
     Route::post('/personal/chat/admin', 'PersonalController@postAttention');
     Route::post('/personal/chat/admin/{id}', 'PersonalController@destroy');
+    /*****************新生必讀******************/
+    Route::group(['prefix' => 'doc'], function () {
+    # 大學部
+    Route::group(['prefix' => 'under'], function () {
+        Route::post('/', 'DocumentController@underStore');
+        Route::delete('/{under}', 'DocumentController@underDestroy');
+        Route::get('/{under}/edit','DocumentController@underEdit');
+        Route::patch('/{under}', 'DocumentController@underUpdate');
+    });
+    # 研究所
+    Route::group(['prefix' => 'graduate'], function () {
+        Route::post('/', 'DocumentController@graduateStore');
+        Route::delete('/{graduate}', 'DocumentController@graduateDestroy');
+        Route::get('/{graduate}/edit','DocumentController@graduateEdit');
+        Route::patch('/{graduate}', 'DocumentController@graduateUpdate');
+    });
+    # 綜合
+    Route::group(['prefix' => 'mix'], function () {
+        Route::post('/', 'DocumentController@mixStore');
+        Route::delete('/{mix}', 'DocumentController@mixDestroy');
+        Route::get('/{mix}/edit','DocumentController@mixEdit');
+        Route::patch('/{mix}', 'DocumentController@mixUpdate');
+    });
+});
 
 });
 //************************************************************
@@ -76,27 +100,7 @@ Route::get('/', 'HomeController@index');
 Route::group(['prefix' => 'doc'], function () {
 	# 主頁面
     Route::get('/', 'DocumentController@index');
-    # 大學部
-    Route::group(['prefix' => 'under'], function () {
-		Route::post('/', 'DocumentController@underStore');
-		Route::delete('/{under}', 'DocumentController@underDestroy');
-		Route::get('/{under}/edit','DocumentController@underEdit');
-		Route::patch('/{under}', 'DocumentController@underUpdate');
-    });
-	# 研究所
-	Route::group(['prefix' => 'graduate'], function () {
-		Route::post('/', 'DocumentController@graduateStore');
-		Route::delete('/{graduate}', 'DocumentController@graduateDestroy');
-		Route::get('/{graduate}/edit','DocumentController@graduateEdit');
-		Route::patch('/{graduate}', 'DocumentController@graduateUpdate');
-    });
-    # 綜合
-    Route::group(['prefix' => 'mix'], function () {
-		Route::post('/', 'DocumentController@mixStore');
-		Route::delete('/{mix}', 'DocumentController@mixDestroy');
-		Route::get('/{mix}/edit','DocumentController@mixEdit');
-		Route::patch('/{mix}', 'DocumentController@mixUpdate');
-    });
+    Route::get('/{doc}', 'DocumentController@show');
 });
 
 //************************************************************
