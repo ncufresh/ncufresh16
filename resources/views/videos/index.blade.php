@@ -3,8 +3,10 @@
 
 @section('content')
 @section('js')
- 
   <script >
+    $(document).ready(function(){
+     $("#background").fadeIn(1500);
+   });
 var slideIndex = 1;
 showSlides(slideIndex);
 
@@ -32,73 +34,50 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 
-/*var test = <?php echo $videos ?>;
-console.log(test[0].videos);
-$("#others").append("<div class='item'>"+"<iframe>"+test[0].videos+"</iframe>"+"</div>");*/
 </script>
 @stop
 
 <style>
-body { background: linear-gradient(to bottom,rgba(145,214,234,.8) 20%,rgb(0, 102, 153) 100%); 
-
-}
-main { background-image:url("{{asset('img/layout/summer.png')}}");
-
- }
+body { background: linear-gradient(to bottom,rgba(145,214,234,.8) 20%,rgb(0, 102, 153) 100%); }
+main { background-image:url("{{asset('img/layout/summer.png')}}");}
 
 #myModal1,#myModal5,#myModal,#myModal2,#myModal3,#myModal4{
     background-color: rgba(0, 0, 0, 0.9);
     overflow: scroll;
 }
-img{
-  width: 50%;
-}
-#sun{
-  position: absolute;
-    top:2vh;
-    left:0%;
 
-}
-#ncu{
+#live{
   position: absolute;
-    top:78vh;
-    left:15vw;
-}
-#traffic{
-    position: absolute;
-    top:12%;
-    left:29%;
-    width: 20vw;
+    top:18%;
+    left:27%;
 }
 #fun{
     position: absolute;
-    top:40%;
-    left:14%;
-    width: 30vw;
+    top:43%;
+    left:10%;
+
 }
 #edu{
     position: absolute;
-    top:40%;
-    left:47%;
-        width: 20vw;
+    top:43%;
+    left:46%;
 }
-#live{
+#traffic{
     position: absolute;
     top:42%;
-    left:80%;
-        width: 20vw;
+    left:85%;
 }
 #eat{
     position: absolute;
-    top:18%;
-    left:64%;
-    width: 20vw;
+    top:16%;
+    left:67%;
 }
 #background{
   min-height: 100vh;
   min-width: 98vw;
-  position: absolute;
-overflow: hidden;
+  position: relative;
+  overflow: auto;
+  display: none;
 }
 .eat:hover {
 transform:scale(1.5,1.5);
@@ -118,14 +97,9 @@ transform:scale(1.5,1.5);
 transform:scale(1.5,1.5);
 }
 #ncu:hover {
-transform:scale(1.2,1.2);
+transform:scale(1.5,1.5);
 }
-#frog{
-  position: absolute;
-  top:730px;
-  width: 25%;
-  left: 20px;
-}
+
 #show{
   margin-left: 500px;
   margin-top: 100px;
@@ -143,8 +117,8 @@ transform:scale(1.2,1.2);
 #iframe{
   margin-top: 262px;
   margin-left: 673px;
- position: absolute;
- z-index: 200;
+  position: absolute;
+  z-index: 200;
 }
 .carousel-control{
     position: absolute;
@@ -160,7 +134,7 @@ transform:scale(1.2,1.2);
 
 /* Next & previous buttons */
 .prev, .next {
-    top: 30vh;  
+  top: 30vh;  
   cursor: pointer;
   position:absolute;
   width: auto;
@@ -199,7 +173,7 @@ transform:scale(1.2,1.2);
 /* Number text (1/3 etc) */
 .numbertext {
   color: #f2f2f2;
-  font-size: 12px;
+  font-size: 25px;
   padding: 8px 12px;
   position: absolute;
   top: 0;
@@ -241,23 +215,21 @@ transform:scale(1.2,1.2);
 }
 
 </style>
-<body>
+<body >
    <div id="background">
     <div id="frog">
-      <img src="{{ asset('img/videos/frog.png') }}" >
-    </div>
-    <div id="TV">
-      <img src="{{ asset('img/videos/TV.png') }}" style="position:absolute;top:700px;left:1645px;width:200px;" >
-    </div>
-<div id="sun">
-      <a href="{{ url('#') }}" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">
-      <img src="{{ asset('img/videos/title.png') }}" style="width:500%;" id="ncu"></a>
+      <img src="{{ asset('img/videos/frog.png') }}" style="position: absolute;top:85%;width: 10vw;left: 2%;">
+      <img src="{{ asset('img/videos/TV.png') }}" style="position:absolute;top:80%;left:86%; width:10vw;">
+        <div style="position:absolute;top:83%;left:13%;">      
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#myModal1">
+      <img src="{{ asset('img/videos/title.png') }}"  id="ncu" style="width:15vw;"></a>
          <div class="modal fade" id="myModal1" role="dialog">
+      <div id="abc">      
           <div class="video"></div>
       <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:238px;left:650px;" id="screem">
       <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:408px;left:1252px;width:150px;">
       <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:408px;left:502px;width:150px;">
-      <div>
+    
 <div class="slideshow-container">
   <div class="item">
     <div class="numbertext">1 / 5</div>
@@ -294,12 +266,10 @@ transform:scale(1.2,1.2);
 <div class="indicators">
   <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
   <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
 </div>
 </div>
 </div>
 <br>
-
 <div style="text-align:center" class="inner">
   <span class="dot" onclick="currentSlide(1)"></span> 
   <span class="dot" onclick="currentSlide(2)"></span> 
@@ -309,9 +279,10 @@ transform:scale(1.2,1.2);
 </div>
 </div>
 </div>
-  <div id="traffic">
+</div>
+  <div id="live">
   <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal5">
-  <img src="{{ asset('img/videos/traffic.png') }}" class="traffic"></a>
+  <img src="{{ asset('img/videos/live.png') }}" class="live" style="width:10vw;"></a>
    <div class="modal fade" id="myModal5" role="dialog">
     <div class="video"></div>
     <div id="iframe">
@@ -324,7 +295,7 @@ transform:scale(1.2,1.2);
 </div>
 <div id="fun">
   <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal4">
-  <img src="{{ asset('img/videos/fun.png') }}" class="fun"></a>
+  <img src="{{ asset('img/videos/fun.png') }}" class="fun" style="width:15vw;"></a>
       <div class="modal fade" id="myModal4" role="dialog">
     <div class="video"></div>
         <div id="iframe">
@@ -337,7 +308,7 @@ transform:scale(1.2,1.2);
   </div>
 <div id="edu">
   <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal2">
-  <img src="{{ asset('img/videos/edu.png') }}"  class="edu"></a>
+  <img src="{{ asset('img/videos/edu.png') }}"  class="edu" style="width:10vw;"></a>
     <div class="modal fade" id="myModal2" role="dialog">
     <div class="video"></div>
         <div id="iframe">
@@ -348,9 +319,9 @@ transform:scale(1.2,1.2);
       <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:408px;left:502px;width:150px;">
     </div>
   </div>
-  <div id="live">
+  <div id="traffic">
   <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal">
-  <img src="{{ asset('img/videos/live.png') }}" class="live"></a>
+  <img src="{{ asset('img/videos/traffic.png') }}" class="traffic" style="width:10vw;"></a>
   <div class="modal fade" id="myModal" role="dialog">
     <div class="video"></div>
         <div id="iframe">
@@ -363,7 +334,7 @@ transform:scale(1.2,1.2);
   </div>
 <div id="eat">
   <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal3">
-  <img src="{{ asset('img/videos/food.png') }}" class="eat"></a>
+  <img src="{{ asset('img/videos/food.png') }}" class="eat" style="width:10vw;"></a>
     <div class="modal fade" id="myModal3" role="dialog">
     <div class="video"></div>
         <div id="iframe">
@@ -379,7 +350,7 @@ transform:scale(1.2,1.2);
   <a href="{{ url('/videos/create') }}">
   <input type="button" value="新增" style="position:absolute;width:120px;height:100px;border:2px blue none;"></a>
 </div>  -->
-</div>
+
 </body>
 
 @endsection
