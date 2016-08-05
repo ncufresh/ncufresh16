@@ -2,6 +2,14 @@
 
 @section('title', '登入')
 
+@section('css')
+<style media="screen">
+.my-capital {
+    text-transform: capitalize;
+}
+</style>
+@endsection
+
 @section('js')
 <script type="text/javascript">
     $(document).ready(function(){
@@ -24,14 +32,14 @@
                             <div class="col-md-10 col-md-offset-1">
                                 <h4>
                                     校內使用者登入&nbsp;&nbsp;&nbsp;
-                                    <a href="http://www.cc.ncu.edu.tw/account/freshman/" class="btn btn-success" target="_blank">新生帳號啟動說明</a>
-                                    <a href="{{ url('/portal/flush') }}" class="btn btn-link">清除暫存資料</a>
+                                    <a href="http://www.cc.ncu.edu.tw/account/freshman/" class="btn btn-success my-capital" target="_blank">什麼是Portal?</a>
+                                    <a href="{{ url('/portal/flush') }}" class="btn btn-link my-capital">清除暫存Portal</a>
                                 </h4>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
-                                <a href="{{ url('/portal/login') }}" class="btn btn-success btn-lg btn-block btn-raised">
+                                <a href="{{ url('/portal/login') }}" class="btn btn-success btn-lg btn-block btn-raised my-capital">
                                     <i class="fa fa-mortar-board"></i> 校內Portal登入
                                 </a>
                                 {{-- <div class="alert alert-dismissible alert-danger">
