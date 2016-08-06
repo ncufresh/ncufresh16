@@ -101,6 +101,8 @@ class QandAController extends Controller
             $Q->classify = $request->classify;
         if(!empty($request->response))
             $Q->response = $request->response;
+        if(!empty($request->click))
+            $Q->click_count = $request->click;
         $Q->save();
         return redirect(url('/Q&A/content/'.$Q->id));
     }
@@ -117,6 +119,11 @@ class QandAController extends Controller
     public function edit(QandA $Q)
     {
         return view('Q&A.edit', compact('Q'));
+    }
+    public function search(Request $test){
+        if(!empty($test->key))
+            $Q = QandA::where('topic','like', '%'.$test->key.'%')->orderBy('created_at', 'desc')->get();
+        return $Q;
     }
     /*
         刪除單一個問題

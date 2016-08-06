@@ -20,39 +20,16 @@ button{
     position: relative;
     width: 100%;
     height: 150%;
-/*    background-color: #fff9c4;*/
   }
 
-  /*#leftPart{
-    position: relative;
-    width: 40%;
-  }
-
-
-  #titleFrame{ 
-    position: absolute;
-    width: 100%;
-    height: 20%;
-  }
-  
-  #more{
-    position: absolute;
-    width: 100%;
-    height: 80%;
-    border-
-   
-  }
-
-  #rightPart{
-    position: relative;
-    left: 40%;
-    width: 60%;
-  }*/
-
-#more img{
+  #more img{
     max-width: 180px; 
     height: auto;   
    
+  }
+
+  #more button{
+    font-size: 1.3em;
   }
 
   .carousel-inner > .item > img,
@@ -63,9 +40,9 @@ button{
   }
 
 
-.container {
-  display: none;
-}
+  .container {
+    display: none;
+  }
 
 
   .modal-body ,.modal-content .modal-body{
@@ -78,8 +55,6 @@ button{
       background:0 0;
       border-color:#00D4FF ;
   }
-
-
   
 </style>
 
@@ -89,15 +64,15 @@ button{
 
 <script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
 
-  <script type="text/javascript">
-  $('#PicChooser').filemanager('image');
-  $('#themePicChooser').filemanager('image');
-   $(document).ready(function(){
-        $(".container").fadeIn(1000);
-          // CKEDITOR.instances['textArea'].setData($("#textArea").val());
-});
+<script type="text/javascript">
+    $('#PicChooser').filemanager('image');
+    $('#themePicChooser').filemanager('image');
+    $(document).ready(function(){
+          $(".container").fadeIn(1000);
+            // CKEDITOR.instances['textArea'].setData($("#textArea").val());
+    });
 
-  </script>
+</script>
 
 <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript">
@@ -111,73 +86,70 @@ CKEDITOR.replace( 'textArea', {
 
 </script>
 
-
 @stop
 
 @section('content')
 
-
 <div class="container" id="background" >
-<div class="row">
-  <div class="col-md-4" id="leftPart">
-<div class="row">
-    <div  class="col-md-offset-3 col-md-9"" id="titleFrame">
-      <img src="{{ asset($content->image) }}" class="img-responsive">
-    </div>
+    <div class="row">
+        <div class="col-md-4" id="leftPart">
+            <div class="row">
+                <div  class="col-md-offset-3 col-md-9"" id="titleFrame">
+                    <img src="{{ asset($content->image) }}" class="img-responsive">
+                </div>
 
-    <div class="col-md-offset-3 col-md-9" id="more">   
-      <img src="{{ asset('img/life/more.png')  }}" href="javascript:void(0)" class="btn img-rounded " data-toggle="collapse" data-target="#linkMenu">
-      <!--  <a href="javascript:void(0)" class="btn btn-info btn-fab  dropdown-toggle-right" data-toggle="collapse" data-target="#linkMenu"><i class="material-icons">grade</i></a> -->
+                <div class="col-md-offset-3 col-md-9" id="more">   
+                    <img src="{{ asset('img/life/more.png')  }}" href="javascript:void(0)" class="btn img-rounded " data-toggle="collapse" data-target="#linkMenu">
 
-      <ul class="collapse" id="linkMenu" role="group" >
-        <!-- Trigger the modal with a button -->
-        <button class="btn-default btn-block" data-toggle="modal" data-target="#myModal">相片導覽</button>
+                    <ul class="collapse" id="linkMenu" role="group" >
+                    <!-- Trigger the modal with a button -->
+                    <button class="btn-default btn-block" data-toggle="modal" data-target="#myModal">相片導覽</button>
 
-        @foreach ($more as $more)
-        <a class="" target="_blank" href="{{ url('http://'.$more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
-        
-       
-    @can('management')
-       <!--  修改鈕 -->
-         <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/update' }}" method="POST">
-             {{ csrf_field() }}
-             {{ method_field('PATCH') }}
-             <input type="hidden" name="more_id" value="{{$more->id}}">
-              <input class="form-control type="text" name="location" value="{{$more->location}}">
-            <input class="form-control type="text" name="link" value="{{$more->link}}">
-              <button type="submit" class="material-icons">done</button>
-         </form>    
-        <!-- 刪除紐 -->
-        <form action="{{ url('life/'.$content->id.'/deleteDetail') }}" method="POST">
-          {!! csrf_field() !!}
-              {!! method_field('DELETE') !!}
-              <input type="hidden" name="linkId" value="{{$more->id}}">
-              <button type="submit" class="material-icons">delete_forever</button>
-        </form>
-   @endcan 
-        @endforeach
-    @can('management')
-        <!-- 新增鈕 -->
-        <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/add' }}" method="POST">
-            {{ csrf_field() }}
-            <input type="hidden" name="life_id" value="{{$content->id}}">
-            <input class="form-control type="text" name="location" placeholder="在這裡輸入連結名稱">
-            <input class="form-control type="text" name="link" placeholder="在這裡輸入連結網址">
-            <button type="submit">新增</button>
-        </form>
-   @endcan     
-      </ul>
+                    @foreach ($more as $more)
+                    <a class="" target="_blank" href="{{ url('http://'.$more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
+                    
+                   
+                    @can('management')
+                    <!--  修改鈕 -->
+                    <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/update' }}" method="POST">
+                         {{ csrf_field() }}
+                         {{ method_field('PATCH') }}
+                         <input type="hidden" name="more_id" value="{{$more->id}}">
+                        <input class="form-control type="text" name="location" value="{{$more->location}}">
+                        <input class="form-control type="text" name="link" value="{{$more->link}}">
+                          <button type="submit" class="material-icons">done</button>
+                    </form>    
+                    <!-- 刪除紐 -->
+                    <form action="{{ url('life/'.$content->id.'/deleteDetail') }}" method="POST">
+                        {!! csrf_field() !!}
+                        {!! method_field('DELETE') !!}
+                        <input type="hidden" name="linkId" value="{{$more->id}}">
+                        <button type="submit" class="material-icons">delete_forever</button>
+                    </form>
+                    @endcan 
+                    @endforeach
+                    
+                    @can('management')
+                    <!-- 新增鈕 -->
+                    <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/add' }}" method="POST">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="life_id" value="{{$content->id}}">
+                        <input class="form-control type="text" name="location" placeholder="在這裡輸入連結名稱">
+                        <input class="form-control type="text" name="link" placeholder="在這裡輸入連結網址">
+                        <button type="submit">新增</button>
+                    </form>
+                    @endcan     
+                    </ul>
 
-    </div>  
+                </div>  
 
 
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-     <div class="modal-dialog modal-lg">
-       <div class="modal-content">
-
-         <div class="modal-body">
-          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -258,18 +230,19 @@ CKEDITOR.replace( 'textArea', {
   </div>
 
 
-  <div class="col-md-8" id="rightPart">
-<div class="row">
-    <div class="col-md-10 modal-content" id="contentModal">
+        <div class="col-md-8" id="rightPart">
+            <div class="row">
+                <div class="col-md-10 modal-content" id="contentModal">
 
-        <div class="modal-header">
+                    <div class="modal-header">
        <!--    <button class="material-icons" data-toggle="collapse" data-target="#showArea">edit</button> -->
           <a href=".." class="material-icons close">clear</a> 
           
         </div>
 
         <div class="modal-body">
-        <p>{!!$content->content!!}</p>
+        <p2 style="font-size:1.3em">{!!$content->content!!}</p2>
+        <p>&nbsp;</p>
 @can('management')  
         <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/update' }}" method="POST">
             {{ csrf_field() }}
@@ -291,16 +264,6 @@ CKEDITOR.replace( 'textArea', {
     </div>
   </div>
 
-<!-- <div class="input-group">
-  <span class="input-group-btn">
-    <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-      <i class="material-icons">add_a_photo</i>
-    </a>
-  </span>
-  
-  
-
-</div> -->
 <img id="holder" style="margin-top:15px;max-height:100px;">
       
      

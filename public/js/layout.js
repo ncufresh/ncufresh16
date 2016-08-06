@@ -8,7 +8,7 @@ $(document).ready(function(){
         event.preventDefault();
         $('#gcalendar').iziModal('open', this); // Use "this" to get URL href or option 'iframeURL'
     });
-    var gcalendar_url = 'https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=ncufreshweb%40gmail.com&amp;color=%232952A3&amp;src=zh-tw.taiwan%23holiday%40group.v.calendar.google.com&amp;color=%23125A12&amp;ctz=Asia%2FTaipei';
+    var gcalendar_url = "https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23FFFFFF&src=ncufreshweb%40gmail.com&color=%232952A3&ctz=Asia%2FTaipei";
     $("#gcalendar").iziModal({
         theme: 'light',
         headerColor: '#fff',
@@ -17,8 +17,18 @@ $(document).ready(function(){
         title: '新生知訊網 Google 日曆',
         subtitle: "<a href='" + gcalendar_url + "' target='_blank'>開新視窗瀏覽</a>",
         history: false,
+        fullscreen: true,
         iframe: true,
-        iframeURL: gcalendar_url
+        iframeURL: gcalendar_url,
+        onOpening: function(){
+              $('.navbar-ncufresh, #totop').css('display','none');
+        },
+        onClosing: function(){{
+              $('.navbar-ncufresh').css('display','block');
+              if ( $(window).width() > 991 ) {
+                  $('#totop').css('display','inline');
+              }
+        }},
     });
 
     // ajax csrf-token
