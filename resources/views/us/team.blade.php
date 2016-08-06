@@ -33,7 +33,14 @@
 			<a data-toggle="modal" data-target="#art5"><img src="{{ asset('img/us/blank.png') }}" id="img-art5"></a>
 			<a data-toggle="modal" data-target="#art6"><img src="{{ asset('img/us/blank.png') }}" id="img-art6"></a>
 		@else($team=="video")
-			
+			<a data-toggle="modal" data-target="#video1"><img src="{{ asset('img/us/blank.png') }}" id="img-video1"></a>
+			<a data-toggle="modal" data-target="#video2"><img src="{{ asset('img/us/blank.png') }}" id="img-video2"></a>
+			<a data-toggle="modal" data-target="#video3"><img src="{{ asset('img/us/blank.png') }}" id="img-video3"></a>
+			<a data-toggle="modal" data-target="#video4"><img src="{{ asset('img/us/blank.png') }}" id="img-video4"></a>
+			<a data-toggle="modal" data-target="#video5"><img src="{{ asset('img/us/blank.png') }}" id="img-video5"></a>
+			<a data-toggle="modal" data-target="#video6"><img src="{{ asset('img/us/blank.png') }}" id="img-video6"></a>
+			<a data-toggle="modal" data-target="#video7"><img src="{{ asset('img/us/blank.png') }}" id="img-video7"></a>
+			<a data-toggle="modal" data-target="#video8"><img src="{{ asset('img/us/blank.png') }}" id="img-video8"></a>
 		@endif
 		</div>
 		
@@ -104,7 +111,21 @@
 				</div>
 			</div>
 		@else($team=="video")
-			<h3>媒體影音組</h3>
+			<style>
+				a#video {
+					color: #6280a1;
+				}
+			</style>
+			@include('us.video')
+			<div class="col-xs-12">
+				<div class="team-introduce center-block">
+					<p>
+					<br>
+					&emsp;&emsp;影音組主要負責知訊網所有的影片製作，包括自己擔當導演拍攝影片、拍攝相片、編寫劇本、剪輯影片，為了就是要讓新生更能深刻體會到大學生活的樂趣。
+					</p>
+					<a href="." class="btn btn-default pull-right">Return</a>
+				</div>
+			</div>
 		@endif
 		</div>
 	</div>
