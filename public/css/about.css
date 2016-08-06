@@ -233,3 +233,53 @@ a:hover, a:active {
 	top: 28%;
 	width: 6%;
 }
+
+/* video */
+#img-video1 {
+	position: absolute;
+	left: 5.5%;
+	top: 35%;
+	width: 7%;
+}
+#img-video2 {
+	position: absolute;
+	left: 23%;
+	top: 34%;
+	width: 5%;
+}
+#img-video3 {
+	position: absolute;
+	left: 38.5%;
+	top: 54%;
+	width: 5%;
+}
+#img-video4 {
+	position: absolute;
+	left: 47%;
+	top: 28.5%;
+	width: 5%;
+}
+#img-video5 {
+	position: absolute;
+	left: 46%;
+	top: 38%;
+	width: 6%;
+}
+#img-video6 {
+	position: absolute;
+	left: 58.5%;
+	top: 51%;
+	width: 5%;
+}
+#img-video7 {
+	position: absolute;
+	left: 71.3%;
+	top: 39%;
+	width: 5%;
+}
+#img-video8 {
+	position: absolute;
+	left: 86%;
+	top: 38%;
+	width: 6%;
+}
