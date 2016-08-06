@@ -272,7 +272,7 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
               {{-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --}}
               系所社團有最齊全的資料供您參考。
             </p>
-            <a href="{{url('/group')}}">前往系所社團</a>
+            <a href="{{url('/groups')}}">前往系所社團</a>
   			</div>
 		</div>
     <div class="timeline-item">
