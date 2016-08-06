@@ -28,6 +28,10 @@ button{
    
   }
 
+  #more button{
+    font-size: 1.3em;
+  }
+
   .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
     width: 100%;
@@ -237,7 +241,8 @@ CKEDITOR.replace( 'textArea', {
         </div>
 
         <div class="modal-body">
-        <p>{!!$content->content!!}</p>
+        <p2 style="font-size:1.3em">{!!$content->content!!}</p2>
+        <p>&nbsp;</p>
 @can('management')  
         <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/update' }}" method="POST">
             {{ csrf_field() }}

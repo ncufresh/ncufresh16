@@ -72,11 +72,11 @@
         width: 11%;
     }
     .btnEff{
-        -webkit-transform:scale(1.1); /* Safari and Chrome */
-        -moz-transform:scale(1.1); /* Firefox */
-        -ms-transform:scale(1.1); /* IE 9 */
-        -o-transform:scale(1.1); /* Opera */
-        transform:scale(1.1);
+        -webkit-transform:scale(1.2); /* Safari and Chrome */
+        -moz-transform:scale(1.2); /* Firefox */
+        -ms-transform:scale(1.2); /* IE 9 */
+        -o-transform:scale(1.2); /* Opera */
+        transform:scale(1.2);
     }
     .buildEff{
         -webkit-transform:scale(1.2); /* Safari and Chrome */
@@ -208,8 +208,9 @@
             <img src='/img/campus/dontdel/background4.png' width='100%'>
             @foreach($mapDatas as $mapData)
             <span data-toggle='modal' data-target="#modal{{$mapData->id}}">
-                <img src="/img/campus/{{$mapData->objImg}}" class="cate{$mapData->building_id}} mapobj" id='build{{$mapData->id}}' bid='{{$mapData->id}}' alt="no found" value="{{$mapData->building_id}}" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"
+                <img src="/img/campus/{{$mapData->objImg}}" class="cate{{$mapData->building_id}} mapobj" id='build{{$mapData->id}}' bid='{{$mapData->id}}' alt="no found" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"
                      data-toggle='tooltip' data-placement='top' title="{{$mapData->buildingName}}">
+                
 
             </span>
             @endforeach
@@ -240,9 +241,8 @@
                 <div class="modal-body container container1">
 
                     <div class="objImg">
-                        <img class="objImg-big img-rounded" src="\img\campus\dontdel\click.png" alt="not found" id="bigImg"><br>
+                        <img class="objImg-big img-rounded" src="\img\campus\dontdel\click.png" alt="not found" id="bigImg" style="width:80%"><br>
                         <div id='imgBox'>
-
                         </div>                                      
                     </div>
 
@@ -267,7 +267,6 @@
 
         </div>
     </div>
-
 </div>
 
 
@@ -301,7 +300,7 @@
         });
         //取得建築物資料 主頁        
         $('body').on('click', '.mapobj', function () {
-
+            $('.objImg-big').attr('src','\\img\\campus\\dontdel\\click.png');
             var bid = $(this).attr('bid');
             var url = "/campus/guide/getBuild/" + bid;
             $.get(url, function (data) {
@@ -337,52 +336,37 @@
 
             });
 
-        });
+        });                     
         $('body').on('mouseover', '.mapobj', function () {        
             $(this).tooltip('show');
         });
          $('body').on('mouseout', '.mapobj', function () {        
             $(this).tooltip('hide');
         });
+        
+        
+        
         $('body').on('mouseover', '.cateBtn', function () {
+            
             var id = $(this).attr('id');
-            for (var i = 1; i <= buildNum; i++) {
-                if ($("#build" + i).attr('value') == id) {
-
-                    $("#build" + i).tooltip('show');
-
-                }
-            }
+            $('.cate'+id).tooltip('show');
         });
         $('body').on('mouseout', '.cateBtn', function () {
-            var id = $(this).attr('id');
-            for (var i = 1; i <= buildNum; i++) {
-                if ($("#build" + i).attr('value') == id) {
-
-                    $("#build" + i).tooltip('hide');
-
-                }
+            
+            if($('.faa').css('display') != 'block'){
+                $('.mapobj').tooltip('hide');
             }
+            
         });
 
     });
     var buildNum = $('#buildNum').val();
     //將建築物藏起來
     function hide(id) {
-
-        for (var i = 1; i <= buildNum; i++) {
-
-            if ($("#build" + i).attr('value') == id) {
-                $("#build" + i).css('display', 'block');
-                $("#build" + i).tooltip('show');
-                $('#build' + i).addClass('buildEff');
-            } else {
-                $("#build" + i).tooltip('hide');
-                $("#build" + i).css('display', 'none');
-                $('#build' + i).removeClass('buildEff');
-            }
-        }
-        $(".faa").css('display', 'block');
+        $('.mapobj').tooltip('hide').css('display', 'none').removeClass('buildEff');
+        $('.cate'+id).fadeIn(500).addClass('buildEff');
+        $('.cate'+id).tooltip('show');    
+        $(".faa").fadeIn(500);
     }
     //顯示按鈕特效
     function btnChange() {
@@ -396,16 +380,9 @@
         }
     }
     function back() {
-        for (var i = 1; i <= buildNum; i++) {
-            $("#build" + i).css('display', 'block');
-            $('#build' + i).removeClass('buildEff');
-            $("#build" + i).tooltip('hide');
-
-        }
-        for (i = 1; i <= 6; i++) {
-            $('#' + i).attr('value', 0);
-            $("#" + i).removeClass("btnEff");
-        }
+        $('.mapobj').css('display', 'block').removeClass('buildEff').tooltip('hide');
+        $('.cateBtn').attr('value', 0).removeClass("btnEff");
+        
     }
 </script>
 @stop

@@ -31,6 +31,9 @@ $(document).ready(function() {
             $("#leftScreen").fadeIn("fast");
             $("#rightScreen").hide();
             $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
+            $("#innerLeftPage-1").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-1").height()) / 2);
+            $("#innerLeftPage-2").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-2").height()) / 2);
+            $("#innerLeftPage-3").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-3").height()) / 2);
         } else {
             $("#leftScreen").hide();
             $("#rightScreen").fadeIn("fast");

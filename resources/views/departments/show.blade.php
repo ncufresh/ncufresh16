@@ -16,6 +16,7 @@
 	    });
 	</script>
 @stop
+@section('css')
 <style type="text/css">
 body{
 	background-image: url({{asset('img/group/BG1.jpg')}});
@@ -44,6 +45,11 @@ body{
 .col-xs-3{
 	margin-top: 20px;
 }
+pre{
+	white-space: pre-wrap;
+	max-height: 400px;
+  	overflow: auto;
+}
 h3{
 	text-align:center;
 }
@@ -58,6 +64,7 @@ h3{
   	height:auto;
 }
 </style>
+@stop
 <div class="container">
 	<ol class="breadcrumb">
 		<li><a href="/">首頁</a></li>

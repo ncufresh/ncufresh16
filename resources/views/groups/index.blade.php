@@ -30,7 +30,10 @@ body{
 	background-repeat: no-repeat;
     background-size:cover;
 }
-
+.text{
+	color: black;
+	font-weight: bold;
+}
 .box{
 	margin-left: 70px;
 }
