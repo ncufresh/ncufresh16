@@ -74,10 +74,10 @@
 							<div class="introduce">
 							姓名：熊偉年<br>
 							系級：資訊工程系一年級<br>
-							(假大一真大三)<br>
+							&emsp;&emsp;&emsp;(假大一真大三)<br>
 							組別：程設組(組長)<br>
 							負責：買飲料<br>
-							(Q&A、關於我們)<br>
+							&emsp;&emsp;&emsp;(Q&A、個人專區)<br>
 							想說的一句話：
 							<pre>&lt;script&gt;<br>&emsp;alert("帥哥在這");<br>&lt;/script&gt;</pre>
 							</div>

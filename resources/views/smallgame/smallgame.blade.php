@@ -793,7 +793,7 @@ function draw_score_onTheCanvas(){//in the state game_4
     context.fillStyle = "#FFFFFF";
     context.textAlign = "left";
     context.textBaseline = "bottom";
-    context.fillText("分數:"+score , 0, 60);
+    context.fillText("分數："+score , 0, 60);
 }
 function draw_score_onTheCanvas_gameover(){//in the state game_4
   //繪製分數
@@ -801,7 +801,7 @@ function draw_score_onTheCanvas_gameover(){//in the state game_4
     context.fillStyle = "#000000";
     context.textAlign = "center";
     context.textBaseline = "bottom";
-    context.fillText("分數:"+score, 500, 185);
+    context.fillText("分數："+score, 500, 185);
 }
 function draw_theBricks_onTheCanvas(){//in the state game_4
   for(var i=0;i<brickXs.length;i++){
