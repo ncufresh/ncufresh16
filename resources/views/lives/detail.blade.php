@@ -55,6 +55,11 @@ button{
       background:0 0;
       border-color:#00D4FF ;
   }
+
+  .carousel-control{
+    width: 5vw;
+  
+  }
   
 </style>
 
@@ -91,15 +96,18 @@ CKEDITOR.replace( 'textArea', {
 @section('content')
 
 <div class="container" id="background" >
-    <div class="row">
+    <div class="row">    
         <div class="col-md-4" id="leftPart">
             <div class="row">
-                <div  class="col-md-offset-3 col-md-9"" id="titleFrame">
+                <div  class="col-md-offset-3 col-md-9" id="titleFrame">
                     <img src="{{ asset($content->image) }}" class="img-responsive">
                 </div>
 
                 <div class="col-md-offset-3 col-md-9" id="more">   
+                    
+                    <?php if($content->title != "夜市"){  ?>   
                     <img src="{{ asset('img/life/more.png')  }}" href="javascript:void(0)" class="btn img-rounded " data-toggle="collapse" data-target="#linkMenu">
+                    <?php } ?>
 
                     <ul class="collapse" id="linkMenu" role="group" >
                     <!-- Trigger the modal with a button -->
@@ -263,16 +271,14 @@ CKEDITOR.replace( 'textArea', {
       </div>
     </div>
   </div>
-
-<img id="holder" style="margin-top:15px;max-height:100px;">
-      
-     
-
-
-
 </div>
+
+    <a class="left carousel-control" href="{{ url('/life/'.$topic.'/'.$arr_next->id ) }}" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+     <a class="right carousel-control" href="{{ url('/life/'.$topic.'/'.$arr_prev->id ) }}"><i class="glyphicon glyphicon-chevron-right"></i></a>
+     <img id="holder" style="margin-top:15px;max-height:100px;">
 </div>
 
 
 @endsection
 
+<i class="">keyboard_arrow_right</i>
