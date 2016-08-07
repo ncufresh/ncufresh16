@@ -188,8 +188,9 @@
     </div>
     <div class=''>
         <h1>校園介紹</h1>
+        @can('management')
         <button type="button" class="btn btn-primary" onclick="location.href ='{{url('/campus/newObj')}}'">編輯地圖物件</button>
-
+        @endcan
 
 
 
