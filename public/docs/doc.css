@@ -1,10 +1,9 @@
-/* height */
-
-#outerLeftSidebar,
-#outerRightSidebar,
-#leftScreen,
-#rightScreen {
+.vertical-middle {
     min-height: 100vh;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
 }
 
 
@@ -53,22 +52,9 @@
     color: rgba(102, 76, 0, 1);
 }
 
-.col-xs-4.col-pagging-5px {
-    padding: 5px;
+.col-xs-4.col-pagging-custom {
+    padding: 1vh;
 }
-
-@media (min-width: 768px) {
-    .col-xs-4.col-pagging-5px {
-        padding: 15px;
-    }
-}
-
-@media (min-width: 992px) {
-    .col-xs-4.col-pagging-5px {
-        padding: 30px;
-    }
-}
-
 
 /* top image setting */
 
@@ -241,16 +227,6 @@ footer {
     to {
         font-size: 11px;
     }
-}
-
-
-/* for fadeIn() animation */
-
-#innerLeftPage-2,
-#innerLeftPage-3,
-#innerRightPage-2,
-#innerRightPage-3 {
-    display: none;
 }
 
 @media (min-width: 768px) {

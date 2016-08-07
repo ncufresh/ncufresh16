@@ -6,20 +6,13 @@ $(document).ready(function() {
     $("div.modal-body").find("img").addClass("img-responsive").removeAttr("style");
 
     // 設定智慧財產權的圖片最大寬度
-    $("img[alt='智慧財產權']").css("max-height",600);
+    $("img[alt='智慧財產權']").css("max-height", 600);
+
+    // hide
+    $("#under-2, #under-3").hide();
 
     // fadeIn() animation
     $("body").fadeIn("slow");
-
-    // 垂直置中
-    $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
-    $("#innerLeftPage-1").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-1").height()) / 2);
-    $("#innerLeftPage-2").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-2").height()) / 2);
-    $("#innerLeftPage-3").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-3").height()) / 2);
-    $("#innerRightSidenav").css("padding-top", ($(window).innerHeight() - $("#innerRightSidenav").height()) / 2);
-    $("#innerRightPage-1").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-1").height()) / 2);
-    $("#innerRightPage-2").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-2").height()) / 2);
-    $(".img-wrapper").css("padding-top", ($(window).innerHeight() - $(".img-wrapper").height()) / 2);
 
     // 點下 "開啟大學部畫面" 或 "開啟研究所畫面" 的圖片時
     $("div a[href='#under-1'], div a[href='#graduate-1']").on('click', function(event) {
@@ -28,18 +21,15 @@ $(document).ready(function() {
         // Store hash
         var hash = this.hash;
         if (hash === "#under-1") {
+            $("#under-1").css("display", "inline-table");
+            $("#under-2, #under-3").hide();
             $("#leftScreen").fadeIn("fast");
             $("#rightScreen").hide();
-            $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
-            $("#innerLeftPage-1").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-1").height()) / 2);
-            $("#innerLeftPage-2").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-2").height()) / 2);
-            $("#innerLeftPage-3").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-3").height()) / 2);
         } else {
             $("#leftScreen").hide();
+            $("#graduate-1").css("display", "inline-table");
+            $("#graduate-2").hide();
             $("#rightScreen").fadeIn("fast");
-            $("#innerRightSidenav").css("padding-top", ($(window).innerHeight() - $("#innerRightSidenav").height()) / 2);
-            $("#innerRightPage-1").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-1").height()) / 2);
-            $("#innerRightPage-2").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-2").height()) / 2);
         }
         // Using jQuery's animate() method to add smooth page scroll
         $('html, body').stop().animate({
@@ -69,19 +59,12 @@ $(document).ready(function() {
         var hash = this.hash;
         switch (hash) {
             case "#graduate-1":
-                $("#innerRightPage-1").show();
-                $("#innerRightPage-2").hide();
-                $("#innerRightPage-3").hide();
+                $("#graduate-1").css("display", "inline-table");
+                $("#graduate-2").hide();
                 break;
             case "#graduate-2":
-                $("#innerRightPage-1").hide();
-                $("#innerRightPage-2").show();
-                $("#innerRightPage-3").hide();
-                break;
-            case "#graduate-3":
-                $("#innerRightPage-1").hide();
-                $("#innerRightPage-2").hide();
-                $("#innerRightPage-3").show();
+                $("#graduate-1").hide();
+                $("#graduate-2").css("display", "inline-table");
                 break;
         }
 
@@ -101,19 +84,19 @@ $(document).ready(function() {
         var hash = this.hash;
         switch (hash) {
             case "#under-1":
-                $("#innerLeftPage-1").show();
-                $("#innerLeftPage-2").hide();
-                $("#innerLeftPage-3").hide();
+                $("#under-1").css("display", "inline-table");
+                $("#under-2").hide();
+                $("#under-3").hide();
                 break;
             case "#under-2":
-                $("#innerLeftPage-1").hide();
-                $("#innerLeftPage-2").show();
-                $("#innerLeftPage-3").hide();
+                $("#under-1").hide();
+                $("#under-2").css("display", "inline-table");
+                $("#under-3").hide();
                 break;
             case "#under-3":
-                $("#innerLeftPage-1").hide();
-                $("#innerLeftPage-2").hide();
-                $("#innerLeftPage-3").show();
+                $("#under-1").hide();
+                $("#under-2").hide();
+                $("#under-3").css("display", "inline-table");
                 break;
         }
 
@@ -128,13 +111,13 @@ $(document).ready(function() {
     // 調整視窗大小時
     $(window).resize(function() {
         // 垂直置中
-        $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
-        $("#innerLeftPage-1").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-1").height()) / 2);
-        $("#innerLeftPage-2").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-2").height()) / 2);
-        $("#innerLeftPage-3").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-3").height()) / 2);
-        $("#innerRightSidenav").css("padding-top", ($(window).innerHeight() - $("#innerRightSidenav").height()) / 2);
-        $("#innerRightPage-1").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-1").height()) / 2);
-        $("#innerRightPage-2").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-2").height()) / 2);
+        // $("#innerLeftSidenav").css("padding-top", ($(window).innerHeight() - $("#innerLeftSidenav").height()) / 2);
+        // $("#innerLeftPage-1").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-1").height()) / 2);
+        // $("#innerLeftPage-2").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-2").height()) / 2);
+        // $("#innerLeftPage-3").css("padding-top", ($(window).innerHeight() - $("#innerLeftPage-3").height()) / 2);
+        // $("#innerRightSidenav").css("padding-top", ($(window).innerHeight() - $("#innerRightSidenav").height()) / 2);
+        // $("#innerRightPage-1").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-1").height()) / 2);
+        // $("#innerRightPage-2").css("padding-top", ($(window).innerHeight() - $("#innerRightPage-2").height()) / 2);
         $(".img-wrapper").css("padding-top", ($(window).innerHeight() - $(".img-wrapper").height()) / 2);
     });
 
