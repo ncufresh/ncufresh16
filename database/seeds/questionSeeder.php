@@ -62,19 +62,12 @@ class questionSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
-        DB::table('question_collection')->insert([
-            'question' => "何者並非松苑內所出現的餐廳?",
-            'selection_1' => "摩斯漢堡",
-            'selection_2'=>"頂呱呱",
-            'answer'=>"2",
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s"),
-        ]);
+       
         DB::table('question_collection')->insert([
             'question' => "請問中央大學大一新生哪個學院的學生必須修大一微積分?",
             'selection_1' => "管理學院",
             'selection_2'=>"文學院",
-            'answer'=>"2",
+            'answer'=>"1",
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
@@ -86,14 +79,7 @@ class questionSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
-        DB::table('question_collection')->insert([
-            'question' => "中央大學位在哪個縣市?",
-            'selection_1' => "桃園市",
-            'selection_2'=>"竹北市",
-            'answer'=>"1",
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s"),
-        ]);
+        
         DB::table('question_collection')->insert([
             'question' => "如果想要搭公車到市區應搭幾號?",
             'selection_1' => "132",
@@ -317,7 +303,7 @@ class questionSeeder extends Seeder
             'question' => "搭台聯大的專車去清大要錢嗎?",
             'selection_1' => "不要",
             'selection_2'=>"要",
-            'answer'=>"2",
+            'answer'=>"1",
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
@@ -325,7 +311,7 @@ class questionSeeder extends Seeder
             'question' => "搭台聯大的專車去交大要錢嗎?",
             'selection_1' => "要",
             'selection_2'=>"不要",
-            'answer'=>"1",
+            'answer'=>"2",
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
@@ -333,7 +319,7 @@ class questionSeeder extends Seeder
             'question' => "搭台聯大的專車去陽明要錢嗎?",
             'selection_1' => "不要",
             'selection_2'=>"要",
-            'answer'=>"2",
+            'answer'=>"1",
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
@@ -481,14 +467,7 @@ class questionSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
-        DB::table('question_collection')->insert([
-            'question' => "何者並非松苑內所出現的餐廳?",
-            'selection_1' => "摩斯漢堡",
-            'selection_2'=>"頂呱呱",
-            'answer'=>"2",
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s"),
-        ]);
+        
         DB::table('question_collection')->insert([
             'question' => "全校有幾個學系?",
             'selection_1' => "22",
@@ -690,7 +669,7 @@ class questionSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
         DB::table('question_collection')->insert([
-            'question' => "請問104學年度，中央大學的FB社團名稱為何?",
+            'question' => "請問105學年度，中央大學的FB社團名稱為何?",
             'selection_1' => "中大自由年代",
             'selection_2'=>"2016 嶄．望 中央大學",
             'answer'=>"2",
@@ -738,7 +717,7 @@ class questionSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
         DB::table('question_collection')->insert([
-            'question' => "中央大學內的新圖書館(總圖書館)總共有幾層樓?",
+            'question' => "中央大學內的新圖書館(總圖書館)地上總共有幾層樓?",
             'selection_1' => "9",
             'selection_2'=>"8",
             'answer'=>"2",
@@ -778,7 +757,7 @@ class questionSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
         DB::table('question_collection')->insert([
-            'question' => "請問中央大學道路的最高限速是多少公里?/",
+            'question' => "請問中央大學道路的最高限速是多少公里?",
             'selection_1' => "25",
             'selection_2'=>"5",
             'answer'=>"1",
@@ -905,14 +884,7 @@ class questionSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
-                DB::table('question_collection')->insert([
-            'question' => "小木屋鬆餅的鬆餅有賣冰淇淋口味的鬆餅嗎?",
-            'selection_1' => "有",
-            'selection_2'=>"沒有",
-            'answer'=>"1",
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s"),
-        ]);
+    
         DB::table('question_collection')->insert([
             'question' => "小木屋鬆餅有賣飲料嗎?",
             'selection_1' => "沒有",
@@ -1106,7 +1078,7 @@ class questionSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
         DB::table('question_collection')->insert([
-            'question' => "宿舍中使用烘衣機須投多少錢?",
+            'question' => "宿舍中使用烘衣機最少須投多少錢?",
             'selection_1' => "20元",
             'selection_2'=>"10元",
             'answer'=>"2",
@@ -1161,14 +1133,7 @@ class questionSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
-        DB::table('question_collection')->insert([
-            'question' => "何者並非松苑內所出現的餐廳?",
-            'selection_1' => "摩斯漢堡",
-            'selection_2'=>"頂呱呱",
-            'answer'=>"2",
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s"),
-        ]);
+        
         DB::table('question_collection')->insert([
             'question' => "校內公用腳踏車可以騎出校外嗎?",
             'selection_1' => "不行",
@@ -1177,14 +1142,7 @@ class questionSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
-        DB::table('question_collection')->insert([
-            'question' => "何者並非松苑內所出現的餐廳?",
-            'selection_1' => "摩斯漢堡",
-            'selection_2'=>"頂呱呱",
-            'answer'=>"2",
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s"),
-        ]);
+        
         DB::table('question_collection')->insert([
             'question' => "好兇蛋餅晚上幾點開?",
             'selection_1' => "10pm",

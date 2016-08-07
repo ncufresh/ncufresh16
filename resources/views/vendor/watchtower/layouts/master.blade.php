@@ -63,6 +63,7 @@
 	            </button>
 	            <a class="navbar-brand" href="{{ url('/') }}">新生知訊網</a>
 							<a class="navbar-brand" href="{{ url('/admin') }}">回後台管理</a>
+							<a class="navbar-brand" href="{{ route( config('watchtower.route.as').'user.index') }}">回使用者列表</a>
 							<a class="navbar-brand" href="{{ route( config('watchtower.route.as').'index') }}">{{ $title }}</a>
 	        </div>
 

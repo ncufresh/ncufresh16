@@ -30,6 +30,7 @@
   position: absolute;
   left: -50%;
   width: 30%;
+  bottom: -10%;
   display: block;
   background: #eee;
   min-height: 300px;

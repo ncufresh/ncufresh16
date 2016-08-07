@@ -96,7 +96,6 @@
 	    $(".puzzle").click(function(event){
 	       	var form = document.getElementById("form_name");
 	        var clicks = $(this).data('clicks');
-	       	console.log(event.target.nodeName);
 			if (clicks) {
 			     
 		        $("#foodFrame").animate({
@@ -170,7 +169,7 @@
 		</div>
 		<ul class="collapse menu" id="foodMenu">
 		@foreach ($food as $food)
-		<li><img src="{{ asset('img/life/knife.png')  }}"> <a href="{{action('LifeController@getContent',['food', $food->id])}}">{{ $food->title }}</a></li>
+		<li><img src="{{ asset('img/life/knife.png')  }}"><a href="{{action('LifeController@getContent',['food', $food->id])}}">{{ $food->title }}</a></li>
 		@can('management') 
 		<!--title更改鈕 -->
 		<form action="{{ url('life/'.$food->topic.'/'.$food->id).'/update' }}" method="POST">

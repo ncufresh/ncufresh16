@@ -31,8 +31,7 @@
                         管理 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="http://lovenery.me/old/">去年的</a></li>
-                        <li><a href="http://lovenery.me/">今年的</a></li>
+                        <li><a href="http://ncufresh.ncu.edu.tw/old/">去年網站</a></li>
                         <li class="active"><a href="{{ url('/admin') }}">後台管理</a></li>
                         <li><a href="{{ url('/ann') }}">公告管理</a></li>
                         <li><a href="{{ url('/home/background') }}">變更背景</a></li>
