@@ -79,13 +79,7 @@
         -o-transform:scale(1.2); /* Opera */
         transform:scale(1.2);
     }
-    .buildEff{
-        -webkit-transform:scale(1.2); /* Safari and Chrome */
-        -moz-transform:scale(1.2); /* Firefox */
-        -ms-transform:scale(1.2); /* IE 9 */
-        -o-transform:scale(1.2); /* Opera */
-        transform:scale(1.2);
-    }
+
     .faa{
         position: absolute;
         left: 10%;
@@ -281,7 +275,6 @@
     $(document).on('ready', function () {
         $(".container").fadeIn(3000);
         $('body').on('click', '.objImg-sam', function () {
-            var imgId = $(this).attr('id');
             var imgSrc = $(this).attr('src');
             $('#bigImg').attr('src', imgSrc);
             
