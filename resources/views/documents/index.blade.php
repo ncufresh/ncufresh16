@@ -109,20 +109,22 @@ main {
         width: calc(100% / {{ ceil($numUnders[$i]/2) }} );
     }
 
-    .col-under-{{ $i+1 }}:nth-child({{ ceil($numUnders[$i]/2) + 1 }}) {
-        margin-left: calc(50% / {{ ceil($numUnders[$i]/2) }} );
-    }
+        @if( ($numUnders[$i] % 2) == 1 )
+            .col-under-{{ $i+1 }}:nth-child({{ ceil($numUnders[$i]/2) + 1 }}) {
+                margin-left: calc(50% / {{ ceil($numUnders[$i]/2) }} );
+            }
+        @endif
 
     @media (max-width: 768px) {
         .col-under-{{ $i+1 }} {
             width: calc(100% / 2 );
         }
-
+        
+        @if( ($numUnders[$i] % 2) == 1 )
         .col-under-{{ $i+1 }}:nth-child({{ ceil($numUnders[$i]/2) + 1 }}) {
             margin-left: 0;
         }
 
-        @if( ($numUnders[$i] % 2) == 1 )
         .col-under-{{ $i+1 }}:last-child {
             margin-left: calc(100% / 4 );
             width: calc(100% / 2 );
@@ -229,21 +231,22 @@ main {
     .col-graduate-{{ $i+1 }} {
         width: calc(100% / {{ ceil($numGraduates[$i]/2) }} );
     }
-
-    .col-graduate-{{ $i+1 }}:nth-child({{ ceil($numGraduates[$i]/2) + 1 }}) {
-        margin-left: calc(50% / {{ ceil($numUnders[$i]/2) }} );
-    }
+        @if( ($numGraduates[$i] % 2) == 1 )
+        .col-graduate-{{ $i+1 }}:nth-child({{ ceil($numGraduates[$i]/2) + 1 }}) {
+            margin-left: calc(50% / {{ ceil($numUnders[$i]/2) }} );
+        }
+        @endif
 
     @media (max-width: 768px) {
         .col-graduate-{{ $i+1 }} {
             width: calc(100% / 2 );
         }
 
+        @if( ($numGraduates[$i] % 2) == 1 )
         .col-graduate-{{ $i+1 }}:nth-child({{ ceil($numGraduates[$i]/2) + 1 }}) {
             margin-left: 0;
         }
 
-        @if( ($numGraduates[$i] % 2) == 1 )
         .col-graduate-{{ $i+1 }}:last-child {
             margin-left: calc(100% / 4 );
             width: calc(100% / 2 );
@@ -466,18 +469,6 @@ if (strUrl.indexOf("?") !== -1) {
                     </section>
                     <!-- /#under-{{ $mainCount }} -->
                 @endforeach
-                <!-- 顯示綜合畫面的按鈕 -->
-                <!-- <div class="little-button">
-                    <div class="btn-circle-container">
-                        <div>
-                            <a href="#bottomScreen" class="btn btn-circle">
-                                <i class="fa fa-angle-double-down fa-3x"></i>
-                                <div class="ripple-container"></div>
-                            </a>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- /顯示綜合畫面的按鈕 -->
             </div>
             <!-- /.row -->
         </div>
@@ -606,18 +597,6 @@ if (strUrl.indexOf("?") !== -1) {
                         @endcan
                     </div>
                     <!-- /.col-xs-3.col-fluid /#innerRightSidenav -->
-                    <!-- 顯示綜合畫面的按鈕 -->
-                    <!-- <div class="little-button">
-                        <div class="btn-circle-container">
-                            <div>
-                                <a href="#bottomScreen" class="btn btn-circle">
-                                    <i class="fa fa-angle-double-down fa-3x"></i>
-                                    <div class="ripple-container"></div>
-                                </a>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- /顯示綜合畫面的按鈕 -->
                 </div>
                 <!-- /.row -->
             </div>
