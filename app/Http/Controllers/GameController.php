@@ -61,11 +61,18 @@ class GameController extends Controller
         $now=time();
         $score=($now-Session::get('startTime'));//
 
-        $scores = Record_score::create([
-            'name'=>$request->name,
-            'score'=>$score
-            ]);
-        return response()->json($scores);
+        if(abs($score-$request->score)>100){
+            echo "do not do anything illegal!";    
+        }
+        else{
+
+            $scores = Record_score::create([
+                'name'=>$request->name,
+                'score'=>$score
+                ]);
+            return response()->json($scores);
+        }
+        
     }
     public function getScores(){//取得分數
         $scores=Record_score::all();
