@@ -164,11 +164,15 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
                     <li data-target="#carousel-single" data-slide-to="1" class=""></li>
                     <li data-target="#carousel-single" data-slide-to="2" class=""></li>
                     <li data-target="#carousel-single" data-slide-to="3" class=""></li>
+                    <li data-target="#carousel-single" data-slide-to="4" class=""></li>
                 </ol>
 
             		<!-- Wrapper for slides -->
             		<div class="carousel-inner">
-                    <figure class="item preload loaded active" onclick="javascript:location.href='https://www.facebook.com/NCUGC/'" style="background-image: url({{asset('img/home/ncugc.jpg')}});">
+                    <figure class="item preload loaded active" onclick="javascript:location.href='https://www.facebook.com/groups/NCUgroup/'" style="background-image: url({{asset('img/home/ncufb.jpg')}});">
+                        <figcaption class="carousel-caption">FB學生社團</figcaption>
+                    </figure>
+                    <figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/NCUGC/'" style="background-image: url({{asset('img/home/ncugc.jpg')}});">
                         <figcaption class="carousel-caption">中央創遊</figcaption>
                     </figure>
             				<figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/IEEE-NCU-Student-Branch-1045673762117443/?fref=ts'" style="background-image: url({{asset('img/home/ieee.jpg')}});">
