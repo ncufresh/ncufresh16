@@ -43,16 +43,26 @@ if(window.screen.width >= 992){
 			    $("#lifeFrame").fadeOut(500);
 
 			    switch( getId ) {
-			    	case "foodFrame": $("#food_video").fadeIn(500);
-			    	case "housingFrame": $("#housing_video").fadeIn(500);
-			    	case "transportationFrame": $("#transportation_video").fadeIn(500);
-			    	case "educationFrame": $("#education_video").fadeIn(500);
-			    	case "entertainmentFrame": $("#entertainment_video").fadeIn(500);
+			    	case "foodFrame": 
+			    		$("#food_video").fadeIn(500);		
+			    		break;
+			    	case "housingFrame":
+			    		$("#housing_video").fadeIn(500);		 
+			    		break;
+			    	case "transportationFrame": 
+			    		$("#transportation_video").fadeIn(500);		 
+			    		break;
+			    	case "educationFrame":
+			    		$("#education_video").fadeIn(500);		
+			    		break;
+			    	case "entertainmentFrame": 
+			    		$("#entertainment_video").fadeIn(500);		
+			    		break;
 			    }
 			    
 
-			  }
-			  $(this).data("clicks", !clicks);
+			 }
+			 $(this).data("clicks", !clicks);
 	   
 	    });
 	    
@@ -110,17 +120,26 @@ if(window.screen.width < 992){
 			 
 			    $(".puzzle").not(this).fadeOut(500);
 			    $("#lifeFrame").fadeOut(500);
-			     switch( getId ) {
-			    	case "foodFrame": $("#food_video").fadeIn(500);
-			    	case "housingFrame": $("#housing_video").fadeIn(500);
-			    	case "transportationFrame": $("#transportation_video").fadeIn(500);
-			    	case "educationFrame": $("#education_video").fadeIn(500);
-			    	case "entertainmentFrame": $("#entertainment_video").fadeIn(500);
+			    switch( getId ) {
+			    	case "foodFrame": 
+			    		$("#food_video").fadeIn(500);		
+			    		break;
+			    	case "housingFrame":
+			    		$("#housing_video").fadeIn(500);		 
+			    		break;
+			    	case "transportationFrame": 
+			    		$("#transportation_video").fadeIn(500);		 
+			    		break;
+			    	case "educationFrame":
+			    		$("#education_video").fadeIn(500);		
+			    		break;
+			    	case "entertainmentFrame": 
+			    		$("#entertainment_video").fadeIn(500);		
+			    		break;
 			    }
-			    
 
-			  }
-			  $(this).data("clicks", !clicks);
+		  }
+		  $(this).data("clicks", !clicks);
 	   
 	    });
 	    
