@@ -4,7 +4,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('docs/doc.css') }}">
-<link rel="stylesheet" href="{{ asset('docs/jquery.scrollbar.css') }}">
+<!-- <link rel="stylesheet" href="{{ asset('docs/jquery.scrollbar.css') }}"> -->
 <style>
 /* background setting */
 body {
@@ -36,7 +36,7 @@ main {
 @stop
 
 @section('js')
-<script src="{{ asset('docs/jquery.scrollbar.js') }}"></script>
+<!-- <script src="{{ asset('docs/jquery.scrollbar.js') }}"></script> -->
 <script src="{{ asset('docs/doc.js') }}"></script>
 
 @can('management')
