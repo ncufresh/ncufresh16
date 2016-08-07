@@ -221,7 +221,11 @@
             <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:38%;top:27%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
             <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:55%;top:27%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
             <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:83%;top:63%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
-            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:69%;top:79%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:67 $('body').on('mouseover', '.cateBtn', function () {
+            
+            var id = $(this).attr('id');
+            $('.cate'+id).tooltip('show');
+        });%;top:79%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
             <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:37%;top:41%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
 
             
@@ -229,7 +233,7 @@
             <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:54%;top:25%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
             <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:64.5%;top:45%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
             <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:76%;top:48%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
-            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:76%;top:78%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
+            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:76%;top:75%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
 
            
         </div>
@@ -277,18 +281,12 @@
                 $(".SOS1").tooltip('show');
             
         });
-         $('body').on('mouseout', '.SOS', function () {                       
-                $(".SOS1").tooltip('hide');
-            
-        });
+        
         $('body').on('mouseover', '.AED', function () {                       
                 $(".AED1").tooltip('show');
             
         });
-        $('body').on('mouseout', '.AED', function () {                       
-                $(".AED1").tooltip('hide');
-            
-        });
+        
        
 
 
