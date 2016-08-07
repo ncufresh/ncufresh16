@@ -54,11 +54,11 @@ img.introduce {
 }
 
 /* link */
-a, a:visited {
+#fix a, #fix a:visited {
 	text-decoration: none;
 	color: black;
 }
-a:hover, a:active {
+#fix a:hover, #fix a:active {
 	text-decoration: none;
 	cursor: pointer;
 	color: #6280a1;
