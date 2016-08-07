@@ -33,7 +33,7 @@ $(document).ready(function() {
         }
         // Using jQuery's animate() method to add smooth page scroll
         $('html, body').stop().animate({
-            scrollTop: $(hash).offset().top - $("nav").height()
+            scrollTop: $("#midScreen").offset().top - $("nav").height()
         }, "slow", function() {
             window.location.hash = hash;
         });
@@ -70,7 +70,7 @@ $(document).ready(function() {
 
         // Using jQuery's animate() method to add smooth page scroll
         $('html, body').stop().animate({
-            scrollTop: $(hash).offset().top - $("nav").height()
+            scrollTop: $("#midScreen").offset().top - $("nav").height()
         }, "slow", function() {
             window.location.hash = hash;
         });
@@ -102,7 +102,7 @@ $(document).ready(function() {
 
         // Using jQuery's animate() method to add smooth page scroll
         $('html, body').stop().animate({
-            scrollTop: $("#leftScreen").offset().top - $("nav").height()
+            scrollTop: $("#midScreen").offset().top - $("nav").height()
         }, "slow", function() {
             window.location.hash = hash;
         });
@@ -122,7 +122,7 @@ $(document).ready(function() {
     });
 
     // 
-    $("a[href='#midScreen'], a[href='#bottomScreen']").on('click', function(event) {
+    $("a[href='#bottomScreen']").on('click', function(event) {
         // Prevent default anchor click behavior
         event.preventDefault();
         // Store hash

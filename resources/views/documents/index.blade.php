@@ -332,9 +332,8 @@ if (strUrl.indexOf("?") !== -1) {
                     <?php $mainCount = 0; ?>
                     {{-- 產生三個研究所主要項目 --}}
                     @foreach ($mainGraduates as $graduates)
-                        <section id="graduate-{{ ++$mainCount }}" style="display: inline-table; width: 75%; margin-left: 15px;">
+                        <section id="graduate-{{ ++$mainCount }}" style="display: inline-table; width: 75%; float: left;">
                             <div class="row">
-
                                 <div class="col-xs-12">
                                    <h1 class="inner-page-title">{{ $mainTitles[ $mainCount-1 ] }}</h1> 
                                 </div>
