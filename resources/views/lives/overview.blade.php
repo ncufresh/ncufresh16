@@ -234,7 +234,7 @@
 	</div>
 	 	<a href="{{url('/videos?show=3')}}"><img class="video_url" id="food_video" src="{{ asset('img/life/food_v.png') }}"></a>
 	 	<a href="{{url('/videos?show=5')}}"><img class="video_url" id="housing_video" src="{{ asset('img/life/housing_v.png') }}"></a>
-	 	<a href="{{url('/videos?show=')}}"><img class="video_url" id="transportation_video" src="{{ asset('img/life/transportation_v.png') }}"></a>
+	 	<a href="{{url('/videos?show=7')}}"><img class="video_url" id="transportation_video" src="{{ asset('img/life/transportation_v.png') }}"></a>
 	 	<a href="{{url('/videos?show=2')}}"><img class="video_url" id="education_video" src="{{ asset('img/life/education_v.png') }}"></a>
 	 	<a href="{{url('/videos?show=4')}}"><img class="video_url" id="entertainment_video" src="{{ asset('img/life/entertainment_v.png') }}"></a>
 	</div>
