@@ -8,7 +8,7 @@
     	$(".container").fadeIn(1000);
     });
 </script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
 	<script type="text/javascript">
 	    $('.selectpicker').selectpicker({
@@ -17,6 +17,7 @@
 	    });
 	</script>
 @stop
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
 <style type="text/css">
 .img{
 	width: 70%;
@@ -30,7 +31,7 @@ body{
 	background-repeat: no-repeat;
     background-size:cover;
 }
-.text{
+.title{
 	color: black;
 	font-weight: bold;
 }
@@ -75,13 +76,13 @@ body{
 				<a href="{{ url('/groups/departments') }}">
 					<div class="col-sm-6 col-xs-12 col-md-6 col-lg-6">
 						<img class="img" src="{{ asset('img/group/dep.png') }}">
-							<h1 class="text" style="font-size: 1.4cm">系所</h1>
+							<h1 class="title" style="font-size: 1.4cm">系所</h1>
 					</div>
 				</a>
 				<a href="{{ url('/groups/clubs') }}">
 					<div class="col-sm-6 col-xs-12 col-md-6 col-lg-6">
 						<img class="img" src="{{ asset('img/group/club.png') }}">
-							<h1 class="text" style="font-size: 1.4cm">社團</h1>
+							<h1 class="title" style="font-size: 1.4cm">社團</h1>
 					</div>
 				</a>
 			</div>
