@@ -605,7 +605,7 @@ height: 100vh ;
     </div>
   </div></div>
   <div id="traffic">
-  <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal">
+  <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal7">
   <img src="{{ asset('img/videos/traffic.png') }}" class="live hidden-xs hidden-sm"style="width:10vw;" >
 <img src="{{ asset('img/videos/traffic.png') }}" class="live visible-sm visible-xs"style="width:17vw;" ></a>
 
