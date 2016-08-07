@@ -212,7 +212,7 @@
             <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:23%;top:44.5%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
             <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:31%;top:53%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
             <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:27%;top:74%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
-            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:38%;top:27%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:40.5%;top:25%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
             <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:55%;top:27%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
             <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:83%;top:63%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
             <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:67 $('body').on('mouseover', '.cateBtn', function () {
@@ -247,14 +247,14 @@
         
         
         $('body').on('click', '.SOS', function () {     
-            $('.SOS1').addClass('buildEff').css('display','block').tooltip('show');          
+            $('.SOS1').addClass('buildEff').fadeIn(500).tooltip('show');          
             $('.SOS0').css('display','none').tooltip('hide');
             $('.SOS').addClass('btnEff');
             $('.AED').removeClass('btnEff');
             $('.faa').css('display','block');
         });
          $('body').on('click', '.AED', function () {     
-            $('.AED1').addClass('buildEff').css('display','block').tooltip('show');            
+            $('.AED1').addClass('buildEff').fadeIn(500).tooltip('show');            
             $('.AED0').css('display','none').tooltip('hide');
             $('.AED').addClass('btnEff');
             $('.SOS').removeClass('btnEff');
