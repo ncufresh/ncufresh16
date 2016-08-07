@@ -163,18 +163,22 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
                     <li data-target="#carousel-single" data-slide-to="0" class="active"></li>
                     <li data-target="#carousel-single" data-slide-to="1" class=""></li>
                     <li data-target="#carousel-single" data-slide-to="2" class=""></li>
+                    <li data-target="#carousel-single" data-slide-to="3" class=""></li>
                 </ol>
 
             		<!-- Wrapper for slides -->
             		<div class="carousel-inner">
-            				<figure class="item preload loaded active" onclick="javascript:location.href='https://www.facebook.com/IEEE-NCU-Student-Branch-1045673762117443/?fref=ts'" style="background-image: url({{asset('img/home/ieee.jpg')}});">
-              					<figcaption class="carousel-caption">IEEE 中央學生分會</figcaption>
+                    <figure class="item preload loaded active" onclick="javascript:location.href='https://www.facebook.com/NCUGC/'" style="background-image: url({{asset('img/home/ncugc.jpg')}});">
+                        <figcaption class="carousel-caption">中央創遊</figcaption>
+                    </figure>
+            				<figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/IEEE-NCU-Student-Branch-1045673762117443/?fref=ts'" style="background-image: url({{asset('img/home/ieee.jpg')}});">
+              					<figcaption class="carousel-caption">IEEE</figcaption>
             				</figure>
-                    <figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/NCUGC/'" style="background-image: url({{asset('img/home/ncugc.jpg')}});">
-              					<figcaption class="carousel-caption">中央創遊</figcaption>
+            				<figure class="item preload loaded" style="background-image: url({{asset('img/home/ncucy.png')}});">
+              					<figcaption class="carousel-caption">中友迎新</figcaption>
             				</figure>
-            				<figure class="item preload loaded" style="background-image: url(http://lorempicsum.com/futurama/750/400/1);">
-              					<figcaption class="carousel-caption">中央大學</figcaption>
+                    <figure class="item preload loaded" style="background-image: url({{asset('img/home/ncugg.JPG')}});">
+              					<figcaption class="carousel-caption">新生初夜</figcaption>
             				</figure>
             		</div>
 
