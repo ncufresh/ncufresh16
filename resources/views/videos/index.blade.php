@@ -6,6 +6,17 @@
   <script >
     $(document).ready(function(){
      $("#background").fadeIn(1500);
+     var strUrl = location.search;
+if (strUrl.indexOf("?") !== -1) {
+    var getSearch = strUrl.split("?");
+    var getString = getSearch[1];
+    if(getString.indexOf("&") === -1){
+        var getAll = getString.split("=");
+        if(getAll[0]==="show"){
+            $("#myModal"+getAll[1]).modal('show');
+        }
+    }
+}
    });
     $(".fa-hand-o-down").on('click', function(event) {
         // Prevent default anchor click behavior
@@ -18,17 +29,7 @@
             window.location.hash = hash;
         });
     });
-    var strUrl = location.search;
-if (strUrl.indexOf("?") !== -1) {
-    var getSearch = strUrl.split("?");
-    var getString = getSearch[1];
-    if(getString.indexOf("&") === -1){
-        var getAll = getString.split("=");
-        if(getAll[0]==="show"){
-            $("#myModal-"+getAll[1]).modal('show');
-        }
-    }
-}
+
 </script>
 @stop
 
@@ -604,7 +605,7 @@ height: 100vh ;
     </div>
   </div></div>
   <div id="traffic">
-  <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal">
+  <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal7">
   <img src="{{ asset('img/videos/traffic.png') }}" class="live hidden-xs hidden-sm"style="width:10vw;" >
 <img src="{{ asset('img/videos/traffic.png') }}" class="live visible-sm visible-xs"style="width:17vw;" ></a>
 
