@@ -41,6 +41,21 @@
       }
 }
 
+/* 時間軸那 前往其他的連結 */
+#timeline .timeline-content a {
+    color:#a0a3a4;
+    transition: all ease 0.5s;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+}
+#timeline .timeline-content a:hover {
+    color:#000;
+    text-decoration: none;
+    transition: all ease 0.5s;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+}
+
 /* 時間軸松鼠 */
 #timeline .timeline-item .timeline-clickme {
     display: none;
