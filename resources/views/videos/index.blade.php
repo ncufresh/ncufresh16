@@ -6,6 +6,17 @@
   <script >
     $(document).ready(function(){
      $("#background").fadeIn(1500);
+     var strUrl = location.search;
+if (strUrl.indexOf("?") !== -1) {
+    var getSearch = strUrl.split("?");
+    var getString = getSearch[1];
+    if(getString.indexOf("&") === -1){
+        var getAll = getString.split("=");
+        if(getAll[0]==="show"){
+            $("#myModal"+getAll[1]).modal('show');
+        }
+    }
+}
    });
     $(".fa-hand-o-down").on('click', function(event) {
         // Prevent default anchor click behavior
@@ -18,17 +29,7 @@
             window.location.hash = hash;
         });
     });
-    var strUrl = location.search;
-if (strUrl.indexOf("?") !== -1) {
-    var getSearch = strUrl.split("?");
-    var getString = getSearch[1];
-    if(getString.indexOf("&") === -1){
-        var getAll = getString.split("=");
-        if(getAll[0]==="show"){
-            $("#myModal-"+getAll[1]).modal('show');
-        }
-    }
-}
+
 </script>
 @stop
 
