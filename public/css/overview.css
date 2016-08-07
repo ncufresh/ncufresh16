@@ -1,10 +1,33 @@
 
 .container {
 	  display: none;
-	}
+}
+
+
+.menu a {
+		color: gray;
+		text-decoration: none;
+		letter-spacing:0.05em;
+		font-weight: bold;
+}
+
+.menu a:hover {
+	color: black;
+	text-decoration: none;
+	letter-spacing:0.05em;
+	font-weight: bold;
+}
 
 @media (min-width:992px){
 	
+		.video_url{
+	display: none;
+	position: fixed;
+	bottom: 0;
+  	right: 0;
+  	width: 10vw;
+  	z-index: 2;
+}
 
 	#lifeFrame{
 		position: absolute;
@@ -78,6 +101,16 @@
 }
 
 @media (max-width:991px){
+
+	.video_url{
+	display: none;
+	position: fixed;
+	bottom: 0;
+  	right: 0;
+  	width: 20vw;
+  	z-index: 2;
+}
+
 	#lifeFrame{
 		position: absolute;
 		top:40%;

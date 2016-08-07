@@ -4,6 +4,7 @@ if(window.screen.width >= 992){
 	    $(".puzzle").click(function(event){
 	       	var form = document.getElementById("form_name");
 	        var clicks = $(this).data('clicks');
+	        var getId = $(this).attr("id"); 
 			if (clicks) {
 			     
 		        $("#foodFrame").animate({
@@ -30,6 +31,7 @@ if(window.screen.width >= 992){
 
 		        $(".puzzle").fadeIn(500);
 		        $("#lifeFrame").fadeIn(500);
+		        $(".video_url").fadeOut(500);
 
 			} else {
 			     $(this).animate({
@@ -37,9 +39,17 @@ if(window.screen.width >= 992){
 	            	top: '30%'
 
 		        });
-			 
 			    $(".puzzle").not(this).fadeOut(500);
 			    $("#lifeFrame").fadeOut(500);
+
+			    switch( getId ) {
+			    	case "foodFrame": $("#food_video").fadeIn(500);
+			    	case "housingFrame": $("#housing_video").fadeIn(500);
+			    	case "transportationFrame": $("#transportation_video").fadeIn(500);
+			    	case "educationFrame": $("#education_video").fadeIn(500);
+			    	case "entertainmentFrame": $("#entertainment_video").fadeIn(500);
+			    }
+			    
 
 			  }
 			  $(this).data("clicks", !clicks);
@@ -61,6 +71,7 @@ if(window.screen.width < 992){
 	    $(".puzzle").click(function(event){
 	       	var form = document.getElementById("form_name");
 	        var clicks = $(this).data('clicks');
+	        var getId = $(this).attr("id"); 
 			if (clicks) {
 			     
 		        $("#foodFrame").animate({
@@ -87,6 +98,7 @@ if(window.screen.width < 992){
 
 		        $(".puzzle").fadeIn(500);
 		        $("#lifeFrame").fadeIn(500);
+		        $(".video_url").fadeOut(500);
 
 			} else {
 			     $(this).animate({
@@ -94,9 +106,18 @@ if(window.screen.width < 992){
 	            	top: '0%'
 
 		        });
+
 			 
 			    $(".puzzle").not(this).fadeOut(500);
 			    $("#lifeFrame").fadeOut(500);
+			     switch( getId ) {
+			    	case "foodFrame": $("#food_video").fadeIn(500);
+			    	case "housingFrame": $("#housing_video").fadeIn(500);
+			    	case "transportationFrame": $("#transportation_video").fadeIn(500);
+			    	case "educationFrame": $("#education_video").fadeIn(500);
+			    	case "entertainmentFrame": $("#entertainment_video").fadeIn(500);
+			    }
+			    
 
 			  }
 			  $(this).data("clicks", !clicks);
