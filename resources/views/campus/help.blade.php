@@ -225,9 +225,9 @@
             
             <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:36%;top:45%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
             <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:54%;top:25%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
-            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:64.5%;top:45%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
+            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:64.5%;top:47%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
             <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:76%;top:48%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
-            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:76%;top:75%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
+            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:74%;top:75%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
 
            
         </div>
