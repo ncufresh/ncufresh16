@@ -20,14 +20,14 @@
 
 @media (min-width:992px){
 	
-		.video_url{
-	display: none;
-	position: fixed;
-	bottom: 1vw;
-  	right: 5vw;
-  	width: 5vw;
-  	z-index: 2;
-}
+	.video_url{
+		display: none;
+		position: fixed;
+		bottom: 2vw;
+	  	left: 30vw;
+	  	width: 7vw;
+	  	z-index: 2;
+	}
 
 	#lifeFrame{
 		position: absolute;
@@ -103,20 +103,20 @@
 @media (max-width:991px){
 
 	.video_url{
-	display: none;
-	position: fixed;
-	bottom: 0;
-  	right: 0;
-  	width: 15vw;
-  	z-index: 2;
-}
+		display: none;
+		position: fixed;
+		bottom: 0;
+	  	right: 0;
+	  	width: 15vw;
+	  	z-index: 2;
+	}
 
 	#lifeFrame{
 		position: absolute;
 		top:40%;
 		left:40%;
 		opacity: 0.5;
-		 filter: alpha(opacity=0); /* For IE8 and earlier */
+		filter: alpha(opacity=0); /* For IE8 and earlier */
 	}
 
 	.dropdown:hover .dropdown-menu {

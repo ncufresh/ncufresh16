@@ -66,7 +66,11 @@
         background: rgba(0,0,0,0);
         box-shadow: none;
     }
-  
+
+    .tooltip-inner img {
+       max-width: 100%;
+    }
+    
 </style>
 
 @stop
@@ -74,19 +78,12 @@
 @section('js')
     <script type="text/javascript">
         $(document).ready(function(){
-              $(".container").fadeIn(1000);
-                // CKEDITOR.instances['textArea'].setData($("#textArea").val());
-        });
-        
-        $(document).ready(function(){
-             $('a[data-toggle="tooltip"]').tooltip({
-            animated: 'fade',
-            placement: 'middle',
-            html: true
+            $(".container").fadeIn(1000);
+            $('a[data-toggle="tooltip"]').tooltip({
+                  html: true,
+                  animation: true,
             });
         });
-
-        
 
     </script>
 
@@ -288,9 +285,18 @@
           </div>
     </div>
 
-    <a class="left carousel-control shift" href="{{ url('/life/'.$topic.'/'.$arr_prev->id ) }}" data-slide="prev" data-toggle="tooltip" data-placement="right" title="<img src='{{ asset($arr_prev->image) }}' />"><i class="glyphicon glyphicon-chevron-left"></i></a>
-    <a class="right carousel-control shift" href="{{ url('/life/'.$topic.'/'.$arr_next->id ) }}" data-slide="next" data-toggle="tooltip" data-placement="left" title="<img src='{{ asset($arr_next->image) }}' />"><i class="glyphicon glyphicon-chevron-right"></i></a>
-     <img id="holder" style="margin-top:15px;max-height:100px;">
+    <!-- 向左 -->
+    <a class="left carousel-control shift tooltip" href="{{ url('/life/'.$topic.'/'.$arr_prev->id ) }}" data-slide="prev" data-toggle="tooltip" data-placement="right" title="<img src='{{ asset($arr_prev->image) }}' />">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+    </a>
+    
+    <!-- 向右 -->
+    <a class="right carousel-control shift" href="{{ url('/life/'.$topic.'/'.$arr_next->id ) }}" data-slide="next" data-toggle="tooltip" data-placement="left" title="<img src='{{ asset($arr_next->image) }}' />">
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+    
+    <!-- 主題圖片預覽  -->
+    <img id="holder" style="margin-top:15px;max-height:100px;">
 </div>
 
 
