@@ -67,7 +67,7 @@
         width: auto;
     }
     .cateBtn{
-        width: 11%;
+        width: 15%;
     }
     .btnEff{
         -webkit-transform:scale(1.1); /* Safari and Chrome */
@@ -188,14 +188,14 @@
     </div>
     <div class="jumbotron back row" style="background-color: #c29b77;">
 
-        <img class="cateBtn SOS" src="/img/campus/dontdel/1.png" alt="SOS" value="0">
-        <img class="cateBtn AED" src="/img/campus/dontdel/2.png" alt="AED" value="0">
+        <img class="cateBtn SOS" src="/img/campus/dontdel/SOS.png" alt="SOS" value="0">
+        <img class="cateBtn AED" src="/img/campus/dontdel/AED.png" alt="AED" value="0">
        
 
         <br>
 
         <div class="col-md-12 map">
-            <img src='/img/campus/dontdel/background4.png' width='100%'>
+            <img src='/img/campus/dontdel/back.png' width='100%'>
             @foreach($mapDatas as $mapData)
             <span data-toggle='modal' data-target="#modal{{$mapData->id}}">
                 <img src="/img/campus/{{$mapData->objImg}}" class=" mapobj SOS{{$mapData->SOS}} AED{{$mapData->AED}}" id='build{{$mapData->id}}' alt="no found" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"

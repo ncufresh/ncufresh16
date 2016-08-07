@@ -12,6 +12,7 @@
         max-height: 5000px;
         max-width: 1000px;
         padding: 15px;
+        text-align: left;
     }
     .btn{
         width: 80px;
@@ -205,7 +206,8 @@
         <br>
 
         <div class="col-md-12 map" >
-            <img src='/img/campus/dontdel/background4.png' width='100%'>
+            <img src='/img/campus/dontdel/back.png' width='100%' id="wbg">
+            <img src='/img/campus/dontdel/food.png' width='100%' id="fbg" style="display:none">
             @foreach($mapDatas as $mapData)
             <span data-toggle='modal' data-target="#modal{{$mapData->id}}">
                 <img src="/img/campus/{{$mapData->objImg}}" class="cate{{$mapData->building_id}} mapobj" id='build{{$mapData->id}}' bid='{{$mapData->id}}' alt="no found" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"
@@ -281,10 +283,12 @@
             var imgId = $(this).attr('id');
             var imgSrc = $(this).attr('src');
             $('#bigImg').attr('src', imgSrc);
+            
         });
         $('body').on('click', '.cloMod', function () {
             var imgId = $(this).val();
             $('#bigImg' + imgId).attr('src', "/img/campus/dontdel/click.png");
+            
         });
         $('body').on('click', '.cateBtn', function () {
             var id = $(this).attr('id');
@@ -293,10 +297,12 @@
             btnChange();
             hide(id);
             selectBtn = id;
+             chkFood();
         });
         $('body').on('click', '.faa', function () {
             back();
             $(this).css('display', 'none');
+             chkFood();
         });
         //取得建築物資料 主頁        
         $('body').on('click', '.mapobj', function () {
@@ -335,6 +341,7 @@
                 }
 
             });
+             
 
         });                     
         $('body').on('mouseover', '.mapobj', function () {        
@@ -383,6 +390,15 @@
         $('.mapobj').css('display', 'block').removeClass('buildEff').tooltip('hide');
         $('.cateBtn').attr('value', 0).removeClass("btnEff");
         
+    }
+    function chkFood(){
+        if($("#5").attr("value")==1){
+            $("#wbg").css("display","none");
+            $("#fbg").css("display","block");
+        }else{
+            $("#wbg").css("display","block");
+            $("#fbg").css("display","none");
+        }
     }
 </script>
 @stop
