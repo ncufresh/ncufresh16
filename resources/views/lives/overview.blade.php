@@ -232,11 +232,11 @@
 		</ul>
 
 	</div>
-	 	<a href=""><img class="video_url" id="food_video" src="{{ asset('img/videos/TV.png') }}"></a>
-	 	<a href=""><img class="video_url" id="housing_video" src="{{ asset('img/videos/TV.png') }}"></a>
-	 	<a href=""><img class="video_url" id="transportation_video" src="{{ asset('img/videos/TV.png') }}"></a>
-	 	<a href=""><img class="video_url" id="education_video" src="{{ asset('img/videos/TV.png') }}"></a>
-	 	<a href=""><img class="video_url" id="entertainment_video" src="{{ asset('img/videos/TV.png') }}"></a>
+	 	<a href=""><img class="video_url" id="food_video" src="{{ asset('img/life/food_v.png') }}"></a>
+	 	<a href=""><img class="video_url" id="housing_video" src="{{ asset('img/life/housing_v.png') }}"></a>
+	 	<a href=""><img class="video_url" id="transportation_video" src="{{ asset('img/life/transportation_v.png') }}"></a>
+	 	<a href=""><img class="video_url" id="education_video" src="{{ asset('img/life/education_v.png') }}"></a>
+	 	<a href=""><img class="video_url" id="entertainment_video" src="{{ asset('img/life/entertainment_v.png') }}"></a>
 	</div>
 
 @endsection

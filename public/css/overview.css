@@ -23,9 +23,9 @@
 		.video_url{
 	display: none;
 	position: fixed;
-	bottom: 0;
-  	right: 0;
-  	width: 10vw;
+	bottom: 1vw;
+  	right: 5vw;
+  	width: 5vw;
   	z-index: 2;
 }
 
@@ -107,7 +107,7 @@
 	position: fixed;
 	bottom: 0;
   	right: 0;
-  	width: 20vw;
+  	width: 15vw;
   	z-index: 2;
 }
 
