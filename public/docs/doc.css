@@ -49,10 +49,10 @@
 }
 
 .btn-txt {
-    color: rgba(102, 76, 0, 1);
+    .r: rgba(102, 76, 0, 1);
 }
 
-.col-xs-4.col-pagging-custom {
+.col-pagging-custom {
     padding: 1vh;
 }
 

@@ -13,6 +13,25 @@ body {
 main {
     background-image: url("{{ asset('docs/img/fal.png') }}");
 }
+/* set column width depends on the number of data */
+.col-under-1,
+.col-under-2,
+.col-under-3 {
+    position: relative;
+    float: left;
+}
+
+.col-under-1 {
+    width: calc(100% / {{ $numUnders[0] }} );
+}
+
+.col-under-2 {
+    width: calc(100% / {{ $numUnders[1] }});
+}
+
+.col-under-3 {
+    width: calc(100% / {{ $numUnders[2] }} );
+}
 </style>
 @stop
 
@@ -176,7 +195,7 @@ if (strUrl.indexOf("?") !== -1) {
                         <?php $subCount = 0; ?>
                         {{-- 產生大學部主要項目裡的細部項目 --}}
                         @foreach ($unders as $u)
-                            <div class="col-xs-4 col-pagging-custom">
+                            <div class="col-under-{{ $mainCount }} col-pagging-custom">
                                 <!-- btn -->
                                 <div class="btn-wrapper">
                                     <a class="btn btn-custom" type="button" data-toggle="modal" data-target="#modal-{{ $u->id }}">
