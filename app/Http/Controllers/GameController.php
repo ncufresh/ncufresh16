@@ -58,9 +58,8 @@ class GameController extends Controller
         $encrypted_token = $encrypter->encrypt(csrf_token());
 
 
-        $score=($request->time-Session::get('startTime'))/1000;//
-
-
+        $now=time();
+        $score=($now-Session::get('startTime'));//
 
         $scores = Record_score::create([
             'name'=>$request->name,
@@ -120,7 +119,7 @@ class GameController extends Controller
     public function get_gameStart_time(Request $request){
         $encrypter = app('Illuminate\Encryption\Encrypter');
         $encrypted_token = $encrypter->encrypt(csrf_token());
-        $gameStart_time=$request->time;
+        $gameStart_time=time();
 
         //把遊戲開始的時間放入session
         Session::put('startTime',$gameStart_time);
