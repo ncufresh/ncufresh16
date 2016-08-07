@@ -25,12 +25,12 @@
 
 	 .puzzle{
 		position: absolute;
-		max-width: 60%;
+		width: 40%;
+		height: auto;
 	}
-	 
 
 	#groundFrame{
-		min-height: 650px;	
+		height: 100vh;	
 		position: relative;
 		background-image: url({{asset('img/life/sun.png')}});
 	 	background-repeat:no-repeat;

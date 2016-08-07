@@ -273,8 +273,8 @@ CKEDITOR.replace( 'textArea', {
   </div>
 </div>
 
-    <a class="left carousel-control" href="{{ url('/life/'.$topic.'/'.$arr_next->id ) }}" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-     <a class="right carousel-control" href="{{ url('/life/'.$topic.'/'.$arr_prev->id ) }}"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    <a class="left carousel-control" href="{{ url('/life/'.$topic.'/'.$arr_prev->id ) }}" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+     <a class="right carousel-control" href="{{ url('/life/'.$topic.'/'.$arr_next->id ) }}"><i class="glyphicon glyphicon-chevron-right"></i></a>
      <img id="holder" style="margin-top:15px;max-height:100px;">
 </div>
 
