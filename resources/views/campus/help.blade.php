@@ -186,7 +186,7 @@
     <div class=''>
         <h1>校園防災</h1>
     </div>
-    <div class="jumbotron back row" style="background-color: #c29b77;">
+    <div class="jumbotron back row" style="background-color: rgba(0,0,0,0); border: 0;box-shadow: none;">
 
         <img class="cateBtn SOS" src="/img/campus/dontdel/SOS.png" alt="SOS" value="0">
         <img class="cateBtn AED" src="/img/campus/dontdel/AED.png" alt="AED" value="0">
@@ -203,6 +203,7 @@
 
             </span>
             @endforeach
+            
             <?php
             if (count($mapDatas) > 0) {
                 ?>
@@ -211,6 +212,25 @@
             }
             ?>
             <img class="faa" src='/img/campus/dontdel/left.png' width='' style="display:none">
+            
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:31%;top:30%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:19%;top:39%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:23%;top:44.5%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:31%;top:53%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:27%;top:74%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:38%;top:27%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:55%;top:27%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:83%;top:63%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:69%;top:79%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:37%;top:41%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+
+            
+            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:36%;top:45%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
+            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:54%;top:25%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
+            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:64.5%;top:45%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
+            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:76%;top:48%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
+            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:76%;top:78%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
+
            
         </div>
     </div>
