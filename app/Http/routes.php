@@ -27,10 +27,12 @@ Route::group( ['middleware' => 'admin'], function () {
   	Route::get('/groups/clubs/create', 'ClubController@create');
   	Route::get('/groups/clubs/{id}/edit', 'ClubController@edit');
   	Route::patch('/groups/clubs/{clubs_kind}', 'ClubController@update');
+    Route::delete('/groups/clubs/{id}', 'ClubController@destroy');
   	Route::post('/groups/departments', 'DepartmentController@store');
   	Route::get('/groups/departments/create', 'DepartmentController@create');
   	Route::get('/groups/departments/{id}/edit', 'DepartmentController@edit');
   	Route::patch('/groups/departments/{departments_kind}', 'DepartmentController@update');
+    Route::delete('/groups/departments/{id}', 'DepartmentController@destroy');
     /*****************個人專區******************/
     Route::post('/personal/chat/admin', 'PersonalController@postAttention');
     Route::post('/personal/chat/admin/{id}', 'PersonalController@destroy');
@@ -145,11 +147,9 @@ Route::get('groups', function () {
 #社團
 Route::get('/groups/clubs', 'ClubController@index');
 Route::get('/groups/clubs/{clubs_kind}', 'ClubController@show');
-Route::delete('/groups/clubs/{id}', 'ClubController@destroy');
 #系所
 Route::get('/groups/departments', 'DepartmentController@index');
 Route::get('/groups/departments/{departments_kind}', 'DepartmentController@show');
-Route::delete('/groups/departments/{id}', 'DepartmentController@destroy');
 // #各社團
 // Route::get('/groups/clubs/{clubs_id}/create', 'AllclubController@create');
 // Route::get('/groups/clubs/{clubs_id}', 'AllclubController@index');
