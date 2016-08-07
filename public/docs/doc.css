@@ -21,6 +21,7 @@
 
 @media (max-width: 767px) {
     .btn-custom {
+        font-size: 6vw;
         height: 20vmax;
         line-height: 20vmax;
     }
@@ -59,8 +60,8 @@
     color: rgba(102, 76, 0, 1);
 }
 
-.col-pagging-custom {
-    padding: 1vh;
+.col-padding-custom {
+    padding: 1vmin;
 }
 
 
@@ -70,6 +71,14 @@ img#openLeft,
 img#openRight {
     width: 25vw;
     padding-top: 2vw;
+}
+
+@media (max-width: 767px) {
+    img#openLeft,
+    img#openRight {
+        width: 40vw;
+        padding-top: 2vw;
+    }
 }
 
 img#openLeft {
@@ -149,6 +158,13 @@ footer {
 .inner-page-title {
     text-align: center;
     font-size: 4vw;
+}
+
+@media (max-width: 767px) {
+    .side-nav-title,
+    .inner-page-title {
+        font-size: 7vw;
+    }
 }
 
 

@@ -134,17 +134,40 @@ $(document).ready(function() {
         }, "slow");
     });
 
+    // 滑鼠進入
     $(".img-wrapper").mouseenter(function() {
-        $(this).find("img").stop().animate({
-            "width": "27vw",
-            "padding-top": "0"
-        }, "fast");
+
+        if ($(window).width() > 767) {
+            $(this).find("img").stop().animate({
+                // 滑鼠進入的圖片大小
+                "width": "27vw",
+                "padding-top": "0"
+            }, "fast");
+        } else {
+            $(this).find("img").stop().animate({
+                // 滑鼠進入的圖片大小
+                "width": "42vw",
+                "padding-top": "0"
+            }, "fast");
+        }
+
+
     });
 
+    // 滑鼠離開
     $(".img-wrapper").mouseleave(function() {
-        $(this).find("img").stop().animate({
-            "width": "25vw",
-            "padding-top": "2vw"
-        }, "fast");
+        if ($(window).width() > 767) {
+            $(this).find("img").stop().animate({
+                // 滑鼠離開的圖片大小
+                "width": "25vw",
+                "padding-top": "2vw"
+            }, "fast");
+        } else {
+            $(this).find("img").stop().animate({
+                // 滑鼠離開的圖片大小
+                "width": "40vw",
+                "padding-top": "2vw"
+            }, "fast");
+        }
     });
 });
