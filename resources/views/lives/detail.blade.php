@@ -67,11 +67,9 @@ button{
 
 @section('js')
 
-<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
+
 
 <script type="text/javascript">
-    $('#PicChooser').filemanager('image');
-    $('#themePicChooser').filemanager('image');
     $(document).ready(function(){
           $(".container").fadeIn(1000);
             // CKEDITOR.instances['textArea'].setData($("#textArea").val());
@@ -79,9 +77,12 @@ button{
 
 </script>
 
+@can('management')
 <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
 <script type="text/javascript">
-
+$('#PicChooser').filemanager('image');
+    $('#themePicChooser').filemanager('image');
 CKEDITOR.replace( 'textArea', {
     filebrowserImageBrowseUrl: '{{ url('laravel-filemanager?type=Images') }}',
     filebrowserImageUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
@@ -89,7 +90,9 @@ CKEDITOR.replace( 'textArea', {
     filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
 });
 
+
 </script>
+@endcan
 
 @stop
 
