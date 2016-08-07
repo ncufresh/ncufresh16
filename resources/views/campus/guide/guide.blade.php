@@ -195,7 +195,7 @@
 
 
     </div>
-    <div class="jumbotron back row" style="background-color: #c29b77;">
+    <div class="jumbotron back row" style="background-color: rgba(0,0,0,0); border: 0;box-shadow: none;">
 
         <img class="cateBtn" src="/img/campus/dontdel/1.png" alt="行政" id="1" value="0">
         <img class="cateBtn" src="/img/campus/dontdel/2.png" alt="系館" id="2" value="0">
@@ -211,7 +211,7 @@
             <img src='/img/campus/dontdel/food.png' width='100%' id="fbg" style="display:none">
             @foreach($mapDatas as $mapData)
             <span data-toggle='modal' data-target="#modal{{$mapData->id}}">
-                <img src="/img/campus/{{$mapData->objImg}}" class="cate{{$mapData->building_id}} mapobj" id='build{{$mapData->id}}' bid='{{$mapData->id}}' alt="no found" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"
+                <img src="/img/campus/{{$mapData->objImg}}" class="cate{{$mapData->building_id}} mapobj" id='build{{$mapData->id}}' bid='{{$mapData->id}}' alt="{{$mapData->buildingName}}" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"
                      data-toggle='tooltip' data-placement='top' title="{{$mapData->buildingName}}">
                 
 
@@ -293,8 +293,9 @@
         });
         $('body').on('click', '.cateBtn', function () {
             var id = $(this).attr('id');
-            $(this).attr('value', 1);
             $('#' + selectBtn).attr('value', 0);
+            $(this).attr('value', 1);
+            
             btnChange();
             hide(id);
             selectBtn = id;
