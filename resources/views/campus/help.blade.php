@@ -76,13 +76,7 @@
         -o-transform:scale(1.1); /* Opera */
         transform:scale(1.1);
     }
-    .buildEff{
-        -webkit-transform:scale(1.1); /* Safari and Chrome */
-        -moz-transform:scale(1.1); /* Firefox */
-        -ms-transform:scale(1.1); /* IE 9 */
-        -o-transform:scale(1.1); /* Opera */
-        transform:scale(1.1);
-    }
+   
     .faa{
         position: absolute;
         left: 10%;
