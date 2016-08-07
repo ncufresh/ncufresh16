@@ -19,6 +19,13 @@
     text-align: center;
 }
 
+@media (max-width: 767px) {
+    .btn-custom {
+        height: 20vmax;
+        line-height: 20vmax;
+    }
+}
+
 .btn-wrapper {
     position: relative;
 }
@@ -55,6 +62,7 @@
 .col-pagging-custom {
     padding: 1vh;
 }
+
 
 /* top image setting */
 
