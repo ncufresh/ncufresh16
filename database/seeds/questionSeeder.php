@@ -1152,7 +1152,7 @@ class questionSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
         DB::table('question_collection')->insert([
-            'question' => "你喜歡這個網站嗎?喜歡/不喜歡",
+            'question' => "你喜歡這個網站嗎?",
             'selection_1' => "不喜歡",
             'selection_2'=>"喜歡",
             'answer'=>"2",
