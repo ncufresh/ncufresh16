@@ -3,8 +3,10 @@
 
 @section('content')
 @section('js')
- 
   <script >
+    $(document).ready(function(){
+     $("#background").fadeIn(1500);
+   });
 var slideIndex = 1;
 showSlides(slideIndex);
 
@@ -32,119 +34,94 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 
-/*var test = <?php echo $videos ?>;
-console.log(test[0].videos);
-$("#others").append("<div class='item'>"+"<iframe>"+test[0].videos+"</iframe>"+"</div>");*/
 </script>
 @stop
 
 <style>
 body { background: linear-gradient(to bottom,rgba(145,214,234,.8) 20%,rgb(0, 102, 153) 100%); 
-
 }
-main { background-image:url("{{asset('img/layout/summer.png')}}");
-
- }
+main { background-image:url("{{asset('img/layout/summer.png')}}");}
 
 #myModal1,#myModal5,#myModal,#myModal2,#myModal3,#myModal4{
     background-color: rgba(0, 0, 0, 0.9);
     overflow: scroll;
 }
-img{
-  width: 50%;
-}
-#sun{
-  position: absolute;
-    top:2vh;
-    left:0%;
 
-}
-#ncu{
+#live{
   position: absolute;
-    top:78vh;
-    left:15vw;
-}
-#traffic{
-    position: absolute;
-    top:12%;
-    left:29%;
-    width: 20vw;
+    top:16%;
+    left:27%;
+    width:10vw;
 }
 #fun{
     position: absolute;
-    top:40%;
-    left:14%;
-    width: 30vw;
+    top:43%;
+    left:9%;
+
 }
 #edu{
     position: absolute;
-    top:40%;
-    left:47%;
-        width: 20vw;
+    top:43%;
+    left:46%;
 }
-#live{
+#traffic{
     position: absolute;
     top:42%;
-    left:80%;
-        width: 20vw;
+    left:81%;
 }
 #eat{
     position: absolute;
-    top:18%;
-    left:64%;
-    width: 20vw;
+    top:16%;
+    left:67%;
 }
 #background{
   min-height: 100vh;
-  min-width: 98vw;
-  position: absolute;
-overflow: hidden;
+
+  position: relative;
+  overflow: auto;
+  display: none;
 }
-.eat:hover {
+.eat:hover 
+{
 transform:scale(1.5,1.5);
 }
 
-.live:hover{
+.live:hover 
+{
 transform:scale(1.5,1.5);
 }
 
-.traffic:hover{
+.traffic:hover 
+{
 transform:scale(1.5,1.5);
 }
-.edu:hover{
+.edu:hover 
+{
 transform:scale(1.5,1.5);
 }
-.fun:hover{
+.fun:hover 
+{
 transform:scale(1.5,1.5);
 }
 #ncu:hover {
-transform:scale(1.2,1.2);
+transform:scale(1.5,1.5);
 }
-#frog{
-  position: absolute;
-  top:730px;
-  width: 25%;
-  left: 20px;
-}
+
 #show{
   margin-left: 500px;
   margin-top: 100px;
 }
 
-#screem{
-  width: 607px;
-  height: 390px;
-}
 .inner{
   margin-top: 700px;
   text-align:center;
 }
 
 #iframe{
-  margin-top: 262px;
-  margin-left: 673px;
- position: absolute;
- z-index: 200;
+  margin-top: 14.2%;
+  margin-left: 35.5%;
+  position: absolute;
+  z-index: 200;
 }
 .carousel-control{
     position: absolute;
@@ -160,13 +137,13 @@ transform:scale(1.2,1.2);
 
 /* Next & previous buttons */
 .prev, .next {
-    top: 30vh;  
+  top: 30px;
   cursor: pointer;
   position:absolute;
   width: auto;
-  margin-top: -22px;
+  margin-top: 12%;
   margin-left: -12px;
-  padding: 96px;
+  padding: 90px;
   color: white;
   font-weight: bold;
   font-size: 50px;
@@ -199,7 +176,7 @@ transform:scale(1.2,1.2);
 /* Number text (1/3 etc) */
 .numbertext {
   color: #f2f2f2;
-  font-size: 12px;
+  font-size: 25px;
   padding: 8px 12px;
   position: absolute;
   top: 0;
@@ -239,139 +216,257 @@ transform:scale(1.2,1.2);
   from {opacity: 0.4} 
   to {opacity: 1}
 }
+ .glyphicon.glyphicon-remove{
+  float: right;
+  font-size: 30px;
+}
+@media(max-width: 768px){
+  iframe{
+    width: 360px;
+    height: 250px;
+    margin-top:180px;
+    margin-left:-66px;
+    position: absolute;
+  }
+  .prev, .next {
+  top: 30px;
+  cursor: pointer;
+  position:absolute;
+  width: auto;
+  margin-top: 32%;
+  margin-left: -12px;
+  padding: 79px;
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+
+}
+ .glyphicon.glyphicon-remove{
+  float: right;
+  font-size: 20px;
+}
+.inner{
+  margin-top: 700px;
+}
+}
+@media(max-width:568px){
+  iframe{
+    width: 220px;
+    height: 180px;
+    margin-top:150px;
+    margin-left:-63px;
+    position: absolute;
+  }
+    .prev, .next {
+  top: 30px;
+  cursor: pointer;
+  position:absolute;
+  width: auto;
+  margin-top: 65%;
+  margin-left: -5px;
+  padding:2px;
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+.glyphicon.glyphicon-remove{
+  float: right;
+  font-size: 20px;
+}
+.inner{
+  margin-top: 500px;
+}
+}
 
 </style>
-<body>
+<body >
    <div id="background">
     <div id="frog">
-      <img src="{{ asset('img/videos/frog.png') }}" >
-    </div>
-    <div id="TV">
-      <img src="{{ asset('img/videos/TV.png') }}" style="position:absolute;top:700px;left:1645px;width:200px;" >
-    </div>
-<div id="sun">
-      <a href="{{ url('#') }}" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">
-      <img src="{{ asset('img/videos/title.png') }}" style="width:500%;" id="ncu"></a>
-         <div class="modal fade" id="myModal1" role="dialog">
-          <div class="video"></div>
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:238px;left:650px;" id="screem">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:408px;left:1252px;width:150px;">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:408px;left:502px;width:150px;">
-      <div>
+      <img src="{{ asset('img/videos/frog.png') }}" style="position: absolute;top:85%;width: 10%;left: 2%;" class="hidden-xs hidden-sm">
+      <img src="{{ asset('img/videos/frog.png') }}" style="position: absolute;top:90%;width: 10%;left: 2%;" class="visible-sm visible-xs">
+      <img src="{{ asset('img/videos/TV.png') }}" style="position:absolute;top:80%;left:86%; width:10%;" class="hidden-xs hidden-sm">
+      <img src="{{ asset('img/videos/TV.png') }}" style="position:absolute;top:85%;left:86%; width:20%;" class="visible-sm visible-xs">
+        <div style="position:absolute;top:83%;left:13%;"> 
+          
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#myModal1" >
+  <img src="{{ asset('img/videos/title.png') }}" class="live hidden-xs hidden-sm"style="width:12vw;" >
+  <img src="{{ asset('img/videos/title.png') }}" class="live visible-sm visible-xs"style="width:47vw;" >
+    </a>
+         <div class="modal fade " id="myModal1" role="dialog">
+      <div class="abc ">      
+          <div class="video">
+  <span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="window.close();"></span>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26%;left:34%;width:32%;height:42%;" class="screem hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26.5%;left:25%;width:51%;height:30%;" class="visible-sm ">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:65.5%;width:8%;height:25%;" class="sound hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:26.5%;width:8%;height:25%;" class="sound hidden-sm hidden-xs">
+    
 <div class="slideshow-container">
   <div class="item">
-    <div class="numbertext">1 / 5</div>
+    <div class="numbertext">1 / 8  series1</div>
     <div id="iframe">
-
+<iframe  src="https://www.youtube.com/embed/Xf9QLgI2vH8" frameborder="0"width="560px"height="315px" allowfullscreen></iframe>
     </div>
   </div>
 
   <div class="item">
-    <div class="numbertext">2 / 5</div>
+    <div class="numbertext">2 / 8  series1</div>
     <div id="iframe">
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/n_PtvUXAYDw" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="numbertext">3 / 8  series1</div>
+    <div id="iframe">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0Jycxyp4t-E" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+    <div class="item">
+    <div class="numbertext">4 / 8  series2</div>
+    <div id="iframe">
+
+    </div>
+  </div>
+    <div class="item">
+    <div class="numbertext">5 / 8  series2</div>
+    <div id="iframe">
+
+    </div>
+  </div>
+      <div class="item">
+    <div class="numbertext">6 / 8  series2</div>
+    <div id="iframe">
+
+    </div>
+  </div>
+      <div class="item">
+    <div class="numbertext">7 / 8  series2</div>
+    <div id="iframe">
+
+    </div>
+  </div>
+      <div class="item">
+    <div class="numbertext">8 / 8  series2</div>
+    <div id="iframe">
+
+    </div>
+  </div>
  
-    </div>
-  </div>
-
-  <div class="item">
-    <div class="numbertext">3 / 5</div>
-    <div id="iframe">
-
-    </div>
-  </div>
-    <div class="item">
-    <div class="numbertext">4 / 5</div>
-    <div id="iframe">
-
-    </div>
-  </div>
-    <div class="item">
-    <div class="numbertext">5 / 5</div>
-    <div id="iframe">
-
-    </div>
-  </div>
 <div class="indicators">
   <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
   <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
 </div>
 </div>
 </div>
 <br>
-
 <div style="text-align:center" class="inner">
   <span class="dot" onclick="currentSlide(1)"></span> 
   <span class="dot" onclick="currentSlide(2)"></span> 
   <span class="dot" onclick="currentSlide(3)"></span> 
   <span class="dot" onclick="currentSlide(4)"></span> 
   <span class="dot" onclick="currentSlide(5)"></span> 
+  <span class="dot" onclick="currentSlide(6)"></span> 
+  <span class="dot" onclick="currentSlide(7)"></span> 
+  <span class="dot" onclick="currentSlide(8)"></span> 
 </div>
 </div>
 </div>
-  <div id="traffic">
+</div>
+</div>
+<div class="row">
+  <div id="live">
   <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal5">
-  <img src="{{ asset('img/videos/traffic.png') }}" class="traffic"></a>
+  <img src="{{ asset('img/videos/live.png') }}" class="live hidden-xs hidden-sm"style="width:13vw;" >
+<img src="{{ asset('img/videos/live.png') }}" class="live visible-sm visible-xs"style="width:20vw;" ></a>
    <div class="modal fade" id="myModal5" role="dialog">
-    <div class="video"></div>
+    <div class="video ">
     <div id="iframe">
 
       </div>
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:238px;left:650px;" id="screem">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:408px;left:1252px;width:150px;">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:408px;left:502px;width:150px;">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="window.close();"></span>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26%;left:34%;width:32%;height:42%;" class="screem hidden-sm">
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26.5%;left:25%;width:51%;height:30%;" class="visible-sm">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:65.5%;width:8%;height:25%;" class="sound hidden-sm">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:26.5%;width:8%;height:25%;" class="sound hidden-sm">
     </div>
+    </div>
+</div>
+<div id="eat">
+  <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal3">
+  <img src="{{ asset('img/videos/food.png') }}" class="live hidden-xs hidden-sm"style="width:13vw;" >
+<img src="{{ asset('img/videos/food.png') }}" class="live visible-sm visible-xs"style="width:20vw;" ></a>
+    <div class="modal fade" id="myModal3" role="dialog">
+    <div class="video ">
+        <div id="iframe">
+
+      </div>
+        <span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="window.close();"></span>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26%;left:34%;width:32%;height:42%;" class="screem hidden-sm">
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26.5%;left:25%;width:51%;height:30%;" class="visible-sm">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:65.5%;width:8%;height:25%;" class="sound hidden-sm">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:26.5%;width:8%;height:25%;" class="sound hidden-sm">
+    </div>
+    </div>
+  </div>
 </div>
 <div id="fun">
   <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal4">
-  <img src="{{ asset('img/videos/fun.png') }}" class="fun"></a>
-      <div class="modal fade" id="myModal4" role="dialog">
-    <div class="video"></div>
+  <img src="{{ asset('img/videos/fun.png') }}" class="live hidden-xs hidden-sm"style="width:18vw;" >
+<img src="{{ asset('img/videos/fun.png') }}" class="live visible-sm visible-xs"style="width:25vw;" ></a>
+      <div class="modal fade
+      " id="myModal4" role="dialog">
+
+    <div class="video ">
         <div id="iframe">
  
       </div>
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:238px;left:650px;" id="screem">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:408px;left:1252px;width:150px;">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:408px;left:502px;width:150px;">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="window.close();"></span>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26%;left:34%;width:32%;height:42%;" class="screem hidden-sm">
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26.5%;left:25%;width:51%;height:30%;" class="visible-sm">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:65.5%;width:8%;height:25%;" class="sound hidden-sm">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:26.5%;width:8%;height:25%;" class="sound hidden-sm">
+    </div>
     </div>
   </div>
 <div id="edu">
   <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal2">
-  <img src="{{ asset('img/videos/edu.png') }}"  class="edu"></a>
+  <img src="{{ asset('img/videos/edu.png') }}" class="live hidden-xs hidden-sm"style="width:13vw;" >
+<img src="{{ asset('img/videos/edu.png') }}" class="live visible-sm visible-xs"style="width:20vw;" ></a>
     <div class="modal fade" id="myModal2" role="dialog">
-    <div class="video"></div>
-        <div id="iframe">
- 
-      </div>
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:238px;left:650px;" id="screem">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:408px;left:1252px;width:150px;">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:408px;left:502px;width:150px;">
-    </div>
-  </div>
-  <div id="live">
-  <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal">
-  <img src="{{ asset('img/videos/live.png') }}" class="live"></a>
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="video"></div>
-        <div id="iframe">
- 
-      </div>
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:238px;left:650px;" id="screem">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:408px;left:1252px;width:150px;">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:408px;left:502px;width:150px;">
-    </div>
-  </div>
-<div id="eat">
-  <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal3">
-  <img src="{{ asset('img/videos/food.png') }}" class="eat"></a>
-    <div class="modal fade" id="myModal3" role="dialog">
-    <div class="video"></div>
-        <div id="iframe">
 
+    <div class="video ">
+        <div id="iframe">
+ 
       </div>
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:238px;left:650px;" id="screem">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:408px;left:1252px;width:150px;">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:408px;left:502px;width:150px;">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="window.close();"></span>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26%;left:34%;width:32%;height:42%;" class="screem hidden-sm">
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26.5%;left:25%;width:51%;height:30%;" class="visible-sm">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:65.5%;width:8%;height:25%;" class="sound hidden-sm">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:26.5%;width:8%;height:25%;" class="sound hidden-sm">
+    </div>
+  </div></div>
+  <div id="traffic">
+  <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal">
+  <img src="{{ asset('img/videos/traffic.png') }}" class="live hidden-xs hidden-sm"style="width:13vw;" >
+<img src="{{ asset('img/videos/traffic.png') }}" class="live visible-sm visible-xs"style="width:20vw;" ></a>
+
+  <div class="modal fade 
+  " id="myModal" role="dialog">
+    <div class="video ">
+        <div id="iframe">
+ 
+      </div>
+        <span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="window.close();"></span>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26%;left:34%;width:32%;height:42%;" class="screem hidden-sm">
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26.5%;left:25%;width:51%;height:30%;" class="visible-sm">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:65.5%;width:8%;height:25%;" class="sound hidden-sm">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:26.5%;width:8%;height:25%;" class="sound hidden-sm">
+    </div>
     </div>
   </div>
   </div>
@@ -379,7 +474,7 @@ transform:scale(1.2,1.2);
   <a href="{{ url('/videos/create') }}">
   <input type="button" value="新增" style="position:absolute;width:120px;height:100px;border:2px blue none;"></a>
 </div>  -->
-</div>
+
 </body>
 
 @endsection

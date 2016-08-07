@@ -18,6 +18,7 @@
 	    });
 	</script>
 @stop
+@section('css')
 <style type="text/css">
 body{
 	background-image: url({{asset('img/group/BG1.jpg')}});
@@ -40,7 +41,15 @@ body{
 }
 .modal-title{
 	text-align:center;
-	margin-bottom: 20px;
+}
+.modal-body{
+	padding-top: 0px;
+
+}
+pre{
+	white-space: pre-wrap;
+	max-height: 400px;
+  	overflow: auto;
 }
 h3{
 	text-align:center;
@@ -48,9 +57,6 @@ h3{
 .img{
 	width: 100%;
     height: auto;
-}
-.modal-body{
-	padding-top: 10px;
 }
 .breadcrumb{
 	margin-bottom: 5px;
@@ -62,7 +68,12 @@ h3{
     min-width:100%;
   	height:auto;
 }
+.title{
+	color: black;
+	font-weight: bold;
+}
 </style>
+@stop
 <div class="container">
 	<ol class="breadcrumb">
 		<li><a href="/">首頁</a></li>
@@ -139,13 +150,11 @@ h3{
 		    <div class="modal-content">
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		          <h2 class="modal-title">{{$club->clubs_intro}}</h2>
+		          <h2 class="modal-title" style="margin-top: 20px">{{$club->clubs_intro}}</h2>
 		        </div>
-		        <div class="modal-body">
-		          <p>{!!$club->clubs_summary!!}</p>
-		          <p>{!!$club->clubs_activity!!}</p>
-		          <p>{!!$club->clubs_join!!}</p>
-		        
+		        <div class="modal-body" style="padding-top: 10px">
+		          <p style=" max-height: 100px">{!!$club->clubs_summary!!}</p>
+		          
 		        @if($photo != null)
 		        <div id="myCarousel{{$club->id}}" class="carousel slide" data-ride="carousel">
 				    

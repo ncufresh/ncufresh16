@@ -1,13 +1,5 @@
 <?php
 
-
-use Illuminate\Http\Response;
-use App\Http\Requests;
-use App\Question_collection;//model
-use App\Record_score;//model
-use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-
 // 後台
 //************************************************************
 Route::group( ['middleware' => 'admin'], function () {
@@ -44,29 +36,28 @@ Route::group( ['middleware' => 'admin'], function () {
     Route::post('/personal/chat/admin/{id}', 'PersonalController@destroy');
     /*****************新生必讀******************/
     Route::group(['prefix' => 'doc'], function () {
-    # 大學部
-    Route::group(['prefix' => 'under'], function () {
-        Route::post('/', 'DocumentController@underStore');
-        Route::delete('/{under}', 'DocumentController@underDestroy');
-        Route::get('/{under}/edit','DocumentController@underEdit');
-        Route::patch('/{under}', 'DocumentController@underUpdate');
+        # 大學部
+        Route::group(['prefix' => 'under'], function () {
+            Route::post('/', 'DocumentController@underStore');
+            Route::delete('/{under}', 'DocumentController@underDestroy');
+            Route::get('/{under}/edit','DocumentController@underEdit');
+            Route::patch('/{under}', 'DocumentController@underUpdate');
+        });
+        # 研究所
+        Route::group(['prefix' => 'graduate'], function () {
+            Route::post('/', 'DocumentController@graduateStore');
+            Route::delete('/{graduate}', 'DocumentController@graduateDestroy');
+            Route::get('/{graduate}/edit','DocumentController@graduateEdit');
+            Route::patch('/{graduate}', 'DocumentController@graduateUpdate');
+        });
+        # 綜合
+        Route::group(['prefix' => 'mix'], function () {
+            Route::post('/', 'DocumentController@mixStore');
+            Route::delete('/{mix}', 'DocumentController@mixDestroy');
+            Route::get('/{mix}/edit','DocumentController@mixEdit');
+            Route::patch('/{mix}', 'DocumentController@mixUpdate');
+        });
     });
-    # 研究所
-    Route::group(['prefix' => 'graduate'], function () {
-        Route::post('/', 'DocumentController@graduateStore');
-        Route::delete('/{graduate}', 'DocumentController@graduateDestroy');
-        Route::get('/{graduate}/edit','DocumentController@graduateEdit');
-        Route::patch('/{graduate}', 'DocumentController@graduateUpdate');
-    });
-    # 綜合
-    Route::group(['prefix' => 'mix'], function () {
-        Route::post('/', 'DocumentController@mixStore');
-        Route::delete('/{mix}', 'DocumentController@mixDestroy');
-        Route::get('/{mix}/edit','DocumentController@mixEdit');
-        Route::patch('/{mix}', 'DocumentController@mixUpdate');
-    });
-});
-
 });
 //************************************************************
 
@@ -102,7 +93,6 @@ Route::group(['prefix' => 'doc'], function () {
     Route::get('/', 'DocumentController@index');
     Route::get('/{doc}', 'DocumentController@show');
 });
-
 //************************************************************
 
 // 校園導覽
@@ -141,11 +131,7 @@ Route::group(['prefix' => 'doc'], function () {
     Route::delete('/campus/newObj/createObj/{bid?}','CampusController@dropObj');
     //主頁 查詢建築物資料
     Route::get('/campus/guide/getBuild/{bid?}','CampusController@getIndexBuilding');
-
 //});
-
-
-
 //************************************************************
 
 // 系所社團
@@ -178,33 +164,29 @@ Route::delete('/groups/departments/{id}', 'DepartmentController@destroy');
 
 // 小遊戲
 //************************************************************
+Route::get('/add_question','GameController@addQuestion');//引導到新增、編輯、刪除問題的後台
 Route::get('smallgame','GameController@index');//引導到遊戲頁面
 Route::get('smallgame_mobile','GameController@test_mobile');//手機頁面，測試用
 Route::get('leaderboard','GameController@leaderboard');//引導到排行榜頁面
 Route::get('/smallgame_get/{id}','GameController@get_question');//取得問題
 Route::get('/getScores','GameController@getScores');//取得分數
 Route::post('/smallgame_post','GameController@post_score');//post 分數
-Route::get('/add_question','GameController@addQuestion');//引導到新增、編輯、刪除問題的後台
 Route::post('/add_question/add','GameController@add');//新增問題
 Route::put('/add_question/add/{question_id?}','GameController@putOneQuestion');//編輯問題
 Route::delete('/add_question/delete/{question_id?}','GameController@deleteOneQuestion');//刪除問題
 Route::get('/getOneQuestion/{question_id?}','GameController@getOneQuestion');//取得問題
-
-
-
 //************************************************************
 
 // 新生Q&A
 //************************************************************
-//Route::resource('/Q&A', 'QandAController');
 Route::post('/Q&A', 'QandAController@store');
+Route::get('/Q&A/search', 'QandAController@search');
 Route::get('/Q&A/create', 'QandAController@create');
 Route::get('/Q&A/personal', 'QandAController@indexPersonal');
 Route::get('/Q&A/{classify}', 'QandAController@index');
 Route::get('/Q&A/content/{Q}', 'QandAController@show');
 Route::delete('/Q&A/{Q}', 'QandAController@destroy');
 //************************************************************
-
 
 // 個人專區
 //************************************************************
@@ -215,9 +197,6 @@ Route::get('/personal/viewOther/search','PersonalController@search');
 Route::post('/personal/updateBackground', 'PersonalController@updateBackground');
 Route::post('/personal/chat', 'PersonalController@postChat');
 //************************************************************
-
-
-
 
 // 影音專區
 //************************************************************
@@ -251,6 +230,7 @@ Route::group( ['middleware' => 'admin'], function () {
 Route::get('/about', function () {
     return view('us/about');
 });
-
-
+Route::get('/about/{team}', function ($team) {
+    return view('us/team')->with(['team'=>$team]);
+});
 //************************************************************

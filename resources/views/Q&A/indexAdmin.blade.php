@@ -61,8 +61,9 @@
       @endforeach
       </tbody>
     </table>
+    {{ $QandAs->links() }}  <!--分頁用-->
 </div>
-  {{ $QandAs->links() }}  <!--分頁用-->
+
 </div>
 @endsection
 

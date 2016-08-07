@@ -20,6 +20,18 @@ class LifeController extends Controller
 	    $transportation = Life::where('topic','transportation')->get();
 	    $education = Life::where('topic','education')->get();
 	    $entertainment = Life::where('topic','entertainment')->get();
+	    /*
+	    	宣告4個陣列
+	    	取得全部資料
+	    	for(){
+				switch(topic){
+					case food:
+						把id記錄到food的陣列裡
+						break;
+ 				}
+	    	}
+	    */
+
 
 	   	return view('lives.overview', ['food' => $food, 'housing' => $housing, 'transportation' => $transportation, 'education' => $education, 'entertainment' => $entertainment]);
 	}
@@ -30,6 +42,21 @@ class LifeController extends Controller
 	    $image = Life_image::where('life_id',$content->id)->get();
 	   	$num_of_pics = count($image);
 	   	$more = Life_link::where('life_id',$content->id)->get();
+
+	   	$arr = Life::where('topic',$topic)->get();
+	   	$num_of_arr = count($arr);
+
+
+ 	   	for( $i=0 ; $i<$num_of_arr ; $i++ ) {		
+ 	   		if ( $arr[$i]->id == $content->id ) {
+	   			$prev = $i-1;
+				$next = $i+1;
+ 	   			if($i==0)	$prev = $num_of_arr-1;
+ 	   			if($i==$num_of_arr)	$next = 0;
+			
+				break;
+			}
+		}
 
 	   	// 如果第一次創建title, 創造default iamge資料
 	 	if($image->isEmpty()==TRUE){
@@ -45,10 +72,14 @@ class LifeController extends Controller
 	    }
 
 	   	return view('lives.detail', [
-	   		'content' => $content,
+	   		 'topic' => $topic,
+	   		 'content' => $content,
 	   		 'image' => $image,
 	   		 'num_of_pics' => $num_of_pics,
 	   		 'more' => $more,
+	   		 'arr_prev' => $arr[$prev],
+	   		 'arr_next' => $arr[$next],
+	   		 'num_of_arr' => $num_of_arr,
 	     ]);
 	}
 

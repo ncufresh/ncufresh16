@@ -3,16 +3,16 @@
 @section('content')
 
     <h1>Users
-    <div class="btn-group pull-right" role="group" aria-label="...">    
+    <div class="btn-group pull-right" role="group" aria-label="...">
       <a href="{{ route('watchtower.user.matrix') }}">
       <button type="button" class="btn btn-default">
-        <i class="fa fa-th fa-fw"></i> 
+        <i class="fa fa-th fa-fw"></i>
         <span class="hidden-xs hidden-sm">User Matrix</span>
       </button></a>
 
       <a href="{{ route('watchtower.user.create') }}">
       <button type="button" class="btn btn-info">
-        <i class="fa fa-plus fa-fw"></i> 
+        <i class="fa fa-plus fa-fw"></i>
         <span class="hidden-xs hidden-sm">Add New User</span>
       </button></a>
     </div>
@@ -25,7 +25,14 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>#</th><th>Name</th><th>Actions</th>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>E-Mail</th>
+                    <th>真實姓名</th>
+                    <th>學號</th>
+                    <th>系所</th>
+                    <th>身份</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
 
@@ -33,16 +40,21 @@
               @forelse($users as $item)
                <tr>
                 <td>{{ $item->id }}</td>
-                
+
                 <td>
                     <a href="{{ route('watchtower.user.show', $item->id) }}">{{ $item->name }}</a>
                 </td>
-                
+                <td>{{ $item->email }}</td>
+                <td>{{ $item->real_name }}</td>
+                <td>{{ $item->student_id }}</td>
+                <td>{{ $item->unit }}</td>
+                <td>{{ $item->type ? $item->type : '校外人士'}}</td>
+
                 <td>
                     @if ( Shinobi::can( config('watchtower.acl.user.role', false)) )
                     <a href="{{ route('watchtower.user.role.edit', $item->id) }}">
                       <button type="button" class="btn btn-primary btn-xs">
-                      <i class="fa fa-users fa-fw"></i> 
+                      <i class="fa fa-users fa-fw"></i>
                       <span class="hidden-xs hidden-sm">Roles</span>
                       </button></a>
                     @endif
@@ -50,7 +62,7 @@
                     @if ( Shinobi::can( config('watchtower.acl.user.edit', false)) )
                     <a href="{{ route('watchtower.user.edit', $item->id) }}">
                       <button type="button" class="btn btn-default btn-xs">
-                      <i class="fa fa-pencil fa-fw"></i> 
+                      <i class="fa fa-pencil fa-fw"></i>
                       <span class="hidden-xs hidden-sm">Update</span>
                       </button></a>
                     @endif
@@ -59,7 +71,7 @@
                     @if ( Shinobi::can( config('watchtower.acl.user.destroy', false)) )
                     {!! Form::open(['method'=>'delete','route'=> ['watchtower.user.destroy',$item->id], 'style' => 'display:inline']) !!}
                       <button type="submit" class="btn btn-danger btn-xs">
-                      <i class="fa fa-trash-o fa-lg"></i> 
+                      <i class="fa fa-trash-o fa-lg"></i>
                       <span class="hidden-xs hidden-sm">Delete</span>
                       </button>
                     {!! Form::close() !!}
