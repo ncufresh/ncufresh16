@@ -15,6 +15,7 @@ Route::group( ['middleware' => 'admin'], function () {
     Route::get('/Q&A/admin/', 'QandAController@indexAdmin');
     Route::get('/Q&A/admin/{Q}', 'QandAController@edit');
     Route::patch('/Q&A/content/{Q}', 'QandAController@update');
+    Route::delete('/Q&A/{Q}', 'QandAController@destroy');
     /*****************公告******************/
     Route::get('/ann', 'AnnouncementController@index');
     Route::post('/ann', 'AnnouncementController@store');
@@ -187,7 +188,6 @@ Route::get('/Q&A/create', 'QandAController@create');
 Route::get('/Q&A/personal', 'QandAController@indexPersonal');
 Route::get('/Q&A/{classify}', 'QandAController@index');
 Route::get('/Q&A/content/{Q}', 'QandAController@show');
-Route::delete('/Q&A/{Q}', 'QandAController@destroy');
 //************************************************************
 
 // 個人專區
@@ -219,13 +219,6 @@ Route::get('/videos','videoController@index');
 //************************************************************
 Route::get('/life','LifeController@getTitle');
 Route::get('/life/{topic}/{content}','LifeController@getContent');
-Route::group( ['middleware' => 'admin'], function () {
-    Route::post('/life', 'LifeController@addTitle');
-	Route::post('/life/{topic}/{content}/add', 'LifeController@addDetail');
-	Route::patch('/life/{topic}/{content}/update','LifeController@update');
-	Route::delete('/life/{id}', 'LifeController@deleteTitle');
-	Route::delete('/life/{id}/deleteDetail', 'LifeController@deleteDetail');
-});
 //************************************************************
 
 // 關於我們
