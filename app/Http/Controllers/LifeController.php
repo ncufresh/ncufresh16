@@ -52,7 +52,7 @@ class LifeController extends Controller
 	   			$prev = $i-1;
 				$next = $i+1;
  	   			if($i==0)	$prev = $num_of_arr-1;
- 	   			if($i==$num_of_arr)	$next = 0;
+ 	   			if($i==$num_of_arr-1)	$next = 0;
 			
 				break;
 			}
