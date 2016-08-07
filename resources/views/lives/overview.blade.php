@@ -15,6 +15,7 @@
 		 	background-position: center center;
 	}
 	
+	
 
 </style>
 
@@ -23,7 +24,6 @@
 
 @section('js')
 <script src="{{ asset('js/overview.js') }}"></script>
-
 
 @stop
 
@@ -232,7 +232,11 @@
 		</ul>
 
 	</div>
-	
-</div>
+	 	<a href=""><img class="video_url" id="food_video" src="{{ asset('img/videos/TV.png') }}"></a>
+	 	<a href=""><img class="video_url" id="housing_video" src="{{ asset('img/videos/TV.png') }}"></a>
+	 	<a href=""><img class="video_url" id="transportation_video" src="{{ asset('img/videos/TV.png') }}"></a>
+	 	<a href=""><img class="video_url" id="education_video" src="{{ asset('img/videos/TV.png') }}"></a>
+	 	<a href=""><img class="video_url" id="entertainment_video" src="{{ asset('img/videos/TV.png') }}"></a>
+	</div>
 
 @endsection

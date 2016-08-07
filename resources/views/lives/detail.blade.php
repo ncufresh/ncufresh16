@@ -56,10 +56,15 @@
         border-color:#00D4FF ;
     }
 
-    .carousel-control{
-      width: 5vw;
-      height: 100vh;
-    
+    .shift{
+        width: 5vw;
+        height: 100vh;
+    }
+
+
+    .tooltip-inner{
+        background: rgba(0,0,0,0);
+        box-shadow: none;
     }
   
 </style>
@@ -72,6 +77,16 @@
               $(".container").fadeIn(1000);
                 // CKEDITOR.instances['textArea'].setData($("#textArea").val());
         });
+        
+        $(document).ready(function(){
+             $('a[data-toggle="tooltip"]').tooltip({
+            animated: 'fade',
+            placement: 'middle',
+            html: true
+            });
+        });
+
+        
 
     </script>
 
@@ -87,12 +102,13 @@
         filebrowserBrowseUrl: '{{ url('laravel-filemanager?type=Files') }}',
         filebrowserUploadUrl: '{{ url('/') }}' + '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
     });
-</script>
-@endcan
+    </script>
+    @endcan
 
 @stop
 
 @section('content')
+
 
 <div class="container" id="background" >
     <div class="row">    
@@ -109,43 +125,43 @@
                     <?php } ?>
 
                     <ul class="collapse" id="linkMenu" role="group" >
-                    <!-- Trigger the modal with a button -->
-                    <button class="btn-default btn-block" data-toggle="modal" data-target="#myModal">相片導覽</button>
+                        <!-- Trigger the modal with a button -->
+                        <button class="btn-default btn-block" data-toggle="modal" data-target="#myModal">相片導覽</button>
 
-                    @foreach ($more as $more)
-                    <a class="" target="_blank" href="{{ url('http://'.$more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
-                    
-                   
-                    @can('management')
-                    <!--  修改鈕 -->
-                    <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/update' }}" method="POST">
-                         {{ csrf_field() }}
-                         {{ method_field('PATCH') }}
-                         <input type="hidden" name="more_id" value="{{$more->id}}">
-                        <input class="form-control type="text" name="location" value="{{$more->location}}">
-                        <input class="form-control type="text" name="link" value="{{$more->link}}">
-                          <button type="submit" class="material-icons">done</button>
-                    </form>    
-                    <!-- 刪除紐 -->
-                    <form action="{{ url('life/'.$content->id.'/deleteDetail') }}" method="POST">
-                        {!! csrf_field() !!}
-                        {!! method_field('DELETE') !!}
-                        <input type="hidden" name="linkId" value="{{$more->id}}">
-                        <button type="submit" class="material-icons">delete_forever</button>
-                    </form>
-                    @endcan 
-                    @endforeach
-                    
-                    @can('management')
-                    <!-- 新增鈕 -->
-                    <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/add' }}" method="POST">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="life_id" value="{{$content->id}}">
-                        <input class="form-control type="text" name="location" placeholder="在這裡輸入連結名稱">
-                        <input class="form-control type="text" name="link" placeholder="在這裡輸入連結網址">
-                        <button type="submit">新增</button>
-                    </form>
-                    @endcan     
+                        @foreach ($more as $more)
+                        <a class="" target="_blank" href="{{ url('http://'.$more->link) }}"><button class="btn-default btn-block">{{ $more->location }}</button></a>
+                        
+                       
+                        @can('management')
+                        <!--  修改鈕 -->
+                        <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/update' }}" method="POST">
+                             {{ csrf_field() }}
+                             {{ method_field('PATCH') }}
+                             <input type="hidden" name="more_id" value="{{$more->id}}">
+                            <input class="form-control type="text" name="location" value="{{$more->location}}">
+                            <input class="form-control type="text" name="link" value="{{$more->link}}">
+                              <button type="submit" class="material-icons">done</button>
+                        </form>    
+                        <!-- 刪除紐 -->
+                        <form action="{{ url('life/'.$content->id.'/deleteDetail') }}" method="POST">
+                            {!! csrf_field() !!}
+                            {!! method_field('DELETE') !!}
+                            <input type="hidden" name="linkId" value="{{$more->id}}">
+                            <button type="submit" class="material-icons">delete_forever</button>
+                        </form>
+                        @endcan 
+                        @endforeach
+                        
+                        @can('management')
+                        <!-- 新增鈕 -->
+                        <form action="{{ url('life/'.$content->topic.'/'.$content->id).'/add' }}" method="POST">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="life_id" value="{{$content->id}}">
+                            <input class="form-control type="text" name="location" placeholder="在這裡輸入連結名稱">
+                            <input class="form-control type="text" name="link" placeholder="在這裡輸入連結網址">
+                            <button type="submit">新增</button>
+                        </form>
+                        @endcan  
                     </ul>
 
                 </div>  
@@ -272,8 +288,8 @@
           </div>
     </div>
 
-    <a class="left carousel-control" href="{{ url('/life/'.$topic.'/'.$arr_prev->id ) }}" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-    <a class="right carousel-control" href="{{ url('/life/'.$topic.'/'.$arr_next->id ) }}"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    <a class="left carousel-control shift" href="{{ url('/life/'.$topic.'/'.$arr_prev->id ) }}" data-slide="prev" data-toggle="tooltip" data-placement="right" title="<img src='{{ asset($arr_prev->image) }}' />"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    <a class="right carousel-control shift" href="{{ url('/life/'.$topic.'/'.$arr_next->id ) }}" data-slide="next" data-toggle="tooltip" data-placement="left" title="<img src='{{ asset($arr_next->image) }}' />"><i class="glyphicon glyphicon-chevron-right"></i></a>
      <img id="holder" style="margin-top:15px;max-height:100px;">
 </div>
 
