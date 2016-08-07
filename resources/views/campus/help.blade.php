@@ -215,11 +215,7 @@
             <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:40.5%;top:25%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
             <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:55%;top:27%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
             <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:83%;top:63%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
-            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:67 $('body').on('mouseover', '.cateBtn', function () {
-            
-            var id = $(this).attr('id');
-            $('.cate'+id).tooltip('show');
-        });%;top:79%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:69%;top:79%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
             <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:37%;top:41%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
 
             
