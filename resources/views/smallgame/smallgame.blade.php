@@ -801,6 +801,9 @@ function draw_score_onTheCanvas_gameover(){//in the state game_4
     context.fillStyle = "#000000";
     context.textAlign = "center";
     context.textBaseline = "bottom";
+
+    score=Math.round((gameFinishTime - gameStartTime)/1000);//新的分數表示方法，首尾的時間相減
+    
     context.fillText("分數："+score, 500, 185);
 }
 function draw_theBricks_onTheCanvas(){//in the state game_4
@@ -937,7 +940,89 @@ function draw_GAME_3(){
     //show(msg);
 }
 
+var gameStartTime_bool=true;
+var gameStartTime;//為了分數顯示，所以js裡也要記錄
+var gameFinishTime;
 function draw_GAME_4(){
+    ///////////////
+    
+    if(gameStartTime_bool){//因為資料會重複傳送(不知道原因)，為了解決此問題，而多設一到匣門
+       $(document).ready(function(){
+
+          var d = new Date();//取得時間物件
+          gameStartTime=d.getTime();
+          var formData = {
+                time:d.getTime()
+            };
+
+            //used to determine the http verb to use [add=POST], [update=PUT]
+            var type = "POST"; //for creating new resource
+            //var task_id = $('#task_id').val();;
+            var my_url = "gameStart_time";
+            console.log(formData);
+
+            $.ajax({
+
+                  type: "POST",    
+                  url: my_url,
+                  data: formData,//傳送的資料
+                  dataType: "json",//以json格式傳送
+                  headers: {
+                    'X-CSRF-Token': $('meta[name="token"]').attr('content')
+                  },
+                  success: function (data) {
+                      console.log(data);
+                  },
+                  error: function (data) {
+                      console.log('Error:', data);
+                  }
+              });
+              //傳送資料結束
+              
+        });
+        gameStartTime_bool=false;
+      }
+    ///////////////
+
+
+
+
+   /* ////遊戲開始時，要傳送遊戲開始的時間
+        $(document).ready(function(){
+
+          var d = new Date();//取得時間物件
+
+          var formData = {
+                time:d.getTime()
+            };
+
+            //used to determine the http verb to use [add=POST], [update=PUT]
+            var type = "POST"; //for creating new resource
+            //var task_id = $('#task_id').val();;
+            var my_url = "/sm";
+            console.log(formData);
+
+            $.ajax({
+
+                  type: "POST",    
+                  url: my_url,
+                  data: formData,//傳送的資料
+                  dataType: "json",//以json格式傳送
+                  headers: {
+                    'X-CSRF-Token': $('meta[name="token"]').attr('content')
+                  },
+                  success: function (data) {
+                      console.log(data);
+                  },
+                  error: function (data) {
+                      console.log('Error:', data);
+                  }
+              });
+              //傳送資料結束
+        }
+    ////遊戲開始時，要傳送遊戲開始的時間*/
+
+
     context.clearRect(0, 0, canvas.width, canvas.height);//清空版面
 
     runSpeedUp=true;
@@ -973,9 +1058,14 @@ function draw_GAME_4(){
       character_heart_bool=true;
       if(upload){//因為資料會重複傳送(不知道原因)，為了解決此問題，而多設一到匣門
        $(document).ready(function(){
+
+          var d = new Date();//取得時間物件
+          gameFinishTime=d.getTime();
+
           var formData = {
                 name:username ,
                 score: score,
+                time:d.getTime()
             };
 
             //used to determine the http verb to use [add=POST], [update=PUT]

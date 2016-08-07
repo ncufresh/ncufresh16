@@ -175,6 +175,7 @@ Route::post('/add_question/add','GameController@add');//新增問題
 Route::put('/add_question/add/{question_id?}','GameController@putOneQuestion');//編輯問題
 Route::delete('/add_question/delete/{question_id?}','GameController@deleteOneQuestion');//刪除問題
 Route::get('/getOneQuestion/{question_id?}','GameController@getOneQuestion');//取得問題
+Route::post('gameStart_time','GameController@get_gameStart_time');//取得遊戲開始的時間
 //************************************************************
 
 // 新生Q&A

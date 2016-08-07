@@ -650,7 +650,7 @@ function btn_3(x,y,width,height) {
 function show(msg) {
 
    context.font = '20px Tahoma';
-   context.fillStyle = "#1569C7";
+   context.fillStyle = "#1569C7"; 
    context.textAlign = "left";
    context.textBaseline = "bottom";
    context.fillText(msg, 100, 150);
