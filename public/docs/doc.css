@@ -21,6 +21,7 @@
 
 @media (max-width: 767px) {
     .btn-custom {
+        font-size: 6vw;
         height: 20vmax;
         line-height: 20vmax;
     }
@@ -59,8 +60,8 @@
     color: rgba(102, 76, 0, 1);
 }
 
-.col-pagging-custom {
-    padding: 1vh;
+.col-padding-custom {
+    padding: 1vmin;
 }
 
 
@@ -70,6 +71,14 @@ img#openLeft,
 img#openRight {
     width: 25vw;
     padding-top: 2vw;
+}
+
+@media (max-width: 767px) {
+    img#openLeft,
+    img#openRight {
+        width: 40vw;
+        padding-top: 2vw;
+    }
 }
 
 img#openLeft {
@@ -151,6 +160,13 @@ footer {
     font-size: 4vw;
 }
 
+@media (max-width: 767px) {
+    .side-nav-title,
+    .inner-page-title {
+        font-size: 7vw;
+    }
+}
+
 
 /* 綜合畫面下拉式選單的位置 */
 
@@ -167,126 +183,6 @@ footer {
 
 .dropdown-menu-custom>li:last-child {
     border-bottom: 0;
-}
-
-
-/*--- 圓圈按鈕 ---*/
-
-#topScreen,
-#leftScreen,
-#rightScreen {
-    position: relative;
-}
-
-.little-button-container {
-    position: relative;
-}
-
-
-/* smaller than 768px */
-
-.little-button {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-}
-
-.btn-circle-container {
-    border-radius: 100%;
-    margin: 0 auto;
-    width: 49px;
-    height: 49px;
-}
-
-.btn-circle-outline {
-    border-radius: 100%;
-    margin: 0;
-    width: 49px;
-    height: 49px;
-    border: 5px solid black;
-}
-
-.btn-circle {
-    color: white;
-    padding: 5px 0 0 0;
-    margin: 0;
-    border: 2px solid rgba(24, 24, 24, .8);
-    background-color: transparent;
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    font-size: 10px;
-}
-
-
-/* 圓圈按鈕的動畫 */
-
-.btn-circle:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    animation: mymove 0.50s linear infinite alternate;
-}
-
-@keyframes mymove {
-    from {
-        font-size: 8px;
-    }
-    to {
-        font-size: 11px;
-    }
-}
-
-@media (min-width: 768px) {
-    .btn-circle-container {
-        width: 69px;
-        height: 69px;
-    }
-    .btn-circle-outline {
-        width: 69px;
-        height: 69px;
-        border: 5px solid black;
-    }
-    .btn-circle {
-        padding: 10px 0 0 0;
-        width: 60px;
-        height: 60px;
-        font-size: 12px;
-    }
-    @keyframes mymove {
-        from {
-            font-size: 11px;
-        }
-        to {
-            font-size: 16px;
-        }
-    }
-}
-
-@media (min-width: 992px) {
-    .btn-circle-container {
-        width: 89px;
-        height: 89px;
-    }
-    .btn-circle-outline {
-        width: 89px;
-        height: 89px;
-        border: 5px solid black;
-    }
-    .btn-circle {
-        padding: 15px 0 0 0;
-        width: 80px;
-        height: 80px;
-        font-size: 16px;
-    }
-    @keyframes mymove {
-        from {
-            font-size: 14px;
-        }
-        to {
-            font-size: 18px;
-        }
-    }
 }
 
 

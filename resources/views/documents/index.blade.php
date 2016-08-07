@@ -4,7 +4,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('docs/doc.css') }}">
-<!-- <link rel="stylesheet" href="{{ asset('docs/jquery.scrollbar.css') }}"> -->
+<link rel="stylesheet" href="{{ asset('docs/jquery.scrollbar.css') }}">
 <style>
 /* background setting */
 body {
@@ -23,6 +23,7 @@ main {
     float: left;
 }
 
+{{-- 大學部的細項目寬度 --}}
 @for ($i = 0; $i < 3; $i++)
     @if( $numUnders[$i] == 1)
 
@@ -30,6 +31,14 @@ main {
         margin-left: calc(100% / 3 );
         width: calc(100% / 3 );
         margin-right: calc(100% / 3 );
+    }
+
+    @media (max-width: 768px) {
+        .col-under-{{ $i+1 }} {
+            margin-left: calc(100% / 4 );
+            width: calc(100% / 2 );
+            margin-right: calc(100% / 4 );
+        }
     }
 
     @elseif( $numUnders[$i] == 2)
@@ -44,10 +53,54 @@ main {
         margin-right: calc(100% / 6 );
     }
 
+    @media (max-width: 768px) {
+        .col-under-{{ $i+1 }}:first-child {
+            width: calc(100% / 2 );
+        }
+
+        .col-under-{{ $i+1 }}:last-child {
+            width: calc(100% / 2 );
+        }
+    }
+
     @elseif( $numUnders[$i] == 3 )
 
     .col-under-{{ $i+1 }} {
-        width: calc(100% / {{ $numUnders[$i] }} );
+        width: calc(100% / 3 );
+    }
+    
+    @media (max-width: 768px) {
+        .col-under-{{ $i+1 }} {
+            width: calc(100% / 2 );
+        }
+
+        .col-under-{{ $i+1 }}:last-child{
+            margin-left: calc(100% / 4 );
+            width: calc(100% / 2 );
+            margin-right: calc(100% / 4 );
+        }
+    }
+
+    @elseif( $numUnders[$i] == 4 )
+    
+    .col-under-{{ $i+1 }} {
+        width: calc(100% / 3 );
+    }
+
+    .col-under-{{ $i+1 }}:first-child,
+    .col-under-{{ $i+1 }}:nth-last-child(2) {
+        margin-left: calc(100% / 6 );
+    }
+
+    .col-under-{{ $i+1 }}:nth-child(2),
+    .col-under-{{ $i+1 }}:last-child {
+        margin-right: calc(100% / 6 );
+    }
+    
+    @media (max-width: 768px) {
+        .col-under-{{ $i+1 }} {
+            width: calc(100% / 2 );
+        }
     }
 
     @else
@@ -56,9 +109,34 @@ main {
         width: calc(100% / {{ ceil($numUnders[$i]/2) }} );
     }
 
+        @if( ($numUnders[$i] % 2) == 1 )
+            .col-under-{{ $i+1 }}:nth-child({{ ceil($numUnders[$i]/2) + 1 }}) {
+                margin-left: calc(50% / {{ ceil($numUnders[$i]/2) }} );
+            }
+        @endif
+
+    @media (max-width: 768px) {
+        .col-under-{{ $i+1 }} {
+            width: calc(100% / 2 );
+        }
+        
+        @if( ($numUnders[$i] % 2) == 1 )
+        .col-under-{{ $i+1 }}:nth-child({{ ceil($numUnders[$i]/2) + 1 }}) {
+            margin-left: 0;
+        }
+
+        .col-under-{{ $i+1 }}:last-child {
+            margin-left: calc(100% / 4 );
+            width: calc(100% / 2 );
+            margin-right: calc(100% / 4 );
+        }
+        @endif
+    }
+
     @endif
 @endfor
 
+{{-- 研究生的細項目寬度 --}}
 @for ($i = 0; $i < 2; $i++)
     @if( $numGraduates[$i] == 1 )
     
@@ -66,6 +144,14 @@ main {
         margin-left: calc(100% / 3 );
         width: calc(100% / 3 );
         margin-right: calc(100% / 3 );
+    }
+
+    @media (max-width: 768px) {
+        .col-graduate-{{ $i+1 }} {
+            margin-left: calc(100% / 4 );
+            width: calc(100% / 2 );
+            margin-right: calc(100% / 4 );
+        }
     }
 
     @elseif( $numGraduates[$i] == 2 )
@@ -80,16 +166,93 @@ main {
         margin-right: calc(100% / 6 );
     }
 
+    @media (max-width: 768px) {
+        .col-graduate-{{ $i+1 }}:first-child {
+            width: calc(100% / 2 );
+        }
+
+        .col-graduate-{{ $i+1 }}:last-child {
+            width: calc(100% / 2 );
+        }
+    }
+
     @elseif( $numGraduates[$i] == 3 )
 
     .col-graduate-{{ $i+1 }} {
-        width: calc(100% / {{ $numGraduates[$i] }} );
+        width: calc(100% / 3 );
+    }
+
+    @media (max-width: 768px) {
+        .col-graduate-{{ $i+1 }} {
+            width: calc(100% / 2 );
+        }
+
+        .col-graduate-{{ $i+1 }}:last-child{
+            margin-left: calc(100% / 4 );
+            width: calc(100% / 2 );
+            margin-right: calc(100% / 4 );
+        }
+    }
+
+    @elseif( $numGraduates[$i] == 4 )
+    
+    .col-graduate-{{ $i+1 }} {
+        width: calc(100% / 3 );
+    }
+
+    .col-graduate-{{ $i+1 }}:first-child,
+    .col-graduate-{{ $i+1 }}:nth-last-child(2) {
+        margin-left: calc(100% / 6 );
+    }
+
+    .col-graduate-{{ $i+1 }}:nth-child(2),
+    .col-graduate-{{ $i+1 }}:last-child {
+        margin-right: calc(100% / 6 );
+    }
+    
+    @media (max-width: 768px) {
+        .col-graduate-{{ $i+1 }} {
+            width: calc(100% / 2 );
+        }
+
+        .col-graduate-{{ $i+1 }}:first-child,
+        .col-graduate-{{ $i+1 }}:nth-last-child(2) {
+            margin-left: 0;
+        }
+
+        .col-graduate-{{ $i+1 }}:nth-child(2),
+        .col-graduate-{{ $i+1 }}:last-child {
+            margin-right: 0;
+        }
     }
 
     @else
 
     .col-graduate-{{ $i+1 }} {
         width: calc(100% / {{ ceil($numGraduates[$i]/2) }} );
+    }
+        @if( ($numGraduates[$i] % 2) == 1 )
+        .col-graduate-{{ $i+1 }}:nth-child({{ ceil($numGraduates[$i]/2) + 1 }}) {
+            margin-left: calc(50% / {{ ceil($numUnders[$i]/2) }} );
+        }
+        @endif
+
+    @media (max-width: 768px) {
+        .col-graduate-{{ $i+1 }} {
+            width: calc(100% / 2 );
+        }
+
+        @if( ($numGraduates[$i] % 2) == 1 )
+        .col-graduate-{{ $i+1 }}:nth-child({{ ceil($numGraduates[$i]/2) + 1 }}) {
+            margin-left: 0;
+        }
+
+        .col-graduate-{{ $i+1 }}:last-child {
+            margin-left: calc(100% / 4 );
+            width: calc(100% / 2 );
+            margin-right: calc(100% / 4 );
+        }
+        @endif
     }
 
     @endif
@@ -99,7 +262,7 @@ main {
 @stop
 
 @section('js')
-<!-- <script src="{{ asset('docs/jquery.scrollbar.js') }}"></script> -->
+<script src="{{ asset('docs/jquery.scrollbar.js') }}"></script>
 <script src="{{ asset('docs/doc.js') }}"></script>
 
 @can('management')
@@ -126,10 +289,10 @@ CKEDITOR.replace( 'new_mix', {
 </script>
 @endcan
 <script type="text/javascript">
-// $(document).ready(function(){
+$(document).ready(function(){
     // 更換 scrollbar 的樣式
-    // $('.scrollbar-macosx').scrollbar();
-// });
+    $('.scrollbar-macosx').scrollbar();
+});
 
 // 利用 get 開啟特定 modal
 var strUrl = location.search;
@@ -156,12 +319,9 @@ if (strUrl.indexOf("?") !== -1) {
                 <!-- 左邊大學部導覽列 -->
                 <div class="col-xs-6 text-right" id="outerLeftSidebar">
                     <div class="img-wrapper">
-                        <p>
-                            <a href="#under-1">
-                                <img src="{{ asset('docs/img/col.png') }}" alt="大學部" id="openLeft">
-                            </a>
-                        </p>
-                        <p id="test"></p>
+                        <a href="#under-1">
+                            <img src="{{ asset('docs/img/col.png') }}" alt="大學部" id="openLeft">
+                        </a>
                     </div>
                 </div>
                 <!-- /左邊大學部導覽列 -->
@@ -251,14 +411,14 @@ if (strUrl.indexOf("?") !== -1) {
                     <section id="under-{{ ++$mainCount }}" style="display: inline-table; width: 75%; margin-left: 15px;">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h1 class="inner-page-title">{{ $mainTitles[ $mainCount-1 ] }}</h1>
+                                <h1 class="inner-page-title">大學部{{ $mainTitles[ $mainCount-1 ] }}</h1>
                             </div>
                         </div>
                         <div class="row">
                         <?php $subCount = 0; ?>
                         {{-- 產生大學部主要項目裡的細部項目 --}}
                         @foreach ($unders as $u)
-                            <div class="col-under-{{ $mainCount }} col-pagging-custom">
+                            <div class="col-under-{{ $mainCount }} col-padding-custom">
                                 <!-- btn -->
                                 <div class="btn-wrapper">
                                     <a class="btn btn-custom" type="button" data-toggle="modal" data-target="#modal-{{ $u->id }}">
@@ -309,18 +469,6 @@ if (strUrl.indexOf("?") !== -1) {
                     </section>
                     <!-- /#under-{{ $mainCount }} -->
                 @endforeach
-                <!-- 顯示綜合畫面的按鈕 -->
-                <div class="little-button">
-                    <div class="btn-circle-container">
-                        <div>
-                            <a href="#bottomScreen" class="btn btn-circle">
-                                <i class="fa fa-angle-double-down fa-3x"></i>
-                                <div class="ripple-container"></div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /顯示綜合畫面的按鈕 -->
             </div>
             <!-- /.row -->
         </div>
@@ -332,17 +480,17 @@ if (strUrl.indexOf("?") !== -1) {
                     <?php $mainCount = 0; ?>
                     {{-- 產生三個研究所主要項目 --}}
                     @foreach ($mainGraduates as $graduates)
-                        <section id="graduate-{{ ++$mainCount }}" style="display: inline-table; width: 75%; float: left;">
+                        <section id="graduate-{{ ++$mainCount }}" style="display: inline-table; width: 75%; float: none;">
                             <div class="row">
                                 <div class="col-xs-12">
-                                   <h1 class="inner-page-title">{{ $mainTitles[ $mainCount-1 ] }}</h1> 
+                                   <h1 class="inner-page-title">研究所{{ $mainTitles[ $mainCount-1 ] }}</h1> 
                                 </div>
                             </div>
                             <div class="row">
                             <?php $subCount = 0; ?>
                             {{-- 產生研究所主要項目裡的細部項目 --}}
                             @foreach ($graduates as $g)
-                                <div class="col-graduate-{{ $mainCount }} col-pagging-custom">
+                                <div class="col-graduate-{{ $mainCount }} col-padding-custom">
                                     <div class="btn-wrapper">
                                         <a class="btn btn-custom" type="button" data-toggle="modal" data-target="#modal-{{ $g->id }}">
                                             <div class="btn-mouseenter">{{ $g->title }}</div>
@@ -449,18 +597,6 @@ if (strUrl.indexOf("?") !== -1) {
                         @endcan
                     </div>
                     <!-- /.col-xs-3.col-fluid /#innerRightSidenav -->
-                    <!-- 顯示綜合畫面的按鈕 -->
-                    <div class="little-button">
-                        <div class="btn-circle-container">
-                            <div>
-                                <a href="#bottomScreen" class="btn btn-circle">
-                                    <i class="fa fa-angle-double-down fa-3x"></i>
-                                    <div class="ripple-container"></div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /顯示綜合畫面的按鈕 -->
                 </div>
                 <!-- /.row -->
             </div>
@@ -474,7 +610,7 @@ if (strUrl.indexOf("?") !== -1) {
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <h1 class="inner-page-title">大學部 X 研究所</h1>
+                    <h1 class="inner-page-title" style="padding-bottom:52px;">大學部 X 研究所</h1>
                 </div>
             </div>
             <div class="row">
@@ -534,7 +670,7 @@ if (strUrl.indexOf("?") !== -1) {
             <?php $mainCount = 0;
                   $mainTitles = array("學習", "生活", "輔導"); ?>
             @foreach ($mainMixs as $mixs)
-                <div class="col-sm-4 text-center">
+                <div class="col-sm-4 col-padding-custom text-center">
                     <div class="btn-wrapper dropdown scrollbar-macosx" style="overflow: auto;" id="wrapper{{ ++$mainCount }}">
                         <a class="btn btn-custom dropdown-toggle" type="button" data-toggle="dropdown">
                             <div class="btn-mouseenter">
