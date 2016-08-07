@@ -9,7 +9,7 @@
     });
 
 </script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
 	<script type="text/javascript">
 	    $('.selectpicker').selectpicker({
@@ -17,89 +17,8 @@
   			size: 7
 	    });
 	</script>
-
-	<script src="http://tympanus.net/Development/Slicebox/js/jquery.slicebox.js"></script>
-	<script type="text/javascript">
-$(function() {
-
-				var Page = (function() {
-
-					var $navArrows = $( '.nav-arrows' ).hide(),
-						$navDots = $( '.nav-dots' ).hide(),
-						$nav = $navDots.children( 'span' ),
-						$shadow = $( '.shadow' ).hide(),
-						slicebox = $( '#sb-slider' ).slicebox( {
-							onReady : function() {
-
-								$navArrows.show();
-								$navDots.show();
-								$shadow.show();
-
-							},
-							onBeforeChange : function( pos ) {
-
-								$nav.removeClass( 'on' );
-								$nav.eq( pos ).addClass( 'on' );
-
-							}
-						} ),
-						
-						init = function() {
-
-							initEvents();
-							
-						},
-						initEvents = function() {
-
-							// add navigation events
-							$navArrows.children( ':first' ).on( 'click', function() {
-
-								slicebox.previous();
-								return false;
-
-							} );
-
-							$navArrows.children( ':last' ).on( 'click', function() {
-								
-								slicebox.next();
-								return false;
-
-							} );
-
-							$nav.each( function( i ) {
-							
-								$( this ).on( 'click', function( event ) {
-									
-									var $dot = $( this );
-									
-									if( !slicebox.isActive() ) {
-
-										$nav.removeClass( 'on' );
-										$dot.addClass( 'on' );
-									
-									}
-									
-									slicebox.jump( i + 1 );
-									return false;
-								
-								} );
-								
-							} );
-
-						};
-
-						return { init : init };
-
-				})();
-
-				Page.init();
-
-			});
-
-</script>
 @stop
 @section('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
 <style type="text/css">
 body{
 	background-image: url({{asset('img/group/BG1.jpg')}});
@@ -153,28 +72,6 @@ h3{
 	color: black;
 	font-weight: bold;
 }
-ul,li{list-style-type:none;}
-.wrapper{width:100%;max-width:840px;padding:0 50px;margin:100px auto;position:relative;}
-.sb-slider{width:100%;max-width:700px;margin:0 auto;position:relative;overflow:hidden;}
-.sb-slider li{display:none;}
-.sb-slider a img{display:block;max-width:100%;}
-.sb-description{padding:20px;position:absolute;left:10px;bottom:10px;right:10px;background-color:rgba(255,255,255,0.5);border-left:4px solid #fff;transition:background 0.3s ease;opacity:0;}
-.sb-slider .sb-current .sb-description{opacity:1;}
-.sb-description:hover{background-color:rgba(255,255,255,0.3);}
-.sb-description h3{font-size:20px;text-shadow:1px 1px 0 rgba(0,0,0,0.3);}
-.shadow{width:100%;height:168px;position:relative;margin-top:-110px;z-index:-1;background:transparent url("http://tympanus.net/Development/Slicebox/images/shadow.png") no-repeat;background-size:100% 100%;text-indent:-999em;}
-.nav-arrows a{width:42px;height:42px;position:absolute;left:2px;top:50%;margin-top:-21px;text-indent:-999em;background-color:rgb(201,190,147);border-radius:50%;box-shadow:0 1px 1px rgba(255,255,255,0.9);opacity:0.8;transition:opacity 0.3s ease;}
-.nav-arrows a:hover{opacity:1;}
-.nav-arrows a:last-child{left:auto;right:2px;}
-.nav-arrows a:before,.nav-arrows a:after{width:0px;height:0px;content:"";position:absolute;top:50%;left:50%;border:solid transparent;}
-.nav-arrows a:before{border-width:12px;border-right-color:#fff;margin:-12px 0 0 -20px;}
-.nav-arrows a:after{border-width:10px;border-right-color:rgb(201,190,147);margin:-10px 0 0 -14px;}
-.nav-arrows a:last-child:before{border-width:12px;border-color:transparent;border-left-color:#fff;margin:-12px 0 0 -4px;}
-.nav-arrows a:last-child:after{border-width:10px;border-color:transparent;border-left-color:rgb(201,190,147);margin:-10px 0 0 -6px;}
-.nav-dots{width:100%;position:absolute;left:0;bottom:-5px;text-align:center;}
-.nav-dots span{display:inline-block;width:16px;height:16px;margin:0 5px;background-color:#C9BE93;border:3px solid #C9BE93;border-radius:50%;box-shadow:0 1px 1px rgba(255,255,255,0.9);cursor:pointer;}
-.nav-dots span.on{background-color:white;}
-
 </style>
 @stop
 <div class="container">
@@ -259,35 +156,44 @@ ul,li{list-style-type:none;}
 		          <p style=" max-height: 100px">{!!$club->clubs_summary!!}</p>
 		          
 		        @if($photo != null)
-		        <div class="wrapper">
-	      		    	@foreach ($photo as $key => $p)
-						   	<ul id="sb-slider{{$club->id}}" class="sb-slider">
-						      <li>
-						        <img src="{{$p}}" alt="FailQQ">
-						      </li>
-						    </ul>
-						@endforeach
-						
-					 
-					    <!-- Wrapper for slides -->
-					    
-				    <div id="shadow" class="shadow"></div>
+		        <div id="myCarousel{{$club->id}}" class="carousel slide" data-ride="carousel">
 				    
-				    <div id="nav-arrows" class="nav-arrows">
-				      <a href="#">Next</a>
-				      <a href="#">Previous</a>
-				    </div>
-				     <div class="shadow">shadow</div>
+					    <!-- Indicators -->
+					    <ol class="carousel-indicators">
 
-				     <div class="nav-dots">
-				     @foreach ($photo as $key => $p)
+					    @foreach ($photo as $key => $p)
 						    @if($key == 0)
-								<span class="on"></span>
+								<li data-target="#myCarousel{{$club->id}}" data-slide-to="{{$key}}" class="active"></li>
 							@else
-								<span></span>
+								<li data-target="#myCarousel{{$club->id}}" data-slide-to="{{$key}}"></li>
 							@endif
 						@endforeach
-   					</div>
+						</ol>
+					 
+					    <!-- Wrapper for slides -->
+					    <div class="carousel-inner" role="listbox">
+					   	@foreach ($photo as $key => $p)
+						    @if($key == 0)
+								<div class="item active">
+						        	<img src="{{$p}}" alt="FailQQ">
+						      	</div>
+							@else
+								<div class="item">
+						        	<img src="{{$p}}" alt="FailQQ">
+						      	</div>
+						    @endif
+						@endforeach
+						</div>
+				    
+				     <!-- Left and right controls -->
+					<a class="left carousel-control" href="#myCarousel{{$club->id}}" role="button" data-slide="prev">
+					   <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					   <span class="sr-only">Previous</span>
+					</a>
+					<a class="right carousel-control" href="#myCarousel{{$club->id}}" role="button" data-slide="next">
+					    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
 				</div>
 				@endif
 				</div>

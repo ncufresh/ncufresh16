@@ -12,13 +12,19 @@
   left: 85%;
   z-index: 100;
 }
-
+@media (max-width: 700px) {
+  .fixed {
+  position: fixed;
+  bottom: 0;
+  left: 70%;
+  width:30%;
+  cursor:pointer;
+}
+}
 
 </style>
 <div class="row head">
-<!-- <img src="{{ asset('img/Q&A/QA.png') }}" width="10%" height="10%"> -->
 <img src="{{ asset('img/Q&A/QQAA.png') }}" width="90%" height="350">
-<!--     <img src="{{ asset('img/Q&A/maple4.png') }}" width="10%" height="10%"  align="right" ><br> -->
 </div>
     
 <div class="col-md-3 leftbutton" >

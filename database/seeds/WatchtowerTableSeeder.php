@@ -49,17 +49,23 @@ class WatchtowerTableSeeder extends Seeder
         // is there a user
         $any = DB::table('users')->get();
         if ( empty($any) ) {
-            DB::table('users')
-                ->insert( [
-                    'name' => 'admin',
-                    'email' => 'q@q',
+            DB::table('users')->insert( [
+                [
+                    'name' => '管理員',
+                    'email' => 'lovenery@g.ncu.edu.tw',
                     'password' => bcrypt('q')
+                ],
+                [
+                    'name' => '管理員',
+                    'email' => 'ncufreshweb@gmail.com',
+                    'password' => bcrypt('ncufresh20!6admin')
                 ]
-            );
+            ]);
         }
 
         //associate first user with admin role
         DB::table('role_user')->insert( ['role_id' => 1, 'user_id'=> 1] );
+        DB::table('role_user')->insert( ['role_id' => 2, 'user_id'=> 2] );
 
          // permissions
         $permissions = [
@@ -212,6 +218,13 @@ class WatchtowerTableSeeder extends Seeder
 
         //insert permissions
         DB::table('permissions')->insert($permissions);
+
+        //associate permission with role
+        DB::table('permission_role')->insert( [
+            ['permission_id' => 1, 'role_id'=> 2], // 一般管理員權限
+            ['permission_id' => 3, 'role_id'=> 2], // Show user list
+            ['permission_id' => 9, 'role_id'=> 2], // User search
+        ]);
 
     }
 }

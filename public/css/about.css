@@ -28,11 +28,9 @@
 #team {
 	position: relative;
 }
-
 .team-name {
 	width: 80%;
 }
-
 .team-introduce {
 	width: 90%;
 }
@@ -45,7 +43,6 @@ img.introduce {
 .introduce {
 	text-align: left;
 }
-
 @media (max-width:400px){
 	/* 手機 */
 	.introduce {
@@ -61,7 +58,6 @@ a, a:visited {
 	text-decoration: none;
 	color: black;
 }
-
 a:hover, a:active {
 	text-decoration: none;
 	cursor: pointer;
@@ -75,21 +71,18 @@ a:hover, a:active {
 	top: 34%;
 	width: 8%;
 }
-
 #img-plan2 {
 	position: absolute;
 	left: 26%;
 	top: 33%;
 	width: 8%;
 }
-
 #img-plan3 {
 	position: absolute;
 	left: 40%;
 	top: 34%;
 	width: 9%;
 }
-
 #img-plan4 {
 	position: absolute;
 	left: 59.5%;
@@ -97,7 +90,6 @@ a:hover, a:active {
 	width: 8%;
 	height: 15%;
 }
-
 #img-plan5 {
 	position: absolute;
 	left: 75%;
@@ -105,7 +97,6 @@ a:hover, a:active {
 	width: 8%;
 	height: 13%;
 }
-
 #img-plan6 {
 	position: absolute;
 	left: 81.5%;
@@ -139,4 +130,156 @@ a:hover, a:active {
 
 #name-plan6:hover {
 	color: #6280a1;
+}
+
+/* program */
+#img-program1 {
+	position: absolute;
+	left: 14%;
+	top: 17%;
+	width: 7%;
+}
+#img-program2 {
+	position: absolute;
+	left: 21%;
+	top: 21%;
+	width: 6%;
+}
+#img-program3 {
+	position: absolute;
+	left: 30%;
+	top: 18%;
+	width: 7%;
+}
+#img-program4 {
+	position: absolute;
+	left: 40%;
+	top: 16%;
+	width: 6%;
+}
+#img-program5 {
+	position: absolute;
+	left: 51.5%;
+	top: 20%;
+	width: 7%;
+}
+#img-program6 {
+	position: absolute;
+	left: 66%;
+	top: 16.5%;
+	width: 7%;
+}
+#img-program7 {
+	position: absolute;
+	left: 73.5%;
+	top: 15%;
+	width: 6%;
+}
+#img-program8 {
+	position: absolute;
+	left: 81%;
+	top: 19.5%;
+	width: 6%;
+}
+
+/* execute */
+#img-execute1 {
+	position: absolute;
+	left: 29%;
+	top: 37%;
+	width: 11%;
+}
+#img-execute2 {
+	position: absolute;
+	left: 57%;
+	top: 8%;
+	width: 12%;
+}
+
+/* art */
+#img-art1 {
+	position: absolute;
+	left: 12%;
+	top: 33%;
+	width: 6%;
+}
+#img-art2 {
+	position: absolute;
+	left: 24%;
+	top: 30%;
+	width: 6%;
+}
+#img-art3 {
+	position: absolute;
+	left: 41%;
+	top: 29%;
+	width: 6%;
+}
+#img-art4 {
+	position: absolute;
+	left: 55.5%;
+	top: 34%;
+	width: 6%;
+}
+#img-art5 {
+	position: absolute;
+	left: 70%;
+	top: 33%;
+	width: 6%;
+}
+#img-art6 {
+	position: absolute;
+	left: 88%;
+	top: 28%;
+	width: 6%;
+}
+
+/* video */
+#img-video1 {
+	position: absolute;
+	left: 5.5%;
+	top: 35%;
+	width: 7%;
+}
+#img-video2 {
+	position: absolute;
+	left: 23%;
+	top: 34%;
+	width: 5%;
+}
+#img-video3 {
+	position: absolute;
+	left: 38.5%;
+	top: 54%;
+	width: 5%;
+}
+#img-video4 {
+	position: absolute;
+	left: 47%;
+	top: 28.5%;
+	width: 5%;
+}
+#img-video5 {
+	position: absolute;
+	left: 46%;
+	top: 38%;
+	width: 6%;
+}
+#img-video6 {
+	position: absolute;
+	left: 58.5%;
+	top: 51%;
+	width: 5%;
+}
+#img-video7 {
+	position: absolute;
+	left: 71.3%;
+	top: 39%;
+	width: 5%;
+}
+#img-video8 {
+	position: absolute;
+	left: 86%;
+	top: 38%;
+	width: 6%;
 }

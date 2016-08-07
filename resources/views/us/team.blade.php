@@ -6,7 +6,8 @@
 		<div id="team">
 			<img src="{{ asset('img/us/'.$team.'.JPG') }}" class="about-img">
 		@if($team=="execute")
-			成員：
+			<a data-toggle="modal" data-target="#execute1"><img src="{{ asset('img/us/blank.png') }}" id="img-execute1"></a>
+			<a data-toggle="modal" data-target="#execute2"><img src="{{ asset('img/us/blank.png') }}" id="img-execute2"></a>
 		@elseif($team=="plan")
 			<a data-toggle="modal" data-target="#plan1"><img src="{{ asset('img/us/blank.png') }}" id="img-plan1"></a>
 			<a data-toggle="modal" data-target="#plan2"><img src="{{ asset('img/us/blank.png') }}" id="img-plan2"></a>
@@ -16,17 +17,51 @@
 			<a data-toggle="modal" data-target="#plan6"><img src="{{ asset('img/us/plan6.jpg') }}" class="img-circle" id="img-plan6"></a>
 			<a data-toggle="modal" data-target="#plan6" class="about-size" id="name-plan6">賴<br>子<br>安</a>
 		@elseif($team=="program")
-			
+			<a data-toggle="modal" data-target="#program1"><img src="{{ asset('img/us/blank.png') }}" id="img-program1"></a>
+			<a data-toggle="modal" data-target="#program2"><img src="{{ asset('img/us/blank.png') }}" id="img-program2"></a>
+			<a data-toggle="modal" data-target="#program3"><img src="{{ asset('img/us/blank.png') }}" id="img-program3"></a>
+			<a data-toggle="modal" data-target="#program4"><img src="{{ asset('img/us/blank.png') }}" id="img-program4"></a>
+			<a data-toggle="modal" data-target="#program5"><img src="{{ asset('img/us/blank.png') }}" id="img-program5"></a>
+			<a data-toggle="modal" data-target="#program6"><img src="{{ asset('img/us/blank.png') }}" id="img-program6"></a>
+			<a data-toggle="modal" data-target="#program7"><img src="{{ asset('img/us/blank.png') }}" id="img-program7"></a>
+			<a data-toggle="modal" data-target="#program8"><img src="{{ asset('img/us/blank.png') }}" id="img-program8"></a>
 		@elseif($team=="art")
-			
+			<a data-toggle="modal" data-target="#art1"><img src="{{ asset('img/us/blank.png') }}" id="img-art1"></a>
+			<a data-toggle="modal" data-target="#art2"><img src="{{ asset('img/us/blank.png') }}" id="img-art2"></a>
+			<a data-toggle="modal" data-target="#art3"><img src="{{ asset('img/us/blank.png') }}" id="img-art3"></a>
+			<a data-toggle="modal" data-target="#art4"><img src="{{ asset('img/us/blank.png') }}" id="img-art4"></a>
+			<a data-toggle="modal" data-target="#art5"><img src="{{ asset('img/us/blank.png') }}" id="img-art5"></a>
+			<a data-toggle="modal" data-target="#art6"><img src="{{ asset('img/us/blank.png') }}" id="img-art6"></a>
 		@else($team=="video")
-			
+			<a data-toggle="modal" data-target="#video1"><img src="{{ asset('img/us/blank.png') }}" id="img-video1"></a>
+			<a data-toggle="modal" data-target="#video2"><img src="{{ asset('img/us/blank.png') }}" id="img-video2"></a>
+			<a data-toggle="modal" data-target="#video3"><img src="{{ asset('img/us/blank.png') }}" id="img-video3"></a>
+			<a data-toggle="modal" data-target="#video4"><img src="{{ asset('img/us/blank.png') }}" id="img-video4"></a>
+			<a data-toggle="modal" data-target="#video5"><img src="{{ asset('img/us/blank.png') }}" id="img-video5"></a>
+			<a data-toggle="modal" data-target="#video6"><img src="{{ asset('img/us/blank.png') }}" id="img-video6"></a>
+			<a data-toggle="modal" data-target="#video7"><img src="{{ asset('img/us/blank.png') }}" id="img-video7"></a>
+			<a data-toggle="modal" data-target="#video8"><img src="{{ asset('img/us/blank.png') }}" id="img-video8"></a>
 		@endif
 		</div>
 		
 		<div class="caption about-size row">
 		@if($team=="execute")
-			
+			<style>
+				a#execute {
+					color: #6280a1;
+				}
+			</style>
+			@include('us.execute')
+			<div class="col-xs-12">
+				<div class="team-introduce center-block">
+					<p>
+					<br>
+					&emsp;&emsp;執行組負責統籌整個知訊網的相關事宜，與學校各單位、各系學會、社團、學生組織聯絡以及協調；招募知訊網工人、規劃進度、預算、指引整個網站的年度大方向，擔任各組之間溝通橋梁，協同身邊這群一起努力的夥伴，為新生製作最好的知訊網。<br>
+					(背景為美工組的各項作品，可惜未能放入其他頁面中)
+					</p>
+					<a href="." class="btn btn-default pull-right">Return</a>
+				</div>
+			</div>
 		@elseif($team=="plan")
 			<style>
 				a#plan {
@@ -60,9 +95,37 @@
 				</div>
 			</div>
 		@elseif($team=="art")
-			<h3>網頁美工組</h3>
+			<style>
+				a#art {
+					color: #6280a1;
+				}
+			</style>
+			@include('us.art')
+			<div class="col-xs-12">
+				<div class="team-introduce center-block">
+					<p>
+					<br>
+					&emsp;&emsp;美工組用他們的畫筆在枯燥乏味的網頁上增添了許多色彩，用心地繪製出網站的各個頁面、和許多精美的圖片，為新生繪出最有活力、最精美的知訊網。
+					</p>
+					<a href="." class="btn btn-default pull-right">Return</a>
+				</div>
+			</div>
 		@else($team=="video")
-			<h3>媒體影音組</h3>
+			<style>
+				a#video {
+					color: #6280a1;
+				}
+			</style>
+			@include('us.video')
+			<div class="col-xs-12">
+				<div class="team-introduce center-block">
+					<p>
+					<br>
+					&emsp;&emsp;影音組主要負責知訊網所有的影片製作，包括自己擔當導演拍攝影片、拍攝相片、編寫劇本、剪輯影片，為了就是要讓新生更能深刻體會到大學生活的樂趣。
+					</p>
+					<a href="." class="btn btn-default pull-right">Return</a>
+				</div>
+			</div>
 		@endif
 		</div>
 	</div>
