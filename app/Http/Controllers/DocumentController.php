@@ -15,6 +15,7 @@ class DocumentController extends Controller
             $mainUnders[$i] = Document::where('position_of_screen',1) // 1 代表大學部
                                       ->where('position_of_main',''.($i+1))
                                       ->get();
+            $numUnders[$i] = ceil(count($mainUnders[0])/2);
         }  
 
         // 先比對是否為研究所的資料、再分別對應到兩個主要類別
@@ -30,11 +31,14 @@ class DocumentController extends Controller
                                          ->where('position_of_main',''.($i+1))
                                          ->get();
         }
+
+        // return ceil(count($mainUnders[0])/2);
         
         // 回傳網頁位置與資料
         return view('documents.index',
             [
                 'mainUnders' => $mainUnders,
+                'numUnders' => $numUnders,
                 'mainGraduates' => $mainGraduates,
                 'mainMixs' => $mainMixs
             ]);
