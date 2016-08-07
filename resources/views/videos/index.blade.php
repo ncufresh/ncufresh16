@@ -18,6 +18,17 @@
             window.location.hash = hash;
         });
     });
+    var strUrl = location.search;
+if (strUrl.indexOf("?") !== -1) {
+    var getSearch = strUrl.split("?");
+    var getString = getSearch[1];
+    if(getString.indexOf("&") === -1){
+        var getAll = getString.split("=");
+        if(getAll[0]==="show"){
+            $("#myModal-"+getAll[1]).modal('show');
+        }
+    }
+}
 </script>
 @stop
 
@@ -25,7 +36,7 @@
 body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(145,214,234,.8) 100%); }
 main { background-image:url("{{asset('img/layout/summer.png')}}"); }
 
-#myModal1,#myModal5,#myModal,#myModal2,#myModal3,#myModal4,#myModal6{
+#myModal1,#myModal5,#myModal7,#myModal2,#myModal3,#myModal4,#myModal6{
     background-color: rgba(0, 0, 0, 0.9);
     overflow: scroll;
 }
@@ -597,7 +608,7 @@ height: 100vh ;
   <img src="{{ asset('img/videos/traffic.png') }}" class="live hidden-xs hidden-sm"style="width:10vw;" >
 <img src="{{ asset('img/videos/traffic.png') }}" class="live visible-sm visible-xs"style="width:17vw;" ></a>
 
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="myModal7" role="dialog">
     <div class="video ">
       <div class="numbertext">【中大生活-行】</div>
       <div class="movie">
