@@ -16,22 +16,85 @@ main {
 /* set column width depends on the number of data */
 .col-under-1,
 .col-under-2,
-.col-under-3 {
+.col-under-3,
+.col-graduate-1, 
+.col-graduate-2 {
     position: relative;
     float: left;
 }
 
-.col-under-1 {
-    width: calc(100% / {{ $numUnders[0] }} );
-}
+@for ($i = 0; $i < 3; $i++)
+    @if( $numUnders[$i] == 1)
 
-.col-under-2 {
-    width: calc(100% / {{ $numUnders[1] }});
-}
+    .col-under-{{ $i+1 }} {
+        margin-left: calc(100% / 3 );
+        width: calc(100% / 3 );
+        margin-right: calc(100% / 3 );
+    }
 
-.col-under-3 {
-    width: calc(100% / {{ $numUnders[2] }} );
-}
+    @elseif( $numUnders[$i] == 2)
+
+    .col-under-{{ $i+1 }}:first-child {
+        margin-left: calc(100% / 6 );
+        width: calc(100% / 3 );
+    }
+
+    .col-under-{{ $i+1 }}:last-child {
+        width: calc(100% / 3 );
+        margin-right: calc(100% / 6 );
+    }
+
+    @elseif( $numUnders[$i] == 3 )
+
+    .col-under-{{ $i+1 }} {
+        width: calc(100% / {{ $numUnders[$i] }} );
+    }
+
+    @else
+
+    .col-under-{{ $i+1 }} {
+        width: calc(100% / {{ ceil($numUnders[$i]/2) }} );
+    }
+
+    @endif
+@endfor
+
+@for ($i = 0; $i < 2; $i++)
+    @if( $numGraduates[$i] == 1 )
+    
+    .col-graduate-{{ $i+1 }} {
+        margin-left: calc(100% / 3 );
+        width: calc(100% / 3 );
+        margin-right: calc(100% / 3 );
+    }
+
+    @elseif( $numGraduates[$i] == 2 )
+
+    .col-graduate-{{ $i+1 }}:first-child {
+        margin-left: calc(100% / 6 );
+        width: calc(100% / 3 );
+    }
+
+    .col-graduate-{{ $i+1 }}:last-child {
+        width: calc(100% / 3 );
+        margin-right: calc(100% / 6 );
+    }
+
+    @elseif( $numGraduates[$i] == 3 )
+
+    .col-graduate-{{ $i+1 }} {
+        width: calc(100% / {{ $numGraduates[$i] }} );
+    }
+
+    @else
+
+    .col-graduate-{{ $i+1 }} {
+        width: calc(100% / {{ ceil($numGraduates[$i]/2) }} );
+    }
+
+    @endif
+@endfor
+
 </style>
 @stop
 
@@ -63,10 +126,10 @@ CKEDITOR.replace( 'new_mix', {
 </script>
 @endcan
 <script type="text/javascript">
-$(document).ready(function(){
+// $(document).ready(function(){
     // 更換 scrollbar 的樣式
-    $('.scrollbar-macosx').scrollbar();
-});
+    // $('.scrollbar-macosx').scrollbar();
+// });
 
 // 利用 get 開啟特定 modal
 var strUrl = location.search;
@@ -280,7 +343,7 @@ if (strUrl.indexOf("?") !== -1) {
                             <?php $subCount = 0; ?>
                             {{-- 產生研究所主要項目裡的細部項目 --}}
                             @foreach ($graduates as $g)
-                                <div class="col-xs-4 col-pagging-custom">
+                                <div class="col-graduate-{{ $mainCount }} col-pagging-custom">
                                     <div class="btn-wrapper">
                                         <a class="btn btn-custom" type="button" data-toggle="modal" data-target="#modal-{{ $g->id }}">
                                             <div class="btn-mouseenter">{{ $g->title }}</div>
