@@ -61,14 +61,22 @@
         height: 100vh;
     }
 
-
-    .tooltip-inner{
-        background: rgba(0,0,0,0);
-        box-shadow: none;
+    #preImg{
+        display: none;
+        max-width: 10vw;
+        position: fixed;
+        left:5vw;
+        top: 45vh;
+        z-index: 1;
     }
 
-    .tooltip-inner img {
-       max-width: 100%;
+    #nextImg{
+        display: none;
+        max-width: 10vw;
+        position: fixed;
+        right:5vw;
+        top: 45vh;
+        z-index: 1;
     }
     
 </style>
@@ -79,9 +87,18 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $(".container").fadeIn(1000);
-            $('a[data-toggle="tooltip"]').tooltip({
-                  html: true,
-                  animation: true,
+            
+            $("#left-tooltip").mouseenter(function(){
+                $("#preImg").fadeIn(500);
+            });
+            $("#right-tooltip").mouseenter(function(){
+                $("#nextImg").fadeIn(500);
+            });
+            $("#left-tooltip").mouseleave(function(){
+                $("#preImg").fadeOut(500);
+            });
+            $("#right-tooltip").mouseleave(function(){
+                $("#nextImg").fadeOut(500);
             });
         });
 
@@ -286,15 +303,20 @@
     </div>
 
     <!-- 向左 -->
-    <a class="left carousel-control shift tooltip" href="{{ url('/life/'.$topic.'/'.$arr_prev->id ) }}" data-slide="prev" data-toggle="tooltip" data-placement="right" title="<img src='{{ asset($arr_prev->image) }}' />">
+    <!-- <a class="left carousel-control shift tooltip" href="{{ url('/life/'.$topic.'/'.$arr_prev->id ) }}" data-slide="prev" data-toggle="tooltip" data-placement="right" title="<img src='{{ asset($arr_prev->image) }}' />">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+    </a> -->
+    <a class="left carousel-control shift" id="left-tooltip" href="{{ url('/life/'.$topic.'/'.$arr_prev->id ) }}" data-slide="prev">
         <i class="glyphicon glyphicon-chevron-left"></i>
     </a>
+    <img id="preImg" src="{{ asset($arr_prev->image) }}">
+    
     
     <!-- 向右 -->
-    <a class="right carousel-control shift" href="{{ url('/life/'.$topic.'/'.$arr_next->id ) }}" data-slide="next" data-toggle="tooltip" data-placement="left" title="<img src='{{ asset($arr_next->image) }}' />">
+    <a class="right carousel-control shift" id="right-tooltip" href="{{ url('/life/'.$topic.'/'.$arr_next->id ) }}" data-slide="next">
         <i class="glyphicon glyphicon-chevron-right"></i>
     </a>
-    
+    <img id="nextImg" src="{{ asset($arr_next->image) }}">
     <!-- 主題圖片預覽  -->
     <img id="holder" style="margin-top:15px;max-height:100px;">
 </div>
