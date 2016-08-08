@@ -1,0 +1,176 @@
+
+.container {
+	  display: none;
+}
+
+
+.menu a {
+		color: gray;
+		text-decoration: none;
+		letter-spacing:0.05em;
+		font-weight: bold;
+}
+
+.menu a:hover {
+	color: black;
+	text-decoration: none;
+	letter-spacing:0.05em;
+	font-weight: bold;
+}
+
+@media (min-width:992px){
+	
+	.video_url{
+		display: none;
+		position: fixed;
+		bottom: 2vw;
+	  	left: 30vw;
+	  	width: 7vw;
+	  	z-index: 2;
+	}
+
+	#lifeFrame{
+		position: absolute;
+		top:40%;
+		left:40%;
+	}
+	.dropdown:hover .dropdown-menu {
+	    display: block;
+	    margin-top: 0; /*// remove the gap so it doesn't close*/
+	 }
+	 
+	 .menu li{
+	 	 list-style: none;
+	 	 font-size: 1.5em;
+	 	
+	 }
+
+	 li img{
+	 	max-width: 80px;
+	 	height: auto;
+	 }
+
+	 .puzzle{
+		position: absolute;
+		width: 40%;
+		height: auto;
+	}
+
+
+	 #foodFrame{
+	  	top:20%;
+		left:5%;
+	  
+	 }
+
+	 #housingFrame{
+	 	top:0%;
+		left:40%;	
+	 }
+
+	  #transportationFrame{
+	 	top:70%;
+		left:60%;	
+	 }
+
+	 #educationFrame{
+	 	top:75%;
+		left:25%;	
+	 }
+
+	 #entertainmentFrame{
+	 	top:30%;
+		left:70%;	
+	 }
+
+	 .menu{
+	 	position:absolute;
+			top:5%;
+			bottom: 5%;
+			left:70%; 
+	 }
+
+	.puzzle:hover {
+	 	 -ms-transform: scale(1.2, 1.2); /* IE 9 */
+	    -webkit-transform: scale(2, 3); /* Safari */
+	    transform: scale(1.2, 1.2);
+	 }
+
+	
+
+}
+
+@media (max-width:991px){
+
+	.video_url{
+		display: none;
+		position: fixed;
+		bottom: 0;
+	  	right: 0;
+	  	width: 15vw;
+	  	z-index: 2;
+	}
+
+	#lifeFrame{
+		position: absolute;
+		top:40%;
+		left:40%;
+		opacity: 0.5;
+		filter: alpha(opacity=0); /* For IE8 and earlier */
+	}
+
+	.dropdown:hover .dropdown-menu {
+	    display: block;
+	    margin-top: 0; /*// remove the gap so it doesn't close*/
+	 }
+	 
+	 .menu li{
+	 	 list-style: none;
+	 	 font-size: 1.5em;
+	 	
+	 }
+
+	 li img{
+	 	max-width: 80px;
+	 	height: auto;
+	 }
+
+	 .puzzle{
+		position: absolute;
+		max-width: 20vh;
+		height: auto;
+	}
+
+	 #foodFrame{
+	  	top:0%;
+	 }
+
+
+	 #housingFrame{
+	 	top:20%;
+	
+	 }
+
+	  #transportationFrame{
+	 	top:40%;
+
+	 }
+
+	 #educationFrame{
+	 	top:60%;
+	 }
+
+	 #entertainmentFrame{
+	 	top:80%;
+	 }
+
+	 .menu{
+	 	position:absolute;
+			top:20%;
+			bottom: 5%;
+			left:10%; 
+	 }
+
+	
+	
+}

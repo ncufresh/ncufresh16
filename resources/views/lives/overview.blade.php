@@ -3,152 +3,27 @@
 @section('title', '中大生活')
 
 @section('css')
-<style>
+<link rel="stylesheet" href="{{ asset('css/overview.css') }}">
+<style type="text/css">
 	body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(251,198,204,.8) 100%); }
 	main { background-image:url("{{asset('img/layout/spring.png')}}"); }
-
-	.dropdown:hover .dropdown-menu {
-	    display: block;
-	    margin-top: 0; /*// remove the gap so it doesn't close*/
-	 }
-	 
-	 .menu li{
-	 	 list-style: none;
-	 	 font-size: 1.5em;
-	 	
-	 }
-
-	 li img{
-	 	max-width: 80px;
-	 	height: auto;
-	 }
-
-	 .puzzle{
-		position: absolute;
-		max-width: 60%;
-	}
-	 
-
 	#groundFrame{
-		min-height: 650px;	
-		position: relative;
-		background-image: url({{asset('img/life/sun.png')}});
-	 	background-repeat:no-repeat;
-	 	background-position: center center;
+			height: 100vh;	
+			position: relative;
+			background-image: url({{asset('img/life/sun.png')}});
+		 	background-repeat:no-repeat;
+		 	background-position: center center;
 	}
-
-	#lifeFrame{
-		position: absolute;
-		top:40%;
-		left:40%;
-	}
-
-	 #foodFrame{
-	  	top:20%;
-		left:5%;
-	  
-	 }
-
-	 #housingFrame{
-	 	top:0%;
-		left:40%;	
-	 }
-
-	  #transportationFrame{
-	 	top:70%;
-		left:60%;	
-	 }
-
-	 #educationFrame{
-	 	top:75%;
-		left:25%;	
-	 }
-
-	 #entertainmentFrame{
-	 	top:30%;
-		left:70%;	
-	 }
-
-	 .menu{
-	 	position:absolute;
-  		top:5%;
-  		bottom: 5%;
-  		left:70%; 
-	 }
-
-	.puzzle:hover {
-	 	 -ms-transform: scale(1.2, 1.2); /* IE 9 */
-	    -webkit-transform: scale(2, 3); /* Safari */
-	    transform: scale(1.2, 1.2);
-	 }
-
-	.container {
-	  display: none;
-	}
-</style>
 	
+	
+
+</style>
+
+
 @stop
 
 @section('js')
-<script type="text/javascript">
-	$(document).ready(function(){
-		$(".container").fadeIn(1000);
-	    $(".puzzle").click(function(event){
-	       	var form = document.getElementById("form_name");
-	        var clicks = $(this).data('clicks');
-			if (clicks) {
-			     
-		        $("#foodFrame").animate({
-		            top:'20%',
-		            left: '5%'
-		        });
- 				$("#housingFrame").animate({
-		            top:'0%',
-					left:'40%'
-		        });
-
-		        $("#transportationFrame").animate({       
-					top:'70%',
-					left:'60%'	
-		        });
-		        $("#educationFrame").animate({       
-					top:'75%',
-					left:'25%'
-		        });
-		         $("#entertainmentFrame").animate({       
-					top:'30%',
-					left:'70%'
-		        });        
-
-		        $(".puzzle").fadeIn(500);
-		        $("#lifeFrame").fadeIn(500);
-
-			} else {
-			     $(this).animate({
-	            	left: '40%',
-	            	top: '30%'
-
-		        });
-			 
-			    $(".puzzle").not(this).fadeOut(500);
-			    $("#lifeFrame").fadeOut(500);
-
-			  }
-			  $(this).data("clicks", !clicks);
-       
-	    });
-	    
-	});
-
-	$(".newTitle").keypress(function (event) {
-	    if (event.which === 13)
-	    {
-	        $(".submit-title").click();
-	    }
-	});
-
-</script>
-
+<script src="{{ asset('js/overview.js') }}"></script>
 
 @stop
 
@@ -357,7 +232,11 @@
 		</ul>
 
 	</div>
-	
-</div>
+	 	<a href="{{url('/videos?show=3')}}"><img class="video_url" id="food_video" src="{{ asset('img/life/food_v.png') }}"></a>
+	 	<a href="{{url('/videos?show=5')}}"><img class="video_url" id="housing_video" src="{{ asset('img/life/housing_v.png') }}"></a>
+	 	<a href="{{url('/videos?show=7')}}"><img class="video_url" id="transportation_video" src="{{ asset('img/life/transportation_v.png') }}"></a>
+	 	<a href="{{url('/videos?show=2')}}"><img class="video_url" id="education_video" src="{{ asset('img/life/education_v.png') }}"></a>
+	 	<a href="{{url('/videos?show=4')}}"><img class="video_url" id="entertainment_video" src="{{ asset('img/life/entertainment_v.png') }}"></a>
+	</div>
 
 @endsection

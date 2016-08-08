@@ -15,7 +15,7 @@ main {
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container" id="fix">
 	<div class="row">
 		<div class="col-xs-12">
 			<ul class="list-inline text-center about-size">

@@ -39,7 +39,7 @@
 <br><br><br><br>
 <div class="row">
     <div class="col-md-offset-5">
-      <a data-toggle="modal" data-target="#myModal"><img src="{{asset('img/personal/chat.png')}}" width="30%" ></a>
+      <a data-toggle="modal" data-target="#myModal"><img src="{{asset('img/personal/chat.png')}}" width="30%" style="cursor:pointer;" ></a>
       @can('management')
       <a class="btn btn-success btn-raised btn-lg" data-toggle="modal" data-target="#attention">GM公告</a>
      @endcan

@@ -8,7 +8,7 @@
     	$(".container").css('display','none').fadeIn(1000);
     });
 </script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
 	<script type="text/javascript">
 	    $('.selectpicker').selectpicker({
@@ -18,6 +18,7 @@
 	</script>
 @stop
 @section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
 <style type="text/css">
 .col-sm-3{
 	margin-top: 0.5rem; 

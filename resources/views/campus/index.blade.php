@@ -23,8 +23,9 @@
     main { background-image:url("{{asset('img/layout/spring.png')}}"); }
 
     .back{
+        
 
-        background-image: url("/img/campus/dontdel/index1.png");
+        background-image: url("/img/campus/dontdel/index.png");
         background-repeat:no-repeat;
         background-size:cover;
     }
@@ -140,9 +141,13 @@
 
         </div>
     </div>
+    <div class=''>
+        <h1>校園導覽</h1>
+    </div>
+    @can('management')
     <button type="button" class="btn btn-primary" onclick="location.href ='{{url('/campus/newData')}}'">編輯建築物</button>
-
-    <div class="back row jumbotron">
+    @endcan
+    <div class="back row jumbotron" >
         <a href="{{url('campus/guide')}}"><img class="tit imgg" src="\img\campus\dontdel\map.png" alt="map"></a>
         <a href="{{url('campus/help')}} "><img class="tit imgg" src="\img\campus\dontdel\fire.png" alt="map"></a>
     </div>
