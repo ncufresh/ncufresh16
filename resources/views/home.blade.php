@@ -165,6 +165,8 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
                     <li data-target="#carousel-single" data-slide-to="2" class=""></li>
                     <li data-target="#carousel-single" data-slide-to="3" class=""></li>
                     <li data-target="#carousel-single" data-slide-to="4" class=""></li>
+                    <li data-target="#carousel-single" data-slide-to="5" class=""></li>
+                    <li data-target="#carousel-single" data-slide-to="6" class=""></li>
                 </ol>
 
             		<!-- Wrapper for slides -->
@@ -181,8 +183,14 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
             				<figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/2016ncuchungyuzootopia'" style="background-image: url({{asset('img/home/ncucy.png')}});">
               					<figcaption class="carousel-caption">中友迎新</figcaption>
             				</figure>
-                    <figure class="item preload loaded" style="background-image: url({{asset('img/home/ncugg.JPG')}});">
+                    <figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/NCUGSA'" style="background-image: url({{asset('img/home/ncugg.jpg')}});">
               					<figcaption class="carousel-caption">新生初夜</figcaption>
+            				</figure>
+                    <figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/besidesmagazine'" style="background-image: url({{asset('img/home/ncubook.jpg')}});">
+              					<figcaption class="carousel-caption">除了雜誌</figcaption>
+            				</figure>
+                    <figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/pinewave'" style="background-image: url({{asset('img/home/pinewave.jpg')}});">
+              					<figcaption class="carousel-caption">松濤電台</figcaption>
             				</figure>
             		</div>
 
