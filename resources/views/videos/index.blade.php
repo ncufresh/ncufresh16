@@ -6,79 +6,73 @@
   <script >
     $(document).ready(function(){
      $("#background").fadeIn(1500);
+     var strUrl = location.search;
+if (strUrl.indexOf("?") !== -1) {
+    var getSearch = strUrl.split("?");
+    var getString = getSearch[1];
+    if(getString.indexOf("&") === -1){
+        var getAll = getString.split("=");
+        if(getAll[0]==="show"){
+            $("#myModal"+getAll[1]).modal('show');
+        }
+    }
+}
    });
-var slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("item");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1} 
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none"; 
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block"; 
-  dots[slideIndex-1].className += " active";
-}
+    $(".fa-hand-o-down").on('click', function(event) {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+         var hash = this.hash;
+        // Using jQuery's animate() method to add smooth page scroll
+        $('html, body').stop().animate({
+            scrollTop: $('#page2').offset().top - $("nav").height()
+        }, "slow", function() {
+            window.location.hash = hash;
+        });
+    });
 
 </script>
 @stop
 
 <style>
-body { background: linear-gradient(to bottom,rgba(145,214,234,.8) 20%,rgb(0, 102, 153) 100%); 
-}
-main { background-image:url("{{asset('img/layout/summer.png')}}");}
+body { background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 30%,rgba(145,214,234,.8) 100%); }
+main { background-image:url("{{asset('img/layout/summer.png')}}"); }
 
-#myModal1,#myModal5,#myModal,#myModal2,#myModal3,#myModal4{
+#myModal1,#myModal5,#myModal7,#myModal2,#myModal3,#myModal4,#myModal6{
     background-color: rgba(0, 0, 0, 0.9);
     overflow: scroll;
 }
 
 #live{
   position: absolute;
-    top:16%;
+    top:62%;
     left:27%;
     width:10vw;
 }
 #fun{
     position: absolute;
-    top:43%;
+    top:78%;
     left:9%;
 
 }
 #edu{
     position: absolute;
-    top:43%;
+    top:78%;
     left:46%;
 }
 #traffic{
     position: absolute;
-    top:42%;
+    top:77%;
     left:81%;
 }
 #eat{
     position: absolute;
-    top:16%;
+    top:62%;
     left:67%;
 }
 #background{
-  min-height: 100vh;
-
+  min-height: 50vh;
   position: relative;
-  overflow: auto;
+
   display: none;
 }
 .eat:hover 
@@ -112,24 +106,24 @@ transform:scale(1.5,1.5);
   margin-top: 100px;
 }
 
-.inner{
+.inner1,.inner2{
   margin-top: 700px;
   text-align:center;
 }
 
-#iframe{
+/*.movie{
   margin-top: 14.2%;
   margin-left: 35.5%;
   position: absolute;
   z-index: 200;
-}
+}*/
 .carousel-control{
     position: absolute;
     top: 50vh;
     width: 30vw;
 }
 /* Slideshow container */
-.slideshow-container {
+.slideshow-container,.slideshow-container1 {
   position: relative;
   margin: auto;
   z-index: 100;
@@ -183,7 +177,7 @@ transform:scale(1.5,1.5);
 }
 
 /* The dots/bullets/indicators */
-.dot {
+.dot,.dot1 {
   cursor:pointer;
   height: 13px;
   width: 13px;
@@ -216,18 +210,112 @@ transform:scale(1.5,1.5);
   from {opacity: 0.4} 
   to {opacity: 1}
 }
- .glyphicon.glyphicon-remove{
+ .close{
   float: right;
-  font-size: 30px;
+  font-size: 50px;
+}
+
+.movie {
+  top: 20.5%;
+  left: 28.2%;
+  max-width: 42.5%;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  z-index: 999;
+  position: absolute;
+}
+.movie1{
+  padding-top:10%;
+  left: 30%;
+  max-width: 29.5%;
+  max-height: 20px;
+ /*   display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;*/
+  z-index: 999;
+  position: absolute;
+}
+
+.index1,.index2{
+  font-family: cursive ;
+  font-weight: bold;
+  display: inline;
+  max-width: 600px;
+}
+.index1{
+  float: left;
+  margin-right: 150px;
+}
+.index2{
+  float: right;
+}
+.btn.btn-lg{
+  font-size: 55px;
+ 
+}
+.index{
+  font-size: 50px;
+  position: absolute;
+  top: 7%;
+}
+.indexsmall{
+  font-size: 20px;
+  position: absolute;
+  top: 7%;
+}
+
+.series1{
+  display: inline;
+  float: left;
+  margin-left: -5%;
+}
+.series2{
+  display: inline;
+  float: left;
+  margin-top: -12%;
+  margin-left: 95%;
+}
+.series1:hover{
+  transform:scale(1.5,1.5);
+}
+.series2:hover{
+  transform:scale(1.5,1.5);
+}
+.fa-hand-o-down{
+  font-size: 90px;
+top:40%;
+left:50%;
+position: absolute;
+
+}
+#page1{
+  height: 100vh;
+}
+#page2{
+/*  margin-top: 200%;
+*/
+height: 100vh ;
 }
 @media(max-width: 768px){
-  iframe{
-    width: 360px;
-    height: 250px;
-    margin-top:180px;
-    margin-left:-66px;
-    position: absolute;
-  }
+.movie {
+  top: 28.5%;
+  left: 35.2%;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  z-index: 999;
+  position: absolute;
+}
   .prev, .next {
   top: 30px;
   cursor: pointer;
@@ -243,22 +331,49 @@ transform:scale(1.5,1.5);
   border-radius: 0 3px 3px 0;
 
 }
- .glyphicon.glyphicon-remove{
+ .close{
   float: right;
-  font-size: 20px;
+  font-size: 30px;
 }
-.inner{
+.inner1,.inner2{
   margin-top: 700px;
 }
+.iframe{
+  margin-top: 200%;
+  left: 35.5%;
+  max-width: 29.5%;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  z-index: 999;
+  position: absolute;
+}
+.btn.btn-lg{
+  font-size: 30px;
+}
+.index2{
+  margin-right: 100px;
+}
+
 }
 @media(max-width:568px){
-  iframe{
-    width: 220px;
-    height: 180px;
-    margin-top:150px;
-    margin-left:-63px;
-    position: absolute;
-  }
+
+.movie {
+  top: 28.5%;
+  left: 35.2%;
+  max-width: 35%;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  z-index: 999;
+  position: absolute;
+}
     .prev, .next {
   top: 30px;
   cursor: pointer;
@@ -273,208 +388,257 @@ transform:scale(1.5,1.5);
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
 }
-.glyphicon.glyphicon-remove{
+.close{
   float: right;
-  font-size: 20px;
+  font-size: 30px;
 }
-.inner{
+.inner1,.inner2{
   margin-top: 500px;
+}
+.movie1{
+  top: 150px;
+  margin-left: 5%;
+  width: 20%;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  position: absolute;
+}
+.btn.btn-lg{
+  font-size: 15px;
 }
 }
 
 </style>
 <body >
    <div id="background">
+    <div id="page1">
     <div id="frog">
-      <img src="{{ asset('img/videos/frog.png') }}" style="position: absolute;top:85%;width: 10%;left: 2%;" class="hidden-xs hidden-sm">
-      <img src="{{ asset('img/videos/frog.png') }}" style="position: absolute;top:90%;width: 10%;left: 2%;" class="visible-sm visible-xs">
-      <img src="{{ asset('img/videos/TV.png') }}" style="position:absolute;top:80%;left:86%; width:10%;" class="hidden-xs hidden-sm">
-      <img src="{{ asset('img/videos/TV.png') }}" style="position:absolute;top:85%;left:86%; width:20%;" class="visible-sm visible-xs">
-        <div style="position:absolute;top:83%;left:13%;"> 
-          
-      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#myModal1" >
-  <img src="{{ asset('img/videos/title.png') }}" class="live hidden-xs hidden-sm"style="width:12vw;" >
-  <img src="{{ asset('img/videos/title.png') }}" class="live visible-sm visible-xs"style="width:47vw;" >
+      <img src="{{ asset('img/videos/frog.png') }}" style="position: absolute;top:40%;width: 10%;left: 2%;" class="hidden-xs hidden-sm">
+      <img src="{{ asset('img/videos/frog.png') }}" style="position: absolute;top:43%;width: 10%;left: 2%;" class="visible-sm visible-xs">
+      <img src="{{ asset('img/videos/TV.png') }}" style="position:absolute;top:40%;left:86%; width:10%;" class="hidden-xs hidden-sm">
+      <img src="{{ asset('img/videos/TV.png') }}" style="position:absolute;top:40%;left:80%; width:20%;" class="visible-sm visible-xs">
+      <a href='#page2'><i class="fa fa-hand-o-down" aria-hidden="true"></i></a>
+        <div style="position:absolute;top:20%;left:15%;"> 
+      <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal1" >
+      <img src="{{ asset('img/videos/series1.png')}}" style="width:26vw;" class="series1 hidden-xs hidden-sm">
+      <img src="{{ asset('img/videos/series1.png')}}" style="width:24vw;" class="series1 visible-sm visible-xs">
+</a>
+<img src="{{ asset('img/videos/ball.png') }}" style="position:absolute;top:-10%;left:60%; width:20%;">
+  <a href="{{ url('#') }}"  data-toggle="modal" data-target="#myModal6" >
+      <img src="{{ asset('img/videos/series2.png')}}" style="width:26vw;" class="series2 hidden-xs hidden-sm">
+      <img src="{{ asset('img/videos/series2.png')}}" style="width:30vw;" class="series2 visible-sm visible-xs">
     </a>
          <div class="modal fade " id="myModal1" role="dialog">
-      <div class="abc ">      
           <div class="video">
-  <span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="window.close();"></span>
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26%;left:34%;width:32%;height:42%;" class="screem hidden-sm hidden-xs">
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26.5%;left:25%;width:51%;height:30%;" class="visible-sm ">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:65.5%;width:8%;height:25%;" class="sound hidden-sm hidden-xs">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:26.5%;width:8%;height:25%;" class="sound hidden-sm hidden-xs">
-    
-<div class="slideshow-container">
-  <div class="item">
-    <div class="numbertext">1 / 8  series1</div>
-    <div id="iframe">
-<iframe  src="https://www.youtube.com/embed/Xf9QLgI2vH8" frameborder="0"width="560px"height="315px" allowfullscreen></iframe>
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+    <div class="index hidden-xs hidden-sm">
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#modal1">1 / 3 大學日常</a>
+      <br>
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#modal2">2 / 3 緣。相遇</a>
+      <br>
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#modal3">3 / 3 懶惰Laziness</a>
     </div>
-  </div>
+    <div class="indexsmall visible-sm visible-xs">
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#modal1">1 / 3 大學日常</a>
+      <br>
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#modal2">2 / 3 緣。相遇</a>
+      <br>
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#modal3">3 / 3 懶惰Laziness</a>
+    </div>
 
-  <div class="item">
-    <div class="numbertext">2 / 8  series1</div>
-    <div id="iframe">
- <iframe width="560" height="315" src="https://www.youtube.com/embed/n_PtvUXAYDw" frameborder="0" allowfullscreen></iframe>
+   <div class="modal fade" id="modal1" role="dialog">
+    <div class="video ">
+      <div class="movie">
+<iframe width="1000" height="400"  src="https://www.youtube.com/embed/Xf9QLgI2vH8" frameborder="5" allowfullscreen></iframe>
+</div>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:17%;left:27%;width:45%;height:54%;" class="screem hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:71.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:17.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">    
     </div>
-  </div>
+    </div>
+   <div class="modal fade" id="modal2" role="dialog">
+    <div class="video ">
+      <div class="movie">
+<iframe width="1000" height="400"  src="https://www.youtube.com/embed/n_PtvUXAYDw" frameborder="5" allowfullscreen></iframe>
+</div>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:17%;left:27%;width:45%;height:54%;" class="screem hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:71.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:17.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">    
+    </div>
+    </div>
+   <div class="modal fade" id="modal3" role="dialog">
+    <div class="video ">
+      <div class="movie">
+<iframe width="1000" height="400"  src="https://www.youtube.com/embed/0Jycxyp4t-E" frameborder="5" allowfullscreen></iframe>
+</div>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:17%;left:27%;width:45%;height:54%;" class="screem hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:71.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:17.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">    
+    </div>
+    </div>
+</div></div>
 
-  <div class="item">
-    <div class="numbertext">3 / 8  series1</div>
-    <div id="iframe">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/0Jycxyp4t-E" frameborder="0" allowfullscreen></iframe>
+         <div class="modal fade " id="myModal6" role="dialog">
+          <div class="video">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+    <div class="index hidden-xs hidden-sm">
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#modal4">1 / 4 四人行必有雷隊友</a>
+      <br>
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#modal5">2 / 4 如果回到過去</a>
+      <br>
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#modal6">3 / 4 分身</a>
+      <br>
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#modal7">4 / 4 作夢也可以</a>
     </div>
-  </div>
-    <div class="item">
-    <div class="numbertext">4 / 8  series2</div>
-    <div id="iframe">
+    <div class="indexsmall visible-sm visible-xs">
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#modal4">1 / 4 四人行必有雷隊友</a>
+      <br>
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#modal5">2 / 4 如果回到過去</a>
+      <br>
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#modal6">3 / 4 分身</a>
+      <br>
+      <a href="{{ url('#') }}"  data-toggle="modal" data-target="#modal7">4 / 4 作夢也可以</a>
+    </div>
 
+   <div class="modal fade" id="modal4" role="dialog">
+    <div class="video ">
+      <div class="movie">
+<iframe width="1000" height="400"  src="https://www.youtube.com/embed/agcqwrUG45w" frameborder="5" allowfullscreen></iframe>
+</div>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:17%;left:27%;width:45%;height:54%;" class="screem hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:71.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:17.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">    
     </div>
-  </div>
-    <div class="item">
-    <div class="numbertext">5 / 8  series2</div>
-    <div id="iframe">
-
     </div>
-  </div>
-      <div class="item">
-    <div class="numbertext">6 / 8  series2</div>
-    <div id="iframe">
-
+   <div class="modal fade" id="modal5" role="dialog">
+    <div class="video ">
+      <div class="movie">
+<iframe width="1000" height="400"  src="https://www.youtube.com/embed/fJEI-HHQBKw" frameborder="5" allowfullscreen></iframe>
+</div>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:17%;left:27%;width:45%;height:54%;" class="screem hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:71.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:17.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">    
     </div>
-  </div>
-      <div class="item">
-    <div class="numbertext">7 / 8  series2</div>
-    <div id="iframe">
-
     </div>
-  </div>
-      <div class="item">
-    <div class="numbertext">8 / 8  series2</div>
-    <div id="iframe">
-
+   <div class="modal fade" id="modal6" role="dialog">
+    <div class="video ">
+      <div class="movie">
+<iframe width="1000" height="400"  src="https://www.youtube.com/embed/ef1F895P93k" frameborder="5" allowfullscreen></iframe>
+</div>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:17%;left:27%;width:45%;height:54%;" class="screem hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:71.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:17.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">    
     </div>
-  </div>
- 
-<div class="indicators">
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+       <div class="modal fade" id="modal7" role="dialog">
+    <div class="video ">
+      <div class="movie">
+<iframe width="1000" height="400"  src="https://www.youtube.com/embed/fUkLE43oPlw" frameborder="5" allowfullscreen></iframe>
 </div>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:17%;left:27%;width:45%;height:54%;" class="screem hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:71.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:17.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">    
+    </div>
+    </div>
+</div></div>
 </div>
-</div>
-<br>
-<div style="text-align:center" class="inner">
-  <span class="dot" onclick="currentSlide(1)"></span> 
-  <span class="dot" onclick="currentSlide(2)"></span> 
-  <span class="dot" onclick="currentSlide(3)"></span> 
-  <span class="dot" onclick="currentSlide(4)"></span> 
-  <span class="dot" onclick="currentSlide(5)"></span> 
-  <span class="dot" onclick="currentSlide(6)"></span> 
-  <span class="dot" onclick="currentSlide(7)"></span> 
-  <span class="dot" onclick="currentSlide(8)"></span> 
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
+</div></div>
+<div id="page2">
   <div id="live">
   <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal5">
-  <img src="{{ asset('img/videos/live.png') }}" class="live hidden-xs hidden-sm"style="width:13vw;" >
-<img src="{{ asset('img/videos/live.png') }}" class="live visible-sm visible-xs"style="width:20vw;" ></a>
+  <img src="{{ asset('img/videos/live.png') }}" class="live hidden-xs hidden-sm"style="width:10vw;" >
+<img src="{{ asset('img/videos/live.png') }}" class="live visible-sm visible-xs"style="width:17vw;" ></a>
    <div class="modal fade" id="myModal5" role="dialog">
     <div class="video ">
-    <div id="iframe">
+      <div class="numbertext">【中大生活-住】</div>
+      <div class="movie">
 
-      </div>
-        <span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="window.close();"></span>
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26%;left:34%;width:32%;height:42%;" class="screem hidden-sm">
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26.5%;left:25%;width:51%;height:30%;" class="visible-sm">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:65.5%;width:8%;height:25%;" class="sound hidden-sm">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:26.5%;width:8%;height:25%;" class="sound hidden-sm">
+<iframe width="1000" height="400"  src="https://www.youtube.com/embed/pBPzGfc8cog" frameborder="5" allowfullscreen></iframe>
+</div>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:17%;left:27%;width:45%;height:54%;" class="screem hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:71.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:17.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">    
     </div>
     </div>
 </div>
 <div id="eat">
   <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal3">
-  <img src="{{ asset('img/videos/food.png') }}" class="live hidden-xs hidden-sm"style="width:13vw;" >
-<img src="{{ asset('img/videos/food.png') }}" class="live visible-sm visible-xs"style="width:20vw;" ></a>
+  <img src="{{ asset('img/videos/food.png') }}" class="live hidden-xs hidden-sm"style="width:10vw;" >
+<img src="{{ asset('img/videos/food.png') }}" class="live visible-sm visible-xs"style="width:17vw;" ></a>
     <div class="modal fade" id="myModal3" role="dialog">
     <div class="video ">
-        <div id="iframe">
-
-      </div>
-        <span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="window.close();"></span>
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26%;left:34%;width:32%;height:42%;" class="screem hidden-sm">
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26.5%;left:25%;width:51%;height:30%;" class="visible-sm">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:65.5%;width:8%;height:25%;" class="sound hidden-sm">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:26.5%;width:8%;height:25%;" class="sound hidden-sm">
+      <div class="numbertext">【中大生活-食】</div>
+      <div class="movie">
+      <iframe width="1000" height="400"  src="https://www.youtube.com/embed/bC9iHzxpl44" frameborder="5" allowfullscreen></iframe>
+    </div>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:17%;left:27%;width:45%;height:54%;" class="screem hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:71.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:17.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
     </div>
     </div>
   </div>
-</div>
 <div id="fun">
   <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal4">
-  <img src="{{ asset('img/videos/fun.png') }}" class="live hidden-xs hidden-sm"style="width:18vw;" >
-<img src="{{ asset('img/videos/fun.png') }}" class="live visible-sm visible-xs"style="width:25vw;" ></a>
-      <div class="modal fade
-      " id="myModal4" role="dialog">
+  <img src="{{ asset('img/videos/fun.png') }}" class="live hidden-xs hidden-sm"style="width:15vw;" >
+<img src="{{ asset('img/videos/fun.png') }}" class="live visible-sm visible-xs"style="width:22vw;" ></a>
+      <div class="modal fade" id="myModal4" role="dialog">
 
     <div class="video ">
-        <div id="iframe">
- 
-      </div>
-        <span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="window.close();"></span>
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26%;left:34%;width:32%;height:42%;" class="screem hidden-sm">
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26.5%;left:25%;width:51%;height:30%;" class="visible-sm">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:65.5%;width:8%;height:25%;" class="sound hidden-sm">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:26.5%;width:8%;height:25%;" class="sound hidden-sm">
+      <div class="numbertext">【中大生活-樂】</div>
+      <div class="movie">
+      <iframe width="1000" height="400" src="https://www.youtube.com/embed/GotOESEaFXc" frameborder="5" allowfullscreen></iframe>
+    </div>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:17%;left:27%;width:45%;height:54%;" class="screem hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:71.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:17.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
     </div>
     </div>
   </div>
 <div id="edu">
   <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal2">
-  <img src="{{ asset('img/videos/edu.png') }}" class="live hidden-xs hidden-sm"style="width:13vw;" >
-<img src="{{ asset('img/videos/edu.png') }}" class="live visible-sm visible-xs"style="width:20vw;" ></a>
+  <img src="{{ asset('img/videos/edu.png') }}" class="live hidden-xs hidden-sm"style="width:10vw;" >
+<img src="{{ asset('img/videos/edu.png') }}" class="live visible-sm visible-xs"style="width:17vw;" ></a>
     <div class="modal fade" id="myModal2" role="dialog">
 
     <div class="video ">
-        <div id="iframe">
- 
-      </div>
-        <span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="window.close();"></span>
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26%;left:34%;width:32%;height:42%;" class="screem hidden-sm">
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26.5%;left:25%;width:51%;height:30%;" class="visible-sm">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:65.5%;width:8%;height:25%;" class="sound hidden-sm">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:26.5%;width:8%;height:25%;" class="sound hidden-sm">
+      <div class="numbertext">【中大生活-育】</div>
+      <div class="movie">
+      <iframe width="1000" height="400" src="https://www.youtube.com/embed/GDeJi1N3u1M" frameborder="5" allowfullscreen></iframe>
+    </div>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:17%;left:27%;width:45%;height:54%;" class="screem hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:71.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:17.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
     </div>
   </div></div>
   <div id="traffic">
-  <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal">
-  <img src="{{ asset('img/videos/traffic.png') }}" class="live hidden-xs hidden-sm"style="width:13vw;" >
-<img src="{{ asset('img/videos/traffic.png') }}" class="live visible-sm visible-xs"style="width:20vw;" ></a>
+  <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal7">
+  <img src="{{ asset('img/videos/traffic.png') }}" class="live hidden-xs hidden-sm"style="width:10vw;" >
+<img src="{{ asset('img/videos/traffic.png') }}" class="live visible-sm visible-xs"style="width:17vw;" ></a>
 
-  <div class="modal fade 
-  " id="myModal" role="dialog">
+  <div class="modal fade" id="myModal7" role="dialog">
     <div class="video ">
-        <div id="iframe">
- 
-      </div>
-        <span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="window.close();"></span>
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26%;left:34%;width:32%;height:42%;" class="screem hidden-sm">
-      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:26.5%;left:25%;width:51%;height:30%;" class="visible-sm">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:65.5%;width:8%;height:25%;" class="sound hidden-sm">
-      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:44%;left:26.5%;width:8%;height:25%;" class="sound hidden-sm">
+      <div class="numbertext">【中大生活-行】</div>
+      <div class="movie">
+      <iframe width="1000" height="400"  src="https://www.youtube.com/embed/ltp8phbcSlc" frameborder="5" allowfullscreen></iframe>
+    </div>
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <img src="{{ asset('img/videos/screem.png')}}"style="position:absolute;top:17%;left:27%;width:45%;height:54%;" class="screem hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:71.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
+      <img src="{{ asset('img/videos/sound.png')}}"style="position:absolute;top:46%;left:17.5%;width:10%;height:25%;" class="sound hidden-sm hidden-xs">
     </div>
     </div>
   </div>
   </div>
-<!--  <div class="add">
-  <a href="{{ url('/videos/create') }}">
-  <input type="button" value="新增" style="position:absolute;width:120px;height:100px;border:2px blue none;"></a>
-</div>  -->
-
+</div></div>
 </body>
+
 
 @endsection
