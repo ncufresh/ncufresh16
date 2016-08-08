@@ -15,6 +15,7 @@ class DocumentController extends Controller
             $mainUnders[$i] = Document::where('position_of_screen',1) // 1 代表大學部
                                       ->where('position_of_main',''.($i+1))
                                       ->get();
+            $numUnders[$i] = count($mainUnders[$i]);
         }  
 
         // 先比對是否為研究所的資料、再分別對應到兩個主要類別
@@ -22,6 +23,7 @@ class DocumentController extends Controller
             $mainGraduates[$i] = Document::where('position_of_screen',2) // 2 代表研究所
                                          ->where('position_of_main',''.($i+1))
                                          ->get();
+            $numGraduates[$i] = count($mainGraduates[$i]);
         }
 
         // 先比對是否為共同的資料、再分別對應到三個主要類別
@@ -35,7 +37,9 @@ class DocumentController extends Controller
         return view('documents.index',
             [
                 'mainUnders' => $mainUnders,
+                'numUnders' => $numUnders,
                 'mainGraduates' => $mainGraduates,
+                'numGraduates' => $numGraduates,
                 'mainMixs' => $mainMixs
             ]);
     }

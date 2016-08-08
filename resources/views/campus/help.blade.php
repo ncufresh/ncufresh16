@@ -67,7 +67,7 @@
         width: auto;
     }
     .cateBtn{
-        width: 11%;
+        width: 15%;
     }
     .btnEff{
         -webkit-transform:scale(1.1); /* Safari and Chrome */
@@ -76,13 +76,7 @@
         -o-transform:scale(1.1); /* Opera */
         transform:scale(1.1);
     }
-    .buildEff{
-        -webkit-transform:scale(1.1); /* Safari and Chrome */
-        -moz-transform:scale(1.1); /* Firefox */
-        -ms-transform:scale(1.1); /* IE 9 */
-        -o-transform:scale(1.1); /* Opera */
-        transform:scale(1.1);
-    }
+   
     .faa{
         position: absolute;
         left: 10%;
@@ -186,16 +180,16 @@
     <div class=''>
         <h1>校園防災</h1>
     </div>
-    <div class="jumbotron back row" style="background-color: #c29b77;">
+    <div class="jumbotron back row" style="background-color: rgba(0,0,0,0); border: 0;box-shadow: none;">
 
-        <img class="cateBtn SOS" src="/img/campus/dontdel/1.png" alt="SOS" value="0">
-        <img class="cateBtn AED" src="/img/campus/dontdel/2.png" alt="AED" value="0">
+        <img class="cateBtn SOS" src="/img/campus/dontdel/SOS.png" alt="SOS" value="0">
+        <img class="cateBtn AED" src="/img/campus/dontdel/AED.png" alt="AED" value="0">
        
 
         <br>
 
         <div class="col-md-12 map">
-            <img src='/img/campus/dontdel/background4.png' width='100%'>
+            <img src='/img/campus/dontdel/back.png' width='100%'>
             @foreach($mapDatas as $mapData)
             <span data-toggle='modal' data-target="#modal{{$mapData->id}}">
                 <img src="/img/campus/{{$mapData->objImg}}" class=" mapobj SOS{{$mapData->SOS}} AED{{$mapData->AED}}" id='build{{$mapData->id}}' alt="no found" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"
@@ -203,6 +197,7 @@
 
             </span>
             @endforeach
+            
             <?php
             if (count($mapDatas) > 0) {
                 ?>
@@ -211,6 +206,25 @@
             }
             ?>
             <img class="faa" src='/img/campus/dontdel/left.png' width='' style="display:none">
+            
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:32%;top:30%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:19%;top:39%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:23%;top:44.5%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:31%;top:53.8%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:27%;top:74%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:40.5%;top:25%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:55%;top:27%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:83%;top:63%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:68%;top:79%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+            <img src="/img/campus/dontdel/SOS1.png" class=" mapobj SOS1 AED0"alt="no found" style="left:37%;top:41%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="SOS">
+
+            
+            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:36%;top:45%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
+            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:54%;top:25%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
+            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:64.5%;top:47%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
+            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:76%;top:48%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
+            <img src="/img/campus/dontdel/AED1.png" class=" mapobj AED1 SOS0"alt="no found" style="left:74%;top:75%;width:1.8%;" data-toggle='tooltip' data-placement='top' title="AED">
+
            
         </div>
     </div>
@@ -229,14 +243,14 @@
         
         
         $('body').on('click', '.SOS', function () {     
-            $('.SOS1').addClass('buildEff').css('display','block').tooltip('show');          
+            $('.SOS1').addClass('buildEff').fadeIn(500).tooltip('show');          
             $('.SOS0').css('display','none').tooltip('hide');
             $('.SOS').addClass('btnEff');
             $('.AED').removeClass('btnEff');
             $('.faa').css('display','block');
         });
          $('body').on('click', '.AED', function () {     
-            $('.AED1').addClass('buildEff').css('display','block').tooltip('show');            
+            $('.AED1').addClass('buildEff').fadeIn(500).tooltip('show');            
             $('.AED0').css('display','none').tooltip('hide');
             $('.AED').addClass('btnEff');
             $('.SOS').removeClass('btnEff');
@@ -257,18 +271,12 @@
                 $(".SOS1").tooltip('show');
             
         });
-         $('body').on('mouseout', '.SOS', function () {                       
-                $(".SOS1").tooltip('hide');
-            
-        });
+        
         $('body').on('mouseover', '.AED', function () {                       
                 $(".AED1").tooltip('show');
             
         });
-        $('body').on('mouseout', '.AED', function () {                       
-                $(".AED1").tooltip('hide');
-            
-        });
+        
        
 
 

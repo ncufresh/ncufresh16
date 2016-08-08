@@ -12,6 +12,7 @@
         max-height: 5000px;
         max-width: 1000px;
         padding: 15px;
+        text-align: left;
     }
     .btn{
         width: 80px;
@@ -78,13 +79,7 @@
         -o-transform:scale(1.2); /* Opera */
         transform:scale(1.2);
     }
-    .buildEff{
-        -webkit-transform:scale(1.2); /* Safari and Chrome */
-        -moz-transform:scale(1.2); /* Firefox */
-        -ms-transform:scale(1.2); /* IE 9 */
-        -o-transform:scale(1.2); /* Opera */
-        transform:scale(1.2);
-    }
+
     .faa{
         position: absolute;
         left: 10%;
@@ -187,13 +182,14 @@
     </div>
     <div class=''>
         <h1>校園介紹</h1>
+        @can('management')
         <button type="button" class="btn btn-primary" onclick="location.href ='{{url('/campus/newObj')}}'">編輯地圖物件</button>
-
+        @endcan
 
 
 
     </div>
-    <div class="jumbotron back row" style="background-color: #c29b77;">
+    <div class="jumbotron back row" style="background-color: rgba(0,0,0,0); border: 0;box-shadow: none;">
 
         <img class="cateBtn" src="/img/campus/dontdel/1.png" alt="行政" id="1" value="0">
         <img class="cateBtn" src="/img/campus/dontdel/2.png" alt="系館" id="2" value="0">
@@ -205,10 +201,11 @@
         <br>
 
         <div class="col-md-12 map" >
-            <img src='/img/campus/dontdel/background4.png' width='100%'>
+            <img src='/img/campus/dontdel/back.png' width='100%' id="wbg">
+            <img src='/img/campus/dontdel/food.png' width='100%' id="fbg" style="display:none">
             @foreach($mapDatas as $mapData)
             <span data-toggle='modal' data-target="#modal{{$mapData->id}}">
-                <img src="/img/campus/{{$mapData->objImg}}" class="cate{{$mapData->building_id}} mapobj" id='build{{$mapData->id}}' bid='{{$mapData->id}}' alt="no found" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"
+                <img src="/img/campus/{{$mapData->objImg}}" class="cate{{$mapData->building_id}} mapobj" id='build{{$mapData->id}}' bid='{{$mapData->id}}' alt="{{$mapData->buildingName}}" style="left: {{$mapData->Xcoordinate}}%;top: {{$mapData->Ycoordinate}}%;width: {{$mapData->objWidth}}%;"
                      data-toggle='tooltip' data-placement='top' title="{{$mapData->buildingName}}">
                 
 
@@ -278,25 +275,29 @@
     $(document).on('ready', function () {
         $(".container").fadeIn(3000);
         $('body').on('click', '.objImg-sam', function () {
-            var imgId = $(this).attr('id');
             var imgSrc = $(this).attr('src');
             $('#bigImg').attr('src', imgSrc);
+            
         });
         $('body').on('click', '.cloMod', function () {
             var imgId = $(this).val();
             $('#bigImg' + imgId).attr('src', "/img/campus/dontdel/click.png");
+            
         });
         $('body').on('click', '.cateBtn', function () {
             var id = $(this).attr('id');
-            $(this).attr('value', 1);
             $('#' + selectBtn).attr('value', 0);
+            $(this).attr('value', 1);
+            
             btnChange();
             hide(id);
             selectBtn = id;
+             chkFood();
         });
         $('body').on('click', '.faa', function () {
             back();
             $(this).css('display', 'none');
+             chkFood();
         });
         //取得建築物資料 主頁        
         $('body').on('click', '.mapobj', function () {
@@ -335,6 +336,7 @@
                 }
 
             });
+             
 
         });                     
         $('body').on('mouseover', '.mapobj', function () {        
@@ -383,6 +385,15 @@
         $('.mapobj').css('display', 'block').removeClass('buildEff').tooltip('hide');
         $('.cateBtn').attr('value', 0).removeClass("btnEff");
         
+    }
+    function chkFood(){
+        if($("#5").attr("value")==1){
+            $("#wbg").css("display","none");
+            $("#fbg").css("display","block");
+        }else{
+            $("#wbg").css("display","block");
+            $("#fbg").css("display","none");
+        }
     }
 </script>
 @stop

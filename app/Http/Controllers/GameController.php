@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use DB;
 use Auth;
+use Session;
 
 use Agent;
 
@@ -55,11 +56,23 @@ class GameController extends Controller
     public function post_score(Request $request){
     	$encrypter = app('Illuminate\Encryption\Encrypter');
         $encrypted_token = $encrypter->encrypt(csrf_token());
-        $scores = Record_score::create([
-            'name'=>$request->name,
-            'score'=>$request->score
-            ]);
-        return response()->json($scores);
+
+
+        $now=time();
+        $score=($now-Session::get('startTime'));//
+
+        if(abs($score-$request->score)>100){
+            echo "do not do anything illegal!";    
+        }
+        else{
+
+            $scores = Record_score::create([
+                'name'=>$request->name,
+                'score'=>$score
+                ]);
+            return response()->json($scores);
+        }
+        
     }
     public function getScores(){//取得分數
         $scores=Record_score::all();
@@ -109,5 +122,17 @@ class GameController extends Controller
         $question = Question_collection::destroy($question_id);
         return response()->json($question);
     }   
+
+    public function get_gameStart_time(Request $request){
+        $encrypter = app('Illuminate\Encryption\Encrypter');
+        $encrypted_token = $encrypter->encrypt(csrf_token());
+        $gameStart_time=time();
+
+        //把遊戲開始的時間放入session
+        Session::put('startTime',$gameStart_time);
+
+        return response()->json($gameStart_time);
+
+    }
 
 }

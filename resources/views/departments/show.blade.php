@@ -17,6 +17,7 @@
 	</script>
 @stop
 @section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
 <style type="text/css">
 body{
 	background-image: url({{asset('img/group/BG1.jpg')}});
