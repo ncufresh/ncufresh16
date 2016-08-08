@@ -11,11 +11,24 @@
        border: 3px solid black;
     }
 
-    #contentModal{
-      background-color: #e1f5fe;
-      margin-top: 10%;
-
+    /*針對手機板與電腦版的文字框大小設定*/
+    @media (min-width:992px){
+        #contentModal{
+          background-color: #e1f5fe;
+          margin-top: 10%;
+        }
     }
+    @media (max-width:991px){
+        #contentModal{
+          background-color: #e1f5fe;
+          margin-top: 10%;
+          max-width: 90vw;
+          left:5vw;
+        }
+        
+    }
+    /*/////////////////////////////*/
+
     #background{
       position: relative;
       width: 100%;
@@ -59,6 +72,7 @@
     .shift{
         width: 5vw;
         height: 100vh;
+        position: fixed;
     }
 
     #preImg{
