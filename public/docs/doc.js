@@ -2,6 +2,12 @@ $(document).ready(function() {
     // remove inline style of table, th, tr, td
     $("div.modal-body").find("table, th, tr, td").removeAttr("style");
 
+    // set padding of table data
+    $("td").css("padding", "1%");
+
+    // 讓 modol 內的所有超連結開啟新畫面
+    $("div.modal-body").find("a").attr("target", "_blank");
+
     // 讓圖片自適應大小
     $("div.modal-body").find("img").addClass("img-responsive").removeAttr("style");
 
