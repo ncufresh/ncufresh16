@@ -1,3 +1,12 @@
+/* bold */
+
+.modal-content {
+    font-weight: 700;
+}
+
+
+/* vertival align */
+
 .vertical-middle {
     min-height: 100vh;
     display: -webkit-flex;
