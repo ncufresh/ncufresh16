@@ -72,7 +72,7 @@ main { background-image:url("{{asset('img/layout/summer.png')}}"); }
 #background{
   min-height: 50vh;
   position: relative;
-
+  overflow: auto;
   display: none;
 }
 .eat:hover 
@@ -129,22 +129,6 @@ transform:scale(1.5,1.5);
   z-index: 100;
 }
 
-/* Next & previous buttons */
-.prev, .next {
-  top: 30px;
-  cursor: pointer;
-  position:absolute;
-  width: auto;
-  margin-top: 12%;
-  margin-left: -12px;
-  padding: 90px;
-  color: white;
-  font-weight: bold;
-  font-size: 50px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-}
-
 /* Position the "next button" to the right */
 .next {
   right: 0;
@@ -152,10 +136,6 @@ transform:scale(1.5,1.5);
 }
 
 /* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
 /* Caption text */
 .text {
   color: #f2f2f2;
@@ -177,21 +157,6 @@ transform:scale(1.5,1.5);
 }
 
 /* The dots/bullets/indicators */
-.dot,.dot1 {
-  cursor:pointer;
-  height: 13px;
-  width: 13px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
-}
-
 /* Fading animation */
 .fade {
   -webkit-animation-name: fade;
@@ -270,17 +235,13 @@ transform:scale(1.5,1.5);
   position: absolute;
   top: 7%;
 }
-
 .series1{
-  display: inline;
-  float: left;
-  margin-left: -5%;
+  margin-left: 10%;
+  margin-top: 20%;
 }
 .series2{
-  display: inline;
-  float: left;
-  margin-top: -12%;
-  margin-left: 95%;
+  margin-left: 25%;
+  margin-top: 20%;
 }
 .series1:hover{
   transform:scale(1.5,1.5);
@@ -422,14 +383,15 @@ height: 100vh ;
       <img src="{{ asset('img/videos/TV.png') }}" style="position:absolute;top:40%;left:86%; width:10%;" class="hidden-xs hidden-sm">
       <img src="{{ asset('img/videos/TV.png') }}" style="position:absolute;top:40%;left:80%; width:20%;" class="visible-sm visible-xs">
       <a href='#page2'><i class="fa fa-hand-o-down" aria-hidden="true"></i></a>
-        <div style="position:absolute;top:20%;left:15%;"> 
+<img src="{{ asset('img/videos/ball.png') }}" style="position:absolute;top:18%;left:47%; width:10%;">      
+        <div style="top:20%;left:10%;"> 
       <a href="{{ url('#') }}" data-toggle="modal" data-target="#myModal1" >
-      <img src="{{ asset('img/videos/series1.png')}}" style="width:26vw;" class="series1 hidden-xs hidden-sm">
+      <img src="{{ asset('img/videos/series1.png')}}" style="width:30%;" class="series1 hidden-xs hidden-sm">
       <img src="{{ asset('img/videos/series1.png')}}" style="width:24vw;" class="series1 visible-sm visible-xs">
 </a>
-<img src="{{ asset('img/videos/ball.png') }}" style="position:absolute;top:-10%;left:60%; width:20%;">
+
   <a href="{{ url('#') }}"  data-toggle="modal" data-target="#myModal6" >
-      <img src="{{ asset('img/videos/series2.png')}}" style="width:26vw;" class="series2 hidden-xs hidden-sm">
+      <img src="{{ asset('img/videos/series2.png')}}" style="width:30%;" class="series2 hidden-xs hidden-sm">
       <img src="{{ asset('img/videos/series2.png')}}" style="width:30vw;" class="series2 visible-sm visible-xs">
     </a>
          <div class="modal fade " id="myModal1" role="dialog">
