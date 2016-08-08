@@ -13,6 +13,7 @@
                     <li><a href="http://lms.ncu.edu.tw/">LMS系統</a></li>
                     <li><a href="https://portal.ncu.edu.tw/login">Portal入口</a></li>
                     <li><a href="https://www.facebook.com/groups/NCUgroup/">新生FB社團</a></li>
+		    <li><a href="https://www.facebook.com/ncustudent">中大學生會</a></li>
                 </ul>
             </div>
             <div class="col-xs-8">
