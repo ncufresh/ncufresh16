@@ -178,7 +178,7 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
             				<figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/IEEE-NCU-Student-Branch-1045673762117443/?fref=ts'" style="background-image: url({{asset('img/home/ieee.jpg')}});">
               					<figcaption class="carousel-caption">IEEE</figcaption>
             				</figure>
-            				<figure class="item preload loaded" style="background-image: url({{asset('img/home/ncucy.png')}});">
+            				<figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/2016ncuchungyuzootopia'" style="background-image: url({{asset('img/home/ncucy.png')}});">
               					<figcaption class="carousel-caption">中友迎新</figcaption>
             				</figure>
                     <figure class="item preload loaded" style="background-image: url({{asset('img/home/ncugg.JPG')}});">
