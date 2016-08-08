@@ -289,23 +289,10 @@ CKEDITOR.replace( 'new_mix', {
 </script>
 @endcan
 <script type="text/javascript">
+// 更換 scrollbar 的樣式
 $(document).ready(function(){
-    // 更換 scrollbar 的樣式
     $('.scrollbar-macosx').scrollbar();
 });
-
-// 利用 get 開啟特定 modal
-var strUrl = location.search;
-if (strUrl.indexOf("?") !== -1) {
-    var getSearch = strUrl.split("?");
-    var getString = getSearch[1];
-    if(getString.indexOf("&") === -1){
-        var getAll = getString.split("=");
-        if(getAll[0]==="show"){
-            $("#modal-"+getAll[1]).modal('show');
-        }
-    }
-}
 </script>
 @stop
 
@@ -557,7 +544,6 @@ if (strUrl.indexOf("?") !== -1) {
                                 <form action="{{ url('/doc/graduate') }}" method="POST">
                                     {{ csrf_field() }}
                                     <div class="modal-content">
-                                    
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             <h1 class="modal-title">研究所 - 新增內容</h1>
