@@ -385,6 +385,8 @@ for(var i=0 ; i<5 ; i++){
 }
 
 
+
+
 var runSpeed=5;//跑速
 var runSpeedUp=false;//是否開始加速(gameState===4才開始加速)
 
