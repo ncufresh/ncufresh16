@@ -64,7 +64,7 @@ class GameController extends Controller
         $now=time();
         $score=($now-Session::get('startTime'));//
 
-        if(abs($score-$request->score)>10){
+        if(abs($score-$request->score)>3){
             echo "do not do anything illegal!";    
         }
         else{
