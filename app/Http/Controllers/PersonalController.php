@@ -11,6 +11,10 @@ use Image;
 
 class PersonalController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
      public function index($id)
     {   
         $user = User::where('id',$id)->first();

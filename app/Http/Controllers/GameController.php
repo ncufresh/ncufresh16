@@ -18,7 +18,10 @@ use Agent;
 
 class GameController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function test_mobile(){
         $personal_scores=Record_score::all();
         $total_scores=Record_score::all();
