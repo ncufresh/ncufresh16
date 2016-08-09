@@ -55,11 +55,13 @@ main {
 
     @media (max-width: 768px) {
         .col-under-{{ $i+1 }}:first-child {
+            margin-left: 0;
             width: calc(100% / 2 );
         }
 
         .col-under-{{ $i+1 }}:last-child {
             width: calc(100% / 2 );
+            margin-right: 0;
         }
     }
 
@@ -168,11 +170,13 @@ main {
 
     @media (max-width: 768px) {
         .col-graduate-{{ $i+1 }}:first-child {
+            margin-left: 0;
             width: calc(100% / 2 );
         }
 
         .col-graduate-{{ $i+1 }}:last-child {
             width: calc(100% / 2 );
+            margin-right: 0;
         }
     }
 
