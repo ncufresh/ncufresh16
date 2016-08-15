@@ -187,7 +187,7 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
                     <figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/NCUGSA'" style="background-image: url({{asset('img/home/ncugg.jpg')}});">
               					<figcaption class="carousel-caption">新生初夜</figcaption>
             				</figure>
-                    <figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/besidesmagazine'" style="background-image: url({{asset('img/home/ncubook.jpg')}});">
+                    <figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/besidesmagazine'" style="background-image: url({{asset('img/home/ncubook.png')}});">
               					<figcaption class="carousel-caption">除了雜誌</figcaption>
             				</figure>
                     <figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/pinewave'" style="background-image: url({{asset('img/home/pinewave.jpg')}});">
