@@ -167,6 +167,7 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
                     <li data-target="#carousel-single" data-slide-to="4" class=""></li>
                     <li data-target="#carousel-single" data-slide-to="5" class=""></li>
                     <li data-target="#carousel-single" data-slide-to="6" class=""></li>
+                    <li data-target="#carousel-single" data-slide-to="7" class=""></li>
                 </ol>
 
             		<!-- Wrapper for slides -->
@@ -192,6 +193,9 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
                     <figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/pinewave'" style="background-image: url({{asset('img/home/pinewave.jpg')}});">
               					<figcaption class="carousel-caption">松濤電台</figcaption>
             				</figure>
+                    <figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/ncuhiphop'" style="background-image: url({{asset('img/home/ncuhiphop.jpg')}});">
+						            <figcaption class="carousel-caption">中央嘻研</figcaption>
+					          </figure>
             		</div>
 
             		<!-- Controls -->
