@@ -25,7 +25,7 @@ class GameController extends Controller
     public function test_mobile(){
         $personal_scores=Record_score::all();
         $total_scores=Record_score::all();
-        $username=Auth::user()->name;
+        $username=Auth::user()->real_name;
         $personal_scores = DB::table('record_scores')->where('name', $username)->orderBy('score','DESC')->get();//拿到名字為admin的分數(原始個人分數)
         ////////////////bug
         $total_scores=DB::table('record_scores')->orderBy('score','DESC')->get();//拿到原始全部的分數
@@ -36,7 +36,7 @@ class GameController extends Controller
     public function index(){
          $personal_scores=Record_score::all();
          $total_scores=Record_score::all();
-         $username=Auth::user()->name;
+         $username=Auth::user()->real_name;
          $personal_scores = DB::table('record_scores')->where('name', $username)->orderBy('score','DESC')->get();//拿到名字為admin的分數(原始個人分數)
          ////////////////bug
          $total_scores=DB::table('record_scores')->orderBy('score','DESC')->get();//拿到原始全部的分數
