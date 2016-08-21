@@ -59,21 +59,29 @@ class GameController extends Controller
     public function post_score(Request $request){
     	$encrypter = app('Illuminate\Encryption\Encrypter');
         $encrypted_token = $encrypter->encrypt(csrf_token());
+        if($request->name!= Auth::user()->real_name ){//強迫一定要用真名，如此一來也好追蹤是誰開掛
+            echo "do not do anything illegal!";
+        }
+        else  if(Session::has('startTime')){
+            $now=time();
+            $score=($now-Session::get('startTime'));//
 
+            if(abs($score-$request->score)>3){
+                echo "do not do anything illegal!";    
+            }
+            else{
 
-        $now=time();
-        $score=($now-Session::get('startTime'));//
-
-        if(abs($score-$request->score)>3){
-            echo "do not do anything illegal!";    
+                $scores = Record_score::create([
+                    'name'=>$request->name,
+                    'score'=>$score
+                    ]);
+                return response()->json($scores);
+            }
         }
         else{
-
-            $scores = Record_score::create([
-                'name'=>$request->name,
-                'score'=>$score
-                ]);
-            return response()->json($scores);
+            /*$return="do not do anything illegal!";
+            return  response()->json($return);*/
+            echo "do not do anything illegal!"; 
         }
         
     }

@@ -984,7 +984,6 @@ function draw_GAME_4(){
             console.log(formData);
 
             $.ajax({
-
                   type: "POST",    
                   url: my_url,
                   data: formData,//傳送的資料
@@ -1005,10 +1004,6 @@ function draw_GAME_4(){
         gameStartTime_bool=false;
       }
     ///////////////
-
-
-
-
    /* ////遊戲開始時，要傳送遊戲開始的時間
         $(document).ready(function(){
 
