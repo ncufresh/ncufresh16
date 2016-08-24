@@ -168,6 +168,7 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
                     <li data-target="#carousel-single" data-slide-to="5" class=""></li>
                     <li data-target="#carousel-single" data-slide-to="6" class=""></li>
                     <li data-target="#carousel-single" data-slide-to="7" class=""></li>
+                    <li data-target="#carousel-single" data-slide-to="8" class=""></li>
                 </ol>
 
             		<!-- Wrapper for slides -->
@@ -196,6 +197,10 @@ $("#timeline .timeline-item .timeline-content.right").addClass(primary_color); /
                     <figure class="item preload loaded" onclick="javascript:location.href='https://www.facebook.com/ncuhiphop'" style="background-image: url({{asset('img/home/ncuhiphop.jpg')}});">
 						            <figcaption class="carousel-caption">中央嘻研</figcaption>
 					          </figure>
+                    <figure class="item preload loaded" onclick="javascript:location.href='https://goo.gl/forms/n0MRP68XznEJd3HJ3'" style="background-image: url({{asset('img/home/ncucsl.jpeg')}});">
+						        <figcaption class="carousel-caption">資訊服務學習招募</figcaption>
+					        </figure>
+
             		</div>
 
             		<!-- Controls -->
