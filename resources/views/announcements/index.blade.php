@@ -140,39 +140,41 @@ $(document).ready(function(){
                     <td><?php $d=strtotime($ann->post_at) ?>{{date("Y / m / d", $d) }}</td>
                     <td>{{ $ann->title }}</td>
                 </tr>
-
-                <!-- Modal -->
-                <div id="myModal{{ $ann->id }}" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                      <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h2 class="modal-title">標題: {{ $ann->title }}</h2>
-                                <h4 class="modal-title">發佈日期: {{ $ann->post_at }}</h4>
-                            </div>
-                            <div class="modal-body">
-                                {!! $ann->content !!}
-                            </div>
-                            <div class="modal-footer">
-                                {{-- edit page --}}
-                                <a href="{{ url('ann/'.$ann->id.'/edit') }}" class="btn btn-primary">
-                                  <i class="fa fa-pencil-square-o"></i> 編輯
-                                </a>
-                                {{-- delete ajax --}}
-                                <button type="submit" class="btn btn-danger delete-ann" value="{{$ann->id}}">
-                                    <i class="fa fa-btn fa-trash"></i> 刪除
-                                </button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">
-                                    <span class="glyphicon glyphicon-remove"></span> 關閉
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 @endforeach
             </tbody>
         </table>
+
+        {{-- Modal --}}
+        @foreach ($anns as $ann)
+        <div id="myModal{{ $ann->id }}" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                {{-- Modal content--}}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title">標題: {{ $ann->title }}</h2>
+                        <h4 class="modal-title">發佈日期: {{ $ann->post_at }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {!! $ann->content !!}
+                    </div>
+                    <div class="modal-footer">
+                        {{-- edit page --}}
+                        <a href="{{ url('ann/'.$ann->id.'/edit') }}" class="btn btn-primary">
+                          <i class="fa fa-pencil-square-o"></i> 編輯
+                        </a>
+                        {{-- delete ajax --}}
+                        <button type="submit" class="btn btn-danger delete-ann" value="{{$ann->id}}">
+                            <i class="fa fa-btn fa-trash"></i> 刪除
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove"></span> 關閉
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach 
     </div>
 </div>
 
